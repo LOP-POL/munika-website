@@ -1,0 +1,33 @@
+/* CSS HEX */
+:root{
+    --seasalt: #f9f9f9ff;
+    --black: #000000ff;
+    --school-bus-yellow: #ffd800ff;
+    --blue-violet: #743debff;
+    --french-gray: #bebfc5ff;
+
+    /* CSS HSL */
+    --seasalt: hsla(0, 0%, 98%, 1);
+    --black: hsla(0, 0%, 0%, 1);
+    --school-bus-yellow: hsla(51, 100%, 50%, 1);
+    --blue-violet: hsla(259, 81%, 58%, 1);
+    --french-gray: hsla(231, 6%, 76%, 1);
+
+    --el-color-primary:var(--school-bus-yellow);
+}
+.custom-class {
+    --el-tag-bg-color:var(--school-bus-yellow);
+  }
+html.dark{
+    --el-bg-color:var(--black)
+
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body .light-theme{
+    background-color: var(--black);
+    color: var(--white);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
