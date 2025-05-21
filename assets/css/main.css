@@ -19,68 +19,8 @@
     --el-tag-bg-color:var(--school-bus-yellow);
   }
 html.dark{
-    --el-bg-color:var(--black);
-}
-/* Styles for the default Nav and footer pages */
-.main-page-header{
-    border-radius:10px;
-    width:100%;
-    height: 100%;
-    background-color: var(--school-bus-yellow);
-}
-.main-page-footer{
-    width: 100%;
-    height:100%;
-    background-color: var(--school-bus-yellow);
-}
+    --el-bg-color:var(--black)
 
-.title-logo-and-text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--school-bus-yellow);
-    border-radius: inherit;
-    
-}
-
-.title-holder span,.show-text{
-    text-align: center;
-    font-weight: 600;
-    font-size: 2em;
-    padding:5px;
-}
-.title-holder{
-   display: flex;
-   justify-content: space-between;
-   align-items: space-between;
-}
-@media screen and (max-width: 900px) {
-    .title-holder {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-    
-.title-text{
-    grid-area: text;
-}
-.logo-holder{
-    grid-area:logo;
-}
-.nav-menu{
-    position: relative;
-    width:50%;
-}
-.main-nav{
-    background-color:var(--seasalt);
-    border-radius: 5px;
-}
-.main-nav-show{
-   max-width: 100%;
-}
-.main-logo{
-    border-radius: 50%;
-    height: 50px;
-    width:50px;
 }
 
 body{
@@ -90,58 +30,4 @@ body .light-theme{
     background-color: var(--black);
     color: var(--white);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-   
-}
-.main-content{
-    min-height: 100vh;
-    max-width: 100vw;
-}
-/* Styles for landing page  */
-.container-home{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width:100%;
-}
-.layered-content{
-    position: absolute;
-    width:100%;
-    height:100%;
-    overflow: hidden;
-    display: grid;
-    place-items:center;
-   
-}
-.right-side{
-    background: radial-gradient(var(--school-bus-yellow) 8%,transparent 8%);
-    background-position: 0% 0%;
-    background-size: 5vmin 5vmin;
-    background-repeat: repeat;
-   
-}
-.left-side{
-    background: radial-gradient(var(--french-gray) 8%,transparent 8%);
-    background-position: 0% 0%;
-    background-size: 5vmin 5vmin;
-    background-repeat: repeat;
-    z-index:2;
-   
-    left:0;
-    transition: ease 0.5ms;
- }
-/* Styles for the team page */
-.card-img{
-    object-fit:contain;
-    height:200px;
-    width:100%;
-}
-.carousel-container{
-    box-shadow: inset 0px 0px 20px black;
-    background-image: url('/img/randomImageOfBib.jpg');
-}
-.people-card{
-  height:100%;
-  width:100%;
-
 }
