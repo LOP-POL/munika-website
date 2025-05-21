@@ -45,12 +45,12 @@ console.log(pageWidth.value)
                         square plain />
                     <el-menu mode="horizontal" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
-                        <el-menu-item index="/KAMUN">Home</el-menu-item>
-                        <el-menu-item index="/KAMUN/team">Team</el-menu-item>
-                        <el-menu-item index="/KAMUN/Commitees">Commitees</el-menu-item>
-                        <el-menu-item index="/">MUNIKA</el-menu-item>
-                        <el-menu-item index="past">Past Conferences</el-menu-item>
-                        <el-menu-item index="/KAMUN/Sign up">Sign up</el-menu-item>
+                        <el-menu-item index="/">Home</el-menu-item>
+                        <el-menu-item index="/team">Team</el-menu-item>
+                        <el-menu-item index="/news">News</el-menu-item>
+                        <el-menu-item index="/KAMUN">KAMUN</el-menu-item>
+                        <el-menu-item index="/Impressum">Impressum</el-menu-item>
+                        <el-menu-item index="/join">Join us</el-menu-item>
                     </el-menu>
 
                 </span>
