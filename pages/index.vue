@@ -3,6 +3,9 @@
                 <div class="left-side layered-content" ref="leftRef">
                     <h1 class="show-text">Model United Nations Initiative Karlsruhe</h1>
                 </div>
+                 <div class="left-side layered-content" ref="leftRef">
+                    
+                </div>
                 <div class="right-side layered-content">
                     
                 </div>

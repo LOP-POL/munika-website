@@ -3,6 +3,9 @@
 import {
     Menu
 } from '@element-plus/icons-vue'
+
+
+
 const router = useRouter();
 const onBack = () => {
     router.push("/");
@@ -29,15 +32,15 @@ console.log(pageWidth.value)
 </script>
 
 <template>
-    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/kamun.css">
     <el-container>
         <el-header class="main-page-header">
 
             <div class="title-holder">
                 <div class="title-logo-and-text">
-                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
+                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
                             alt="munikaLogo" height="10%" width="10%"></span>
-                    <span class="title-text">MUNIKA.eV</span>
+                    <span class="title-text">KAMUN 2025</span>
                 </div>
 
                 <span class="nav-menu">
@@ -45,12 +48,14 @@ console.log(pageWidth.value)
                         square plain />
                     <el-menu mode="horizontal" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
-                        <el-menu-item index="/">Home</el-menu-item>
-                        <el-menu-item index="/team">Team</el-menu-item>
-                        <el-menu-item index="/news">News</el-menu-item>
-                        <el-menu-item index="/KAMUN">KAMUN</el-menu-item>
-                        <el-menu-item index="/Impressum">Impressum</el-menu-item>
-                        <el-menu-item index="/join">Join us</el-menu-item>
+                        <el-menu-item index="/KAMUN">Home</el-menu-item>
+                        <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
+                        <el-menu-item index="KAMUN/commitees">Commitees</el-menu-item>
+                        <el-menu-item index="/KAMUN/past">Conferences</el-menu-item>
+
+                        <el-menu-item index="/">MUNIKA</el-menu-item>
+                        <el-menu-item index="/KAMUN/sponsor">Sponsor</el-menu-item>
+                        <el-menu-item index="/KAMUN/signUp">sign up</el-menu-item>
                     </el-menu>
 
                 </span>
@@ -60,7 +65,7 @@ console.log(pageWidth.value)
 
 
         <el-main class="main-content">
-            <slot />
+            <slot :pageWidth = "pageWidth" />
         </el-main>
 
         <el-footer class="main-page-footer">
@@ -80,5 +85,6 @@ console.log(pageWidth.value)
     </el-drawer>
 </template>
 <style>
-@import url("~/assets/css/main.css")
+@import url("~/assets/css/kamun.css");
+@import url('~/assets/css/main.css');
 </style>
