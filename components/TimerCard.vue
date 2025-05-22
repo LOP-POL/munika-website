@@ -119,7 +119,7 @@
         <div class="timeline-container">
             <el-timeline style="max-width: 600px" >
                 <el-timeline-item timestamp="Start" placement="top" color="lightgreen">
-                    <el-card class="start" ">
+                    <el-card class="start" >
                         <h2 style="color:black">5th December 2025 </h2>
                     </el-card>
                 </el-timeline-item>
