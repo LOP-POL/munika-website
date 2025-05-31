@@ -1,60 +1,53 @@
 <template>
-    <section class="container-home container-home-main" ref="headerRef">
-                <div class="left-side layered-content" ref="leftRef">
-                    <h1 class="show-text">Model United Nations Initiative Karlsruhe</h1>
-                </div>
-                 <div class="left-side layered-content" ref="leftRef">
-                    
-                </div>
-                <div class="right-side layered-content">
-                    
-                </div>
-    </section>
-    <section class="container-home container-home-text">
-       <h1>
-            what do we do
-       </h1>
-       <h1>
-        who are we 
-       </h1>
-    </section>
-    <section class="container-home container-home-contacts">
-        <h1>
-           Join us
-        </h1>
-    </section>
+     <main-page-header />
+      <section class="main-section">
+        <head-and-c divider>
+          <template #title>Who are we</template>
+          <p>
+            We are a passionate group of university students dedicated to fostering
+            global awareness, diplomacy, and leadership through Model United Nations.
+            Our community brings together individuals from diverse backgrounds to
+            engage in thoughtful debate, develop public speaking skills,
+            and collaborate on solutions to pressing international issues.
+            Whether you are new to MUN or an experienced delegate, we welcome
+            you to join us in exploring the world of international relations and
+            making a positive impact.
+          </p>
+        </head-and-c>
+      </section>
+  
+      <section class="main-section " id="where-to">
+        <head-and-c divider>
+          <template #title>Where to find us</template>
+          <p>
+            As per usual KAMUN will be held at the Karlsruhe Institute of Technology. In the beautiful city of
+            Karlsruhe
+          </p>
+         
+        </head-and-c>
+
+      </section>
+      <el-divider></el-divider>
+      <section class="main-section">
+        <head-and-c divider>
+          <template #title>What to expect</template>
+          <p>
+            View the pictorial from previous Kamuns or watch our video
+          </p>
+          <div>
+            <img src="" alt="">
+          </div>
+        </head-and-c>
+
+      </section>
 
 </template>
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-
-// Define refs for DOM elements
-const leftRef = ref<HTMLElement | null>(null)
-const headerRef = ref<HTMLElement | null>(null)
-
-const handleMove = (e: MouseEvent | Touch) => {
-  if (!leftRef.value) return
-  const clientX = 'clientX' in e ? e.clientX : 0
-  const p = clientX / window.innerWidth * 100
-  leftRef.value.style.width = `${p}%`
-}
-
-const onMouseMove = (e: MouseEvent) => handleMove(e)
-const onTouchMove = (e: TouchEvent) => {
-  if (e.touches.length > 0) handleMove(e.touches[0])
-}
-
-onMounted(() => {
-  if (headerRef.value) {
-    headerRef.value.addEventListener('mousemove', onMouseMove)
-    headerRef.value.addEventListener('touchmove', onTouchMove)
+<style>
+  #where-to{
+  background-image: url("/styleImgs/forest-silouette-white.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   }
-})
-
-onUnmounted(() => {
-  if (headerRef.value) {
-    headerRef.value.removeEventListener('mousemove', onMouseMove)
-    headerRef.value.removeEventListener('touchmove', onTouchMove)
-  }
-})
-</script>
+</style>

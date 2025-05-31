@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import TimerCard from '~/components/TimerCard.vue';
 
 definePageMeta({
@@ -6,32 +6,8 @@ definePageMeta({
 })
 </script>
 <template>
-    <el-container>
-        <el-header class="kamun-header">
-            <div class='underlay'>
-                <div class="kamun-title">
-                    <h1 class="kamun-title-text">
-                        KAMUN 2025
-                    </h1>
-                    <p class="title-sub-text">
-                        Karslruhe Model United nations
-                    </p>
-                </div>
-            </div>
-
-           
-                <img src="/img/United_Nations_General_Assembly_Hall_(3).webp" alt="united nations geenral assembly">
-           
-
-            <div class="overlay">
-                <div class="overlay-content">
-                    <h2>The Black forest Summit</h2>
-                </div>
-            </div>
-        </el-header>
-
-        <el-main class="kamun-main">
-            <section class="kamun-main-section">
+            <kamun-page-header></kamun-page-header>
+            <section class="main-section">
                 <div>
                     <h2>When</h2>
                     <el-divider></el-divider>
@@ -55,7 +31,7 @@ definePageMeta({
                 <TimerCard />
             </section>
           
-            <section class="kamun-main-section">
+            <section class="main-section">
                 <div>
                      <h2>Where</h2>
                      <el-divider></el-divider>
@@ -67,7 +43,7 @@ definePageMeta({
                
             </section>
             <el-divider></el-divider>
-            <section class="kamun-main-section">
+            <section class="main-section">
                 <div>
                     <h2>What to expect</h2>
                     <el-divider></el-divider>
@@ -80,10 +56,5 @@ definePageMeta({
                 </div>
 
             </section>
-        </el-main>
-       
-        <el-footer>
-
-        </el-footer>
-    </el-container>
+            
 </template>

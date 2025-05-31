@@ -5,6 +5,8 @@
     --school-bus-yellow: #ffd800ff;
     --blue-violet: #743debff;
     --french-gray: #bebfc5ff;
+    --munika-blue:#4acef7;
+    --pacific-cyan:#22ADD6;
 
     /* CSS HSL */
     --seasalt: hsla(0, 0%, 98%, 1);
@@ -13,11 +15,15 @@
     --blue-violet: hsla(259, 81%, 58%, 1);
     --french-gray: hsla(231, 6%, 76%, 1);
 
-    --el-color-primary:var(--school-bus-yellow);
+    --el-color-primary:var(--munika-blue);
+    --theme-color:var(--munika-blue);
 }
 .custom-class {
     --el-tag-bg-color:var(--school-bus-yellow);
   }
+*{
+    transition: 0.5s ease;
+}
 html.dark{
     --el-bg-color:var(--black);
 }
@@ -26,19 +32,27 @@ html.dark{
     border-radius:10px;
     width:100%;
     height: 100%;
-    background-color: var(--school-bus-yellow);
+    background-color: var(--theme-color); 
 }
 .main-page-footer{
     width: 100%;
     height:100%;
-    background-color: var(--school-bus-yellow);
+    background-color: var(--theme-color);
 }
 
+.title-holder{
+   display: flex;
+   justify-content: space-between;
+   align-items: space-between;
+    background-color: var(--theme-color);
+    border-radius: inherit;
+    margin:5px;
+}
 .title-logo-and-text{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--school-bus-yellow);
+    background-color: var(--theme-color);
     border-radius: inherit;
     
 }
@@ -48,12 +62,9 @@ html.dark{
     font-weight: 600;
     font-size: 2em;
     padding:5px;
+    color: white;
 }
-.title-holder{
-   display: flex;
-   justify-content: space-between;
-   align-items: space-between;
-}
+
 @media screen and (max-width: 900px) {
     .title-holder {
         grid-template-columns: 1fr 1fr 1fr;
@@ -79,8 +90,8 @@ html.dark{
 }
 .main-logo{
     border-radius: 50%;
-    height: 50px;
-    width:50px;
+    height:30px;
+    width:30px;
 }
 
 body{
@@ -92,9 +103,42 @@ body .light-theme{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
    
 }
-.main-content{
+
+/* General styles */
+.munika-main-section{
     min-height: 100vh;
     max-width: 100vw;
+   
+}
+.munika-header,.munika-main-section{
+    min-height:90vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    overflow: hidden;   
+}
+
+
+.observer-section, .main-section{
+display: flex;
+flex-direction: row;
+background-color: var(--seasalt);
+align-items: flex-start;
+padding: 10px;
+border-radius: 5px;
+max-width:100vw;
+min-width:80vw;
+opacity:0;
+}
+@media (max-width: 768px) {
+    .main-section {
+        display: block;
+    }
+}
+.main-section h2{
+    color:var(--french-gray)
 }
 /* Styles for landing page  */
 .container-home{
@@ -114,21 +158,28 @@ body .light-theme{
    
 }
 .right-side{
-    background: radial-gradient(var(--school-bus-yellow) 8%,transparent 8%);
-    background-position: 0% 0%;
-    background-size: 5vmin 5vmin;
-    background-repeat: repeat;
+  background-image: url("/img/United_Nations_General_Assembly_Hall_(3).webp");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
    
 }
 .left-side{
-    background: radial-gradient(var(--french-gray) 8%,transparent 8%);
+    background: radial-gradient(var(--seasalt) 8%,transparent 8%);
     background-position: 0% 0%;
     background-size: 5vmin 5vmin;
     background-repeat: repeat;
-    z-index:2;
+    z-index:3;
    
     left:0;
     transition: ease 0.5ms;
+ }
+ .underlay-munika{
+    z-index: 2;
+    background-color:var(--theme-color);
+    opacity: 0.7;
+   
  }
 /* Styles for the team page */
 .card-img{

@@ -1,6 +1,9 @@
+
 <script lang="ts" setup>
     import type { ImageProps } from 'element-plus'
-
+    definePageMeta({
+  layout: 'kamun-bar'
+});
     const vorstandPictures:string[] = [
         "Leon",
         "Varshi",
@@ -37,7 +40,7 @@
                             <span> {{ item }} </span>
                         </template>
                        
-                             <img class="card-img" :src="`img/${item}.jpg`" alt="Leon" />
+                             <img class="card-img" :src="`/img/${item}.jpg`" alt="Leon" />
                        
                         <template #footer>
                             <p>
