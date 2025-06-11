@@ -1,0 +1,832 @@
+{
+  "fromQuery": {
+    "object": "list",
+    "results": [
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-80f9-8739-f3501212394d",
+        "created_time": "2025-06-09T13:08:00.000Z",
+        "last_edited_time": "2025-06-09T13:24:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "The Committee on the Peaceful Uses of Outer Space (COPOUS) promotes international cooperation in space activities, encourages research programs, and addresses legal issues related to space exploration, focusing on preserving world heritage in conflict zones.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "The Committee on the Peaceful Uses of Outer Space (COPOUS) promotes international cooperation in space activities, encourages research programs, and addresses legal issues related to space exploration, focusing on preserving world heritage in conflict zones.",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "COPOUS",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "COPOUS",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": " A United Nations committee established in 1959 that governs the exploration and use of space for peaceful purposes. Its main functions include promoting international cooperation in space activities, encouraging space research programs, and studying legal problems arising from space exploration.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": " A United Nations committee established in 1959 that governs the exploration and use of space for peaceful purposes. Its main functions include promoting international cooperation in space activities, encouraging space research programs, and studying legal problems arising from space exploration.",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Committee on the Peaceful Uses of Outer Space",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": true,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Committee on the Peaceful Uses of Outer Space",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Preserving World Heritage in Conflict Zones",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Preserving World Heritage in Conflict Zones",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "WXb]",
+                "name": "Beginner",
+                "color": "red"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "COPOUS",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "COPOUS",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/COPOUS-20de15e902a380f98739f3501212394d",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-800b-9b2d-e0de40901d19",
+        "created_time": "2025-06-09T13:08:00.000Z",
+        "last_edited_time": "2025-06-09T13:24:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "The Commission on Crime Prevention and Criminal Justice focuses on enhancing international efforts against crime, promoting effective criminal justice systems, and addressing crime issues, with a current topic on preserving world heritage in conflict zones.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "The Commission on Crime Prevention and Criminal Justice focuses on enhancing international efforts against crime, promoting effective criminal justice systems, and addressing crime issues, with a current topic on preserving world heritage in conflict zones.",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "CCPCJ",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "CCPCJ",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "The principal policymaking body of the United Nations in the field of crime prevention and criminal justice. Its main functions include improving international action to combat national and transnational crime, promoting efficient criminal justice systems, and addressing emerging crime issues.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "The principal policymaking body of the United Nations in the field of crime prevention and criminal justice. Its main functions include improving international action to combat national and transnational crime, promoting efficient criminal justice systems, and addressing emerging crime issues.",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Commission on Crime Prevention and Criminal Justice",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Commission on Crime Prevention and Criminal Justice",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Preserving World Heritage in Conflict Zones",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Preserving World Heritage in Conflict Zones",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "WXb]",
+                "name": "Beginner",
+                "color": "red"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "CCPCJ",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "CCPCJ",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/CCPCJ-20de15e902a3800b9b2de0de40901d19",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-806f-84f8-e2c0c9bc0c48",
+        "created_time": "2025-06-09T13:01:00.000Z",
+        "last_edited_time": "2025-06-10T14:23:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "UNESCO is a UN agency focused on international collaboration in education, sciences, culture, and communication, emphasizing cultural heritage preservation, education access, scientific cooperation, and freedom of expression. Other committees include COPUOS for space governance, G20 for global economic issues, and CCPCJ for crime prevention and justice.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "UNESCO is a UN agency focused on international collaboration in education, sciences, culture, and communication, emphasizing cultural heritage preservation, education access, scientific cooperation, and freedom of expression. Other committees include COPUOS for space governance, G20 for global economic issues, and CCPCJ for crime prevention and justice.",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "UNESCO",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "UNESCO",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "A specialized UN agency that promotes international collaboration in education, sciences, culture, and communication. Its primary functions include preserving cultural heritage, promoting education for all, fostering scientific cooperation, and protecting freedom of expression.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "A specialized UN agency that promotes international collaboration in education, sciences, culture, and communication. Its primary functions include preserving cultural heritage, promoting education for all, fostering scientific cooperation, and protecting freedom of expression.",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "United Nations Educational, Scientific and Cultural Organization",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "United Nations Educational, Scientific and Cultural Organization",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Preserving World Heritage in Conflict Zones",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Preserving World Heritage in Conflict Zones",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "WXb]",
+                "name": "Beginner",
+                "color": "red"
+              },
+              {
+                "id": "nqay",
+                "name": "Highschooler",
+                "color": "gray"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "UNESCO",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "UNESCO",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/UNESCO-20de15e902a3806f84f8e2c0c9bc0c48",
+        "public_url": null
+      }
+    ],
+    "next_cursor": null,
+    "has_more": false,
+    "type": "page_or_database",
+    "page_or_database": {},
+    "request_id": "e0df6be0-efb1-46d4-93fc-c342d5a97584"
+  },
+  "fromRetrieve": {
+    "object": "database",
+    "id": "20de15e9-02a3-8048-ae98-e3ba6be55f88",
+    "cover": null,
+    "icon": null,
+    "created_time": "2025-06-09T12:46:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+    },
+    "last_edited_time": "2025-06-10T14:23:00.000Z",
+    "title": [
+      {
+        "type": "text",
+        "text": {
+          "content": "Committees",
+          "link": null
+        },
+        "annotations": {
+          "bold": false,
+          "italic": false,
+          "strikethrough": false,
+          "underline": false,
+          "code": false,
+          "color": "default"
+        },
+        "plain_text": "Committees",
+        "href": null
+      }
+    ],
+    "description": [],
+    "is_inline": false,
+    "properties": {
+      "chairs": {
+        "id": "%3AArV",
+        "name": "chairs",
+        "type": "people",
+        "people": {}
+      },
+      "topic-description": {
+        "id": "KCgd",
+        "name": "topic-description",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "main-name": {
+        "id": "XpZq",
+        "name": "main-name",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "Website": {
+        "id": "%5BUZ%60",
+        "name": "Website",
+        "type": "url",
+        "url": {}
+      },
+      "description": {
+        "id": "c%5B~%5D",
+        "name": "description",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "full-name": {
+        "id": "edWd",
+        "name": "full-name",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "topic": {
+        "id": "gE_a",
+        "name": "topic",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "committee-type": {
+        "id": "lM%3Cy",
+        "name": "committee-type",
+        "type": "multi_select",
+        "multi_select": {
+          "options": [
+            {
+              "id": "nqay",
+              "name": "Highschooler",
+              "color": "gray",
+              "description": null
+            },
+            {
+              "id": "CcwA",
+              "name": "Expert",
+              "color": "default",
+              "description": null
+            },
+            {
+              "id": "tUA]",
+              "name": "Intermediate",
+              "color": "brown",
+              "description": null
+            },
+            {
+              "id": "WXb]",
+              "name": "Beginner",
+              "color": "red",
+              "description": null
+            }
+          ]
+        }
+      },
+      "chair1": {
+        "id": "thAp",
+        "name": "chair1",
+        "type": "rich_text",
+        "rich_text": {}
+      },
+      "size": {
+        "id": "%7CGmD",
+        "name": "size",
+        "type": "number",
+        "number": {
+          "format": "number"
+        }
+      },
+      "Committee": {
+        "id": "title",
+        "name": "Committee",
+        "type": "title",
+        "title": {}
+      }
+    },
+    "parent": {
+      "type": "workspace",
+      "workspace": true
+    },
+    "url": "https://www.notion.so/20de15e902a38048ae98e3ba6be55f88",
+    "public_url": null,
+    "archived": false,
+    "in_trash": false,
+    "request_id": "a2e83f88-41ec-41e2-b5ff-187b9db2d595"
+  }
+}

@@ -16,10 +16,9 @@
     width:90%;
     justify-self: center;
     border-radius: 20px;
-    
     border: dashed 2px var(--french-grey);
     transition:0.5s ease-in-out;
-    height:50%;
+    height:40%;
     padding:10px;
     margin: 10px;
 
@@ -37,6 +36,7 @@
 }
 .time-card-container :hover{
     transform: translateY(5px);
+    
 }
 .countdown{
     grid-area: countdown;
@@ -54,11 +54,26 @@
     background-size: 5vmin 5vmin;
     background-repeat: repeat;
 }
-.timeline-container .start :hover{
-    background-color: lightgreen;
+
+.timeline-container .start {
+    background-color:#ffc;
+    
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);;   
+    transform: rotate(-5deg);
+    transition: transform .15s linear;
 }
-.timeline-container .end :hover{
+.timeline-container .end {
     background-color: pink;
+   
+    transform: rotate(3deg);
+     box-shadow: 5px 5px 7px rgba(33,33,33,.7);;   
+    
+}
+.timeline-container .end:hover, .timeline-container .start:hover{
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  transform: scale(1.25);
+  position:relative;
+  z-index:5;
 }
 .days,.time{
     font-size: 4vmax; /* increased size */
@@ -94,6 +109,9 @@
     margin: 0;
     padding: 0;
 }
+.start span, .end span{
+    text-align:right;
+}
 </style>
 <template>
     <el-container class="time-card-container">
@@ -119,12 +137,20 @@
         <div class="timeline-container">
             <el-timeline style="max-width: 600px" >
                 <el-timeline-item timestamp="Start" placement="top" color="lightgreen">
+                        
                     <el-card class="start" >
+                       <span style="float:right">
+                            📍
+                        </span>
                         <h2 style="color:black">5th December 2025 </h2>
                     </el-card>
                 </el-timeline-item>
                 <el-timeline-item timestamp="End" placement="top" color="pink">
+                        
                     <el-card class="end" >
+                        <span style="float:left">
+                            📍
+                        </span>
                         <h2 style="color:black">7th December 2025 </h2>
                     </el-card>
                 </el-timeline-item>

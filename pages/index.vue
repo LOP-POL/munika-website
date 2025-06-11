@@ -1,3 +1,21 @@
+<script setup lang="ts">
+  onMounted(()=>{
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                (entry.target as HTMLElement).style.opacity = '1'
+            }
+
+        })
+    }, { threshold: 0.75 })
+
+    document.querySelectorAll('.main-section').forEach(node => {
+       
+        observer.observe(node)
+    })
+
+  })
+</script>
 <template>
      <main-page-header />
       <section class="main-section">
@@ -51,3 +69,4 @@
   background-size: cover;
   }
 </style>
+

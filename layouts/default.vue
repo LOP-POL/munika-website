@@ -1,12 +1,11 @@
-<script lang="ts" setup>
 
-import {
-    Menu
-} from '@element-plus/icons-vue'
+<script lang="ts" setup>
 const router = useRouter();
 const onBack = () => {
     router.push("/");
 }
+
+const mainCon = ref<HTMLElement>()
 
 const menuVisible = ref(false)
 
@@ -16,9 +15,15 @@ const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth
 }
 
+
 onMounted(() => {
+   
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
+
+    document.querySelectorAll('.main-section').forEach(node => {
+        (node as HTMLElement).style.opacity = '0'
+    })
 
     if(router.currentRoute.value.meta.layout == 'kamun-bar'){
         document.documentElement.style.setProperty('--el-color-primary', 'var(--school-bus-yellow)')
@@ -28,27 +33,14 @@ onMounted(() => {
          document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                (entry.target as HTMLElement).style.opacity = '1'
-            }
-
-        })
-    }, { threshold: 0.75 })
-
-    document.querySelectorAll('.main-section').forEach(node => {
-        (node as HTMLElement).style.opacity = '0'
-        observer.observe(node)
-    })
 
 })
+
 
 onUnmounted(() => {
     window.removeEventListener('resize', updatePageWidth)
 })
 
-console.log(pageWidth.value)
 </script>
 
 <template>
@@ -64,16 +56,19 @@ console.log(pageWidth.value)
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" @click="menuVisible = true" v-if="pageWidth < 900" :icon="Menu"
-                        square plain />
-                    <el-menu mode="horizontal" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
-                        :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
+                    <el-button class="menu-toggle" style="justify-self: right; background-color: transparent; border: none;"  @click="menuVisible = true" v-if="pageWidth < 900" 
+                        circle plain>
+                        <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
+                    </el-button>
+                       
+                    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
+                        :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/">Home</el-menu-item>
 
                         <el-menu-item index="/news">News</el-menu-item>
-                        <el-menu-item index="/KAMUN">KAMUN</el-menu-item>
                         <el-menu-item index="/Impressum">Impressum</el-menu-item>
                         <el-menu-item index="/join">Join us</el-menu-item>
+                        <el-menu-item class="special-menu-item" index="/KAMUN">KAMUN</el-menu-item>
                     </el-menu>
 
                 </span>
@@ -82,7 +77,7 @@ console.log(pageWidth.value)
         </el-header>
 
 
-        <el-main class="main-content">
+        <el-main class="main-content" ref="mainCon">
             <slot />
         </el-main>
 
@@ -119,12 +114,12 @@ console.log(pageWidth.value)
     </el-container>
     <el-drawer v-model="menuVisible" direction="ttb" size="20%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b">
+        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
             <el-menu-item index="/">Home</el-menu-item>
             <el-menu-item index="/news">News</el-menu-item>
-            <el-menu-item index="/KAMUN">KAMUN</el-menu-item>
             <el-menu-item index="/Impressum">Impressum</el-menu-item>
             <el-menu-item index="/join">Join us</el-menu-item>
+            <el-menu-item class="special-menu-item" index="/KAMUN">KAMUN</el-menu-item>
         </el-menu>
     </el-drawer>
 </template>

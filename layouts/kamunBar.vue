@@ -4,8 +4,7 @@ import {
     Menu
 } from '@element-plus/icons-vue'
 
-
-
+const mainCon = ref<HTMLElement>()
 const router = useRouter();
 const onBack = () => {
     router.push("/");
@@ -32,19 +31,6 @@ onMounted(() => {
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                (entry.target as HTMLElement).style.opacity = '1'
-            }
-           
-        })
-    }, { threshold: 0.75 })
-
-    document.querySelectorAll('.main-section').forEach(node => {
-        (node as HTMLElement).style.opacity = '0'
-        observer.observe(node)
-    })
 })
 
 onUnmounted(() => {
@@ -67,15 +53,17 @@ onUnmounted(() => {
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" @click="menuVisible = true" v-if="pageWidth < 900" :icon="Menu"
-                        square plain />
-                    <el-menu mode="horizontal" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
+                    <el-button class="menu-toggle" style="justify-self: right; background-color: transparent; border: none;"  @click="menuVisible = true" v-if="pageWidth < 900" 
+                        circle plain>
+                        <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
+                    </el-button>
+                    <el-menu mode="horizontal" :router="true" :ellipsis="false"  class="main-nav main-nav-show" active-text-color="#ffd04b"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/KAMUN">Home</el-menu-item>
                         <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
                         <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
-                        <el-menu-item index="/">MUNIKA</el-menu-item>
                         <el-menu-item index="/KAMUN/sponsor">Sponsor Us</el-menu-item>
+                        <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
 
                       
                     </el-menu>
@@ -86,7 +74,7 @@ onUnmounted(() => {
         </el-header>
 
 
-        <el-main class="main-content">
+        <el-main class="main-content" ref="mainCon">
             <slot :pageWidth = "pageWidth" />
         </el-main>
 
@@ -122,13 +110,12 @@ onUnmounted(() => {
     </el-container>
     <el-drawer v-model="menuVisible" direction="ttb" size="20%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b">
-            <el-menu-item index="/">Home</el-menu-item>
-            <el-menu-item index="/team">Team</el-menu-item>
-            <el-menu-item index="/news">News</el-menu-item>
-            <el-menu-item index="/KAMUN">KAMUN</el-menu-item>
-            <el-menu-item index="/Impressum">Impressum</el-menu-item>
-            <el-menu-item index="/join">Join us</el-menu-item>
+        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
+            <el-menu-item index="/KAMUN">Home</el-menu-item>
+            <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
+            <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
+            <el-menu-item index="/KAMUN/sponsor">Sponsor Us</el-menu-item>
+            <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
         </el-menu>
     </el-drawer>
 </template>

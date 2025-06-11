@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@element-plus/nuxt'
   ],
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  runtimeConfig:{
+    notionApiKey: process.env.NUXT_NOTION_API_KEY,
+    notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID
+  }
 })
 
