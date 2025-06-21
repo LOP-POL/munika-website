@@ -1,6 +1,5 @@
 import {Client} from  "@notionhq/client"
 export default defineEventHandler(async (event)=>{
-
     const config = useRuntimeConfig()
     const notionApiKey = config.notionApiKey
     const notionCommitteesPage = config.notionCommitteesPage
@@ -13,15 +12,9 @@ export default defineEventHandler(async (event)=>{
         auth:notionApiKey,
     })
     
-    
+   
     const response = await notion.databases.query({
       database_id: notionCommitteesPage,
-      filter: {
-        property: 'committee-type',
-        multi_select: {
-          contains: 'Beginner'
-        }
-      }
     });
      const response1 = await notion.databases.retrieve({
       database_id: notionCommitteesPage,

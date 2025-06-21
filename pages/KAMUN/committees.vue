@@ -62,7 +62,10 @@
     min-height:50vh;
     max-height:500px;
     margin:20px;
-    background-color:white;
+    background-image:radial-gradient(var(--french-gray) 8%,transparent 8%);
+    background-size: 5vmin 5vmin;
+    background-repeat: repeat;
+    background-position: center;
     border-radius: 20px;  
     padding:20px;
   }
@@ -101,9 +104,9 @@
       <span class="dropdown-text">Change Difficulty <el-icon><ArrowDown/></el-icon></span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item class="drop-men-item"style="background-color: lightgreen;" divided command="Beginner" >Beginner</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:yellow;" divided command="Intermediate" >Intermediate</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:pink;" divided command="Expert" >Expert</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item"style="background-color:#28afb0;" divided command="Beginner" >Beginner</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item" style="background-color:#f4d35e;" divided command="Intermediate" >Intermediate</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item" style="background-color:#EE964B;" divided command="Expert" >Expert</el-dropdown-item>
         </el-dropdown-menu>
       </template>
 
@@ -114,7 +117,7 @@
     <div class="card-holder">
     
       <CommitteeCard
-      v-for="(committee, idx) in committees"
+      v-for="(committee, idx) in committeeLevelToList"
       :key="committee.mainName + idx"
       :mainName="committee.mainName"
       :fullName="committee.fullName"
@@ -138,14 +141,17 @@
       </template>
       <div>
         <strong>{{ currentCommittee.fullName }}</strong><br>
-        <span>{{ currentCommittee.topic }}</span>
+        <p>{{ currentCommittee.topic }}</p>
+        <p>{{ currentCommittee.description }}</p>
       </div>
     </headAndC>
   </div>
+
 </template>
 <script setup lang="ts">
 
 import CommitteeCard from '~/components/CommitteeCard.vue'
+import headAndC from '~/components/headAndC.vue'
 
 import {
   ArrowDown,
@@ -159,14 +165,23 @@ enum Difficulty {
   INTERMEDIATE = 'Intermediate',
   EXPERT =  'Expert'
 }
+interface Committee {
+  mainName: string
+  fullName: string
+  topic: string
+  description?: string
+  SignUpLink: string
+  metaImage: string
+  type: string
+}
 const difficulty = ref<string | Difficulty>(Difficulty.BEGINNER)
 
 const colors: Record<string,string> = {
-  Beginner:'lightgreen',
-  Intermediate:'yellow',
-  Expert:'pink'
+  Beginner:'#28afb0',
+  Intermediate:'#f4d35e',
+  Expert:'#EE964B'
 }
-const committees = ref( [
+const committees = ref<Committee[]>( [
   {
     mainName: "UNESCO",
     fullName: "United Nations Educational, Scientific and Cultural Organization",
@@ -193,10 +208,37 @@ const committees = ref( [
   }
 ])
 
-const { data } = useFetch('/api/committees/committees')
+const { data } = useFetch(`/api/committees/committees`)
 
 const currentCommittee = ref(committees.value[0])
 
+
+const committeeLevelToList = computed(() => {
+  if (difficulty.value) {
+    return committees.value.filter((committee) => committee.type === difficulty.value);
+  }
+  return [];
+});
+
+function setCommittee(committeeMainName:string = committees.value[0].mainName){
+  const foundCommittee = committees.value.find(c => c.mainName === committeeMainName)
+  currentCommittee.value = foundCommittee ? foundCommittee : committees.value[0]
+}
+
+function handleCommand(command:string){
+  switch (command) {
+    case Difficulty.BEGINNER:
+      difficulty.value = Difficulty.BEGINNER;
+      break;
+    case Difficulty.INTERMEDIATE:
+      difficulty.value = Difficulty.INTERMEDIATE;
+      break;
+    case Difficulty.EXPERT:
+      difficulty.value = Difficulty.EXPERT;
+      break;
+  }
+
+}
 watchEffect(() => {
   if (data.value?.fromQuery?.results) {
     // if (process.client) {
@@ -220,42 +262,10 @@ watchEffect(() => {
       description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
       SignUpLink: "#",
       metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-      type: difficulty.value
+      type:result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
     }));
 
   }
 });
-
-function setCommittee(committeeMainName:string = committees.value[0].mainName){
-  const foundCommittee = committees.value.find(c => c.mainName === committeeMainName)
-  currentCommittee.value = foundCommittee ? foundCommittee : committees.value[0]
-}
-
-function showData(){
-  var dataShow = useFetch("/api/committees/committees")
-}
-
-function handleCommand(command:string){
-  switch (command) {
-    case Difficulty.BEGINNER:
-      difficulty.value = Difficulty.BEGINNER;
-      break;
-    case Difficulty.INTERMEDIATE:
-      difficulty.value = Difficulty.INTERMEDIATE;
-      break;
-    case Difficulty.EXPERT:
-      difficulty.value = Difficulty.EXPERT;
-      break;
-  }
-
-  committees.value = committees.value.map((committee) => ({
-    ...committee,
-    type: difficulty.value
-  }));
- 
-}
-
-import headAndC from '~/components/headAndC.vue'
-
 
 </script>

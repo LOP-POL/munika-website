@@ -6,14 +6,15 @@
         max-width:100vw;
         max-height:80%;
         min-height:40vh;
-        border:2px dashed black;
+        border:5px dashed #28afb0;
         border-radius: 20px;
         padding:10px;
         margin:5px;
-        box-shadow:-10px -10px  pink,
-                    -20px -20px yellow;
+        box-shadow:-10px -10px  #EE964B,
+                    -20px -20px #f4d35e;
        
-        background-color: lightgreen;
+        background-color:whitesmoke;
+        backdrop-filter: blur(5px);
         font-size:2.5vmin;
     }
     .meta{
@@ -29,8 +30,8 @@
         width:100px;
         height:100px;
         border-radius:50%; 
-         box-shadow:inset -10px -10px  pink,
-                    inset -20px -20px yellow;
+         box-shadow:inset -10px -10px  #EE964B,
+                    inset -20px -20px #f4d35e;
         border:2px solid black;
         background-color: white;
         display: flex;
@@ -43,8 +44,8 @@
         object-fit:cover;
         border-radius: 50%;
         background-color: transparent;
-         box-shadow:-5px -5px  pink,
-                    -10px -10px yellow;
+         box-shadow:-5px -5px  #EE964B,
+                    -10px -10px #f4d35e;
        
          transform: rotateX(2deg) rotateY(-30deg);
         
@@ -64,7 +65,7 @@
     }
 </style>
 <template>
-    <div class="comm-card-container" :style="{...specialBoxShadow,backgroundColor:`${primaryColor}`}" >
+    <div class="comm-card-container" :style="{...specialBoxShadow,borderColor:`${primaryColor}`}" >
         <div class="meta">
             <div class="meta-image" :style="specialBoxShadowInset" >
                 <img :src="metaImage" alt="committee" >
@@ -73,7 +74,7 @@
                 <h2 class="main-name">
                     {{ mainName }}
                 </h2>
-                <h4 class="full-name" :style="props.type=='Intermediate'?{color:'black'}:{color:'white'}">
+                <h4 class="full-name" :style="props.type=='Intermediate'?{color:'black'}:{color:'gray'}">
                     {{ fullName }}
                 </h4>
             </div>
@@ -112,9 +113,9 @@ const emit = defineEmits<{
 }>()
 
 
-const primaryColor = ref('lightgreen')
-const secondaryColor = ref('pink')
-const tertiaryColor = ref('yellow')
+const primaryColor = ref('#28afb0')
+const secondaryColor = ref('#EE964B')
+const tertiaryColor = ref('#f4d35e')
 
 const specialBoxShadow = ref(
     {
@@ -141,21 +142,21 @@ function setCommittee(e: Event) {
 function specialColors():void{
     console.log(props.type)
     if (props.type === 'Beginner') {
-        primaryColor.value = 'lightgreen'
-        secondaryColor.value = 'yellow'
-        tertiaryColor.value = 'pink'
+        primaryColor.value = '#28afb0'
+        secondaryColor.value = '#f4d35e'
+        tertiaryColor.value = '#EE964B'
     } else if (props.type === 'Intermediate') {
-        primaryColor.value = 'yellow'
-        secondaryColor.value = 'lightgreen'
-        tertiaryColor.value = 'pink'
+        primaryColor.value = '#f4d35e'
+        secondaryColor.value = '#28afb0'
+        tertiaryColor.value = '#EE964B'
     } else if (props.type === 'Expert') {
-        primaryColor.value = 'pink'
-        secondaryColor.value = 'yellow'
-        tertiaryColor.value = 'lightgreen'
+        primaryColor.value = '#EE964B'
+        secondaryColor.value = '#f4d35e'
+        tertiaryColor.value = '#28afb0'
     } else {
-        primaryColor.value = 'lightgreen'
-        secondaryColor.value = 'yellow'
-        tertiaryColor.value = 'pink'
+        primaryColor.value = '#28afb0'
+        secondaryColor.value = '#f4d35e'
+        tertiaryColor.value = '#EE964B'
     }
 
     specialBoxShadow.value = {
