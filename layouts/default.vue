@@ -1,5 +1,14 @@
-
 <script lang="ts" setup>
+useHead({
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/jpeg',
+      href: '/img-logos/MunikaLogo.jpg',
+    },
+  ],
+})
+
 const router = useRouter();
 const onBack = () => {
     router.push("/");
@@ -52,7 +61,7 @@ onUnmounted(() => {
                 <div class="title-logo-and-text">
                     <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
                             alt="munikaLogo" height="10%" width="10%"></span>
-                    <span class="title-text">MUNIKA.eV</span>
+                    <span class="title-text">MUNIKA e.V</span>
                 </div>
 
                 <span class="nav-menu">
@@ -61,7 +70,7 @@ onUnmounted(() => {
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
                        
-                    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="#ffd04b"
+                    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="var(--theme-color)"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/">Home</el-menu-item>
 
@@ -112,9 +121,9 @@ onUnmounted(() => {
 
         </el-footer>
     </el-container>
-    <el-drawer v-model="menuVisible" direction="ttb" size="20%" :with-header="false" class="mobile-nav-drawer">
+    <el-drawer v-model="menuVisible" direction="ltr" size="20%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
+        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="var(--theme-color)" :ellipsis="false">
             <el-menu-item index="/">Home</el-menu-item>
             <el-menu-item index="/news">News</el-menu-item>
             <el-menu-item index="/Impressum">Impressum</el-menu-item>

@@ -48,13 +48,15 @@
                     -10px -10px #f4d35e;
        
          transform: rotateX(2deg) rotateY(-30deg);
+         background-color:antiquewhite;
         
        
     }
     .meta-image img :hover{
         transform: scale(1.25);
         width:80%;
-        height:80%
+        height:80%;
+        
     }
     .full-name{
         color:var(--seasalt)
@@ -68,7 +70,7 @@
     <div class="comm-card-container" :style="{...specialBoxShadow,borderColor:`${primaryColor}`}" >
         <div class="meta">
             <div class="meta-image" :style="specialBoxShadowInset" >
-                <img :src="metaImage" alt="committee" >
+                <img :src="logo?logo:metaImage" alt="committee" >
             </div>
             <div class="meta-name">
                 <h2 class="main-name">
@@ -103,6 +105,7 @@ const props = defineProps<{
     mainName: string
     fullName: string
     topic: string
+    logo:string
     SignUpLink: string
     metaImage: string
     type:string

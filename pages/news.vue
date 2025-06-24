@@ -28,6 +28,7 @@
 
 .bulletin {
     grid-area: update;
+    
 }
 
 @media (max-width: 900px) {

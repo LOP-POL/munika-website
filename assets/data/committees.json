@@ -4,9 +4,9 @@
     "results": [
       {
         "object": "page",
-        "id": "20de15e9-02a3-80f9-8739-f3501212394d",
-        "created_time": "2025-06-09T13:08:00.000Z",
-        "last_edited_time": "2025-06-09T13:24:00.000Z",
+        "id": "20ee15e9-02a3-8090-892c-f00aa5041fc7",
+        "created_time": "2025-06-10T14:23:00.000Z",
+        "last_edited_time": "2025-06-21T13:15:00.000Z",
         "created_by": {
           "object": "user",
           "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
@@ -36,6 +36,734 @@
                 "type": "person",
                 "person": {
                   "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "UNSC.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/b980f54c-6d85-4784-9d34-5860c3dc0673/UNSC.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=113f3dd0d8d225d3c506ba9073eaa1af2942e388aece858d046f9e96a614a56d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "No content",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "No content",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "H - UNSC",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "H - UNSC",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "We tackle some historic event",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "We tackle some historic event",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "United Nations Security Council",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "United Nations Security Council",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Some old crisis",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Some old crisis",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "CcwA",
+                "name": "Expert",
+                "color": "default"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Historic-UNSC",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Historic-UNSC",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/Historic-UNSC-20ee15e902a38090892cf00aa5041fc7",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-809b-af13-e957493617f5",
+        "created_time": "2025-06-09T13:09:00.000Z",
+        "last_edited_time": "2025-06-21T13:15:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "chairs_choice_logo.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/8034a246-54f1-4a7d-be5e-4c663ed6d65f/chairs_choice_logo.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=875bf2ebb1be8b16a7d47a62b03faba1dd1329805e298d1fb636ef1d411c7447&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Chairs Choice is a beginner committee led by Leon Okello, focusing on the topic of preserving world heritage in conflict zones, with a size limit of 25 participants. More information can be found on their website.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Chairs Choice is a beginner committee led by Leon Okello, focusing on the topic of preserving world heritage in conflict zones, with a size limit of 25 participants. More information can be found on their website.",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Chairs Choice",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Chairs Choice",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "This is to be chosen by the chairs",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "This is to be chosen by the chairs",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Chairs Choice",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Chairs Choice",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Preserving World Heritage in Conflict Zones",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Preserving World Heritage in Conflict Zones",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "tUA]",
+                "name": "Intermediate",
+                "color": "brown"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Chairs Choice",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Chairs Choice",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/Chairs-Choice-20de15e902a3809baf13e957493617f5",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-803c-8a5b-ea59de57b889",
+        "created_time": "2025-06-09T13:09:00.000Z",
+        "last_edited_time": "2025-06-21T13:15:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "G20_logo.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/95da0009-204b-451f-89f8-49daf6066859/G20_logo.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=57b6be8a1a4f196e54162eebca7223632ba354e0cfa91e1dd2732de01a19141b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
+                }
+              }
+            ]
+          },
+          "topic-description": {
+            "id": "KCgd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "An international forum for 19 countries and the EU focused on global economic issues, including financial stability, climate change, and sustainable development, with a topic on preserving world heritage in conflict zones.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "An international forum for 19 countries and the EU focused on global economic issues, including financial stability, climate change, and sustainable development, with a topic on preserving world heritage in conflict zones.",
+                "href": null
+              }
+            ]
+          },
+          "main-name": {
+            "id": "XpZq",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "G20",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "G20",
+                "href": null
+              }
+            ]
+          },
+          "Website": {
+            "id": "%5BUZ%60",
+            "type": "url",
+            "url": "https://mymun.com/conferences/kamun-2025"
+          },
+          "description": {
+            "id": "c%5B~%5D",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "An international forum for the governments and central bank governors of 19 countries and the European Union. Its main function is to address major issues related to the global economy, such as international financial stability, climate change mitigation, and sustainable development.",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "An international forum for the governments and central bank governors of 19 countries and the European Union. Its main function is to address major issues related to the global economy, such as international financial stability, climate change mitigation, and sustainable development.",
+                "href": null
+              }
+            ]
+          },
+          "full-name": {
+            "id": "edWd",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Group of twenty",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Group of twenty",
+                "href": null
+              }
+            ]
+          },
+          "topic": {
+            "id": "gE_a",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Preserving World Heritage in Conflict Zones",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Preserving World Heritage in Conflict Zones",
+                "href": null
+              }
+            ]
+          },
+          "committee-type": {
+            "id": "lM%3Cy",
+            "type": "multi_select",
+            "multi_select": [
+              {
+                "id": "tUA]",
+                "name": "Intermediate",
+                "color": "brown"
+              }
+            ]
+          },
+          "chair1": {
+            "id": "thAp",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "leon",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "leon",
+                "href": null
+              }
+            ]
+          },
+          "size": {
+            "id": "%7CGmD",
+            "type": "number",
+            "number": 25
+          },
+          "Committee": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "G20 ",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "G20 ",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/G20-20de15e902a3803c8a5bea59de57b889",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "20de15e9-02a3-80f9-8739-f3501212394d",
+        "created_time": "2025-06-09T13:08:00.000Z",
+        "last_edited_time": "2025-06-21T13:15:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "20de15e9-02a3-8048-ae98-e3ba6be55f88"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "chairs": {
+            "id": "%3AArV",
+            "type": "people",
+            "people": [
+              {
+                "object": "user",
+                "id": "20ad872b-594c-81dd-9e79-0002a0d375d3",
+                "name": "Leon Okello",
+                "avatar_url": null,
+                "type": "person",
+                "person": {
+                  "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "COPOUS_logo.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/70010c10-21f4-4a71-a619-1c590bd75f04/COPOUS_logo.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=e2cc8f1721ea2bc278de74682e7b3a2964cd76c7acd5d0f5979788681cda6c56&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
                 }
               }
             ]
@@ -230,7 +958,7 @@
         "object": "page",
         "id": "20de15e9-02a3-800b-9b2d-e0de40901d19",
         "created_time": "2025-06-09T13:08:00.000Z",
-        "last_edited_time": "2025-06-09T13:24:00.000Z",
+        "last_edited_time": "2025-06-21T13:14:00.000Z",
         "created_by": {
           "object": "user",
           "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
@@ -260,6 +988,20 @@
                 "type": "person",
                 "person": {
                   "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "CCPCJ_logo.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/fbaa8b3e-3e01-4b38-9331-26b2e356538c/CCPCJ_logo.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=a8f850bd6e7f8c0ee3c82f4e62807c53cf71d96fd45b8d4dd502a151972a8823&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
                 }
               }
             ]
@@ -454,7 +1196,7 @@
         "object": "page",
         "id": "20de15e9-02a3-806f-84f8-e2c0c9bc0c48",
         "created_time": "2025-06-09T13:01:00.000Z",
-        "last_edited_time": "2025-06-10T14:23:00.000Z",
+        "last_edited_time": "2025-06-21T13:14:00.000Z",
         "created_by": {
           "object": "user",
           "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
@@ -484,6 +1226,20 @@
                 "type": "person",
                 "person": {
                   "email": "leon.okello@munika.org"
+                }
+              }
+            ]
+          },
+          "logo": {
+            "id": "G%3BY%3F",
+            "type": "files",
+            "files": [
+              {
+                "name": "UNESCO_logo.webp",
+                "type": "file",
+                "file": {
+                  "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/1a6e15e9-02a3-8145-ad55-00034a44e5c3/a17d8ad4-539b-47e7-864d-ff4c9bfddc68/UNESCO_logo.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466R6A77LOV%2F20250621%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250621T132102Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDkV%2BIqfnW6ftaxzwUInCoySJG8IxxV7ijU%2BMuI0L5EiQIgQY7cKiC2CvnDqW0%2F3bjPWA%2FdslnC3rs%2BZrKOWoRMD%2FUqiAQI1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDDAlp198PoO3JC5l5SrcAyiP2pi81YleqlS5oeVP8NpMObuEgt2xsdP7T2eNNnwORmDMFynk318%2F9NkqP9HexvY3ScVmoIxrwua9epN1mgkme9IwDslBz0UXhvEwHz0HKDs%2B2RQhgnm6rV9vm1Bf9yMxZ8J1Nf9fo2Cip49F7cSUtbzmCY7JQxe6xjV8I2gST4Hsy%2BIFOz3YyCbmty9I1f6Pbt3k2JAgn%2BDPz3DCBNmZauOORZ0wW%2FybpISXpHmlEXl%2B324h2%2FZHqT62fo4pJDzl8LXddhublXkmnn6igL8NPCs8zTtpZ9qeZwXmDgEKU%2FIEF5wVUHrZ5%2F%2BAqSxol4qnUnWz%2F65yKJ%2FwLmkfwT1LUj6CcExTiAgnXblfRq8yAp4IUQbctVM0riDV%2BcFNlDx2lIZB6TpROpv%2BTSQaVwwdjdwGs1PoTXXMCPZa9UWI8g3esb4yvmJTmumLApJsEDO6QDVti7nCC8nim%2B5jANoY0VgGv%2BecThq0BsEkZ3p2i0bvQWTE5kgZkivPUlqUHX7q%2B%2Fz8JERTL%2B04kCL51cVEw9of1%2BwaqNxuMg0KfbgtEW4ECIoTKgj0WaH3FrLeXMcP%2FevpKPB5gzBC2Go4nqxyedGihMtph5sy0M4z2%2BqkhGiIdhU56fG%2F4X5%2FMMmo2sIGOqUBLDUshjUOYVz9HA%2BR%2FUndHs4RGsa%2Fha3LPxhEJW%2FRv1VAxf7WIBhebK8c7b03ojOJLN1SKlSdbjiyLd%2Fr2vXz9urq5j0AbGn4bY0zO1psrD3vlpOTv14TMU7wcUTIz3S9Hif1fS773u1LRosdGZmblsdSMcNlbvwm21z8VjavLpRS7OvH3bKdRIQQ%2BarYDsa31Jb%2BJW6a1RiQB2F%2F%2FMedHZFPTE6G&X-Amz-Signature=555df16ad1152c8bb0307b08bb9a888868ab4669b48656b4cb10bf654a8d35a9&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+                  "expiry_time": "2025-06-21T14:21:01.999Z"
                 }
               }
             ]
@@ -684,7 +1440,7 @@
     "has_more": false,
     "type": "page_or_database",
     "page_or_database": {},
-    "request_id": "e8991315-6908-4319-9011-d5e2a31a042b"
+    "request_id": "d82be4a6-762d-4bf7-a91c-a98304db99f2"
   },
   "fromRetrieve": {
     "object": "database",
@@ -700,7 +1456,7 @@
       "object": "user",
       "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
     },
-    "last_edited_time": "2025-06-10T14:23:00.000Z",
+    "last_edited_time": "2025-06-21T13:14:00.000Z",
     "title": [
       {
         "type": "text",
@@ -728,6 +1484,12 @@
         "name": "chairs",
         "type": "people",
         "people": {}
+      },
+      "logo": {
+        "id": "G%3BY%3F",
+        "name": "logo",
+        "type": "files",
+        "files": {}
       },
       "topic-description": {
         "id": "KCgd",
@@ -827,6 +1589,6 @@
     "public_url": null,
     "archived": false,
     "in_trash": false,
-    "request_id": "6fe60eb6-5ce1-4496-b6dc-537e0fe931f5"
+    "request_id": "7ac1eb4d-8cf8-4296-b8e5-8c7c141340ea"
   }
 }

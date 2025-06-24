@@ -7,7 +7,7 @@
             }
 
         })
-    }, { threshold: 0.75 })
+    }, { threshold: 0.2 })
 
     document.querySelectorAll('.main-section').forEach(node => {
        
@@ -35,27 +35,24 @@
       </section>
   
       <section class="main-section " id="where-to">
-        <head-and-c divider>
+        <head-and-c divider :row-form="true">
           <template #title>Where to find us</template>
           <p>
-            As per usual KAMUN will be held at the Karlsruhe Institute of Technology. In the beautiful city of
-            Karlsruhe
+           Export topics from global issues to ligthearted dilemmas in a relaxed, supportive setting. Sharpen your
+            public
+            speaking skills
+            while sharing ideas and enjoying engaging discussions. We hope to see you on <NuxtLink to="news"> Tuesdays
+                at 7 pm !
+            </NuxtLink>
           </p>
-         
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5234.425597976381!2d8.391931375326154!3d49.00653639027116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4797065b025e29af%3A0x48badd62a47ac146!2sKarlshochschule%20International%20University!5e0!3m2!1sen!2sde!4v1750776299865!5m2!1sen!2sde" 
+        width="100%" height="100%" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
         </head-and-c>
 
       </section>
       <el-divider></el-divider>
       <section class="main-section">
-        <head-and-c divider>
-          <template #title>What to expect</template>
-          <p>
-            View the pictorial from previous Kamuns or watch our video
-          </p>
-          <div>
-            <img src="" alt="">
-          </div>
-        </head-and-c>
+        <ExpectSection/>
 
       </section>
 

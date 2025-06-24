@@ -15,11 +15,39 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  gap: 1rem;
+  font-size: 20px;
+  font-family: cursive;
+  color:white;
 
    
 }
+.right-side > *{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    opacity: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.10) 40%, rgba(255,255,255,0.00) 100%);
+    backdrop-filter: blur(2px);
+}
+.quote-text p {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 1.5em;
+    color: #fff;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 0 1em;
+    letter-spacing: 0.02em;
+}
 .left-side{
-    background: radial-gradient(var(--seasalt) 8%,transparent 8%);
+    background: radial-gradient(var(--black) 8%,transparent 8%);
     background-position: 0% 0%;
     background-size: 5vmin 5vmin;
     background-repeat: repeat;
@@ -31,7 +59,14 @@
  .underlay-munika{
     z-index: 2;
     background-color:var(--pacific-cyan);
-    opacity: 0.7;
+    /* opacity: 0.7; */
+     background-image: linear-gradient(120deg, rgba(255,255,255) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.00) 100%), url("/styleImgs/forest-silouette-white.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(20px);
+
  }
     .container-home{
         border-radius:10px;
@@ -39,54 +74,120 @@
    
 </style>
 <template>
-    <section class="container-home container-home-main" ref="headerRef">
+    <section class="container-home container-home-main" ref="headerRef" @click="openPicture">
+        <el-button class="kamun-fab" circle @click.stop="openPicture">
+            <el-icon>
+                <ArrowLeftBold />
+            </el-icon>
+        </el-button>
         <div class="left-side layered-content" ref="leftRef">
             <h1 class="show-text">Model United Nations Initiative Karlsruhe</h1>
         </div>
         <div class="layered-content underlay-munika" ref="underlayRef">
-
         </div>
-        <div class="right-side layered-content">
-
+        <div class="right-side layered-content" ref="rightSideRef">
+            <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
+                <p>{{ quote }}</p>
+            </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { ArrowLeftBold } from '@element-plus/icons-vue'
 
-// Define refs for DOM elements
+const quotes = ref([
+    "Welcome to MUNIKA!",
+    "Debate. Diplomacy. Development.",
+    "Where leaders are made.",
+    "Inspiring the next generation.",
+    "Join us for a global experience.",
+    "Shape the world with your words."
+])
+
 const leftRef = ref<HTMLElement | null>(null)
 const headerRef = ref<HTMLElement | null>(null)
 const underlayRef = ref<HTMLElement | null>(null)
+const rightSideRef = ref<HTMLElement | null>(null)
 
 const handleMove = (e: MouseEvent | Touch) => {
-  if (!leftRef.value) return
+  if (!leftRef.value || !underlayRef.value || !toggle) return
   const clientX = 'clientX' in e ? e.clientX : 0
   const p = clientX / window.innerWidth * 100
   leftRef.value.style.width = `${p}%`
-
-  if (underlayRef.value) {
-    underlayRef.value.style.width = `${p}%`
-  }
+  underlayRef.value.style.width = `${p}%`
 }
 
+const onScroll = (e: Event) => {
+    if (!leftRef.value || !underlayRef.value || !headerRef.value) return
+    const headerWidth = headerRef.value?.offsetWidth || 0
+    const scrollPx = window.scrollY
+    const size = headerWidth - scrollPx
+    if (scrollPx != headerWidth) {
+        leftRef.value.style.width = `${(size) / headerWidth * 100}%`
+        underlayRef.value.style.width = `${(size) / headerWidth * 100}%`
+        underlayRef.value.style.opacity = `${(size) / headerWidth * 100}%`
+    }
+}
+
+function showQuotes(){
+    if (!leftRef.value || !underlayRef.value || !headerRef.value) return
+    if(toggle){
+        let index = 0;
+        const children = rightSideRef.value?.children;
+        if (children && children.length > 0) {
+            Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
+            const showNext = () => {
+                if (index < children.length) {
+                    index = Math.floor(Math.random() * children.length);
+                    (children[index] as HTMLElement).style.opacity = "1";
+                    (children[index] as HTMLElement).style.boxShadow = " 0px 0px 10px rgba(0,0,0,.7)";
+                    setTimeout(() => {
+                        (children[index] as HTMLElement).style.opacity = "0";
+                        index++;
+                        showNext();
+                    }, 2000);
+                }
+            };
+            showNext();
+        }
+    }
+}
 const onMouseMove = (e: MouseEvent) => handleMove(e)
 const onTouchMove = (e: TouchEvent) => {
   if (e.touches.length > 0) handleMove(e.touches[0])
 }
-
+let toggle = true
+const openPicture = (e: Event) => {
+    toggle = !toggle
+    if (!headerRef.value || !leftRef.value || !underlayRef.value ) return
+    if (toggle) {
+        headerRef.value.addEventListener('mousemove', onMouseMove)
+        headerRef.value.addEventListener('touchmove', onTouchMove)
+        window.removeEventListener('scroll', onScroll)
+        leftRef.value.style.width = `50%`
+        underlayRef.value.style.width = `50%`
+        underlayRef.value.style.opacity = `50%`
+        showQuotes()
+    }
+    else{
+        window.addEventListener('scroll', onScroll, { passive: false })
+    }
+}
 onMounted(() => {
   if (headerRef.value) {
     headerRef.value.addEventListener('mousemove', onMouseMove)
     headerRef.value.addEventListener('touchmove', onTouchMove)
+    window.addEventListener('scroll', onScroll, { passive: false })
+    showQuotes()
   }
 })
-
 onUnmounted(() => {
   if (headerRef.value) {
     headerRef.value.removeEventListener('mousemove', onMouseMove)
     headerRef.value.removeEventListener('touchmove', onTouchMove)
+    window.removeEventListener('scroll', onScroll)
   }
 })
 </script>

@@ -122,6 +122,7 @@
       :mainName="committee.mainName"
       :fullName="committee.fullName"
       :topic="committee.topic"
+      :logo="committee.logo"
       :SignUpLink="committee.SignUpLink"
       :metaImage="committee.metaImage"
       :type="committee.type"
@@ -168,6 +169,7 @@ enum Difficulty {
 interface Committee {
   mainName: string
   fullName: string
+  logo:string
   topic: string
   description?: string
   SignUpLink: string
@@ -185,6 +187,7 @@ const committees = ref<Committee[]>( [
   {
     mainName: "UNESCO",
     fullName: "United Nations Educational, Scientific and Cultural Organization",
+    logo:"/img-logos/UNESCO_logo.webp",
     topic: "Preserving World Heritage in Conflict Zones",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
@@ -193,6 +196,7 @@ const committees = ref<Committee[]>( [
   {
     mainName: "WHO",
     fullName: "World Health Organization",
+     logo:"/img-logos/UNESCO_logo.webp",
     topic: "Global Response to Future Pandemics",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
@@ -201,6 +205,7 @@ const committees = ref<Committee[]>( [
   {
     mainName: "COPOUS",
     fullName: "Committee on the Peaceful Uses of Outer Space",
+     logo:"/img-logos/UNESCO_logo.webp",
     topic: "International Cooperation in Space Exploration",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
@@ -254,10 +259,13 @@ watchEffect(() => {
     //   link.click();
     //   document.body.removeChild(link);
     //   URL.revokeObjectURL(fileUrl);
-    //}
+    // }
+
+    
     committees.value = data.value?.fromQuery.results.map((result: any) => ({
       mainName: result.properties["main-name"]?.rich_text?.[0]?.plain_text || '',
       fullName: result.properties["full-name"]?.rich_text?.[0]?.plain_text || '',
+      logo: result.properties["logo"]?.files?.[0]?.file.url|| '/img-logos/chairs_choice.webp',
       topic: result.properties["topic"]?.rich_text?.[0]?.plain_text || '',
       description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
       SignUpLink: "#",

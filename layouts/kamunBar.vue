@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-
-import {
-    Menu
-} from '@element-plus/icons-vue'
+useHead({
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/jpeg',
+      href: '/img-logos/Kamun2025Logo.png',
+    },
+  ],
+})
 
 const mainCon = ref<HTMLElement>()
 const router = useRouter();
@@ -62,7 +67,7 @@ onUnmounted(() => {
                         <el-menu-item index="/KAMUN">Home</el-menu-item>
                         <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
                         <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
-                        <el-menu-item index="/KAMUN/sponsor">Sponsor Us</el-menu-item>
+                        <el-menu-item index="/news">news</el-menu-item>
                         <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
 
                       
@@ -108,9 +113,9 @@ onUnmounted(() => {
 
         </el-footer>
     </el-container>
-    <el-drawer v-model="menuVisible" direction="ttb" size="20%" :with-header="false" class="mobile-nav-drawer">
+    <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu mode="horizontal" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
+        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
             <el-menu-item index="/KAMUN">Home</el-menu-item>
             <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
             <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
