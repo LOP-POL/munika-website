@@ -6,6 +6,12 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@element-plus/nuxt'
   ],
+  nitro: {
+    externals: {
+      external: [],
+      inline: ['@notionhq/client'] // 👈 Force inline bundling
+    }
+  },
   css: ['~/assets/css/main.css'],
   runtimeConfig:{
     notionApiKey: process.env.NUXT_NOTION_API_KEY,
