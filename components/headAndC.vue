@@ -56,7 +56,7 @@ const props = defineProps<{
   justify-content: flex-start;
  
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .head-and-c-section{
         display: block;
     }
@@ -65,6 +65,7 @@ const props = defineProps<{
     }
     .col-form{
         display: block;
+        
     }
 }
 </style>

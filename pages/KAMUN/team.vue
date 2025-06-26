@@ -38,6 +38,7 @@ const delegatesPictures: string[] = ["Ansh", "Joshua", "mary"]
     </el-main>
   </el-container>
 
+    <el-divider></el-divider>
   <!-- Academics Team -->
   <head-and-c divider>
     <template #title>Academics Team</template>
@@ -63,6 +64,7 @@ const delegatesPictures: string[] = ["Ansh", "Joshua", "mary"]
     </el-main>
   </el-container>
 
+  <el-divider></el-divider>
   <!-- Food & Socials Team -->
   <head-and-c divider>
     <template #title>Food & Socials Team</template>
@@ -88,6 +90,7 @@ const delegatesPictures: string[] = ["Ansh", "Joshua", "mary"]
     </el-main>
   </el-container>
 
+   <el-divider></el-divider>
   <!-- Delegates -->
   <head-and-c divider>
     <template #title>Delegates</template>

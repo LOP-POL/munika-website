@@ -33,7 +33,7 @@
          box-shadow:inset -10px -10px  #EE964B,
                     inset -20px -20px #f4d35e;
         border:2px solid black;
-        background-color: white;
+        background:none;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -90,7 +90,7 @@
         </div>
          <el-divider></el-divider>
         <div class="more">
-            <el-button type="warning"  class="btn-signup" v-on:click="">Sign Up</el-button>
+            <el-button type="warning"  class="btn-signup" @click="signUp" >Sign Up</el-button>
             <el-button type="info" plain class="btn-more-info" v-on:click="setCommittee">More Info</el-button>
            
         </div>
@@ -140,6 +140,12 @@ function setCommittee(e: Event) {
         el.scrollIntoView({ behavior: 'smooth' })
     }
     emit('set-committee', props.mainName)
+}
+
+function signUp(){
+    if (props.SignUpLink) {
+        window.open(props.SignUpLink, '_blank');
+    }
 }
 
 function specialColors():void{

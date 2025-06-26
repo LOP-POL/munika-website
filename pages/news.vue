@@ -19,27 +19,48 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "insta update";
-    gap: 2rem;
+    gap: 20px;
+    max-width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .bulletinAndInsta .instagram-media {
     grid-area: insta;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 
-.bulletin {
+.update {
     grid-area: update;
-    
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 
 @media (max-width: 900px) {
     .bulletinAndInsta {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        align-items: stretch;
+        max-width: 100vw;
+        width: 100%;
+    }
+    .bulletinAndInsta .instagram-media,
+    .update {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
+/* Prevent horizontal scroll on body */
+body {
+    overflow-x: hidden;
+}
 </style>
 
 <template>
@@ -57,7 +78,7 @@
                   Calendar
             </template>
             <div >
-                <full-calendar :options="calendarOptions" style="max-height:100vh; min-height: 50vh;"></full-calendar>
+                <full-calendar :options="calendarOptions" style="max-height:80vh; min-height: 50vh;"></full-calendar>
             </div>
             
         </head-and-c>
@@ -65,21 +86,22 @@
 
     <el-divider></el-divider>
     <section class="bulletinAndInsta">
-        <blockquote class="instagram-media"
+        <div class="instagram-media">
+             <blockquote 
             data-instgrm-permalink="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             data-instgrm-version="12" style=" background:#FFF;
         border:0; 
         border-radius:3px; 
         box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
          margin: 1px; 
-         max-width:100vw; 
-         min-width:50vw; 
+         max-width:90vw; 
+         min-width:40vw; 
          padding:0; 
          width:99.375%; 
          width:undefinedpx;
          height:undefinedpx;
          max-height:100%; 
-         width:undefinedpx;">
+        ">
             <div style="padding:16px;">
                 <a id="main_link" href="munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style=" background:#FFFFFF;
              line-height:0;
@@ -173,8 +195,10 @@
                 </p>
             </div>
         </blockquote>
+        </div>
+       
         <div class="update">
-            
+            <NewsAnnounce/>
         </div>
     </section>
 

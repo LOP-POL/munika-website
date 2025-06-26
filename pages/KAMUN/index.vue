@@ -4,47 +4,21 @@ import { ref, onMounted } from 'vue'
 const tooltipVisible = ref(false)
 const tooltipRef = ref<HTMLElement | null>(null)
 
+const themeText = ref('Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
+const originalThemeText = 'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion'
+const kamunThemeTextRef = ref<HTMLElement | null>(null)
+
 
 
 definePageMeta({
     layout: 'kamun-bar'
 })
-/**
- * Highlights vidSummary1 at 0:29 (food) and vidSummary3 at 0:34 (socials)
- */
-const videoRef = ref<HTMLVideoElement | null>(null)
-const vidSummary1 = ref<HTMLElement | null>(null) // food
-const vidSummary2 = ref<HTMLElement | null>(null)
-const vidSummary3 = ref<HTMLElement | null>(null) // socials
-const vidCont = ref<HTMLElement | null>(null)
-const videoPart = ref<HTMLElement | null>(null)
 
-const backGroundImages = ref<Record<string, string>>(
-    {
-        "food": "/img/pictureOfFood.JPG",
-        "bau": "/img/pictureMatheBau.JPG",
-        "schloss": "/img/pictureInSchloss.JPG"
-    }
-)
-// 0.29 food
-// 0.34 socials
-
-
-function handleVideoClicks(img: string, time: number, e: Event) {
-
-    if (vidCont.value) {
-        vidCont.value.style.backgroundImage = `url(${img})`
-    }
-    if (videoRef.value) {
-        videoRef.value.currentTime = time;
-        videoRef.value.play();
-    }
-}
 
 
 onMounted(() => {
 
-   
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -59,6 +33,36 @@ onMounted(() => {
         observer.observe(node)
     })
 
+    const themeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                let iterations = 0
+                const target = kamunThemeTextRef.value
+                if (!target) return
+                let interval: number | undefined
+                interval = window.setInterval(() => {
+                    target.innerText = target.innerText.split("")
+                        .map((letter, index) => {
+                            if (index < iterations) {
+                                return originalThemeText[index]
+                            }
+                            return letters[Math.floor(Math.random() * 26)]
+                        })
+                        .join("")
+                    if (iterations >= originalThemeText.length) {
+                        clearInterval(interval)
+                        target.innerText = originalThemeText
+                    }
+                    iterations += 1/1.2
+                }, 40)
+            }
+        })
+    },{ threshold: 0.2 })
+    
+        let element = document.querySelector(".kamun-theme-text")
+        if(element) themeObserver.observe(element)
+    
     // Tooltip intersection observer
     if (tooltipRef.value) {
         const tooltipObserver = new window.IntersectionObserver((entries) => {
@@ -70,26 +74,39 @@ onMounted(() => {
     }
 })
 
+
 </script>
 <template>
     <kamun-page-header></kamun-page-header>
+    <el-divider></el-divider>
     <section class="main-section">
-       
-        <head-and-c :divider="true" :row-form="true">
-            <head-and-c :inner="true" :col-form="true" >
+        <head-and-c>
             <template #title>
-                When
+                This Years Theme
             </template>
-          
-                <p >
-                KAMUN is a winter conference
-                and this year it is no different,
-                it takes place from <em style="font-size: larger; font-weight: 600;">5th December to the 7th December
-                    2025</em>
-            </p>
-            <TimerCard />
-           
+            <h1 class="kamun-theme-text" ref="kamunThemeTextRef" >
+                {{ themeText }}
+            </h1>
         </head-and-c>
+    </section>
+    <el-divider></el-divider>
+    <section class="main-section">
+        <head-and-c :divider="true" :row-form="true">
+            <head-and-c :inner="true" :col-form="true">
+                <template #title>
+                    When
+                </template>
+
+                <p>
+                    KAMUN is a winter conference
+                    and this year it is no different,
+                    it takes place from <em style="font-size: larger; font-weight: 600;">5th December to the 7th
+                        December
+                        2025</em>
+                </p>
+                <TimerCard />
+
+            </head-and-c>
 
             <head-and-c :col-form="true" :inner="true">
                 <template #title>Where</template>
@@ -111,133 +128,13 @@ onMounted(() => {
 
 
     </section>
-
-
     <el-divider></el-divider>
     <section class="main-section">
-        <head-and-c :divider="true" :col-form="true">
-            <template #title>What to expect</template>
-
-            <head-and-c :inner="true" :row-form="true">
-                <template #title></template>
-                <div class="videoPart" ref="videoPart">
-                    
-                    <video controls :width="vidCont?.offsetWidth" autoplay muted loading="lazy" ref="videoRef">
-                        <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <br />
-                
-                <div class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
-                    <p class="vidSummary" ref="vidSummary1"
-                       @mouseover="handleVideoClicks(backGroundImages.food,29,$event)" @click="handleVideoClicks(backGroundImages.food, 29, $event)">
-                        Enjoy delicious food served throughout the conference, with a variety of options to suit every
-                        taste
-                        and dietary need.
-                    </p>
-                    <p class="vidSummary" ref="vidSummary2"@mouseover="handleVideoClicks(backGroundImages.bau,24,$event)" @click="handleVideoClicks(backGroundImages.bau, 24, $event)">
-                        Experience our sessions in beautiful venues at the Karlsruhe Institute of Technology, offering a
-                        unique and inspiring atmosphere.
-                    </p>
-                    <p class="vidSummary" ref="vidSummary3"
-                       @mouseover="handleVideoClicks(backGroundImages.schloss,34,$event)" @click="handleVideoClicks(backGroundImages.schloss, 34, $event)">
-                        Take part in unforgettable socials, where you can connect, network, and have fun with fellow
-                        delegates from around the world.
-                    </p>
-                </div>
-                <el-tooltip v-if="tooltipVisible" content="Click or hover" placement="bottom" effect="dark">
-                  <div ref="tooltipRef" style="width:fit-content; margin:0 auto; font-size:1.2em; color:var(--theme-color); font-weight:bold;">
-                    Click or hover
-                  </div>
-                </el-tooltip>
-            </head-and-c>
-
-            <head-and-c :inner="true">
-                <template #title>
-                    Want to contact or sponsor us ?
-                </template>
-                <p>Follow us on <a
-                        href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">instagram</a>
-                    for all the newest updates regarding the conference.<br /></p>
-                <el-divider></el-divider>
-
-
-                <Calendar />
-            </head-and-c>
-
-        </head-and-c>
+        <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
+        <ExpectSection />
     </section>
-
 </template>
 <style>
-.videoPart,
-.vidSumCont {
-    border-radius: 20px;
-    margin: 20px;
-    padding: 0;
-    width: 40vw;
-
-}
-
-.videoPart video {
-    object-fit: contain;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
-    border-radius: 20px;
-    width: 40vw;
-}
-
-.vidSumCont {
-    background-image: url("/img/pictureInSchloss.jpg");
-    
-    background-position: center;
-    background-size: contain;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: space-between;
-    width: 40vw;
-}
-
-@media screen and (max-width:900px) {
-
-    .videoPart video,
-    .vidSumCont {
-        width: 80vw;
-    }
-}
-
-.vidSummary {
-    border-left: 10px solid var(--theme-color);
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
-    padding: 10px;
-    margin: 10px;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.00) 100%);
-    backdrop-filter: blur(5px);
-    color: white;
-}
-
-.vidSummary:nth-child(1) {
-    border-left: 10px solid var(--special-green);
-}
-
-.vidSummary:nth-child(2) {
-    border-left: 10px solid var(--special-yellow);
-}
-
-.vidSummary:nth-child(3) {
-    border-left: 10px solid var(--special-red);
-}
-
-.vidSummary:hover {
-    transform: scale(1.25);
-}
-
 #where-to {
     background-image: url("/styleImgs/forest-silouette-white.jpg");
     background-attachment: fixed;
@@ -250,5 +147,12 @@ onMounted(() => {
     transform: scale(1.25) !important;
     transition: transform 0.3s;
     z-index: 2;
+}
+
+.kamun-theme-text {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 2.2em;
+    
 }
 </style>

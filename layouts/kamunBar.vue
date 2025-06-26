@@ -42,7 +42,8 @@ onUnmounted(() => {
     window.removeEventListener('resize', updatePageWidth)
 })
 
-
+import { ElIcon } from 'element-plus'
+import { House, UserFilled, Collection, Notification, Star } from '@element-plus/icons-vue'
 </script>
 
 <template>
@@ -92,20 +93,18 @@ onUnmounted(() => {
                 <ul class="social-media-list"
                     style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
                     <li>
-                        <a href="https://instagram.com/your_instagram" target="_blank" rel="noopener"
-                            aria-label="Instagram">
-                            <i class="el-icon el-icon-message"></i> Instagram
+                        <a href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m" target="_blank" rel="noopener" aria-label="Instagram">
+                            <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
                         </a>
                     </li>
                     <li>
-                        <a href="mailto:your_email@example.com" aria-label="Email">
-                            <i class="el-icon el-icon-message"></i> Email
+                        <a href="mailto:vorstand@munika.org" aria-label="Email">
+                            <img src="/img-logos/email.png" alt="Email" style="width: 24px; height: 24px;" />
                         </a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/in/your_linkedin" target="_blank" rel="noopener"
-                            aria-label="LinkedIn">
-                            <i class="el-icon el-icon-link"></i> LinkedIn
+                        <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <img src="/img-logos/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;" />
                         </a>
                     </li>
                 </ul>
@@ -116,12 +115,36 @@ onUnmounted(() => {
     <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
         <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
-            <el-menu-item index="/KAMUN">Home</el-menu-item>
-            <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
-            <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
-            <el-menu-item index="/KAMUN/sponsor">Sponsor Us</el-menu-item>
-            <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
+            <el-menu-item index="/KAMUN">
+                <el-icon><House /></el-icon>
+                Home
+            </el-menu-item>
+            <el-menu-item index="/KAMUN/Team">
+                <el-icon><UserFilled /></el-icon>
+                Team
+            </el-menu-item>
+            <el-menu-item index="/KAMUN/committees">
+                <el-icon><Collection /></el-icon>
+                Committees
+            </el-menu-item>
+            <el-menu-item index="/">
+                <el-icon><Notification /></el-icon>
+                News
+            </el-menu-item>
+            <el-menu-item class="special-menu-item" index="/">
+               <el-icon><Star /></el-icon>
+                MUNIKA
+            </el-menu-item>
         </el-menu>
+        <template #footer>
+             <div class="title-holder" style="border-radius: 10px;">
+                <div class="title-logo-and-text">
+                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
+                            alt="kamun Logo" height="10%" width="10%" ></span>
+                    <span class="title-text">KAMUN 2025</span>
+                </div>
+                </div>
+        </template>
     </el-drawer>
 </template>
 <style>

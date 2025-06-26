@@ -20,7 +20,7 @@
     transition: 0.5s ease;
 }
 .main-page-header{
-    border-radius:10px;
+    
     width:100%;
     height: 100%;
     background-color: var(--school-bus-yellow);

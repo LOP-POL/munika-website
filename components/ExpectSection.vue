@@ -100,10 +100,11 @@ onMounted(() => {
     margin: 20px;
     padding: 0;
     width: 40vw;
+    margin:0;
 }
 
 .videoPart video {
-    object-fit: contain;
+   object-fit: contain;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -111,7 +112,7 @@ onMounted(() => {
     margin: 0;
     box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
     border-radius: 20px;
-    width: 40vw;
+    width:40vw;
 }
 
 .vidSumCont {
@@ -122,13 +123,15 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     align-items: space-between;
-    width: 40vw;
+   
 }
 
 @media screen and (max-width:900px) {
-    .videoPart video,
+  .videoPart video{
+        width:70vw;
+   }
     .vidSumCont {
-        width: 80vw;
+        width: 90%;
     }
 }
 

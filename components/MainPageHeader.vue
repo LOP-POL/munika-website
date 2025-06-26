@@ -58,9 +58,9 @@
  }
  .underlay-munika{
     z-index: 2;
-    background-color:var(--pacific-cyan);
+   
     /* opacity: 0.7; */
-     background-image: linear-gradient(120deg, rgba(255,255,255) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.00) 100%), url("/styleImgs/forest-silouette-white.jpg");
+     background-image: linear-gradient(120deg, rgba(255,255,255) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.00) 100%);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -131,29 +131,29 @@ const onScroll = (e: Event) => {
     }
 }
 
-function showQuotes(){
+function showQuotes(clear:boolean = true){
     if (!leftRef.value || !underlayRef.value || !headerRef.value) return
-    if(toggle){
         let index = 0;
         const children = rightSideRef.value?.children;
+
         if (children && children.length > 0) {
             Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
-            const showNext = () => {
-                if (index < children.length) {
-                    index = Math.floor(Math.random() * children.length);
-                    (children[index] as HTMLElement).style.opacity = "1";
-                    (children[index] as HTMLElement).style.boxShadow = " 0px 0px 10px rgba(0,0,0,.7)";
-                    setTimeout(() => {
-                        (children[index] as HTMLElement).style.opacity = "0";
-                        index++;
-                        showNext();
-                    }, 2000);
-                }
-            };
-            showNext();
-        }
-    }
-}
+            index = Math.floor(Math.random() * children.length);
+            (children[index] as HTMLElement).style.opacity = "1";
+
+            let interval = setInterval(()=>{
+                index = Math.floor(Math.random() * children.length);
+                (children[index] as HTMLElement).style.opacity = "1";
+                showQuotes(false)
+                 if(clear==true){
+                    clearInterval(interval)
+                 }
+
+            },5000)
+
+            
+    
+}}
 const onMouseMove = (e: MouseEvent) => handleMove(e)
 const onTouchMove = (e: TouchEvent) => {
   if (e.touches.length > 0) handleMove(e.touches[0])
@@ -169,7 +169,7 @@ const openPicture = (e: Event) => {
         leftRef.value.style.width = `50%`
         underlayRef.value.style.width = `50%`
         underlayRef.value.style.opacity = `50%`
-        showQuotes()
+        showQuotes(false)
     }
     else{
         window.addEventListener('scroll', onScroll, { passive: false })
@@ -180,7 +180,7 @@ onMounted(() => {
     headerRef.value.addEventListener('mousemove', onMouseMove)
     headerRef.value.addEventListener('touchmove', onTouchMove)
     window.addEventListener('scroll', onScroll, { passive: false })
-    showQuotes()
+    showQuotes(false)
   }
 })
 onUnmounted(() => {
@@ -189,5 +189,6 @@ onUnmounted(() => {
     headerRef.value.removeEventListener('touchmove', onTouchMove)
     window.removeEventListener('scroll', onScroll)
   }
+  showQuotes(true)
 })
 </script>

@@ -18,6 +18,7 @@
 </script>
 <template>
      <main-page-header />
+     <el-divider></el-divider>
       <section class="main-section">
         <head-and-c divider>
           <template #title>Who are we</template>

@@ -74,35 +74,29 @@ const onScroll = (e: Event) => {
 
 }
 
-function showQuotes(){
-     if (!leftRef.value || !underlayRef.value || !headerRef.value) return
-    if(toggle){
+function showQuotes(clear:boolean = true){
+    if (!leftRef.value || !underlayRef.value || !headerRef.value) return
         let index = 0;
         const children = rightSideRef.value?.children;
+
         if (children && children.length > 0) {
             Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
-            const showNext = () => {
-                if (index < children.length) {
+            index = Math.floor(Math.random() * children.length);
+            (children[index] as HTMLElement).style.opacity = "1";
 
-                    // Pick a random index for each iteration
-                    index = Math.floor(Math.random() * children.length);
-                    (children[index] as HTMLElement).style.opacity = "1";
-                     (children[index] as HTMLElement).style.boxShadow = " 0px 0px 10px rgba(0,0,0,.7)";
-                       
-                    setTimeout(() => {
-                        (children[index] as HTMLElement).style.opacity = "0";
-                
-                        index++;
-                        showNext();
-                    }, 2000);
-                }
-            };
-            showNext();
-        }
+            let interval = setInterval(()=>{
+                index = Math.floor(Math.random() * children.length);
+                (children[index] as HTMLElement).style.opacity = "1";
+                showQuotes(false)
+                 if(clear==true){
+                    clearInterval(interval)
+                 }
+
+            },5000)
+
+            
     
-        
-    }
-}
+}}
 const onMouseMove = (e: MouseEvent) => handleMove(e)
 const onTouchMove = (e: TouchEvent) => {
     if (e.touches.length > 0) handleMove(e.touches[0])
@@ -119,7 +113,7 @@ const openPicture = (e: Event) => {
         leftRef.value.style.width = `50%`
         underlayRef.value.style.width = `50%`
         underlayRef.value.style.opacity = `50%`
-        showQuotes()
+        showQuotes(false)
     }
     else{
    
@@ -133,7 +127,7 @@ onMounted(() => {
         headerRef.value.addEventListener('mousemove', onMouseMove)
         headerRef.value.addEventListener('touchmove', onTouchMove)
        window.addEventListener('scroll', onScroll, { passive: false })
-       showQuotes()
+       showQuotes(false)
 
     }
 })
@@ -145,6 +139,7 @@ onUnmounted(() => {
         window.removeEventListener('scroll', onScroll)
 
     }
+    showQuotes(true)
 })
 </script>
 

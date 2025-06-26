@@ -1,6 +1,13 @@
 <template>
   <div class="calendar-wrapper">
-    <full-calendar :options="calendarOptions" style="max-height:100vh; min-height: 50vh;"></full-calendar>
+    <el-button class="toggle-toolbar-btn" @click="showToolbar = !showToolbar" size="small" style="margin-bottom:8px;">
+      {{ showToolbar ? 'Hide Calendar Views' : 'Show Calendar Views' }}
+    </el-button>
+    <full-calendar
+      :options="calendarOptionsWithToolbar"
+      style="max-height:80vh; min-height: 50vh;"
+      ref="calendarRef"
+    ></full-calendar>
     <el-dialog v-model="dialogVisible" title="Event Details" width="400px" :before-close="handleDialogClose">
       <template #title>
         <div>
@@ -98,6 +105,22 @@ const calendarOptions = ref({
     eventClick: handleEventClick,
 })
 
+const showToolbar = ref(true)
+const calendarRef = ref()
+
+const calendarOptionsWithToolbar = computed(() => {
+  // Clone the original options to avoid mutating it
+  const opts = { ...calendarOptions.value }
+  opts.headerToolbar = showToolbar.value
+    ? {
+        left: 'title',
+        center: '',
+        right: 'listDay,listWeek,listMonth,dayGridMonth'
+      }
+    : false
+  return opts
+})
+
 // Ensure events are updated reactively when regularMeetings changes
 watch(regularMeetings, (newEvents) => {
     calendarOptions.value.events = newEvents
@@ -110,8 +133,39 @@ watch(regularMeetings, (newEvents) => {
   min-height: 50%;
   max-height: 100vh;
   max-width: 90vw;
+  overflow-x: auto;
+}
+.toggle-toolbar-btn {
+  display: none;
+}
+@media (max-width: 900px) {
+  .calendar-wrapper {
+    max-width: 100vw;
+    min-width: 0;
+    padding: 0;
+  }
+  .toggle-toolbar-btn {
+    display: inline-block;
+  }
+  :deep(.fc-header-toolbar) {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  :deep(.fc-toolbar-chunk) {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  :deep(.fc-button) {
+    font-size: 12px !important;
+    padding: 2px 6px !important;
+  }
 }
 :deep(.fc-event) {
   cursor: pointer;
+}
+/* Make calendar buttons more compact on all screens */
+:deep(.fc-button) {
+  font-size: 14px;
+  padding: 4px 10px;
 }
 </style>

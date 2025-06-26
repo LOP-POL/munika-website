@@ -148,6 +148,7 @@
     </headAndC>
   </div>
 
+ 
 </template>
 <script setup lang="ts">
 
@@ -268,7 +269,7 @@ watchEffect(() => {
       logo: result.properties["logo"]?.files?.[0]?.file.url|| '/img-logos/chairs_choice.webp',
       topic: result.properties["topic"]?.rich_text?.[0]?.plain_text || '',
       description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
-      SignUpLink: "#",
+      SignUpLink: "https://mymun.com/conferences/kamun-2025",
       metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
       type:result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
     }));
