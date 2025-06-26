@@ -9,7 +9,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig:{
     notionApiKey: process.env.NUXT_NOTION_API_KEY,
-    notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID
+    notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID,
+    notionQuotesPage: process.env.NUXT_NOTION_QUOTES_PAGE_ID
   }
 })
 

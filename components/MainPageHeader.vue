@@ -97,6 +97,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { ArrowLeftBold } from '@element-plus/icons-vue'
 
+
 const quotes = ref([
     "Welcome to MUNIKA!",
     "Debate. Diplomacy. Development.",
@@ -105,6 +106,9 @@ const quotes = ref([
     "Join us for a global experience.",
     "Shape the world with your words."
 ])
+
+const { data } = useFetch(`/api/quotes/quotes`)
+
 
 const leftRef = ref<HTMLElement | null>(null)
 const headerRef = ref<HTMLElement | null>(null)
@@ -140,18 +144,11 @@ function showQuotes(clear:boolean = true){
             Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
             index = Math.floor(Math.random() * children.length);
             (children[index] as HTMLElement).style.opacity = "1";
-
-            let interval = setInterval(()=>{
-                index = Math.floor(Math.random() * children.length);
-                (children[index] as HTMLElement).style.opacity = "1";
+           
+            setTimeout(()=>{
+                (children[index] as HTMLElement).style.opacity = "0";
                 showQuotes(false)
-                 if(clear==true){
-                    clearInterval(interval)
-                 }
-
-            },5000)
-
-            
+            },4000)    
     
 }}
 const onMouseMove = (e: MouseEvent) => handleMove(e)
@@ -175,6 +172,30 @@ const openPicture = (e: Event) => {
         window.addEventListener('scroll', onScroll, { passive: false })
     }
 }
+watchEffect(() => {
+    console.log(data.value)
+  if (data.value?.response.results) {
+    // if (process.client) {
+    //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
+    //   const blob = new Blob([jsonData], { type: 'application/json' });
+    //   const fileUrl = URL.createObjectURL(blob);
+
+    //   // Create a temporary link to trigger download
+    //   const link = document.createElement('a');
+    //   link.href = fileUrl;
+    //   link.download = 'quotes.json';
+    //   document.body.appendChild(link);
+    //   link.click();
+    //   document.body.removeChild(link);
+    //   URL.revokeObjectURL(fileUrl);
+    // }
+
+    
+    quotes.value = data.value?.response.results.map((result: any) => (result.properties["quote_text"]?.rich_text?.[0]?.plain_text || ''   
+    ));
+
+  }
+});
 onMounted(() => {
   if (headerRef.value) {
     headerRef.value.addEventListener('mousemove', onMouseMove)
