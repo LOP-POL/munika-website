@@ -116,7 +116,7 @@ const openPicture = (e: Event) => {
    
 }
 watchEffect(() => {
-    console.log(data.value)
+   
   if (data.value?.response.results) {
     // if (process.client) {
     //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);

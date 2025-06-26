@@ -20,7 +20,7 @@ export default defineEventHandler(async (event)=>{
       database_id: notionPage,
     });
    
-    console.log(response)
+   
 
     return {
         response
