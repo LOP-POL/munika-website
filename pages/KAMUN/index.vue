@@ -60,8 +60,7 @@ onMounted(() => {
         })
     },{ threshold: 0.2 })
     
-        let element = document.querySelector(".kamun-theme-text")
-        if(element) themeObserver.observe(element)
+            
     
     // Tooltip intersection observer
     if (tooltipRef.value) {

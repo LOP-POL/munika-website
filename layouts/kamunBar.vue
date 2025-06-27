@@ -44,6 +44,10 @@ onUnmounted(() => {
 
 import { ElIcon } from 'element-plus'
 import { House, UserFilled, Collection, Notification, Star } from '@element-plus/icons-vue'
+
+function handleMenuClick() {
+    menuVisible.value = false
+}
 </script>
 
 <template>
@@ -68,7 +72,7 @@ import { House, UserFilled, Collection, Notification, Star } from '@element-plus
                         <el-menu-item index="/KAMUN">Home</el-menu-item>
                         <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
                         <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
-                        <el-menu-item index="/news">news</el-menu-item>
+                        <el-menu-item index="/news">News</el-menu-item>
                         <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
 
                       
@@ -114,7 +118,14 @@ import { House, UserFilled, Collection, Notification, Star } from '@element-plus
     </el-container>
     <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false">
+        <el-menu
+            mode="vertical"
+            :router="true"
+            class="main-nav"
+            active-text-color="#ffd04b"
+            :ellipsis="false"
+            @select="handleMenuClick"
+        >
             <el-menu-item index="/KAMUN">
                 <el-icon><House /></el-icon>
                 Home

@@ -4,7 +4,7 @@
     <head-and-c :inner="true" :row-form="true">
       <template #title></template>
       <div class="videoPart" ref="videoPart">
-        <video controls :width="vidCont?.offsetWidth" autoplay muted loading="lazy" ref="videoRef">
+        <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef">
           <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
