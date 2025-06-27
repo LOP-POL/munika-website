@@ -1,6 +1,6 @@
 <style>
 .main-view-ann {
-    max-height: 60vh;
+    max-height: 100%;
     width: 100%;
     max-width: 700px;
     min-width: 0;
