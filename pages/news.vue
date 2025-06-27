@@ -72,43 +72,43 @@ body {
         Take a look at the <a href="#calendar">calendar below</a> for all upcoming events and when and where the regular meetings shall be taking place.<br/>
     </head-and-c>
 
-     <section id="calendar">
+    <section id="calendar">
         <head-and-c :divider="true">
             <template #title>
                   Calendar
             </template>
-            <div >
-                <full-calendar :options="calendarOptions" style="max-height:80vh; min-height: 50vh;"></full-calendar>
+            <div>
+                <Calendar />
             </div>
-            
         </head-and-c>
     </section>
 
     <el-divider></el-divider>
     <section class="bulletinAndInsta">
         <div class="instagram-media">
-             <blockquote 
-            data-instgrm-permalink="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-            data-instgrm-version="12" style=" background:#FFF;
-        border:0; 
-        border-radius:3px; 
-        box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-         margin: 1px; 
-         max-width:90vw; 
-         min-width:40vw; 
-         padding:0; 
-         width:99.375%; 
-         width:undefinedpx;
-         height:undefinedpx;
-         max-height:100%; 
-        ">
-            <div style="padding:16px;">
-                <a id="main_link" href="munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style=" background:#FFFFFF;
-             line-height:0;
-              padding:0 0; 
-              text-align:center;
-               text-decoration:none;
-                width:100%;" target="_blank">
+
+        <blockquote 
+                    data-instgrm-permalink="https://www.instagram.com/munika_ev/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    data-instgrm-version="12" style=" background:#FFF;
+                border:0; 
+                border-radius:3px; 
+                box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+                 margin: 1px; 
+                 max-width:90vw; 
+                 min-width:40vw; 
+                 padding:0; 
+                 width:99.375%; 
+                 width:undefinedpx;
+                 height:undefinedpx;
+                 max-height:100%; 
+                ">
+                    <div style="padding:16px;">
+                        <a id="main_link" href="https://www.instagram.com/munika_ev/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style=" background:#FFFFFF;
+                     line-height:0;
+                      padding:0 0; 
+                      text-align:center;
+                       text-decoration:none;
+                        width:100%;" target="_blank">
                     <div style=" display:
                   flex; flex-direction:
                    row; align-items: center;">
@@ -187,12 +187,12 @@ body {
                     </div>
                 </a>
                 <p
-                    style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-                    <a href="munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                        style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
-                        target="_blank">Shared post</a> on <time
-                        style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;">Time</time>
-                </p>
+                                    style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+                                    <a href="https://www.instagram.com/munika_ev/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                        style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
+                                        target="_blank">Shared post</a> on <time
+                                        style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;">Time</time>
+                                </p>
             </div>
         </blockquote>
         </div>
@@ -212,136 +212,33 @@ body {
 
 <script setup lang="ts">
 import { onMounted, onActivated, ref } from 'vue'
-import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from '@fullcalendar/interaction'
-import listPlugin from '@fullcalendar/list';
-import TimerCard from '~/components/TimerCard.vue';
+import TimerCard from '~/components/TimerCard.vue'
 import { useRouter, useHead } from '#app'
+import Calendar from '~/components/Calendar.vue'
+import NewsAnnounce from '~/components/NewsAnnounce.vue'
 
 
-
-// remember to add some thing to get the meeting days if they are changd in the future.
-
-// Helper to get all Tuesdays in the current month
-function getTuesdaysOfMonth(year: number, month: number) {
-    const dates = []
-    const date = new Date(year, month, 1)
-    while (date.getMonth() === month) {
-        if (date.getDay() === 2) { // 2 = Tuesday
-            dates.push(new Date(date))
-        }
-        date.setDate(date.getDate() + 1)
-    }
-    return dates
-}
-
-// Generate events for every Tuesday 7pm-9pm in current month
-// this method will also list the events from notion
-function generateRegularMeetings() {
-    const now = new Date()
-    const year = now.getFullYear()
-    const month = now.getMonth()
-    const tuesdays = getTuesdaysOfMonth(year, month)
-    return tuesdays.map(d => ({
-        title: 'Regular Meeting',
-        start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0),
-        end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 21, 0, 0),
-        allDay: false
-    }))
-}
-
-
-const regularMeetings = computed(() => generateRegularMeetings())
-
-const calendarOptions = ref({
-    plugins: [interactionPlugin, listPlugin, dayGridPlugin],
-    initialView: 'listMonth',
-    views: {
-      listDay: { buttonText: 'list day' },
-      listWeek: { buttonText: 'list week' },
-      listMonth: { buttonText: 'list month' },
-      dayGridMonth:{buttonText:'Grid View'}
-    },
-    
-    headerToolbar: {
-      left: 'title',
-      center: '',
-      right: 'listDay,listWeek,listMonth,dayGridMonth'
-    },
-    dateClick: handleDateClick,
-    events: regularMeetings.value,
-    nowIndicator: true,
-    editable: true,
-})
-
-// Ensure events are updated reactively when regularMeetings changes
-watch(regularMeetings, (newEvents) => {
-    calendarOptions.value.events = newEvents
-})
-
-const router = useRouter()
-
-useHead({
-    script: [
-        {
-        src: '"https://www.embedista.com/j/instagramfeed1707.js"',
-        defer: true,
-        async:true,
-        }
-        ,{
-            src:'https://www.instagram.com/embed.js',
-            async:true,
-            defer:true,
-
-        }
-    ]
-})
-
-function handleDateClick(arg: any) {
-    // handle the date click event here, e.g. show an alert or log the date
-    // alert('date click! ' + arg.dateStr)
-}
 
 function loadInstagramEmbedScript() {
-  // Remove existing script if present
-  const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-  if (existing) existing.remove();
+  // Only add the script if it doesn't already exist
+  if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(script);
+  }
 
-  // Add the script again
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.instagram.com/embed.js';
-  document.body.appendChild(script);
-
-   const script1 = document.createElement('script')
+  if (!document.querySelector('script[src="https://www.embedista.com/j/instagramfeed1707.js"]')) {
+    const script1 = document.createElement('script')
     script1.async = true
     script1.type = "text/javascript"
     script1.src = "https://www.embedista.com/j/instagramfeed1707.js"
     document.body.appendChild(script1)
+  }
 }
 
 onMounted(() => {
     loadInstagramEmbedScript();
-    // router.beforeEach((to, from, next) => {
-    //     if (to.path === '/news' && from.path !== '/news') {
-    //         const script = document.createElement('script')
-    //     script.async = true
-    //     script.src = 'https://www.instagram.com/embed.js'
-    //     document.body.appendChild(script)
-
-    //     const script1 = document.createElement('script')
-    //     script.async = true
-    //     script.type = "text/javascript"
-    //     script.src = "https://www.embedista.com/j/instagramfeed1707.js"
-    //     document.body.appendChild(script1)
-
-    //         window.location.reload()
-    //     } else {
-    //         next()
-    //     }
-    // })
-
 })
 
 onActivated(() => {
