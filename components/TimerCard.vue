@@ -12,7 +12,7 @@
     grid-template-areas:
         "countdown timeline"
     ;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 5px black;
     padding: 5px;
     width:60%;
     border-radius: 20px;

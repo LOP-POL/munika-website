@@ -261,7 +261,9 @@ opacity:0;
 }
 .carousel-container{
     box-shadow: inset 0px 0px 20px black;
-    background-image: url('/img/randomImageOfBib.jpg');
+    background-image: url('/styleImgs/landscape-autum.jpg');
+    background-position:0% 0%;
+    background-size:cover;
 }
 .people-card{
   height:100%;

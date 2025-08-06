@@ -25,6 +25,8 @@
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
+    max-height: 1000px;
+    
 }
 
 .bulletinAndInsta .instagram-media {
@@ -33,6 +35,7 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
+    
 }
 
 .update {
@@ -41,8 +44,21 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
+    height: 100vh;
+    max-height: 700px;
 }
-
+.instagram-media {
+    border-radius:20px;
+    padding:5px;
+    background-color: aliceblue;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.00) 100%);
+    max-height:700px;
+    height:100vh;
+}
 @media (max-width: 900px) {
     .bulletinAndInsta {
         display: flex;

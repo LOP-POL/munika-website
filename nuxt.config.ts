@@ -16,7 +16,8 @@ export default defineNuxtConfig({
   runtimeConfig:{
     notionApiKey: process.env.NUXT_NOTION_API_KEY,
     notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID,
-    notionQuotesPage: process.env.NUXT_NOTION_QUOTES_PAGE_ID
+    notionQuotesPage: process.env.NUXT_NOTION_QUOTES_PAGE_ID,
+    notionTeamsPage: process.env.NUXT_NOTION_TEAMS_PAGE_ID
   }
 })
 

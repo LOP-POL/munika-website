@@ -1,7 +1,7 @@
 <template>
   <section class="head-and-c-section" :class="{ inner: inner }">
     <div>
-    <h2 class="head-and-c-title">
+    <h2 :class="['head-and-c-title',{'picture':picture}]" :style="{backgroundImage:`url(${pictureUrl})`}">
         <slot name="title"></slot>
     </h2>
     </div> 
@@ -17,7 +17,9 @@ const props = defineProps<{
   divider?: boolean,
   rowForm?: boolean,
   colForm?: boolean,
-  inner?: boolean
+  inner?: boolean,
+  picture?:boolean,
+  pictureUrl?:string,
 }>()
 </script>
 
@@ -56,6 +58,26 @@ const props = defineProps<{
   justify-content: flex-start;
  
 }
+.picture{
+  background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:60vh;
+    color:var(--theme-color);
+    border-radius:20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     font-family: 'Georgia', 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 2.2em;
+     box-shadow: 0px 0px 10px black;
+
+}
+
 @media (max-width: 900px) {
     .head-and-c-section{
         display: block;

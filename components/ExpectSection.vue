@@ -1,7 +1,7 @@
 <template>
   <head-and-c :divider="true" :col-form="true">
     <template #title>What to expect</template>
-    <head-and-c :inner="true" :row-form="true">
+    <head-and-c :inner="true" :row-form="true" class="video-container">
       <template #title></template>
       <div class="videoPart" ref="videoPart">
         <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef">
@@ -125,14 +125,31 @@ onMounted(() => {
     align-items: space-between;
    
 }
+.video-container{
+  background-color: white;
+  box-shadow:inset 0px 5px 50px var(--theme-color);
+  background: radial-gradient(var(--french-gray) 8%, transparent 8%);
+  background-position: 0% 0%;
+  background-size: 5vmin 5vmin;
+  background-repeat: repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 @media screen and (max-width:900px) {
   .videoPart video{
         width:70vw;
    }
     .vidSumCont {
-        width: 90%;
+        width:70vw;
     }
+  .video-container{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
 }
 
 .vidSummary {

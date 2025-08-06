@@ -32,6 +32,10 @@
     color: black;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 20px;
+}
+.story-card:hover{
+    transform: scale(0.9);
 }
 .story-card-meta {
     color: grey;

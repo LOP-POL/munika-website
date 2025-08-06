@@ -247,20 +247,20 @@ function handleCommand(command:string){
 }
 watchEffect(() => {
   if (data.value?.fromQuery?.results) {
-    // if (process.client) {
-    //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
-    //   const blob = new Blob([jsonData], { type: 'application/json' });
-    //   const fileUrl = URL.createObjectURL(blob);
+    if (process.client) {
+      const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const fileUrl = URL.createObjectURL(blob);
 
-    //   // Create a temporary link to trigger download
-    //   const link = document.createElement('a');
-    //   link.href = fileUrl;
-    //   link.download = 'committees.json';
-    //   document.body.appendChild(link);
-    //   link.click();
-    //   document.body.removeChild(link);
-    //   URL.revokeObjectURL(fileUrl);
-    // }
+      // Create a temporary link to trigger download
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = 'committees.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(fileUrl);
+    }
 
     
     committees.value = data.value?.fromQuery.results.map((result: any) => ({

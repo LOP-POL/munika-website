@@ -20,7 +20,6 @@ export default defineEventHandler(async (event)=>{
       database_id: notionCommitteesPage,
     });
    
-    
 
     return {
         "fromQuery":response,"fromRetrieve":response1
