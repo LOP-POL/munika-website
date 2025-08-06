@@ -98,7 +98,7 @@ function handleMouseLeave() {
   position: relative;
   
   transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
-  background: linear-gradient(hsla(0, 100%, 1%, 0.459));
+  background: linear-gradient(hsla(0, 100%, 1%, 0.269));
   background-position: var(--bX) var(--bY);
   background-size: 40rem auto;
   box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);

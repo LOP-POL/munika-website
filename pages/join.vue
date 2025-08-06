@@ -45,7 +45,8 @@
 <script setup>
 import { ref } from 'vue';
 
-const flyer = '/stylesImgs/flyer.jpg';
+import { onMounted } from 'vue';
+const flyer = '/flyer.jpg';
 const flyerRef = ref(null);
 
 onMounted(() => {
