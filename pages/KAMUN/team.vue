@@ -24,12 +24,13 @@ watchEffect(() => {
 })
 
 // Responsive carousel type
-const carouselType = ref(window.innerWidth < 900 ? 'default' : 'card')
+const carouselType = ref("default")
 function updateCarouselType() {
   carouselType.value = window.innerWidth < 900 ? 'default' : 'card'
 }
 
 onMounted(()=>{
+  carouselType.value = window.innerWidth <900?'default' :'card'
   window.addEventListener('resize', updateCarouselType)
 })
 </script>
