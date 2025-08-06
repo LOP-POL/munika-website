@@ -1,37 +1,50 @@
 <script lang="ts" setup>
-import { ref, watchEffect, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import headAndC from '~/components/headAndC.vue'
 import TiltCard from '~/components/TiltCard.vue'
 definePageMeta({ layout: 'kamun-bar' })
 
-const { data } = useFetch('/api/teams/teams')
 interface TeamMember {
   name: string,
   nickname: string,
   instagramNickname: string,
   picture: string,
 }
-const teams = ref<Record<string, TeamMember[]>>()
-const loading = ref<boolean>(true)
 
-watchEffect(() => {
+const { data, pending, error } = useFetch('/api/teams/teams')
+const teams = ref<Record<string, TeamMember[]>>()
+const loading = ref(true)
+
+// Use onMounted and a single watch for data loading
+onMounted(() => {
   if (data.value) {
     teams.value = data.value
     loading.value = false
-  } else {
-    loading.value = true
   }
 })
 
-// Responsive carousel type
-const carouselType = ref("default")
-function updateCarouselType() {
-  carouselType.value = window.innerWidth < 900 ? 'default' : 'card'
-}
+watch(
+  data,
+  (newData) => {
+    if (newData) {
+      teams.value = newData
+      loading.value = false
+    }
+  },
+  { immediate: true }
+)
 
-onMounted(()=>{
-  carouselType.value = window.innerWidth <900?'default' :'card'
+// Responsive carousel type
+const carouselType = ref('card')
+function updateCarouselType() {
+  carouselType.value = window.innerWidth < 900 ? '' : 'card'
+}
+onMounted(() => {
+  updateCarouselType()
   window.addEventListener('resize', updateCarouselType)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', updateCarouselType)
 })
 </script>
 
@@ -310,4 +323,5 @@ onMounted(()=>{
   width: 60%;
 }
 </style>
+
 
