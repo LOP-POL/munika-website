@@ -33,6 +33,7 @@
             "timeline";
         width: 80%;
         height:50%;
+        max-height: 200px;
         justify-self:center;
     }
   

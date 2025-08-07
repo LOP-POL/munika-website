@@ -127,7 +127,6 @@ onMounted(() => {
 }
 .video-container{
   background-color: white;
-  box-shadow:inset 0px 5px 50px var(--theme-color);
   background: radial-gradient(var(--french-gray) 8%, transparent 8%);
   background-position: 0% 0%;
   background-size: 5vmin 5vmin;

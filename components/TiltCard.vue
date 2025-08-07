@@ -6,7 +6,8 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <div class="container" ref="container">
+    <div class="container" ref="container" :background="`url(${member.picture})`">
+
         <div class="tilt-image">
             <img :src="member.picture" class="card-img" :alt="member.name" />
         </div>
@@ -66,6 +67,7 @@ function handleMouseLeave() {
   container.value?.style.setProperty('--bY', '60%')
   container.value?.style.setProperty('--bX', '40%')
 }
+
 </script>
 
 <style scoped>
@@ -73,10 +75,12 @@ function handleMouseLeave() {
   transform-style: preserve-3d;
   transform: perspective(100rem);
   cursor: pointer;
-  width:100%;
-  max-width:500px;
+  width:90%;
+  max-width:100%;
+  height:90%;
   border-radius:1.6rem;
-    
+  margin: none;
+ 
 }
 .container {
   --rX: 0;
@@ -87,7 +91,7 @@ function handleMouseLeave() {
   height:100%;
   border: 1px solid var(--background-color);
   border-radius: 1.6rem;
-  padding: 1.5rem;
+  padding: 1.6rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -96,11 +100,10 @@ function handleMouseLeave() {
   ;
     backdrop-filter: blur(10px);
   position: relative;
-  
   transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
-  background: linear-gradient(hsla(0, 100%, 1%, 0.269));
+  background: linear-gradient(hsla(0, 100%, 1%, 0.269)), ;
   background-position: var(--bX) var(--bY);
-  background-size: 40rem auto;
+  background-size: cover;
   box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
   transition: transform .6s 1s;
 
@@ -134,21 +137,22 @@ function handleMouseLeave() {
 }
 .container p {
   color: hsla(0, 0%, 100%, .6);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .container img{
-    border-radius: 10px;
+    border-radius: 1.2rem;
     height:100%;
     width:100%;
-    margin:10px;
-   
+}
+.container div:nth-child(1){
+    height:90%;
+    border-radius: 1.2rem;
 }
 .tilt-img{
      grid-area: image;
-     background-color: #fff;
-     width: 100%;
-     height:100%;
-     margin:10px;
+     width: 90%;
+     height:90%;
+     border-radius:1.2rem;
 }
 .tilt-info{
     grid-area:info;
@@ -162,6 +166,9 @@ function handleMouseLeave() {
     border-right:1px solid gray;
     border-top:1px solid gray;
     border-bottom:1px solid gray;
+}
+img{
+    border-radius: 1.2rem;
 }
 
 .wrap:hover .container::before,

@@ -8,7 +8,13 @@ const themeText = ref('Visions Across Frontiers: Rethinking Sovereignty, Innovat
 const originalThemeText = 'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion'
 const kamunThemeTextRef = ref<HTMLElement | null>(null)
 
+useHead({
+    title:"KAMUN",
+    meta:[{
+        name:'description',content:'Karlsruhe Model United Nations , MUN COnference , Black forest Summit'
+    }]
 
+})
 
 definePageMeta({
     layout: 'kamun-bar'

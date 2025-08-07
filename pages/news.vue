@@ -106,7 +106,7 @@ body {
 
     <el-divider></el-divider>
     <section class="bulletinAndInsta">
-        <div class="instagram-media">
+        <div class="instagram-media" :key="instaKey">
             <!--     border:0; 
                 border-radius:3px; 
                 box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
@@ -224,13 +224,11 @@ body {
                 </div>
             </blockquote>
           
-            <div style="overflow: auto; position: absolute; height: 0pt; width: 0pt;"><a
-                    href="https://www.embedista.com/instagramfeed">Embed Instagram Post</a> Code Generator</div>
         </div>
-       
+       <Script src="https://www.instagram.com/embed.js" async></Script>
 
         <div class="update">
-            <NewsAnnounce />
+            <NewsAnnounce :stories="stories"/>
         </div>
     </section>
 
@@ -249,7 +247,64 @@ import { useRouter, useHead } from '#app'
 import Calendar from '~/components/Calendar.vue'
 import NewsAnnounce from '~/components/NewsAnnounce.vue'
 
+useHead({
+    script:[{
+        src:'https://www.instagram.com/embed.js',
+        defer:true,
+        async:true,
+    }]
+})
 
+function formatDate(dateStr: string): string {
+    const date = new Date(dateStr)
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = date.getFullYear()
+    return `${day}-${month}-${year}`
+}
+const {data} = useFetch('/api/news/news')
+const loaded = ref<boolean>(false)
+const instaKey = computed(():string=>`loaded-${loaded}`)
+interface newsArticle{
+    id:string,
+    title:string,
+    content:string,
+    date:string,
+    author:string,
+    postUrl:string,
+    type:string,
+}
+
+const dummyData = [
+    {
+        id: "101",
+        title: "MUNIKA 2024 Registration Now Open",
+        content: "We are excited to announce that registration for MUNIKA 2024 is officially open! Secure your spot and join delegates from around the world for an unforgettable conference experience.",
+        date: formatDate("2024-06-01"),
+        author: "MUNIKA Team",
+        postUrl: "https://munika.example.com/news/101",
+        type: "announcement"
+    },
+    {
+        id: "102",
+        title: "Venue Details Released",
+        content: "The MUNIKA 2024 conference will be held at the Grand Convention Center, downtown. Visit our website for directions, accommodation options, and more information.",
+        date: formatDate("2024-06-05"),
+        author: "MUNIKA Team",
+        postUrl: "https://munika.example.com/news/102",
+        type: "update"
+    },
+    {
+        id: "103",
+        title: "Call for Workshop Proposals",
+        content: "We invite all participants to submit workshop proposals for MUNIKA 2024. Share your expertise and contribute to a diverse and engaging program. Submission deadline: July 1st.",
+        date: formatDate("2024-06-10"),
+        author: "MUNIKA Team",
+        postUrl: "https://munika.example.com/news/103",
+        type: "reminder"
+    }
+]
+const stories = ref<newsArticle[]>([])
 
 function loadInstagramEmbedScript() {
     // Only add the script if it doesn't already exist
@@ -258,16 +313,29 @@ function loadInstagramEmbedScript() {
         script.async = true;
         script.src = 'https://www.instagram.com/embed.js';
         document.body.appendChild(script);
-    }
 
-    if (!document.querySelector('script[src="https://www.embedista.com/j/instagramfeed1707.js"]')) {
-        const script1 = document.createElement('script')
-        script1.async = true
-        script1.type = "text/javascript"
-        script1.src = "https://www.embedista.com/j/instagramfeed1707.js"
-        document.body.appendChild(script1)
+        loaded.value = !loaded.value
     }
 }
+
+watch(data, () => {
+    if (data.value) {
+        stories.value = data.value.map((item: any) => ({
+            id: String(item.id),
+            title: String(item.title),
+            content: String(item.content),
+            date: formatDate(String(item.date)),
+            author: String(item.author),
+            postUrl: String(item.postUrl),
+            type: String(item.type)
+        })) as newsArticle[];
+
+        loaded.value = true
+    }
+
+},{immediate:true})
+
+
 
 onMounted(() => {
     loadInstagramEmbedScript();

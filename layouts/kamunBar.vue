@@ -51,7 +51,6 @@ function handleMenuClick() {
 </script>
 
 <template>
-    <link rel="stylesheet" href="~/assets/css/kamun.css">
     <el-container>
         <el-header class="main-page-header">
 
@@ -138,7 +137,7 @@ function handleMenuClick() {
                 <el-icon><Collection /></el-icon>
                 Committees
             </el-menu-item>
-            <el-menu-item index="/">
+            <el-menu-item index="/news">
                 <el-icon><Notification /></el-icon>
                 News
             </el-menu-item>

@@ -59,7 +59,7 @@ function handleMenuClick() {
 </script>
 
 <template>
-    <link rel="stylesheet" href="~/assets/css/main.css">
+   
     <el-container class="super-container">
         <el-header class="main-page-header">
 
@@ -163,5 +163,6 @@ function handleMenuClick() {
     </el-drawer>
 </template>
 <style>
-@import url("~/assets/css/main.css")
+@import url("~/assets/css/main.css") 
+/* This one thing is helping to hold up the whole color switching thing , Do not remove this or it will not work properly */
 </style>

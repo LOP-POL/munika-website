@@ -60,7 +60,7 @@ onUnmounted(() => {
   </head-and-c>
 
   <div v-if="loading" class="skeleton-loader">
-    <div class="skeleton-card" v-for="n in 3" :key="n">
+    <div class="skeleton-card" v-for="n in 2" :key="n">
       <div class="skeleton-img"></div>
       <div class="skeleton-lines">
         <div class="skeleton-line"></div>
@@ -82,6 +82,7 @@ onUnmounted(() => {
             v-for="member in teams.vorstand"
             :key="member.name"
             style="border-radius: 1.6rem;"
+            
           >
             <TiltCard :member="member" />
           </el-carousel-item>
@@ -152,7 +153,7 @@ onUnmounted(() => {
 </template>
 
 <style>
-  .wrap {
+  /* .wrap {
   margin: 2rem;
 
   transform-style: preserve-3d;
@@ -186,7 +187,7 @@ onUnmounted(() => {
 
   transition: transform .6s 1s;
 }
-/*  url("https://images.unsplash.com/photo-1559113513-d5e09c78b9dd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9") */
+/*  url("https://images.unsplash.com/photo-1559113513-d5e09c78b9dd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9") 
 .container::before,
 .container::after {
   content: "";
@@ -262,7 +263,7 @@ onUnmounted(() => {
 .wrap:hover .container::after {
   width: calc(100% - 4rem);
   height: calc(100% - 4rem);
-}
+} */
 
 .animated-title {
   display: flex;
