@@ -54,5 +54,7 @@ export default defineEventHandler(async (event) => {
         teams[team] = await getTeam(team)
     }
 
+    
+
     return teams
 })

@@ -9,7 +9,7 @@
     <div class="container" ref="container" :background="`url(${member.picture})`">
 
         <div class="tilt-image">
-            <img :src="member.picture" class="card-img" :alt="member.name" />
+            <img :src="member.picture" :alt="member.name" style="border-radius: 20px;" />
         </div>
      
       <div class="tilt-info">
@@ -101,12 +101,12 @@ function handleMouseLeave() {
     backdrop-filter: blur(10px);
   position: relative;
   transform: rotateX(calc(var(--rX) * 1deg)) rotateY(calc(var(--rY) * 1deg));
-  background: linear-gradient(hsla(0, 100%, 1%, 0.269)), ;
+  background: linear-gradient(hsla(0, 100%, 1%, 0.708));
   background-position: var(--bX) var(--bY);
   background-size: cover;
-  box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, .2);
+  box-shadow: 0 0 3rem .5rem hsla(0, 0%, 0%, 0.388);
   transition: transform .6s 1s;
-
+  
 }
 /* url("https://images.unsplash.com/photo-1559113513-d5e09c78b9dd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9") */
 .container::before,
@@ -147,12 +147,26 @@ function handleMouseLeave() {
 .container div:nth-child(1){
     height:90%;
     border-radius: 1.2rem;
-}
-.tilt-img{
      grid-area: image;
      width: 90%;
      height:90%;
      border-radius:1.2rem;
+     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     background-color: rgba(207, 177, 9, 0.468);
+
+}
+
+.tilt-img{
+     grid-area: image;
+     width: 100%;
+     height:100%;
+     border-radius:1.2rem;
+     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     object-fit: cover;
 }
 .tilt-info{
     grid-area:info;
@@ -169,6 +183,7 @@ function handleMouseLeave() {
 }
 img{
     border-radius: 1.2rem;
+     object-fit: cover;
 }
 
 .wrap:hover .container::before,

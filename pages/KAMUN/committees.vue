@@ -16,6 +16,7 @@
     max-width: 100%;
     align-self: center;
     justify-self: center;
+    font-size:3vmin;
 
   }
 
@@ -32,6 +33,7 @@
     background-color: white;
     padding:5px;
     transition: ease 0.5s;
+  
   }
   .difficulty-indicator:hover{
    
@@ -44,6 +46,7 @@
     align-items: center;
     justify-content: center;
     padding:2px;
+    font-size: 3vmin;
   } 
   .drop-men-item:hover{
     color:black;
@@ -68,6 +71,7 @@
     background-position: center;
     border-radius: 20px;  
     padding:20px;
+  
   }
 
   /* Hide the scrollbar track/guide but show the scrollbar thumb/bar for .card-holder */

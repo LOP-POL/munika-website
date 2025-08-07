@@ -77,7 +77,7 @@ onUnmounted(() => {
     </head-and-c>
     <el-container>
       <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.vorstand" :type="carouselType" height="500px" :autoplay="false" motion-blur arrow="hover">
+        <el-carousel v-if="teams?.vorstand" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
           <el-carousel-item
             v-for="member in teams.vorstand"
             :key="member.name"
@@ -90,7 +90,7 @@ onUnmounted(() => {
       </el-main>
     </el-container>
 
-    <el-divider></el-divider>
+    <br></br>
     <!-- Academics Team -->
     <head-and-c divider>
       <template #title>Academics Team</template>
@@ -98,7 +98,7 @@ onUnmounted(() => {
     </head-and-c>
     <el-container>
       <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.academics" :type="carouselType" height="500px" :autoplay="false" motion-blur arrow="hover">
+        <el-carousel v-if="teams?.academics" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
           <el-carousel-item
             v-for="member in teams.academics"
             :key="member.name"
@@ -110,7 +110,7 @@ onUnmounted(() => {
       </el-main>
     </el-container>
 
-    <el-divider></el-divider>
+    <br></br>
     <!-- Food & Socials Team -->
     <head-and-c divider>
       <template #title>Food & Socials Team</template>
@@ -118,7 +118,7 @@ onUnmounted(() => {
     </head-and-c>
     <el-container>
       <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.foodsocials" :type="carouselType" height="500px" :autoplay="false" motion-blur arrow="hover">
+        <el-carousel v-if="teams?.foodsocials" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
           <el-carousel-item
             v-for="member in teams.foodsocials"
             :key="member.name"
@@ -130,7 +130,7 @@ onUnmounted(() => {
       </el-main>
     </el-container>
 
-    <el-divider></el-divider>
+    <br></br>
     <!-- Delegates -->
     <head-and-c divider>
       <template #title>Delegates</template>
@@ -138,9 +138,28 @@ onUnmounted(() => {
     </head-and-c>
     <el-container>
       <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.delegates" :type="carouselType" height="500px" :autoplay="false" motion-blur arrow="hover">
+        <el-carousel v-if="teams?.delegates" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
           <el-carousel-item
             v-for="member in teams.delegates"
+            :key="member.name"
+            style="border-radius: 1.6rem;"
+          >
+            <TiltCard :member="member" />
+          </el-carousel-item>
+        </el-carousel>
+      </el-main>
+    </el-container>
+    <!-- Social -->
+       <br></br>
+    <head-and-c divider>
+      <template #title>Social Media and Pr</template>
+      The Social Media and PR Team crafts our public image, shares updates, and connects KAMUN with the world—ensuring our story reaches every corner.
+    </head-and-c>
+    <el-container>
+      <el-main style="background-color:black;" class="carousel-container">
+        <el-carousel v-if="teams?.socialmediapr" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
+          <el-carousel-item
+            v-for="member in teams.socialmediapr"
             :key="member.name"
             style="border-radius: 1.6rem;"
           >

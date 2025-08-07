@@ -73,7 +73,7 @@ const props = defineProps<{
     align-items: center;
      font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-style: italic;
-    font-size: 2.2em;
+    font-size: 2.0vmax;
      box-shadow: 0px 0px 10px black;
 
 }
