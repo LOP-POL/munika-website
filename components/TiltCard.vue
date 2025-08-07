@@ -149,12 +149,13 @@ function handleMouseLeave() {
     border-radius: 1.2rem;
      grid-area: image;
      width: 90%;
-     height:90%;
+     height:80%;
      border-radius:1.2rem;
      flex-direction: column;
     justify-content: center;
     align-items: center;
      background-color: rgba(207, 177, 9, 0.468);
+     
 
 }
 

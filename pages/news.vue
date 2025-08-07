@@ -25,7 +25,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
-    max-height: 1000px;
+    max-height: 100vh;
     
 }
 
@@ -57,13 +57,14 @@
     justify-content: center;
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0.00) 100%);
     max-height:700px;
-    height:100vh;
+    max-height:100vh;
 }
 @media (max-width: 900px) {
     .bulletinAndInsta {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        align-items:center;
+        justify-content: space-between;
         max-width: 100vw;
         width: 100%;
     }
@@ -132,7 +133,7 @@ body {
           border-radius:20px;
            width:undefinedpx;
           height:undefinedpx;
-          max-height:100%;
+          max-height:80%;
            width:undefinedpx;">
 
                 <div style="padding:16px;"> <a id="main_link"
