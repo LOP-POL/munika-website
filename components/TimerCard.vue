@@ -47,8 +47,9 @@
 
 .countdown {
     grid-area: countdown;
-    background-image: url("/img/United_Nations_General_Assembly_Hall_(3).webp"), radial-gradient(var(--school-bus-yellow) 8%, transparent 8%);
+    background-image: url("/styleImgs/landscape-autum.jpg"), radial-gradient(var(--school-bus-yellow) 8%, transparent 8%);
     background-position: center;
+    background-size: cover;
     border-radius: 10px;
     transition: 0.5s ease;
     display: flex;
@@ -61,7 +62,10 @@
 .countdown p {
     font-size:2rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #ffc;
+    color: #fff;
+    background-color:rgba(33, 33, 33, .7);
+    border-radius: inherit;
+    padding:5%;
 }
 
 .timeline-container {

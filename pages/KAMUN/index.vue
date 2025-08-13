@@ -96,7 +96,7 @@ onMounted(() => {
     </section>
     <el-divider></el-divider>
     <section class="main-section">
-        <head-and-c :divider="true" :row-form="true">
+        <head-and-c :row-form="true">
             <head-and-c :inner="true" :col-form="true">
                 <template #title>
                     When
@@ -115,7 +115,7 @@ onMounted(() => {
 
             <head-and-c :col-form="true" :inner="true">
                 <template #title>Where</template>
-                <p>As per usual KAMUN will be held at the Karlsruhe Institude of Technology. In the beautiful city of
+                <p>As per usual KAMUN will be held at the <a href="https://www.kit.edu/" color="turquoise">Karlsruhe Institute of Technology</a>. In the beautiful city of
                     Karlsruhe
                     located just north of the black forest </p>
 

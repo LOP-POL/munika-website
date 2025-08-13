@@ -278,6 +278,8 @@ watchEffect(() => {
       type:result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
     }));
 
+    setCommittee(committeeLevelToList.value[0].mainName)
+
   }
 });
 
