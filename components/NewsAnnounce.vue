@@ -135,7 +135,6 @@ const props = defineProps<{
     stories: newsArticle[]
 }>()
 
-const { data } = useFetch('/api/news/news')
 
 const stories = ref<newsArticle[]>([])
 

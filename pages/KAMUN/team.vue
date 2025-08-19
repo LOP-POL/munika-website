@@ -15,7 +15,6 @@ const { data, pending, error } = useFetch('/api/teams/teams')
 const teams = ref<Record<string, TeamMember[]>>()
 const loading = ref(true)
 
-// Use onMounted and a single watch for data loading
 onMounted(() => {
   if (data.value) {
     teams.value = data.value
@@ -46,17 +45,27 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', updateCarouselType)
 })
+
+// Tabs logic
+const activeTab = ref('vorstand')
+const teamTabs = [
+  { name: 'vorstand', label: 'Vorstand', desc: 'The Vorstand (Board) oversees the organization and vision of KAMUN, ensuring everything runs smoothly and our values are upheld.' },
+  { name: 'academics', label: 'Academics Team', desc: 'The Academics Team curates the topics, prepares study guides, and supports delegates in all academic matters throughout the conference.' },
+  { name: 'foodsocials', label: 'Food & Socials Team', desc: 'The Food & Socials Team organizes all meals, social events, and ensures everyone has a great time outside of committee sessions.' },
+  { name: 'delegates', label: 'Delegates', desc: 'Our Delegates are the heart of KAMUN, representing countries, debating, and working together to solve global issues.' },
+  { name: 'socialmediapr', label: 'Social Media and PR', desc: 'The Social Media and PR Team crafts our public image, shares updates, and connects KAMUN with the world—ensuring our story reaches every corner.' }
+]
 </script>
 
 <template>
-  <head-and-c divider picture pictureUrl="/styleImgs/teamPictureBW.jpg">
+  <head-and-c picture pictureUrl="/styleImgs/teamPictureBW.jpg">
     <template #title>
       <span class="animated-title">
         <svg class="pulse-dot" width="16" height="16"><circle cx="8" cy="8" r="7" fill="var(--theme-color)" /></svg>
         Meet the KAMUN 2025 Teams
       </span>
     </template>
-    Welcome to the KAMUN 2025 team page! Here you can get to know the dedicated members who make this conference possible, from our board to the teams handling academics, food & socials, and our amazing delegates.
+   
   </head-and-c>
 
   <div v-if="loading" class="skeleton-loader">
@@ -70,104 +79,41 @@ onUnmounted(() => {
   </div>
 
   <template v-else>
-    <!-- Vorstand (Board) -->
-    <head-and-c divider>
-      <template #title>Vorstand</template>
-      The Vorstand (Board) oversees the organization and vision of KAMUN, ensuring everything runs smoothly and our values are upheld.
-    </head-and-c>
-    <el-container>
-      <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.vorstand" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
-          <el-carousel-item
-            v-for="member in teams.vorstand"
-            :key="member.name"
-            style="border-radius: 1.6rem;"
-            
-          >
-            <TiltCard :member="member" />
-          </el-carousel-item>
-        </el-carousel>
-      </el-main>
-    </el-container>
-
     <br></br>
-    <!-- Academics Team -->
-    <head-and-c divider>
-      <template #title>Academics Team</template>
-      The Academics Team curates the topics, prepares study guides, and supports delegates in all academic matters throughout the conference.
+    <head-and-c>
+       <el-tabs v-model="activeTab" type="card" stretch>
+      <el-tab-pane
+        v-for="tab in teamTabs"
+        :key="tab.name"
+        :label="tab.label"
+        :name="tab.name"
+      >
+        <head-and-c >
+          <!-- <template #title>{{ tab.label }}</template> -->
+          {{ tab.desc }}
+        </head-and-c>
+        <el-container>
+          <el-main style="background-color:black;" class="carousel-container">
+            <el-carousel
+              v-if="teams?.[tab.name]"
+              :type="carouselType"
+              height="500px"
+              :autoplay="false"
+              arrow="hover"
+            >
+              <el-carousel-item
+                v-for="member in teams[tab.name]"
+                :key="member.name"
+                style="border-radius: 1.6rem;"
+              >
+                <TiltCard :member="member" />
+              </el-carousel-item>
+            </el-carousel>
+          </el-main>
+        </el-container>
+      </el-tab-pane>
+    </el-tabs>
     </head-and-c>
-    <el-container>
-      <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.academics" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
-          <el-carousel-item
-            v-for="member in teams.academics"
-            :key="member.name"
-            style="border-radius: 1.6rem;"
-          >
-            <TiltCard :member="member" />
-          </el-carousel-item>
-        </el-carousel>
-      </el-main>
-    </el-container>
-
-    <br></br>
-    <!-- Food & Socials Team -->
-    <head-and-c divider>
-      <template #title>Food & Socials Team</template>
-      The Food & Socials Team organizes all meals, social events, and ensures everyone has a great time outside of committee sessions.
-    </head-and-c>
-    <el-container>
-      <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.foodsocials" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
-          <el-carousel-item
-            v-for="member in teams.foodsocials"
-            :key="member.name"
-            style="border-radius: 1.6rem;"
-          >
-            <TiltCard :member="member" />
-          </el-carousel-item>
-        </el-carousel>
-      </el-main>
-    </el-container>
-
-    <br></br>
-    <!-- Delegates -->
-    <head-and-c divider>
-      <template #title>Delegates</template>
-      Our Delegates are the heart of KAMUN, representing countries, debating, and working together to solve global issues.
-    </head-and-c>
-    <el-container>
-      <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.delegates" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
-          <el-carousel-item
-            v-for="member in teams.delegates"
-            :key="member.name"
-            style="border-radius: 1.6rem;"
-          >
-            <TiltCard :member="member" />
-          </el-carousel-item>
-        </el-carousel>
-      </el-main>
-    </el-container>
-    <!-- Social -->
-       <br></br>
-    <head-and-c divider>
-      <template #title>Social Media and Pr</template>
-      The Social Media and PR Team crafts our public image, shares updates, and connects KAMUN with the world—ensuring our story reaches every corner.
-    </head-and-c>
-    <el-container>
-      <el-main style="background-color:black;" class="carousel-container">
-        <el-carousel v-if="teams?.socialmediapr" :type="carouselType" height="500px" :autoplay="false"  arrow="hover">
-          <el-carousel-item
-            v-for="member in teams.socialmediapr"
-            :key="member.name"
-            style="border-radius: 1.6rem;"
-          >
-            <TiltCard :member="member" />
-          </el-carousel-item>
-        </el-carousel>
-      </el-main>
-    </el-container>
   </template>
 </template>
 
@@ -342,6 +288,20 @@ onUnmounted(() => {
 .skeleton-line.short {
   width: 60%;
 }
+.el-tabs__nav {
+  font-weight: bold;
+  border: dashed 2px var(--french-gray) !important;
+}
+.el-tabs__item{
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+.el-tabs__header{
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+
 </style>
-
-
+  
