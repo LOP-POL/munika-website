@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 useHead({
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/jpeg',
-      href: '/img-logos/Kamun2025Logo.png',
-    },
-  ],
+    link: [
+        {
+            rel: 'icon',
+            type: 'image/jpeg',
+            href: '/img-logos/Kamun2025Logo.png',
+        },
+    ],
 })
 
 const mainCon = ref<HTMLElement>()
@@ -19,6 +19,30 @@ const menuVisible = ref(false)
 
 const pageWidth = ref(0)
 
+const routes = [
+    {
+        page:'Home',
+        path:'/KAMUN'
+    },
+    {
+        page:'Team',
+        path:'/KAMUN/team'
+    },
+    {
+        page:'Committees',
+        path:'/KAMUN/committees'
+    },
+    {
+        page:'News',
+        path:'/news'
+    },
+    {
+        page:'MUNIKA',
+        path:'/'
+    },
+   
+]
+
 const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth
 }
@@ -27,12 +51,12 @@ onMounted(() => {
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
 
-     if(router.currentRoute.value.meta.layout == 'kamun-bar'){
+    if (router.currentRoute.value.meta.layout == 'kamun-bar') {
         document.documentElement.style.setProperty('--el-color-primary', 'var(--school-bus-yellow)')
         document.documentElement.style.setProperty('--theme-color', 'var(--school-bus-yellow)')
     }
-     else{
-         document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
+    else {
+        document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
 
@@ -62,11 +86,13 @@ function handleMenuClick() {
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" style="justify-self: right; background-color: transparent; border: none;"  @click="menuVisible = true" v-if="pageWidth < 900" 
-                        circle plain>
+                    <el-button class="menu-toggle"
+                        style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"
+                        @click="menuVisible = true" v-if="pageWidth < 900"  plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
-                    <el-menu mode="horizontal" :router="true" :ellipsis="false"  class="main-nav main-nav-show" active-text-color="#ffd04b"
+                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }"></CustomNavMenu>
+                    <!-- <el-menu mode="horizontal" :router="true" :ellipsis="false"  class="main-nav main-nav-show" active-text-color="#ffd04b"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/KAMUN">Home</el-menu-item>
                         <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
@@ -75,16 +101,16 @@ function handleMenuClick() {
                         <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
 
                       
-                    </el-menu>
+                    </el-menu> -->
 
                 </span>
             </div>
-          
+
         </el-header>
 
 
         <el-main class="main-content" ref="mainCon">
-            <slot :pageWidth = "pageWidth" />
+            <slot :pageWidth="pageWidth" />
         </el-main>
 
         <el-footer class="main-page-footer">
@@ -96,7 +122,8 @@ function handleMenuClick() {
                 <ul class="social-media-list"
                     style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
                     <li>
-                        <a href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m"
+                            target="_blank" rel="noopener" aria-label="Instagram">
                             <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
                         </a>
                     </li>
@@ -106,7 +133,8 @@ function handleMenuClick() {
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener"
+                            aria-label="LinkedIn">
                             <img src="/img-logos/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;" />
                         </a>
                     </li>
@@ -117,43 +145,47 @@ function handleMenuClick() {
     </el-container>
     <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">
         <!-- Drawer content goes here -->
-        <el-menu
-            mode="vertical"
-            :router="true"
-            class="main-nav"
-            active-text-color="#ffd04b"
-            :ellipsis="false"
-            @select="handleMenuClick"
-        >
+        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false"
+            @select="handleMenuClick">
             <el-menu-item index="/KAMUN">
-                <el-icon><House /></el-icon>
+                <el-icon>
+                    <House />
+                </el-icon>
                 Home
             </el-menu-item>
             <el-menu-item index="/KAMUN/Team">
-                <el-icon><UserFilled /></el-icon>
+                <el-icon>
+                    <UserFilled />
+                </el-icon>
                 Team
             </el-menu-item>
             <el-menu-item index="/KAMUN/committees">
-                <el-icon><Collection /></el-icon>
+                <el-icon>
+                    <Collection />
+                </el-icon>
                 Committees
             </el-menu-item>
             <el-menu-item index="/news">
-                <el-icon><Notification /></el-icon>
+                <el-icon>
+                    <Notification />
+                </el-icon>
                 News
             </el-menu-item>
             <el-menu-item class="special-menu-item" index="/">
-               <el-icon><Star /></el-icon>
+                <el-icon>
+                    <Star />
+                </el-icon>
                 MUNIKA
             </el-menu-item>
         </el-menu>
         <template #footer>
-             <div class="title-holder" style="border-radius: 10px;">
+            
                 <div class="title-logo-and-text">
                     <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
-                            alt="kamun Logo" height="10%" width="10%" ></span>
-                    <span class="title-text">KAMUN 2025</span>
+                            alt="kamun Logo" height="10%" width="10%"></span>
+                  
                 </div>
-                </div>
+           
         </template>
     </el-drawer>
 </template>

@@ -20,6 +20,30 @@ const menuVisible = ref(false)
 
 const pageWidth = ref(0)
 
+const routes = [
+    {
+        page:'Home',
+        path:'/'
+    },
+    {
+        page:'News',
+        path:'/news'
+    },
+    {
+        page:'Impressum',
+        path:'/impressum'
+    },
+    {
+        page:'Join Us',
+        path:'/join'
+    },
+    {
+        page:'KAMUN',
+        path:'/KAMUN'
+    },
+   
+]
+
 const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth
 }
@@ -71,12 +95,14 @@ function handleMenuClick() {
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" style="justify-self: right; background-color: transparent; border: none;"  @click="menuVisible = true" v-if="pageWidth < 900" 
-                        circle plain>
+                    <el-button class="menu-toggle" style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"   @click="menuVisible = true" v-if="pageWidth < 900" 
+                         plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
+
+                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }"></CustomNavMenu>
                        
-                    <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="var(--theme-color)"
+                    <!-- <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="var(--theme-color)"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/">Home</el-menu-item>
 
@@ -84,10 +110,11 @@ function handleMenuClick() {
                         <el-menu-item index="/Impressum">Impressum</el-menu-item>
                         <el-menu-item index="/join">Join us</el-menu-item>
                         <el-menu-item class="special-menu-item" index="/KAMUN">KAMUN</el-menu-item>
-                    </el-menu>
+                    </el-menu> -->
 
                 </span>
             </div>
+             <!-- <main-page-header /> -->
            
         </el-header>
 
@@ -126,7 +153,7 @@ function handleMenuClick() {
         </el-footer>
     </el-container>
     <el-drawer v-model="menuVisible" direction="ltr" size="50%" :with-header="true" class="mobile-nav-drawer">
-        <!-- Drawer content goes here -->
+       
          
         <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="var(--theme-color)" :ellipsis="false" style="height: 100%;" @select="handleMenuClick">
             <el-menu-item index="/">
@@ -151,12 +178,10 @@ function handleMenuClick() {
             </el-menu-item>
         </el-menu>
         <template #footer>
-                 <div class="title-holder" style="border-radius: 10px;">
-                <div class="title-logo-and-text">
+                  <div class="title-logo-and-text">
                     <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
                             alt="munikaLogo" height="10%" width="10%"></span>
-                    <span class="title-text">MUNIKA e.V</span>
-                </div>
+                 
                 </div>
         </template>
         

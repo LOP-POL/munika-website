@@ -21,6 +21,8 @@
     --special-green: #28afb0;
     --special-yellow:#f4d35e;
     --special-red:#EE964B;
+    --translucent-munika-blue:#4acff783;
+    --translucent-school-bus-yellow:rgba(255, 217, 0, 0.5);
 }
 @font-face {
     font-family:chomsky;
@@ -44,7 +46,6 @@ body{
     padding:0;
     margin: 0;
     overflow-x: hidden;
-    font-size:3vmin;
 }
 .super-container{
     margin: 0;
@@ -58,10 +59,11 @@ body{
     max-width:100%;
 }
 .main-page-header{
-  
     width:100%;
-    height: 100%;
-    background-color: var(--theme-color); 
+    background-color:transparent;
+    background-position: center;
+    background-size: cover;
+    height:60px;
 }
 .main-page-footer {
     width: 100%;
@@ -81,29 +83,49 @@ body{
    display: flex;
    justify-content: space-between;
    align-items: space-between;
-    background-color: var(--theme-color);
+   
     /* border-radius: inherit; */
     margin:5px;
+    width:100%;
+    margin:0;
+     position:fixed;
+    top:0px;
+    left:50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    -webkit-backdrop-filter: blur(20px);
+     backdrop-filter: blur(20px);
+     /* background-color:hsla(0, 0%, 100%, 0.708); */
+     padding:5px;
+     box-shadow: 0px 0px 5px black;
+    
+
+    
 }
 .title-logo-and-text{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: var(--theme-color);
-    border-radius: inherit;
-    
+    border-radius: 20px;
+     color:white;
+     font-size:4vmin;
+      font-weight: 600;
+       padding:2px;
+       margin-left: 10px;
+       margin-right: 10px;
+       
+   
 }
 
 .title-holder span,.show-text{
     text-align: center;
     font-weight: 600;
-    font-size:4vmin;
-    padding:5px;
+    font-size:3vmin;
+    padding:2px;
     color:white;
     
 }
-
-
     
 .title-text{
     grid-area: text;
@@ -142,6 +164,8 @@ body{
 .main-nav-show{
    width: 500px;
 }
+
+
 .el-menu--horizontal > .el-menu-item {
   margin-right: auto;
   
@@ -250,6 +274,11 @@ opacity:0;
     color: black;
     left:0;
     transition: ease 0.5ms;
+ }
+  .left-side h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 8vmin;
  }
  .underlay-munika{
     z-index: 2;

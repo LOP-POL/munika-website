@@ -10,7 +10,7 @@
    
 }
 .right-side{
-  background-image: url("/img/United_Nations_General_Assembly_Hall_(3).webp");
+  background-image: url("/styleImgs/schloss.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,6 +55,11 @@
    
     left:0;
     transition: ease 0.5ms;
+ }
+ .left-side h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 8vmin;
  }
  .underlay-munika{
     z-index: 2;
