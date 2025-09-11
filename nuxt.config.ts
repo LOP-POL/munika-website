@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
   app:{
     head:{
-      title:"MUNKIA",
+      title:"MUNIKA",
       meta:[
         {name:'description' , content:'Model United Nations Initiative Karlsruhe , MUN, Debate, Diplomacy, United Nations, KAMUN'}
       ]
