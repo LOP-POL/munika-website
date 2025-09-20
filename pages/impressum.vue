@@ -17,9 +17,9 @@
         Vertreten durch:
       </template>
       <div>
-        Paul Mauersberg<br>
-        Ansh Mehta<br>
-        Julius Quandt
+        Okello Leon Patrick<br>
+        Heidelberg Franziska <br>
+        Ramakumar Varshitha 
       </div>
     </headAndC>
 
