@@ -10,7 +10,9 @@
             <section class="hero-gradient min-h-screen center-flex" ref="leftRef">
 
                 <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="800">
-
+                        <div  class="mb-8">
+              <img src="/img-logos/Kamun2025Logo.png" height="50px" width="50px" style="border-radius: 50%;"/>
+            </div>
                     <h1>Karlsruhe Model United Nations</h1>
                     <p>Shaping future diplomats through debate, diplomacy, and global awareness.</p>
                     <div class="flex">
