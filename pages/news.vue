@@ -89,11 +89,14 @@ body {
             What's new !
         </template>
         <NewsAnnounceV2 :stories="stories" :instaKey="instaKey"/>
-        Follow us on <a
+        <p>
+             Follow us on <a
             href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">instagram</a>
         for all the newest updates regarding the conference.<br />
         Take a look at the <a href="#calendar">calendar below</a> for all upcoming events and when and where the regular
         meetings shall be taking place.<br />
+        </p>
+       
     </head-and-c>
 
     <section id="calendar">

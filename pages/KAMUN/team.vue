@@ -90,7 +90,7 @@ const teamTabs = [
       >
         <head-and-c >
           <!-- <template #title>{{ tab.label }}</template> -->
-          {{ tab.desc }}
+          <p>{{ tab.desc }}</p>
         </head-and-c>
         <el-container>
           <el-main style="background-color:black;" class="carousel-container">

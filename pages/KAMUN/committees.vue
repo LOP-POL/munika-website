@@ -121,6 +121,7 @@
     <div class="card-holder">
     
       <CommitteeCard
+      @click="handleClick"
       v-for="(committee, idx) in committeeLevelToList"
       :key="committee.mainName + idx"
       :mainName="committee.mainName"
@@ -249,6 +250,12 @@ function handleCommand(command:string){
   }
 
 }
+function handleClick(){
+   const el = document.getElementById('content')
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+    }
+}
 watchEffect(() => {
   if (data.value?.fromQuery?.results) {
     // if (process.client) {
@@ -277,6 +284,8 @@ watchEffect(() => {
       metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
       type:result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
     }));
+
+    handleClick()
 
     setCommittee(committeeLevelToList.value[0].mainName)
 

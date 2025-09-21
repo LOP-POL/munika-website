@@ -83,7 +83,7 @@ onMounted(() => {
 </script>
 <template>
     <kamun-page-header></kamun-page-header>
-    <el-divider></el-divider>
+    <br></br>
     <section class="main-section">
         <head-and-c>
             <template #title>
@@ -94,7 +94,9 @@ onMounted(() => {
             </h1>
         </head-and-c>
     </section>
-    <el-divider></el-divider>
+
+    <br></br>
+    
     <section class="main-section">
         <head-and-c :row-form="true">
             <head-and-c :inner="true" :col-form="true">
@@ -133,7 +135,7 @@ onMounted(() => {
 
 
     </section>
-    <el-divider></el-divider>
+   
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
