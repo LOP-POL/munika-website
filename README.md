@@ -1,3 +1,5 @@
+# Description
+This is a website I created for te Model United Nations Initiative Karsruhe. It used Nuxt js and Notion as a CMS (Content Management System)
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
