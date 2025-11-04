@@ -138,7 +138,7 @@ function formatDate(dateStr: string): string {
     const year = date.getFullYear()
     return `${day}-${month}-${year}`
 }
-const {data} = useFetch('/api/news/news')
+const newsState = useState<any[] | null>('newsCache', () => null)
 const loaded = ref<boolean>(false)
 const instaKey = computed(():string=>`loaded-${loaded}`)
 interface newsArticle{
@@ -217,24 +217,23 @@ function loadInstagramEmbedScript() {
     }
 }
 
-watch(data, () => {
-    if (data.value) {
-        stories.value = data.value.map((item: any) => ({
-            id: String(item.id),
-            title: String(item.title),
-            content: String(item.content),
-            date: formatDate(String(item.date)),
-            author: String(item.author),
-            postUrl: String(item.postUrl),
-            type: String(item.type)
-        })) as newsArticle[];
-
-        loaded.value = true
+onMounted(async () => {
+  if (newsState.value) {
+    stories.value = newsState.value as newsArticle[]
+    loaded.value = true
+  } else {
+    try {
+      const res = await $fetch('/api/news/news')
+      newsState.value = res
+      stories.value = res as newsArticle[]
+      loaded.value = true
+    } catch (err) {
+      console.error('Failed to load news', err)
+      // optionally fall back to dummyData
+      // stories.value = dummyData
     }
-
-},{immediate:true})
-
-
+  }
+})
 
 onMounted(() => {
     loadInstagramEmbedScript();

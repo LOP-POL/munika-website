@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch, onUnmounted } from 'vue'
 import headAndC from '~/components/headAndC.vue'
 import TiltCard from '~/components/TiltCard.vue'
 definePageMeta({ layout: 'kamun-bar' })
@@ -11,27 +11,29 @@ interface TeamMember {
   picture: string,
 }
 
-const { data, pending, error } = useFetch('/api/teams/teams')
+const teamsState = useState<Record<string, TeamMember[]> | null>('teamsCache', () => null)
 const teams = ref<Record<string, TeamMember[]>>()
-const loading = ref(true)
+const loading = ref<boolean>(true)
 
-onMounted(() => {
-  if (data.value) {
-    teams.value = data.value
+onMounted(async () => {
+  if (teamsState.value) {
+    // reuse cached data
+    teams.value = teamsState.value
     loading.value = false
-  }
-})
-
-watch(
-  data,
-  (newData) => {
-    if (newData) {
-      teams.value = newData
+  } else {
+    // fetch once and cache
+    try {
+      const res = await $fetch('/api/teams/teams')
+      teamsState.value = res
+      teams.value = res
+    } catch (err) {
+      // handle fetch error if needed
+      console.error('Failed to load teams', err)
+    } finally {
       loading.value = false
     }
-  },
-  { immediate: true }
-)
+  }
+})
 
 // Responsive carousel type
 const carouselType = ref('card')
@@ -304,4 +306,3 @@ const teamTabs = [
 }
 
 </style>
-  

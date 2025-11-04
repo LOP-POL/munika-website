@@ -159,13 +159,8 @@
 
 import CommitteeCard from '~/components/CommitteeCard.vue'
 import headAndC from '~/components/headAndC.vue'
-
-import {
-  ArrowDown,
-} from '@element-plus/icons-vue'
-definePageMeta({
-  layout: 'kamun-bar'
-});
+import { ArrowDown } from '@element-plus/icons-vue'
+definePageMeta({ layout: 'kamun-bar' })
 
 enum Difficulty {
   BEGINNER = 'Beginner',
@@ -189,6 +184,7 @@ const colors: Record<string,string> = {
   Intermediate:'#f4d35e',
   Expert:'#EE964B'
 }
+const committeesState = useState<Committee[] | null>('committeesCache', () => null)
 const committees = ref<Committee[]>( [
   {
     mainName: "UNESCO",
@@ -218,8 +214,6 @@ const committees = ref<Committee[]>( [
     type: difficulty.value
   }
 ])
-
-const { data } = useFetch(`/api/committees/committees`)
 
 const currentCommittee = ref(committees.value[0])
 
@@ -256,40 +250,36 @@ function handleClick(){
         el.scrollIntoView({ behavior: 'smooth' })
     }
 }
-watchEffect(() => {
-  if (data.value?.fromQuery?.results) {
-    // if (process.client) {
-    //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
-    //   const blob = new Blob([jsonData], { type: 'application/json' });
-    //   const fileUrl = URL.createObjectURL(blob);
+onMounted(async () => {
+  if (committeesState.value) {
+    committees.value = committeesState.value
+  } else {
+    try {
+      const res = await $fetch('/api/committees/committees')
+      // support both shape: { fromQuery: { results: [...] } } and { results: [...] }
+      const results = res?.fromQuery?.results ?? res?.results ?? []
+      const mapped = results.map((result: any) => ({
+        mainName: result.properties["main-name"]?.rich_text?.[0]?.plain_text || '',
+        fullName: result.properties["full-name"]?.rich_text?.[0]?.plain_text || '',
+        logo: result.properties["logo"]?.files?.[0]?.file?.url || '/img-logos/chairs_choice.webp',
+        topic: result.properties["topic"]?.rich_text?.[0]?.plain_text || '',
+        description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
+        SignUpLink: "https://mymun.com/conferences/kamun-2025",
+        metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
+        type: result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
+      })) as Committee[]
 
-    //   // Create a temporary link to trigger download
-    //   const link = document.createElement('a');
-    //   link.href = fileUrl;
-    //   link.download = 'committees.json';
-    //   document.body.appendChild(link);
-    //   link.click();
-    //   document.body.removeChild(link);
-    //   URL.revokeObjectURL(fileUrl);
-    // }
-
-    
-    committees.value = data.value?.fromQuery.results.map((result: any) => ({
-      mainName: result.properties["main-name"]?.rich_text?.[0]?.plain_text || '',
-      fullName: result.properties["full-name"]?.rich_text?.[0]?.plain_text || '',
-      logo: result.properties["logo"]?.files?.[0]?.file.url|| '/img-logos/chairs_choice.webp',
-      topic: result.properties["topic"]?.rich_text?.[0]?.plain_text || '',
-      description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
-      SignUpLink: "https://mymun.com/conferences/kamun-2025",
-      metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-      type:result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
-    }));
-
-    handleClick()
-
-    setCommittee(committeeLevelToList.value[0].mainName)
-
+      if (mapped.length) {
+        committees.value = mapped
+        committeesState.value = mapped
+      }
+    } catch (err) {
+      console.error('Failed to load committees', err)
+      // keep local defaults if fetch fails
+    }
   }
-});
 
+  // ensure currentCommittee is set to a valid value after load
+  currentCommittee.value = committees.value[0] ?? currentCommittee.value
+})
 </script>
