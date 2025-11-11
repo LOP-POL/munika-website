@@ -362,10 +362,17 @@ watch(regularMeetings, (newEvents) => {
   max-height: 100vh;
   max-width: 90vw;
   overflow-x: auto;
+ background:#87CEFA ;
+background: #22C1C3;
+background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(--seasalt)100%);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 20px;
+  border:2px dashed #0A100D;
+  padding:10px;
+
 }
-.calendar-wrapper a,.calendar-wrapper {
-  color:#000;
-  background:black;
+a{
+  color: #bbb;
 }
 .month-nav {
   display: flex;

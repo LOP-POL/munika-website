@@ -37,8 +37,12 @@
 html.dark{
     --el-bg-color:var(--black);
 }
+
 a {
     color: var(--theme-color);
+}
+.calendar-wrapper a{
+    color:#2d3748
 }
 /* Styles for the default Nav and footer pages */
 body{
