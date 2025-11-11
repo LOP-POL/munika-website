@@ -50,7 +50,7 @@ const selectedEvent = ref<any>(null)
 function handleEventClick(info: any) {
   selectedEvent.value = info.event
   dialogVisible.value = true
-  console.log(info.event.extendedProps.location)
+  
 }
 
 function handleDialogClose() {
@@ -111,6 +111,22 @@ function generateRegularMeetings() {
 }
 
 const regularMeetings = computed(() => generateRegularMeetings())
+
+// Fetch events from API with caching
+const { data: apiData } = await useFetch<{ events: any[] }>('/api/meta/meta', {
+  cache: 'force-cache',
+  server: true
+})
+
+const notionEvents = computed(() => {
+  if (!apiData.value?.events) return []
+  return apiData.value.events as any[]
+})
+
+// Determine which events to use: Notion events if available, fallback to hardcoded
+const activeEvents = computed(() => {
+  return notionEvents.value.length > 0 ? notionEvents.value : kamun2025Events
+})
 
 const kamun2025Events = [
   // --- FRIDAY ---
@@ -302,7 +318,7 @@ const kamun2025Events = [
 
 
 const calendarOptions = ref({
-    plugins: [interactionPlugin, listPlugin, dayGridPlugin,iCalendarPlugin],
+    plugins: [interactionPlugin, listPlugin, dayGridPlugin, iCalendarPlugin],
     initialView: 'listMonth',
     views: {
       listDay: { buttonText: 'list day' },
@@ -353,6 +369,17 @@ watch(currentDate, (newDate) => {
 watch(regularMeetings, (newEvents) => {
     calendarOptions.value.events = newEvents.concat(kamun2025Events)
 })
+
+// Merge Notion events with hardcoded events
+watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
+    const allEvents = newMeetings.concat(activeEventsList)
+    calendarOptions.value.events = allEvents
+}, { deep: true })
+
+
+
+
+
 </script>
 
 <style scoped>

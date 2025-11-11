@@ -88,7 +88,7 @@ body {
         <template #title>
             What's new !
         </template>
-        <NewsAnnounceV2 :stories="stories" :instaKey="instaKey"/>
+        <NewsAnnounceV2 :stories="stories.slice().reverse()" :instaKey="instaKey"/>
         <p>
              Follow us on <a
             href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">instagram</a>
@@ -224,6 +224,13 @@ onMounted(async () => {
   } else {
     try {
       const res = await $fetch('/api/news/news')
+    if (Array.isArray(res)) {
+        res.forEach((item: any) => {
+            if (item.date) {
+                item.date = formatDate(item.date)
+            }
+        })
+    }
       newsState.value = res
       stories.value = res as newsArticle[]
       loaded.value = true
