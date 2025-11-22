@@ -113,7 +113,10 @@ const changeCurrentEvent = (value: string, color: string) => {
         </head-and-c>
 
         <!-- H1 before the Calendar (per request) -->
-        <h1>Calendar</h1>
+        <h1>
+
+            Calendar
+        </h1>
 
         <!-- Calendar section -->
         <section id="calendar" class="calendar">
@@ -124,7 +127,7 @@ const changeCurrentEvent = (value: string, color: string) => {
         <h1 id="schedule">Schedule</h1>
         <head-and-c>
             <p>
-                Note: Refer back here in the closer to the conference for more information such as meal options, rooms numbers and more.
+                Note: Come back here closer to the conference for more information such as meal options, room numbers and more.
             </p>
             <p>
                 You can download the Kamun 2025 schedule as an .ics file to add it to your calendar:
