@@ -43,12 +43,12 @@ main {
     /* box-shadow: 5px 5px 7px rgba(33, 33, 33, .7); */
     padding: 10px;
     margin: 5px;
-    max-width: 100%;
     color: black;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     box-sizing: border-box;
     border-radius: 2px;
+    min-width:400px;
 
 }
 
@@ -402,7 +402,8 @@ function viewStory(id: string, e: Event) {
 watch(() => props.stories, (newVal, oldVal) => {
     stories.value = props.stories
     if (props.stories.length) {
-        stories.value = props.stories
+        stories.value = props.stories.filter((s)=>s.id!='')
+        console.log(props.stories)
         selectedStory.value = stories.value[0]
         loading.value = false
     }
