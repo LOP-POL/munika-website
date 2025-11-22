@@ -3,8 +3,7 @@ import { Client } from "@notionhq/client"
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
     const notionApiKey = config.notionApiKey
-    const notionNewsPage = config.notionNewsPage
-
+   
     if (!notionApiKey) {
         throw new Error('NOTION_API_KEY is missing or not loaded from runtime config')
     }
@@ -69,7 +68,8 @@ export default defineEventHandler(async (event) => {
                         extendedProps: {
                             description: props.description?.rich_text?.[0]?.text?.content || '',
                             location: props.location?.rich_text?.[0]?.text?.content || '',
-                            locationLink: props.locationLink?.url || ''
+                            locationLink: props.locationLink?.url || '',
+                            typeOfEvent:props.type?.multi_select?.[0]?.name
                         }
                     }
                 }

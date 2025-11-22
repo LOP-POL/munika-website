@@ -387,7 +387,7 @@ watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
   min-width: 50%;
   min-height: 50%;
   max-height: 100vh;
-  max-width: 90vw;
+  max-width: 100vw;
   overflow-x: auto;
  background:#87CEFA ;
 background: #22C1C3;
@@ -404,8 +404,9 @@ a{
 .month-nav {
   display: flex;
   gap: 8px;
-  align-items: center;
+  align-items:center;
   justify-content: center;
+  margin: 20px;
 }
 .toggle-toolbar-btn {
   display: none;

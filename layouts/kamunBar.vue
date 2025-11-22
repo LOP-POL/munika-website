@@ -33,6 +33,11 @@ const routes = [
         path:'/KAMUN/committees'
     },
     {
+        page:'Schedule',
+        path:'/KAMUN/schedule'
+    },
+
+    {
         page:'News',
         path:'/news'
     },
@@ -67,7 +72,7 @@ onUnmounted(() => {
 })
 
 import { ElIcon } from 'element-plus'
-import { House, UserFilled, Collection, Notification, Star } from '@element-plus/icons-vue'
+import { House, UserFilled, Collection, Notification, Star,Calendar } from '@element-plus/icons-vue'
 
 function handleMenuClick() {
     menuVisible.value = false
@@ -165,12 +170,20 @@ function handleMenuClick() {
                 </el-icon>
                 Committees
             </el-menu-item>
+
             <el-menu-item index="/news">
                 <el-icon>
                     <Notification />
                 </el-icon>
                 News
             </el-menu-item>
+             <el-menu-item index="/schedule">
+                <el-icon>
+                    <Calendar />
+                </el-icon>
+                Schedule
+            </el-menu-item>
+
             <el-menu-item class="special-menu-item" index="/">
                 <el-icon>
                     <Star />

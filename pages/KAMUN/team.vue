@@ -81,7 +81,7 @@ const teamTabs = [
   </div>
 
   <template v-else>
-    <br></br>
+  
     <head-and-c>
        <el-tabs v-model="activeTab" type="card" stretch>
       <el-tab-pane
@@ -116,6 +116,7 @@ const teamTabs = [
       </el-tab-pane>
     </el-tabs>
     </head-and-c>
+    
   </template>
 </template>
 

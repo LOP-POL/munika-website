@@ -72,6 +72,7 @@ onMounted(() => {
 
 onUnmounted(() => {
     window.removeEventListener('resize', updatePageWidth)
+    
 })
 
 import { ElIcon } from 'element-plus'

@@ -1,9 +1,10 @@
 <template>
-  <section class="head-and-c-section" :class="{ inner: inner }">
-    <div>
+  <section class="head-and-c-section"  :class="{ inner: inner }">
+    <div ref="hNCWrapper">
     <h2 :class="['head-and-c-title',{'picture':picture}]" :style="{backgroundImage:`url(${pictureUrl})`}">
         <slot name="title"></slot>
     </h2>
+    <img v-if="picture" :src="pictureUrl" alt="team picture" class="paraPic"></img>
     </div> 
     <el-divider v-if="divider"></el-divider>
     <div :class="['head-and-c-content', { 'row-form': rowForm, 'col-form': colForm }]">
@@ -21,6 +22,16 @@ const props = defineProps<{
   picture?:boolean,
   pictureUrl?:string,
 }>()
+
+const hNCWrapper = ref()
+
+onMounted(()=>{
+  if(props.picture){
+     hNCWrapper.value.classList.add('parallaxWrapper')
+  }
+ 
+})
+
 </script>
 
 <style scoped>
@@ -33,6 +44,36 @@ const props = defineProps<{
   width:100%;
   margin: 0 auto;
   box-sizing: border-box;
+  
+  
+}
+.parallaxWrapper{
+   overflow-y:hidden;
+    overflow-x: hidden;
+    perspective:10px;
+    height: 60vh;
+    width: 100%;
+    transform-style: preserve-3d;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index:1;
+    border-radius:10px;
+   
+}
+.paraPic{
+  position: absolute;
+     height: 110%;
+     width: 110%;
+     transform: translateZ(-10px) scale(2);
+     transform-style: preserve-3d;
+     z-index:-1;
+     object-fit: cover;
+     transform: translateZ(-10px) scale(2);
+     border-radius:10px;
+    
 }
 .inner {
   min-width: 50%;
@@ -63,19 +104,15 @@ const props = defineProps<{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:60vh;
+    max-height:100%;
     color:var(--theme-color);
     border-radius:20px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
      font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 2.0vmax;
      box-shadow: 0px 0px 10px black;
-
 }
 
 @media (max-width: 900px) {

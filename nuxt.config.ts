@@ -2,10 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: [
-    '@nuxt/content',
-    '@element-plus/nuxt'
-  ],
+  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt'],
   nitro: {
     externals: {
       external: [],
@@ -29,4 +26,3 @@ export default defineNuxtConfig({
     }
   }
 })
-
