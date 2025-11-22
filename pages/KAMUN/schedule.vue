@@ -97,10 +97,12 @@ const changeCurrentEvent = (value: string, color: string) => {
             <div>
                 <p> Refer to the <a href="#schedule">Schedule section below</a> to see the full conference
                     program.
-                    Please open the calendar below and navigate to <strong>December</strong> (use the month controls or
+                    Please open the <a href="#calendar">calendar below</a> and navigate to <strong>December</strong>
+                    (use the month
+                    controls or
                     the view
                     selector).
-                   
+
                 </p>
                 <p>
                     You can download the Kamun 2025 schedule as an .ics file to add it to your calendar:
@@ -112,26 +114,19 @@ const changeCurrentEvent = (value: string, color: string) => {
             </div>
         </head-and-c>
 
-        <!-- H1 before the Calendar (per request) -->
-        <h1>
-
-            Calendar
-        </h1>
-
-        <!-- Calendar section -->
-        <section id="calendar" class="calendar">
-            <Calendar />
-        </section>
+        
 
         <!-- H1 for Schedule and note (id for linking) -->
+
         <h1 id="schedule">Schedule</h1>
         <head-and-c>
             <p>
-                Note: Come back here closer to the conference for more information such as meal options, room numbers and more.
+                Note: Come back here closer to the conference for more information such as meal options, room numbers
+                and more.
             </p>
             <p>
                 You can download the Kamun 2025 schedule as an .ics file to add it to your calendar:
-                <a href="/KAMUN2025schedule@munika.org.ics" download>Download KAMUN2025 schedule (ICS)</a>.
+                <a href="/KAMUN2025Schedule.ics" download>Download KAMUN2025 schedule (ICS)</a>.
                 Note: this .ics file contains the Kamun 2025 schedule only — it does <strong>not</strong> include the
                 recurring
                 regular meetings.
@@ -160,7 +155,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                         <p class="event-title">{{ event.title ?? event.Name ?? event.name }}</p>
                         <!-- time -->
                         <p class="event-time">
-                            <span>{{ formatTime(event.start) }}</span>
+                           <el-icon><Timer/></el-icon> <span>{{ formatTime(event.start) }}</span>
                             <span v-if="event.end"> — {{ formatTime(event.end) }}</span>
                         </p>
                         <!-- description -->
@@ -178,11 +173,25 @@ const changeCurrentEvent = (value: string, color: string) => {
             </div>
         </section>
 
+        <!-- H1 before the Calendar (per request) -->
+        <h1>
+            Calendar
+        </h1>
+
+        <!-- Calendar section -->
+        <section id="calendar" class="calendar">
+            <Calendar />
+        </section>
+
     </main>
 
 </template>
 
 <style>
+h1{
+    text-decoration:underline solid var(--french-gray) 5%;
+    text-underline-offset:10px;
+}
 .events-sticky {
     overflow-x: hidden;
     transform-style: preserve-3d;
@@ -227,12 +236,13 @@ const changeCurrentEvent = (value: string, color: string) => {
 
 @media (max-width: 768px) {
     .day-group .dateShow {
-        flex-direction:column;
-        align-items:flex-start;
+        flex-direction: column;
+        align-items: flex-start;
         height: auto;
-        font-size:10px;
+        font-size: 10px;
     }
-    .events-section{
+
+    .events-section {
         transform: translateY(50px);
     }
 
@@ -292,7 +302,7 @@ const changeCurrentEvent = (value: string, color: string) => {
 }
 
 .event-card:hover {
-    transform:translateX(20px);
+    transform: translateX(20px);
     background-color: rgba(70, 70, 70, 0.486);
 }
 

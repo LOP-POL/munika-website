@@ -1,0 +1,185 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//KAMUN2025Schedule//EN
+
+BEGIN:VEVENT
+SUMMARY:Registration
+DTSTART:20251205T103000Z
+DTEND:20251205T123000Z
+DESCRIPTION:Registration for delegates at Karlshochschule International University.
+LOCATION:Karlshochschule International University, Karlsruhe, Germany
+URL:https://maps.app.goo.gl/BAUtNgZAamQyJjLB7
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Opening Ceremony
+DTSTART:20251205T123000Z
+DTEND:20251205T133000Z
+DESCRIPTION:Opening ceremony with speeches and guest speakers.
+LOCATION:Karlshochschule International University, Karlsruhe, Germany
+URL:https://maps.app.goo.gl/BAUtNgZAamQyJjLB7
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:How to MUN Workshop
+DTSTART:20251205T133000Z
+DTEND:20251205T143000Z
+DESCRIPTION:Held alongside a special ROP session for H-UNSC delegates.
+LOCATION:Karlshochschule International University, Karlsruhe, Germany
+URL:https://maps.app.goo.gl/BAUtNgZAamQyJjLB7
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Break
+DTSTART:20251205T143000Z
+DTEND:20251205T144500Z
+DESCRIPTION:Short break between sessions.
+LOCATION:Karlshochschule International University, Karlsruhe, Germany
+URL:https://maps.app.goo.gl/BAUtNgZAamQyJjLB7
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 1
+DTSTART:20251205T144500Z
+DTEND:20251205T170000Z
+DESCRIPTION:First committee session of KAMUN 2025.
+LOCATION:Karlshochschule International University, Karlsruhe, Germany
+URL:https://maps.app.goo.gl/BAUtNgZAamQyJjLB7
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Social with Dinner
+DTSTART:20251205T180000Z
+DTEND:20251205T220000Z
+DESCRIPTION:A karaoke night with games, drinks, and dinner.
+LOCATION:Anne-Frank-Haus, Moltkestraße 20, 76133 Karlsruhe
+URL:https://maps.app.goo.gl/bc29MevFyZx7Qs42A
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Breakfast
+DTSTART:20251206T073000Z
+DTEND:20251206T080000Z
+DESCRIPTION:Coffee, tea, bread, and more.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 2
+DTSTART:20251206T080000Z
+DTEND:20251206T093000Z
+DESCRIPTION:Debate session in respective committees.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 3
+DTSTART:20251206T100000Z
+DTEND:20251206T120000Z
+DESCRIPTION:Continuing debates in committee sessions.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Lunch
+DTSTART:20251206T120000Z
+DTEND:20251206T130000Z
+DESCRIPTION:Lunch break and networking opportunity.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 4
+DTSTART:20251206T130000Z
+DTEND:20251206T143000Z
+DESCRIPTION:Committee debates continue.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Break + Pictures
+DTSTART:20251206T143000Z
+DTEND:20251206T150000Z
+DESCRIPTION:Group photos – one for the memories!
+LOCATION:Fachschaft Mathematik am KIT, Karlsruhe
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 5
+DTSTART:20251206T150000Z
+DTEND:20251206T170000Z
+DESCRIPTION:Debate continues – it’s getting serious now!
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Dinner
+DTSTART:20251206T170000Z
+DTEND:20251206T180000Z
+DESCRIPTION:Dinner and relaxation after committee work.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Social (Masquerade Ball)
+DTSTART:20251206T193000Z
+DTEND:20251207T000000Z
+DESCRIPTION:Masquerade Ball – elegance and intrigue. Dress to impress!
+LOCATION:Hoepfner Schalander, Haid-und-Neu-Straße 18, Karlsruhe
+URL:https://maps.app.goo.gl/CGT2FUCbEGddb7BD8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Breakfast
+DTSTART:20251207T083000Z
+DTEND:20251207T090000Z
+DESCRIPTION:Coffee, tea, bread, and more.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 6
+DTSTART:20251207T090000Z
+DTEND:20251207T110000Z
+DESCRIPTION:Committee debates continue.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Lunch
+DTSTART:20251207T110000Z
+DTEND:20251207T120000Z
+DESCRIPTION:The real reason you're here.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Session 7
+DTSTART:20251207T120000Z
+DTEND:20251207T140000Z
+DESCRIPTION:Final committee debates before closing.
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Closing Ceremony
+DTSTART:20251207T140000Z
+DTEND:20251207T153000Z
+DESCRIPTION:Thank you for participating – see you next time!
+LOCATION:Fachschaft Mathematik am KIT
+URL:https://maps.app.goo.gl/7fzQTYn2SdPb2m6k8
+END:VEVENT
+
+END:VCALENDAR

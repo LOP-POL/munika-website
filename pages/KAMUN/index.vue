@@ -1,17 +1,30 @@
 <script setup lang="ts">
+import { constrainPoint } from '@fullcalendar/core/internal'
 import { ref, onMounted } from 'vue'
+import { useMetaStore } from '~/piniaStores/metaStore'
 
 const tooltipVisible = ref(false)
 const tooltipRef = ref<HTMLElement | null>(null)
 
-const themeText = ref('Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
+
 const originalThemeText = 'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion'
+
 const kamunThemeTextRef = ref<HTMLElement | null>(null)
 
+
+const metaStore = useMetaStore()
+const themeText =computed(()=> metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme??'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
+const themeSegments = computed(() => {
+    if (metaStore.getConferenceMeta) {
+        themeText.value = metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme
+        return (metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme).split(" ")
+    }
+})
+
 useHead({
-    title:"KAMUN",
-    meta:[{
-        name:'description',content:'Karlsruhe Model United Nations , MUN COnference , Black forest Summit'
+    title: "KAMUN",
+    meta: [{
+        name: 'description', content: 'Karlsruhe Model United Nations , MUN COnference , Black forest Summit'
     }]
 
 })
@@ -45,6 +58,7 @@ onMounted(() => {
                 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 let iterations = 0
                 const target = kamunThemeTextRef.value
+
                 if (!target) return
                 let interval: number | undefined
                 interval = window.setInterval(() => {
@@ -60,14 +74,104 @@ onMounted(() => {
                         clearInterval(interval)
                         target.innerText = originalThemeText
                     }
-                    iterations += 1/1.2
+                    iterations += 1 / 1.2
                 }, 40)
             }
         })
-    },{ threshold: 0.2 })
-    
-            
-    
+    }, { threshold: 0.2 })
+
+
+    // if(kamunThemeTextRef.value){
+    //      themeObserver.observe(kamunThemeTextRef.value)
+    // }   
+
+    if (themeSegments.value) {
+        themeSegments.value.forEach((segment) => {
+            var mySpan: HTMLElement = document.createElement("span")
+            mySpan.textContent = segment + " "
+            mySpan.classList.add("animated-segment")
+            kamunThemeTextRef.value?.appendChild(mySpan)
+        })
+
+        // Add hover listener to the container
+        kamunThemeTextRef.value?.addEventListener("mouseenter", (e) => {
+            if (kamunThemeTextRef.value?.children.length) {
+                for (var i = 0; i < kamunThemeTextRef.value?.children.length; i++) {
+                    const child = kamunThemeTextRef.value?.children.item(i)
+                    if(child != null) {
+                        // (child as HTMLElement).style.animation = 'up 1s forwards'
+                        const el = child as HTMLElement
+                        el.animate(
+                            [
+
+                                { color:'yellow',transform:'translateY(100px)'},
+                                {transform:'translateY(-100px)',color:'grey'},
+                                {color:'white'},
+                                {color:'black'}
+                            ],
+                            {
+                                duration:2000,
+                                easing: 'cubic-bezier(.2,.8,.2,1)',
+                                delay: i * 100,
+                                fill: 'forwards',
+                            }
+                        )
+                       
+                    }
+                }
+            }
+        })
+        // observe the theme container and play the segment animations when it enters view
+        if (kamunThemeTextRef.value) {
+            const segmentObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return
+                    const container = entry.target as HTMLElement
+                    if (!container) return
+
+                    for (let i = 0; i < container.children.length; i++) {
+                        const child = container.children.item(i) as HTMLElement | null
+                        if (!child) continue
+
+                        child.animate(
+                            [
+                                { color: 'yellow', transform: 'translateY(100px)' },
+                                { transform: 'translateY(-100px)', color: 'grey' },
+                                { color: 'white' },
+                                { color: 'black' }
+                            ],
+                            {
+                                duration: 2000,
+                                easing: 'cubic-bezier(.2,.8,.2,1)',
+                                delay: i * 100,
+                                fill: 'forwards'
+                            }
+                        )
+                    }
+
+                    // only play once; remove observer for this element
+                    // obs.unobserve(container)
+                })
+            }, { threshold: 0.2 })
+
+            segmentObserver.observe(kamunThemeTextRef.value)
+        }
+
+        // Reset animation on mouse leave
+        // kamunThemeTextRef.value?.addEventListener("mouseleave", (e) => {
+        //     if (kamunThemeTextRef.value?.children.length) {
+        //         for (var i = 0; i < kamunThemeTextRef.value?.children.length; i++) {
+        //             const child = kamunThemeTextRef.value?.children.item(i)
+        //             if(child != null) {
+        //                 (child as HTMLElement).style.animation = ''
+        //             }
+        //         }
+        //     }
+        // })
+    }
+
+
+
     // Tooltip intersection observer
     if (tooltipRef.value) {
         const tooltipObserver = new window.IntersectionObserver((entries) => {
@@ -85,18 +189,18 @@ onMounted(() => {
     <kamun-page-header></kamun-page-header>
     <br></br>
     <section class="main-section">
-        <head-and-c>
+        <head-and-c class="kamun-theme">
             <template #title>
                 This Years Theme
             </template>
-            <h1 class="kamun-theme-text" ref="kamunThemeTextRef" >
-                {{ themeText }}
+            <h1 class="kamun-theme-text" ref="kamunThemeTextRef">
+               
             </h1>
         </head-and-c>
     </section>
 
     <br></br>
-    
+
     <section class="main-section">
         <head-and-c :row-form="true">
             <head-and-c :inner="true" :col-form="true">
@@ -117,7 +221,8 @@ onMounted(() => {
 
             <head-and-c :col-form="true" :inner="true">
                 <template #title>Where</template>
-                <p>As per usual KAMUN will be held at the <a href="https://www.kit.edu/" color="turquoise">Karlsruhe Institute of Technology</a>. In the beautiful city of
+                <p>As per usual KAMUN will be held at the <a href="https://www.kit.edu/" color="turquoise">Karlsruhe
+                        Institute of Technology</a>. In the beautiful city of
                     Karlsruhe
                     located just north of the black forest </p>
 
@@ -135,13 +240,14 @@ onMounted(() => {
 
 
     </section>
-   
+
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
     </section>
 </template>
 <style>
+
 #where-to {
     background-image: url("/styleImgs/forest-silouette-white.jpg");
     background-attachment: fixed;
@@ -160,6 +266,18 @@ onMounted(() => {
     font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 2.2em;
+    /* text-shadow: 0 50px; */
     
+    cursor: pointer;
+}
+
+/* .kamun-theme:hover {
+         animation:up 1s forwards;
+    } */
+@keyframes up{
+   
+    100%{
+        transform: translateY(-100px);
+    }
 }
 </style>

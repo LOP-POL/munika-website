@@ -177,7 +177,7 @@ function handleMenuClick() {
                 </el-icon>
                 News
             </el-menu-item>
-             <el-menu-item index="/schedule">
+             <el-menu-item index="/KAMUN/schedule">
                 <el-icon>
                     <Calendar />
                 </el-icon>

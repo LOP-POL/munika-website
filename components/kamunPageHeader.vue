@@ -59,9 +59,9 @@
         </div>
 
         <div class="right-side layered-content" ref="rightSideRef">
-            <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
+            <!-- <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
                 <p>{{ quote }}</p>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
@@ -72,16 +72,16 @@ import { ArrowLeftBold } from '@element-plus/icons-vue'
 
 // Define refs for DOM elements
 
-const quotes = ref([
-    "leon is aweseome",
-    "the north face",
-    "finshs him",
-    "but daddy I love him",
-    "on please it is not that serious",
-    "some more quotes"
-])
+// const quotes = ref([
+//     "leon is aweseome",
+//     "the north face",
+//     "finshs him",
+//     "but daddy I love him",
+//     "on please it is not that serious",
+//     "some more quotes"
+// ])
 
-const { data } = useFetch(`/api/quotes/quotes`)
+// const { data } = useFetch(`/api/quotes/quotes`)
 
 const leftRef = ref<HTMLElement | null>(null)
 const headerRef = ref<HTMLElement | null>(null)
@@ -116,23 +116,23 @@ const onScroll = (e: Event) => {
 
 }
 
-function showQuotes(clear: boolean = true) {
-    if (!leftRef.value || !underlayRef.value || !headerRef.value) return
-    let index = 0;
-    const children = rightSideRef.value?.children;
+// function showQuotes(clear: boolean = true) {
+//     if (!leftRef.value || !underlayRef.value || !headerRef.value) return
+//     let index = 0;
+//     const children = rightSideRef.value?.children;
 
-    if (children && children.length > 0) {
-        Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
-        index = Math.floor(Math.random() * children.length);
-        (children[index] as HTMLElement).style.opacity = "1";
+//     if (children && children.length > 0) {
+//         Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
+//         index = Math.floor(Math.random() * children.length);
+//         (children[index] as HTMLElement).style.opacity = "1";
 
-        setTimeout(() => {
-            (children[index] as HTMLElement).style.opacity = "0";
-            showQuotes(false)
-        }, 4000)
+//         setTimeout(() => {
+//             (children[index] as HTMLElement).style.opacity = "0";
+//             // showQuotes(false)
+//         }, 4000)
 
-    }
-}
+//     }
+// }
 const onMouseMove = (e: MouseEvent) => handleMove(e)
 const onTouchMove = (e: TouchEvent) => {
     if (e.touches.length > 0) handleMove(e.touches[0])
@@ -157,36 +157,36 @@ const openPicture = (e: Event) => {
     }
 
 }
-watchEffect(() => {
+// watchEffect(() => {
 
-    if (data.value?.response.results) {
-        // if (process.client) {
-        //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
-        //   const blob = new Blob([jsonData], { type: 'application/json' });
-        //   const fileUrl = URL.createObjectURL(blob);
+//     if (data.value?.response.results) {
+//         // if (process.client) {
+//         //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
+//         //   const blob = new Blob([jsonData], { type: 'application/json' });
+//         //   const fileUrl = URL.createObjectURL(blob);
 
-        //   // Create a temporary link to trigger download
-        //   const link = document.createElement('a');
-        //   link.href = fileUrl;
-        //   link.download = 'quotes.json';
-        //   document.body.appendChild(link);
-        //   link.click();
-        //   document.body.removeChild(link);
-        //   URL.revokeObjectURL(fileUrl);
-        // }
+//         //   // Create a temporary link to trigger download
+//         //   const link = document.createElement('a');
+//         //   link.href = fileUrl;
+//         //   link.download = 'quotes.json';
+//         //   document.body.appendChild(link);
+//         //   link.click();
+//         //   document.body.removeChild(link);
+//         //   URL.revokeObjectURL(fileUrl);
+//         // }
 
 
-        quotes.value = data.value?.response.results.map((result: any) => (result.properties["quote_text"]?.rich_text?.[0]?.plain_text || ''
-        ));
+//         quotes.value = data.value?.response.results.map((result: any) => (result.properties["quote_text"]?.rich_text?.[0]?.plain_text || ''
+//         ));
 
-    }
-});
+//     }
+// });
 onMounted(() => {
     if (headerRef.value) {
         headerRef.value.addEventListener('mousemove', onMouseMove)
         headerRef.value.addEventListener('touchmove', onTouchMove)
         // window.addEventListener('scroll', onScroll, { passive: false })
-        showQuotes(false)
+        // showQuotes(false)
 
     }
 })
