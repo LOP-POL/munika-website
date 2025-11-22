@@ -16,7 +16,6 @@ const metaStore = useMetaStore()
 const themeText =computed(()=> metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme??'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
 const themeSegments = computed(() => {
     if (metaStore.getConferenceMeta) {
-        themeText.value = metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme
         return (metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme).split(" ")
     }
 })

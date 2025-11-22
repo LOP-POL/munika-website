@@ -165,7 +165,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                             <el-icon>
                                 <Location />
                             </el-icon>
-                            <a href={{event.extendedProps.locationLink??}}>{{ event.extendedProps.location }}</a>
+                            <a :href="event.extendedProps.locationLink??'#calendar'" target="_blank">{{ event.extendedProps.location }}</a>
                         </p>
                     </div>
                 </div>
