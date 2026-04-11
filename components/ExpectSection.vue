@@ -13,7 +13,7 @@
 
       </div>
       <br />
-      <div class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
+      <div v-if="videoPart" class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
         <p class="vidSummary" ref="vidSummary1"
            @mouseover="handleVideoClicks(backGroundImages.food,29,$event)" @click="handleVideoClicks(backGroundImages.food, 29, $event)">
           Enjoy delicious food served throughout the conference, with a variety of options to suit every taste and dietary need.
