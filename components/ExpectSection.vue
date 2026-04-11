@@ -4,7 +4,7 @@
     <head-and-c :inner="true" :row-form="true" class="video-container">
       <template #title></template>
       <div class="videoPart" ref="videoPart">
-        <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef">
+        <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef" autoplay="false">
           <!-- <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
           Your browser does not support the video tag. -->
             <source src="/videos/KAMUN_25_promo_video.mp4" type="video/mp4">
@@ -13,7 +13,7 @@
 
       </div>
       <br />
-      <div class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
+      <div class="vidS umCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
         <p class="vidSummary" ref="vidSummary1"
            @mouseover="handleVideoClicks(backGroundImages.food,29,$event)" @click="handleVideoClicks(backGroundImages.food, 29, $event)">
           Enjoy delicious food served throughout the conference, with a variety of options to suit every taste and dietary need.

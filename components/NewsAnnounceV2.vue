@@ -74,7 +74,7 @@ main {
     max-width: 100vw;
     width: 100%;
     box-sizing: border-box;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     justify-items: center;
     max-height: fit-content;
   
@@ -122,6 +122,18 @@ main {
         justify-content: center;
         max-width: 100vw;
         width: 100%;
+        overflow-x: auto;
+    }
+    #SelectedContent{
+        overflow-x: auto;
+        max-width:90%;
+        overflow-x: hidden;
+        font-size:5vmin;
+        min-width:200px;
+
+    }
+    #SelectedContent p{
+        font-size:80%;
     }
 
     .instagram-media,
