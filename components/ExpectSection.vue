@@ -13,7 +13,7 @@
 
       </div>
       <br />
-      <div class="vidS umCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
+      <div class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
         <p class="vidSummary" ref="vidSummary1"
            @mouseover="handleVideoClicks(backGroundImages.food,29,$event)" @click="handleVideoClicks(backGroundImages.food, 29, $event)">
           Enjoy delicious food served throughout the conference, with a variety of options to suit every taste and dietary need.
@@ -91,7 +91,7 @@ onMounted(() => {
   }
   if (videoRef.value) {
     videoRef.value.currentTime = 3
-    videoRef.value.play()
+    
   }
   // Tooltip intersection observer
   if (tooltipRef.value) {
