@@ -13,10 +13,10 @@ const kamunThemeTextRef = ref<HTMLElement | null>(null)
 
 
 const metaStore = useMetaStore()
-const themeText =computed(()=> metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme??'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
+const themeText =computed(()=> metaStore.getConferenceMeta.theme??'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
 const themeSegments = computed(() => {
     if (metaStore.getConferenceMeta) {
-        return (metaStore.getConferenceMeta.theme??metaStore.getConferenceMeta[0].theme).split(" ")
+        return (metaStore.getConferenceMeta.theme??"Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion").split(" ")
     }
 })
 

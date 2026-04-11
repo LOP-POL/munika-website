@@ -1,0 +1,372 @@
+{
+  "response": {
+    "object": "list",
+    "results": [
+      {
+        "object": "page",
+        "id": "21ee15e9-02a3-80e7-b9da-e5f4dda298bb",
+        "created_time": "2025-06-26T21:20:00.000Z",
+        "last_edited_time": "2025-06-26T21:25:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "21ee15e9-02a3-8083-85fc-dc18b982dac7"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "quote_text": {
+            "id": "HiGa",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "stealing gavels is not cool",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "stealing gavels is not cool",
+                "href": null
+              }
+            ]
+          },
+          "ID": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "5",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "5",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/5-21ee15e902a380e7b9dae5f4dda298bb",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "21ee15e9-02a3-80a5-9522-c97dde37c721",
+        "created_time": "2025-06-26T21:20:00.000Z",
+        "last_edited_time": "2025-06-26T21:25:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "21ee15e9-02a3-8083-85fc-dc18b982dac7"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "quote_text": {
+            "id": "HiGa",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "With great power comes great responsibility",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "With great power comes great responsibility",
+                "href": null
+              }
+            ]
+          },
+          "ID": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "4",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "4",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/4-21ee15e902a380a59522c97dde37c721",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "21ee15e9-02a3-8010-8905-c5483fb7ca24",
+        "created_time": "2025-06-26T21:20:00.000Z",
+        "last_edited_time": "2025-06-26T21:24:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "21ee15e9-02a3-8083-85fc-dc18b982dac7"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "quote_text": {
+            "id": "HiGa",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "A drop of kindness creates and endless ripple",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "A drop of kindness creates and endless ripple",
+                "href": null
+              }
+            ]
+          },
+          "ID": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "3",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "3",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/3-21ee15e902a380108905c5483fb7ca24",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "21ee15e9-02a3-80a1-8db8-cd87db1c745f",
+        "created_time": "2025-06-26T21:20:00.000Z",
+        "last_edited_time": "2025-06-26T21:23:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "21ee15e9-02a3-8083-85fc-dc18b982dac7"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "quote_text": {
+            "id": "HiGa",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Debate. Discuss. Diplomatically",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Debate. Discuss. Diplomatically",
+                "href": null
+              }
+            ]
+          },
+          "ID": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "2",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "2",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/2-21ee15e902a380a18db8cd87db1c745f",
+        "public_url": null
+      },
+      {
+        "object": "page",
+        "id": "21ee15e9-02a3-8033-92f6-f47fd4158d68",
+        "created_time": "2025-06-26T21:16:00.000Z",
+        "last_edited_time": "2025-06-26T21:23:00.000Z",
+        "created_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "last_edited_by": {
+          "object": "user",
+          "id": "20ad872b-594c-81dd-9e79-0002a0d375d3"
+        },
+        "cover": null,
+        "icon": null,
+        "parent": {
+          "type": "database_id",
+          "database_id": "21ee15e9-02a3-8083-85fc-dc18b982dac7"
+        },
+        "archived": false,
+        "in_trash": false,
+        "properties": {
+          "quote_text": {
+            "id": "HiGa",
+            "type": "rich_text",
+            "rich_text": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "Peace begins with dialogue",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "Peace begins with dialogue",
+                "href": null
+              }
+            ]
+          },
+          "ID": {
+            "id": "title",
+            "type": "title",
+            "title": [
+              {
+                "type": "text",
+                "text": {
+                  "content": "1",
+                  "link": null
+                },
+                "annotations": {
+                  "bold": false,
+                  "italic": false,
+                  "strikethrough": false,
+                  "underline": false,
+                  "code": false,
+                  "color": "default"
+                },
+                "plain_text": "1",
+                "href": null
+              }
+            ]
+          }
+        },
+        "url": "https://www.notion.so/1-21ee15e902a3803392f6f47fd4158d68",
+        "public_url": null
+      }
+    ],
+    "next_cursor": null,
+    "has_more": false,
+    "type": "page_or_database",
+    "page_or_database": {},
+    "request_id": "a75cd384-8913-4f7e-be42-c2dbf0d6dc80"
+  }
+}

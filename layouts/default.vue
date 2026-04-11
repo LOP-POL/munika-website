@@ -96,12 +96,12 @@ function handleMenuClick() {
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"   @click="menuVisible = true" v-if="pageWidth < 900" 
+                    <el-button class="menu-toggle" style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"   @click="menuVisible = true" v-if="pageWidth < 1000" 
                          plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
 
-                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }"></CustomNavMenu>
+                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 1000 ? '100%' : 'auto',display: pageWidth < 1000 ? 'none' : 'flex' }"></CustomNavMenu>
                        
                     <!-- <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="var(--theme-color)"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }">

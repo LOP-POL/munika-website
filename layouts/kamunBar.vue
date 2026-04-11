@@ -16,6 +16,7 @@ const onBack = () => {
 }
 
 const menuVisible = ref(false)
+const menuSwitch = ref<boolean>(false)
 
 const pageWidth = ref(0)
 
@@ -50,8 +51,32 @@ const routes = [
 
 const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth
+    if(navMen.value){
+        switchToButton((check(navMen.value)))
+    }
 }
+const navMen = ref<HTMLElement | null>(null)
 
+    // function to help chekc if the nav has overflwing routes
+ function check(el:HTMLElement) { 
+                let curOverf = el.style.overflow; 
+                
+                if ( !curOverf || curOverf === "visible" ) 
+                    el.style.overflow = "hidden"; 
+                
+                let isOverflowing = el.clientWidth < el.scrollWidth
+                    || el.clientHeight < el.scrollHeight; 
+                
+                el.style.overflow = curOverf; 
+                
+                return isOverflowing; 
+            } 
+    // function to switch to the button if the nav has overflowing routes
+function switchToButton(change:boolean){
+    
+        menuSwitch.value = change
+
+}
 onMounted(() => {
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
@@ -64,6 +89,9 @@ onMounted(() => {
         document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
+   
+    console.log(navMen.value)
+   
 
 })
 
@@ -90,13 +118,13 @@ function handleMenuClick() {
                     <span class="title-text">KAMUN 2025</span>
                 </div>
 
-                <span class="nav-menu">
+                <span class="nav-menu" ref="navMen">
                     <el-button class="menu-toggle"
                         style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"
-                        @click="menuVisible = true" v-if="pageWidth < 900"  plain>
+                        @click="menuVisible = true" v-if="pageWidth < 1200 || menuSwitch"  plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
-                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }"></CustomNavMenu>
+                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 1200 || menuSwitch? '100%' : 'auto', display: pageWidth < 1200 || menuSwitch ? 'none' : 'flex' }"></CustomNavMenu>
                     <!-- <el-menu mode="horizontal" :router="true" :ellipsis="false"  class="main-nav main-nav-show" active-text-color="#ffd04b"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/KAMUN">Home</el-menu-item>

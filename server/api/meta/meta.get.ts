@@ -1,8 +1,11 @@
 import { Client } from "@notionhq/client"
+import { useStorage } from "#imports"
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
     const notionApiKey = config.notionApiKey
+
+    const storage =  useStorage()
    
     if (!notionApiKey) {
         throw new Error('NOTION_API_KEY is missing or not loaded from runtime config')
@@ -41,9 +44,16 @@ export default defineEventHandler(async (event) => {
 
     let eventsResults: any[] = []
 
+    
+
     if (newestPageId) {
+        await storage.setItem('newestKamunId',newestPageId)
+       
         // List blocks of the newest page
         const blocksResp = await notion.blocks.children.list({ block_id: newestPageId, page_size: 100 })
+        
+        await storage.setItem('kamunBlockChildren',blocksResp)
+
         const childDbBlock = blocksResp.results.find((b:any) => b.type === 'child_database' && b.child_database && b.child_database.title=="Events" )
 
         if (childDbBlock) {

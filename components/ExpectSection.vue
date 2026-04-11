@@ -5,9 +5,12 @@
       <template #title></template>
       <div class="videoPart" ref="videoPart">
         <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef">
-          <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
+          <!-- <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
+          Your browser does not support the video tag. -->
+            <source src="/videos/KAMUN_25_promo_video.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+
       </div>
       <br />
       <div class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
@@ -31,6 +34,7 @@
       </el-tooltip>
     
     </head-and-c>
+    
     <el-divider></el-divider>
     <head-and-c :inner="true">
       <template #title>
@@ -74,13 +78,21 @@ function handleVideoClicks(img: string, time: number, e: Event) {
   if (vidCont.value) {
     vidCont.value.style.backgroundImage = `url(${img})`
   }
-  if (videoRef.value) {
-    videoRef.value.currentTime = time
-    videoRef.value.play()
-  }
+  // if (videoRef.value) {
+  //   videoRef.value.currentTime = time
+  //   videoRef.value.play()
+  // }
 }
 
 onMounted(() => {
+  //To set the video to play
+   if (vidCont.value) {
+    vidCont.value.style.backgroundImage = `url(${backGroundImages.value.schloss})`
+  }
+  if (videoRef.value) {
+    videoRef.value.currentTime = 3
+    videoRef.value.play()
+  }
   // Tooltip intersection observer
   if (tooltipRef.value) {
     const tooltipObserver = new window.IntersectionObserver((entries) => {
@@ -181,5 +193,19 @@ onMounted(() => {
     transform: scale(1.25) !important;
     transition: transform 0.3s;
     z-index: 2;
+}
+.twin-videos{
+  display:grid;
+  align-items: center;
+  background-color: aquamarine;
+  height:50vh;
+  
+}
+.twin-videos div{
+  margin: 5px;
+  width: 100%;
+  height: 100%;
+  
+
 }
 </style>

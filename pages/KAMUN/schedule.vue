@@ -106,7 +106,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                 </p>
                 <p>
                     You can download the Kamun 2025 schedule as an .ics file to add it to your calendar:
-                    <a href="/KAMUN2025schedule@munika.org.ics" download>Download KAMUN2025 schedule (ICS)</a>.
+                    <a href="/KAMUN2025schedule@munika.org.ics" download>Download KAMUN2025 schedule (ICS)</a>. or as an image : <a href="/img/schedule_racing_track.jpg">Download Schedule Picture</a>
                     Note: this .ics file contains the Kamun 2025 schedule only — it does <strong>not</strong> include
                     the recurring
                     regular meetings.

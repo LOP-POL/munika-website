@@ -19,7 +19,7 @@
     padding-right: 5px;
 }
 ul li{
-    margin: 5px;
+    margin: 10px;
 }
 
 

@@ -369,7 +369,7 @@ const date = ref<string>(
 const timeOfDay = ref<string>(
     new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false })
 )
-console.log(props.stories[0])
+
 const selectedStory = ref<newsArticle>(props.stories[0] ?? {
 
     "id": "1",

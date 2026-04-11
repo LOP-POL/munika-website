@@ -336,8 +336,11 @@ hero-gradient p {
 .nav-menu{
     position: relative;
     width:50%;
+      display: flex;
+        justify-content: flex-end;
+        align-items: center;
 }
-@media screen and (max-width:900px){
+@media screen and (max-width:1000px){
     .nav-menu{
          display: flex;
         justify-content: flex-end;
