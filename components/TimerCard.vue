@@ -141,9 +141,11 @@
 }
 </style>
 <template>
-    <div class="time-card-container">
 
-        <div class="countdown">
+    <div class="time-card-container" >
+        <ArticleCard v-if="show_something_else"/>
+
+        <div class="countdown"  v-else>
             <p>Days</p>
 
             <p>{{ daysRemaining }}</p>
@@ -170,11 +172,14 @@
 </template>
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue'
+import ArticleCard from './ArticleCard.vue'
 
 const targetDate = new Date('2025-12-05')
 
 const start = ref<HTMLElement | null | Element>(null)
 const end = ref<HTMLElement | null | Element>(null)
+
+const show_something_else = ref<boolean>(false)
 
 const timelineStyles = ref({
     maxWidth: '100px',
@@ -185,10 +190,14 @@ const timelineStyles = ref({
     width:'80%',
     padding:'10px'
 })
+
 function getDaysRemaining(date: Date) {
     const now = new Date()
    
     const diff = date.getTime() - now.getTime()
+    if(true){
+        show_something_else.value = true
+    }
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
 

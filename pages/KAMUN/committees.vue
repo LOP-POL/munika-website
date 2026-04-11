@@ -151,9 +151,11 @@
         <p>{{ currentCommittee.description }}</p>
       </div>
     </headAndC>
+    <headAndC>
+      <FlipCard/>
+    </headAndC>
   </div>
 
- 
 </template>
 <script setup lang="ts">
 
