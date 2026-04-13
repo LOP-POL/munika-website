@@ -134,7 +134,12 @@ function handleMenuClick() {
                 <ul class="social-media-list"
                     style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
                     <li>
-                        <a href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://www.instagram.com/munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m" target="_blank" rel="noopener" aria-label="Instagram">
+                            <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
+                        </a>
+                    </li>
+                     <li>
+                        <a href="https://www.instagram.com/kamun_org?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
                             <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
                         </a>
                     </li>

@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client"
+import { NewsCollectionItem } from "@nuxt/content"
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
@@ -18,6 +19,9 @@ export default defineEventHandler(async (event) => {
         database_id: notionNewsPage,
     })
 
+    // query the news from the markdown files
+    // const posts = await queryCollection(event,"News").limit(10).all()
+
     // Extract relevant info from each page
     function extractNews(page: any) {
         const props = page.properties
@@ -31,6 +35,17 @@ export default defineEventHandler(async (event) => {
             postUrl: props.PostURL?.url ?? "",
         }
     }
-
+    // function extractNewsFromCollection(res:NewsCollectionItem){
+    //     return { 
+    //         id:res.id,
+    //         title:res.title,
+    //         content:res.content,
+    //         date:res.date,
+    //         author:res.author,
+    //         type:res.type,
+    //         postUrl:res.path
+    //     }
+    // }
+    // response.results.map(extractNews).concat(posts.map(extractNewsFromCollection))
     return response.results.map(extractNews)
 })
