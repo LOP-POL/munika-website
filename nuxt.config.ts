@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   },
   studio: {
     //Studio admin login route
-    route: '_studio',
+    route: '/_studio',
     repository: {
       provider: 'github', // 'github' or 'gitlab'
       owner: 'LOP-POL', // your GitHub/GitLab username or organization
@@ -27,7 +27,8 @@ export default defineNuxtConfig({
     notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID,
     notionQuotesPage: process.env.NUXT_NOTION_QUOTES_PAGE_ID,
     notionTeamsPage: process.env.NUXT_NOTION_TEAMS_PAGE_ID,
-    notionNewsPage: process.env.NUXT_NOTION_NEWS_DATABASE_ID
+    notionNewsPage: process.env.NUXT_NOTION_NEWS_DATABASE_ID,
+    
   },
   app: {
     head: {
