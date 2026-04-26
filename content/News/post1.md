@@ -4,6 +4,8 @@ author: Leon Okello
 content: Karlsruhe Delegation Takes Munich
 date: 2026-04-13
 description: From April 9th to 12th, 2026, the city of Munich became a hub of diplomacy, debate, and international collaboration as it hosted the Munich Diplomacy Summit (MDS). Among the many delegations in attendance was a dynamic group of ten students from Karlsruhe, representing MUNIKA (Model United Nations Initiative Karlsruhe).
+navigation:
+  icon: i-flag-un-1x1
 postUrl: /news/post1
 type: news
 ---
@@ -48,7 +50,7 @@ MUNIKA delegates actively participated in the some of following committees:
 
 The delegation demonstrated strong engagement across all committees, contributing to debates, drafting resolutions, and collaborating with international participants.
 
-A special highlight of the conference was the role of **Mahima Rajpal**, a member of MUNIKA, who served as a supporting **Chair in the BRICS+ committee** for the first time at MDS.
+A special highlight of the conference was the role of **Mahima Rajpal**, a member of MUNIKA, who served as a supporting **Chair in the NATO committee** for the first time at MDS.
 
 Our very own Member **Akshat** got an honorable mention.
 
