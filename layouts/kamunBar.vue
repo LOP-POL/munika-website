@@ -147,33 +147,50 @@ function handleMenuClick() {
         </el-main>
 
         <el-footer class="main-page-footer">
-            <div class="footer-content"
-                style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+             <div class="footer-content">
                 <div>
-                    &copy; Munika.ev 2025
+                    <ul>
+                        <li>
+                            <NuxtLink to="/" style="color: white;">&copy; Munika.ev 2026</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/datenSchutz" style="color: white;">Data Protection Information</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/impressum" style="color: white;">Impressum</NuxtLink>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="social-media-list"
-                    style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
+                <ul class="social-media-list">
                     <li>
-                        <a href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m"
+                        <a href="https://www.instagram.com/munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m"
                             target="_blank" rel="noopener" aria-label="Instagram">
                             <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
+                            <div style="color: white;">munika_ev</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/kamun_org?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank" rel="noopener" aria-label="Instagram">
+                            <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
+                            <div style="color: white;">kamun_org</div>
                         </a>
                     </li>
                     <li>
                         <a href="mailto:vorstand@munika.org" aria-label="Email">
                             <img src="/img-logos/email.png" alt="Email" style="width: 24px; height: 24px;" />
+                            <div>Mail</div>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener"
                             aria-label="LinkedIn">
                             <img src="/img-logos/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;" />
+                            <div>LinkedIn</div>
                         </a>
                     </li>
                 </ul>
             </div>
-
         </el-footer>
     </el-container>
     <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">

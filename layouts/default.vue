@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 useHead({
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/jpeg',
-      href: '/img-logos/MunikaLogo.jpg',
-    },
-  ],
+    link: [
+        {
+            rel: 'icon',
+            type: 'image/jpeg',
+            href: '/img-logos/MunikaLogo.jpg',
+        },
+    ],
 })
 
 const router = useRouter();
@@ -22,26 +22,26 @@ const pageWidth = ref(0)
 
 const routes = [
     {
-        page:'Home',
-        path:'/'
+        page: 'Home',
+        path: '/'
     },
     {
-        page:'News',
-        path:'/news'
+        page: 'News',
+        path: '/news'
     },
     {
-        page:'Impressum',
-        path:'/impressum'
+        page: 'Impressum',
+        path: '/impressum'
     },
     {
-        page:'Join Us',
-        path:'/join'
+        page: 'Join Us',
+        path: '/join'
     },
     {
-        page:'KAMUN',
-        path:'/KAMUN'
+        page: 'KAMUN',
+        path: '/KAMUN'
     },
-   
+
 ]
 
 const updatePageWidth = () => {
@@ -50,7 +50,7 @@ const updatePageWidth = () => {
 
 
 onMounted(() => {
-   
+
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
 
@@ -58,12 +58,12 @@ onMounted(() => {
         (node as HTMLElement).style.opacity = '0'
     })
 
-    if(router.currentRoute.value.meta.layout == 'kamun-bar'){
+    if (router.currentRoute.value.meta.layout == 'kamun-bar') {
         document.documentElement.style.setProperty('--el-color-primary', 'var(--school-bus-yellow)')
         document.documentElement.style.setProperty('--theme-color', 'var(--school-bus-yellow)')
     }
-    else{
-         document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
+    else {
+        document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
 
@@ -72,7 +72,7 @@ onMounted(() => {
 
 onUnmounted(() => {
     window.removeEventListener('resize', updatePageWidth)
-    
+
 })
 
 import { ElIcon } from 'element-plus'
@@ -84,7 +84,7 @@ function handleMenuClick() {
 </script>
 
 <template>
-   
+
     <el-container class="super-container">
         <el-header class="main-page-header">
 
@@ -96,13 +96,16 @@ function handleMenuClick() {
                 </div>
 
                 <span class="nav-menu">
-                    <el-button class="menu-toggle" style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"   @click="menuVisible = true" v-if="pageWidth < 1000" 
-                         plain>
+                    <el-button class="menu-toggle"
+                        style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"
+                        @click="menuVisible = true" v-if="pageWidth < 1000" plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
 
-                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 1000 ? '100%' : 'auto',display: pageWidth < 1000 ? 'none' : 'flex' }"></CustomNavMenu>
-                       
+                    <CustomNavMenu :routes="routes"
+                        :style="{ width: pageWidth < 1000 ? '100%' : 'auto', display: pageWidth < 1000 ? 'none' : 'flex' }">
+                    </CustomNavMenu>
+
                     <!-- <el-menu mode="horizontal" :ellipsis="false" :router="true" class="main-nav main-nav-show" active-text-color="var(--theme-color)"
                         :style="{ width: pageWidth < 900 ? '100%' : 'auto',display: pageWidth < 900 ? 'none' : 'flex' }">
                         <el-menu-item index="/">Home</el-menu-item>
@@ -115,8 +118,8 @@ function handleMenuClick() {
 
                 </span>
             </div>
-             <!-- <main-page-header /> -->
-           
+            <!-- <main-page-header /> -->
+
         </el-header>
 
 
@@ -126,31 +129,46 @@ function handleMenuClick() {
 
 
         <el-footer class="main-page-footer">
-            <div class="footer-content"
-                style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="footer-content">
                 <div>
-                    &copy; Munika.ev 2025
+                    <ul>
+                        <li>
+                            <NuxtLink to="/" style="color: white;">&copy; Munika.ev 2026</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/datenSchutz" style="color: white;">Data Protection Information</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/impressum" style="color: white;">Impressum</NuxtLink>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="social-media-list"
-                    style="display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0;">
+                <ul class="social-media-list">
                     <li>
-                        <a href="https://www.instagram.com/munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://www.instagram.com/munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==m"
+                            target="_blank" rel="noopener" aria-label="Instagram">
                             <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
+                            <div style="color: white;">munika_ev</div>
                         </a>
                     </li>
-                     <li>
-                        <a href="https://www.instagram.com/kamun_org?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+                    <li>
+                        <a href="https://www.instagram.com/kamun_org?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank" rel="noopener" aria-label="Instagram">
                             <img src="/img-logos/instagram.png" alt="Instagram" style="width: 24px; height: 24px;" />
+                            <div style="color: white;">kamun_org</div>
                         </a>
                     </li>
                     <li>
                         <a href="mailto:vorstand@munika.org" aria-label="Email">
                             <img src="/img-logos/email.png" alt="Email" style="width: 24px; height: 24px;" />
+                            <div>Mail</div>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/company/munika/" target="_blank" rel="noopener"
+                            aria-label="LinkedIn">
                             <img src="/img-logos/linkedin.png" alt="LinkedIn" style="width: 24px; height: 24px;" />
+                            <div>LinkedIn</div>
                         </a>
                     </li>
                 </ul>
@@ -159,41 +177,52 @@ function handleMenuClick() {
         </el-footer>
     </el-container>
     <el-drawer v-model="menuVisible" direction="ltr" size="50%" :with-header="true" class="mobile-nav-drawer">
-       
-         
-        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="var(--theme-color)" :ellipsis="false" style="height: 100%;" @select="handleMenuClick">
+
+
+        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="var(--theme-color)"
+            :ellipsis="false" style="height: 100%;" @select="handleMenuClick">
             <el-menu-item index="/">
-                <el-icon><House /></el-icon>
+                <el-icon>
+                    <House />
+                </el-icon>
                 Home
             </el-menu-item>
             <el-menu-item index="/news">
-                <el-icon><Notification /></el-icon>
+                <el-icon>
+                    <Notification />
+                </el-icon>
                 News
             </el-menu-item>
             <el-menu-item index="/Impressum">
-                <el-icon><Document /></el-icon>
+                <el-icon>
+                    <Document />
+                </el-icon>
                 Impressum
             </el-menu-item>
             <el-menu-item index="/join">
-                <el-icon><User /></el-icon>
+                <el-icon>
+                    <User />
+                </el-icon>
                 Join us
             </el-menu-item>
             <el-menu-item class="special-menu-item" index="/KAMUN">
-                <el-icon><Star /></el-icon>
+                <el-icon>
+                    <Star />
+                </el-icon>
                 KAMUN
             </el-menu-item>
         </el-menu>
         <template #footer>
-                  <div class="title-logo-and-text">
-                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
-                            alt="munikaLogo" height="10%" width="10%"></span>
-                 
-                </div>
+            <div class="title-logo-and-text">
+                <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
+                        alt="munikaLogo" height="10%" width="10%"></span>
+
+            </div>
         </template>
-        
+
     </el-drawer>
 </template>
 <style>
-@import url("~/assets/css/main.css") 
+@import url("~/assets/css/main.css")
 /* This one thing is helping to hold up the whole color switching thing , Do not remove this or it will not work properly */
 </style>
