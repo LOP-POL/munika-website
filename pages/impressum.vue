@@ -6,8 +6,8 @@
       </template>
       <p>
         Model United Nations Initiative Karlsruhe e. V.<br>
-        c/o Paul Mauersberg<br>
-        Sophienstraße 55<br>
+        c/o Lena Wanner<br>
+        Zähringerstraße 49<br>
         76133 Karlsruhe
       </p>
     </headAndC>
