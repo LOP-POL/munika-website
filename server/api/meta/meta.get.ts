@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client"
 import { useStorage } from "#imports"
+import { ConferenceMetaData } from "~/dataTypes/DT"
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
@@ -27,11 +28,11 @@ export default defineEventHandler(async (event) => {
         return {
             id: props.Name.title[0].text.content,
             theme: props.Theme.rich_text[0].text.content,
-            startDate: props.StartDate.date.start,
-            endDate: props.EndDate.date.start,
+            startDate: new Date(props.StartDate.date.start),
+            endDate: new Date(props.EndDate.date.start),
             membership: props.Membership.rich_text[0].text.content,
             year: props.year.rich_text[0].text.content
-        }
+        } as ConferenceMetaData
     }
 
     var metaData = responseMeta.results.map(extractMeta)

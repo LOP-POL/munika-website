@@ -24,13 +24,13 @@ export interface ConferenceEvents {
 
 }
 interface metaStoreState{
-    meta:ConferenceMetaData,
+    meta:ConferenceMetaData[],
     events:ConferenceEvents[]
 }
 export const useMetaStore = defineStore("meta", {
     state: ():metaStoreState => {
         return {
-            meta:{} as ConferenceMetaData,
+            meta:[({} as ConferenceMetaData)] as ConferenceMetaData[],
             events:[] as ConferenceEvents[]
         }
     },
@@ -51,16 +51,23 @@ export const useMetaStore = defineStore("meta", {
     actions: {
         async fetchEventsAndMeta() {
             try {
-                const {data}= await useFetch<{meta:ConferenceMetaData, events: ConferenceEvents[] }>('/api/meta/meta',
+                const {data:metaData}= await useFetch<{meta:ConferenceMetaData[], events: ConferenceEvents[] }>('/api/meta/meta',
                     {
                         key:'meta-and-events-data',
 
                     }
                 )
-                if(data.value?.events){
-                    this.$state.events = data.value?.events
-                    this.$state.meta = data.value?.meta
+                console.log(metaData.value)
+                if(metaData){
+                if(metaData.value?.events){
+                 
+                    this.$state.events = metaData.value?.events as ConferenceEvents[]
                 }
+                if(metaData.value?.meta){
+                   
+                    this.$state.meta = metaData.value?.meta as ConferenceMetaData[]
+                }
+            }
                 
             }
             catch (err) {

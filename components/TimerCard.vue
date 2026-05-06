@@ -148,6 +148,7 @@
 
             <p>{{ daysRemaining }}</p>
 
+
              
         </div>
 
@@ -156,25 +157,52 @@
                 <span style="float:right">
                     📍
                 </span>
-                <h2 style="color:black">5th December 2025 </h2>
+                <h2 style="color:black"> {{convertDate(startDate) ?? '6th December 2025'}} </h2>
             </el-card>
             <br>
             <el-card class="end" ref="end">
                 <span style="float:left">
                     📍
                 </span>
-                <h2 style="color:black">7th December 2025 </h2>
+                <h2 style="color:black">{{ convertDate(endDate)?? '7th December 2025'}}  </h2>
             </el-card>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue'
+import { useMetaStore } from '~/piniaStores/metaStore'
+const metaStore =  useMetaStore()
 
-const targetDate = new Date('2025-12-05')
+const startDate = ref(new Date(metaStore.meta[0].startDate))
+const endDate = ref(new Date(metaStore.meta[0].endDate))
+
+const currentDate =  new Date()
+const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDay()}`
+
+const targetDate = new Date(currentDateString)
 
 const start = ref<HTMLElement | null | Element>(null)
 const end = ref<HTMLElement | null | Element>(null)
+
+function convertDate(date:Date){
+    const day = date.getDate()
+    const monthNames = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    const month = monthNames[date.getMonth()]
+    const year = date.getFullYear()
+    
+    const ordinalSuffix = (n: number) => {
+        const lastDigit = n % 10
+        const lastTwoDigits = n % 100
+        if (lastTwoDigits >= 11 && lastTwoDigits <= 13) return 'th'
+        if (lastDigit === 1) return 'st'
+        if (lastDigit === 2) return 'nd'
+        if (lastDigit === 3) return 'rd'
+        return 'th'
+    }
+    
+    return `${day}${ordinalSuffix(day)} ${month} ${year}`
+}
 
 const timelineStyles = ref({
     maxWidth: '100px',
@@ -187,14 +215,16 @@ const timelineStyles = ref({
 })
 function getDaysRemaining(date: Date) {
     const now = new Date()
-   
+    
     const diff = date.getTime() - now.getTime()
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
 
-const daysRemaining = computed(() => getDaysRemaining(targetDate))
+const daysRemaining = computed(() => getDaysRemaining(new Date()))
 
 onMounted(() => {
+
+    metaStore.fetchEventsAndMeta()
     const startObserve = document.querySelector('.start')
     const endObserve = document.querySelector('.end')
 

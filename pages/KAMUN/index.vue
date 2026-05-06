@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { constrainPoint } from '@fullcalendar/core/internal'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import type { ConferenceMetaData } from '~/dataTypes/DT'
 import { useMetaStore } from '~/piniaStores/metaStore'
+import { convertDateWord } from '#imports'
 
 const tooltipVisible = ref(false)
 const tooltipRef = ref<HTMLElement | null>(null)
@@ -13,12 +15,15 @@ const kamunThemeTextRef = ref<HTMLElement | null>(null)
 
 
 const metaStore = useMetaStore()
-const themeText =computed(()=> metaStore.getConferenceMeta.theme??'Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion')
+const themeText = computed(() => metaStore.getConferenceMeta[0].theme)
 const themeSegments = computed(() => {
     if (metaStore.getConferenceMeta) {
-        return (metaStore.getConferenceMeta.theme??"Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion").split(" ")
+        return (metaStore.getConferenceMeta[0].theme ?? "Visions Across Frontiers: Rethinking Sovereignty, Innovation, and Inclusion").split(" ")
     }
 })
+
+const startDate = new Date(metaStore.getConferenceMeta[0].startDate)
+const endDate = new Date(metaStore.getConferenceMeta[0].endDate)
 
 useHead({
     title: "KAMUN",
@@ -36,7 +41,7 @@ definePageMeta({
 
 onMounted(() => {
 
-
+    metaStore.fetchEventsAndMeta()
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -97,29 +102,31 @@ onMounted(() => {
             if (kamunThemeTextRef.value?.children.length) {
                 for (var i = 0; i < kamunThemeTextRef.value?.children.length; i++) {
                     const child = kamunThemeTextRef.value?.children.item(i)
-                    if(child != null) {
+                    if (child != null) {
                         // (child as HTMLElement).style.animation = 'up 1s forwards'
                         const el = child as HTMLElement
                         el.animate(
                             [
 
-                                { color:'yellow',transform:'translateY(100px)'},
-                                {transform:'translateY(-100px)',color:'grey'},
-                                {color:'white'},
-                                {color:'black'}
+                                { color: 'yellow', transform: 'translateY(100px)' },
+                                { transform: 'translateY(-100px)', color: 'grey' },
+                                { color: 'white' },
+                                { color: 'black' }
                             ],
                             {
-                                duration:2000,
+                                duration: 2000,
                                 easing: 'cubic-bezier(.2,.8,.2,1)',
                                 delay: i * 100,
                                 fill: 'forwards',
                             }
                         )
-                       
+
                     }
                 }
             }
-        })
+        }
+
+        )
         // observe the theme container and play the segment animations when it enters view
         if (kamunThemeTextRef.value) {
             const segmentObserver = new IntersectionObserver((entries, obs) => {
@@ -180,6 +187,9 @@ onMounted(() => {
         }, { threshold: 0.2 })
         tooltipObserver.observe(tooltipRef.value)
     }
+
+
+
 })
 
 
@@ -191,10 +201,17 @@ onMounted(() => {
         <head-and-c class="kamun-theme">
             <template #title>
                 This Years Theme
+
             </template>
             <h1 class="kamun-theme-text" ref="kamunThemeTextRef">
-               
+
             </h1>
+            <p className="notice">
+                <strong>Notice: </strong> <br> Please Pay attention to the dates. Some of the information here is still not up to date, and is only relevant to last years KAMUN
+            as preparations are still ongoing for this year's KAMUN {{ new Date().getFullYear() }}. <br/>
+            Not until this Notice disappears can you be sure that all the data here is relevant for this year's KAMUN {{ new Date().getFullYear() }}
+            </p>
+            
         </head-and-c>
     </section>
 
@@ -210,9 +227,9 @@ onMounted(() => {
                 <p>
                     KAMUN is a winter conference
                     and this year it is no different,
-                    it takes place from <em style="font-size: larger; font-weight: 600;">5th December to the 7th
-                        December
-                        2025</em>
+                    it takes place from <em style="font-size: larger; font-weight: 600;">
+                        {{ convertDateWord(startDate) ?? '5th December'}} to {{ convertDateWord(endDate) ?? '7th December 2025' }}
+                    </em>
                 </p>
                 <TimerCard />
 
@@ -246,7 +263,6 @@ onMounted(() => {
     </section>
 </template>
 <style>
-
 #where-to {
     background-image: url("/styleImgs/forest-silouette-white.jpg");
     background-attachment: fixed;
@@ -266,17 +282,23 @@ onMounted(() => {
     font-style: italic;
     font-size: 2.2em;
     /* text-shadow: 0 50px; */
-    
+
     cursor: pointer;
 }
 
 /* .kamun-theme:hover {
          animation:up 1s forwards;
     } */
-@keyframes up{
-   
-    100%{
+@keyframes up {
+
+    100% {
         transform: translateY(-100px);
     }
 }
+.notice{
+    box-shadow: 5px 5px 10px black;
+}
+.notice  strong{
+    color:var(--special-red)
+}   
 </style>
