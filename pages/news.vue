@@ -163,7 +163,7 @@ function extractNewsFromCollection(res: NewsCollectionItem) {
         id: res.id,
         title: res.title,
         content: res.content,
-        date: res.date,
+        date: formatDate(res.date),
         author: res.author,
         type: res.type,
         postUrl: res.path
