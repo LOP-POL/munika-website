@@ -581,7 +581,7 @@ watch(() => props.stories, (newVal, oldVal) => {
     stories.value = props.stories
     if (props.stories.length) {
         stories.value = props.stories.filter((s) => s.id != '')
-        console.log(props.stories)
+   
         selectedStory.value = stories.value[0]
         loading.value = false
     }

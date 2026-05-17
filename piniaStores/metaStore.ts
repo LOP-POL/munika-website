@@ -57,7 +57,7 @@ export const useMetaStore = defineStore("meta", {
 
                     }
                 )
-                console.log(metaData.value)
+     
                 if(metaData){
                 if(metaData.value?.events){
                  

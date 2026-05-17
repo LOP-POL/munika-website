@@ -159,6 +159,7 @@ const { data: posts } = useAsyncData("NewsContent", () => {
 })
 
 function extractNewsFromCollection(res: NewsCollectionItem) {
+   
     return {
         id: res.id,
         title: res.title,
