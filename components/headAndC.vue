@@ -106,13 +106,13 @@ onMounted(()=>{
     background-size: cover;
     max-height:100%;
     color:var(--theme-color);
-    border-radius:20px;
+
     text-align: center;
     
      font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 2.0vmax;
-     box-shadow: 0px 0px 10px black;
+    
 }
 
 @media (max-width: 900px) {

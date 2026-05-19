@@ -1,0 +1,112 @@
+  {
+  "data": [
+    {
+      "name": "Elena Meyer",
+    "role": "Research Coordinator",
+    "bio": "Coordinates academic programs and ensures high-quality research collaborations.",
+    "picture": "https://i.pravatar.cc/150?img=11",
+    "team": "Academics",
+    "website": "https://elenameyer.dev",
+    "linkedin": "https://linkedin.com/in/elenameyer"
+  },
+  {
+    "name": "Jonas Becker",
+    "role": "Curriculum Lead",
+    "bio": "Designs engaging academic content and structures educational sessions.",
+    "picture": "https://i.pravatar.cc/150?img=13",
+    "team": "Academics",
+    "website": "https://jonasbecker.io",
+    "linkedin": "https://linkedin.com/in/jonasbecker"
+  },
+  {
+    "name": "Nina Hoffmann",
+    "role": "Academic Advisor",
+    "bio": "Supports participants with academic guidance and mentorship.",
+    "picture": "https://i.pravatar.cc/150?img=15",
+    "team": "Academics",
+    "website": "https://ninahoffmann.com",
+    "linkedin": "https://linkedin.com/in/ninahoffmann"
+  },
+  {
+    "name": "Luca Romano",
+    "role": "Event Coordinator",
+    "bio": "Organizes food services and social events to enhance attendee experiences.",
+    "picture": "https://i.pravatar.cc/150?img=21",
+    "team": "Foods and Socials",
+    "website": "https://lucaromano.events",
+    "linkedin": "https://linkedin.com/in/lucaromano"
+  },
+  {
+    "name": "Sara Lindberg",
+    "role": "Catering Manager",
+    "bio": "Ensures high-quality catering and dietary accommodations.",
+    "picture": "https://i.pravatar.cc/150?img=22",
+    "team": "Foods and Socials",
+    "website": "https://saralindberg.eu",
+    "linkedin": "https://linkedin.com/in/saralindberg"
+  },
+  {
+    "name": "Tomás Silva",
+    "role": "Social Events Planner",
+    "bio": "Designs engaging social programs and networking events.",
+    "picture": "https://i.pravatar.cc/150?img=24",
+    "team": "Foods and Socials",
+    "website": "https://tomassilva.social",
+    "linkedin": "https://linkedin.com/in/tomassilva"
+  },
+  {
+    "name": "Aisha Rahman",
+    "role": "Delegate Coordinator",
+    "bio": "Manages delegate communications and onboarding processes.",
+    "picture": "https://i.pravatar.cc/150?img=31",
+    "team": "Delegates",
+    "website": "https://aisharahman.org",
+    "linkedin": "https://linkedin.com/in/aisharahman"
+  },
+  {
+    "name": "Paul Schneider",
+    "role": "Delegate Support Lead",
+    "bio": "Provides assistance and support throughout the delegate experience.",
+    "picture": "https://i.pravatar.cc/150?img=32",
+    "team": "Delegates",
+    "website": "https://paulschneider.dev",
+    "linkedin": "https://linkedin.com/in/paulschneider"
+  },
+  {
+    "name": "Clara Dubois",
+    "role": "Registration Manager",
+    "bio": "Oversees registration systems and attendee logistics.",
+    "picture": "https://i.pravatar.cc/150?img=33",
+    "team": "Delegates",
+    "website": "https://claradubois.fr",
+    "linkedin": "https://linkedin.com/in/claradubois"
+  },
+  {
+    "name": "Leo Novak",
+    "role": "Content Strategist",
+    "bio": "Creates compelling content strategies for digital platforms.",
+    "picture": "https://i.pravatar.cc/150?img=41",
+    "team": "Social Media and PR",
+    "website": "https://leonovak.media",
+    "linkedin": "https://linkedin.com/in/leonovak"
+  },
+  {
+    "name": "Maya Petrov",
+    "role": "Social Media Manager",
+    "bio": "Manages social channels and audience engagement campaigns.",
+    "picture": "https://i.pravatar.cc/150?img=42",
+    "team": "Social Media and PR",
+    "website": "https://mayapetrov.com",
+    "linkedin": "https://linkedin.com/in/mayapetrov"
+  },
+  {
+    "name": "Oliver Grant",
+    "role": "PR Specialist",
+    "bio": "Handles media relations and public communications strategy.",
+    "picture": "https://i.pravatar.cc/150?img=43",
+    "team": "Social Media and PR",
+    "website": "https://olivergrant.pr",
+    "linkedin": "https://linkedin.com/in/olivergrant"
+    }
+  ]
+}

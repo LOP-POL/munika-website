@@ -71,6 +71,7 @@
     background-position: center;
     border-radius: 20px;  
     padding:20px;
+    background-color: var(--seasalt);
   
   }
 
@@ -108,9 +109,9 @@
       <span class="dropdown-text">Change Difficulty <el-icon><ArrowDown/></el-icon></span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item class="drop-men-item"style="background-color:var(--special-green);" divided command="Beginner" >Beginner</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:var(--special-yellow);" divided command="Intermediate" >Intermediate</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:var(--special-red);" divided command="Expert" >Expert</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item"style="background-color:#28afb0;" divided command="Beginner" >Beginner</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item" style="background-color:#f4d35e;" divided command="Intermediate" >Intermediate</el-dropdown-item>
+          <el-dropdown-item class="drop-men-item" style="background-color:#EE964B;" divided command="Expert" >Expert</el-dropdown-item>
         </el-dropdown-menu>
       </template>
 

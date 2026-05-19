@@ -109,6 +109,7 @@ body {
       
 
     </head-and-c>
+    <br>
 
     <section id="calendar">
         <head-and-c :divider="true">
@@ -116,6 +117,7 @@ body {
                 Calendar
             </template>
             <div>
+                <RegularMeetings/>
                 <Calendar />
             </div>
         </head-and-c>
@@ -133,6 +135,7 @@ import TimerCard from '~/components/TimerCard.vue'
 import { useRouter, useHead } from '#app'
 import Calendar from '~/components/Calendar.vue'
 import type { NewsCollectionItem } from '@nuxt/content'
+import RegularMeetings from '~/components/RegularMeetings.vue'
 // import NewsAnnounce from '~/components/NewsAnnounce.vue'
 
 // const { data: home } = await useAsyncData(() => queryCollection('content').path('/').first())
@@ -159,7 +162,6 @@ const { data: posts } = useAsyncData("NewsContent", () => {
 })
 
 function extractNewsFromCollection(res: NewsCollectionItem) {
-   
     return {
         id: res.id,
         title: res.title,

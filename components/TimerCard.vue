@@ -170,6 +170,7 @@
     </div>
 </template>
 <script lang="ts" setup>
+
 import { ref, computed, onMounted } from 'vue'
 import { useMetaStore } from '~/piniaStores/metaStore'
 const metaStore =  useMetaStore()
@@ -220,7 +221,7 @@ function getDaysRemaining(date: Date) {
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
 
-const daysRemaining = computed(() => getDaysRemaining(new Date()))
+const daysRemaining = computed(() => getDaysRemaining(startDate.value))
 
 onMounted(() => {
 

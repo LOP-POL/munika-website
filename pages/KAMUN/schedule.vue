@@ -187,7 +187,7 @@ const changeCurrentEvent = (value: string, color: string) => {
 
 </template>
 
-<style>
+<style scoped>
 h1{
     text-decoration:underline solid var(--french-gray) 5%;
     text-underline-offset:10px;

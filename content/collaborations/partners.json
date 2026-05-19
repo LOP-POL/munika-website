@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "name": "Mara Linden",
+    "role": "Head of Product Design",
+    "bio": "Mara brings ten years of experience shaping digital products at the intersection of systems thinking and human-centered design. She leads cross-functional teams with a focus on clarity and craft.",
+    "picture": "https://i.pravatar.cc/150?img=47",
+    "website": "https://maralinden.com",
+    "linkedin": "https://linkedin.com/in/maralinden"
+  },
+  {
+    "name": "Theo Nakamura",
+    "role": "Lead Engineer",
+    "bio": "Theo architects scalable backend systems and has a soft spot for developer tooling. Previously at two YC startups, he now obsesses over performance and clean APIs.",
+    "picture": "https://i.pravatar.cc/150?img=11",
+    "website": "https://theonakamura.dev",
+    "linkedin": "https://linkedin.com/in/theonakamura"
+  },
+  {
+    "name": "Sofía Reyes",
+    "role": "Marketing Director",
+    "bio": "Sofía has launched brand campaigns across Europe and Latin America. She believes good marketing is just good storytelling with a budget.",
+    "picture": "https://i.pravatar.cc/150?img=23",
+    "website": "https://sofiareyes.co",
+    "linkedin": "https://linkedin.com/in/sofiareyes"
+  },
+  {
+    "name": "Jonas Becker",
+    "role": "Strategic Partner · Becker & Co.",
+    "bio": "Jonas leads enterprise partnerships across the DACH region. With a background in venture and operations, he helps organisations identify leverage points and build durable growth paths.",
+    "picture": "https://i.pravatar.cc/150?img=12",
+    "website": "https://beckerco.de",
+    "linkedin": "https://linkedin.com/in/jonasbecker"
+  },
+  {
+    "name": "Priya Mehta",
+    "role": "Technology Partner · Meridian Labs",
+    "bio": "Priya leads research collaborations bridging academia and product. Her team at Meridian Labs specialises in applied machine learning and data infrastructure.",
+    "picture": "https://i.pravatar.cc/150?img=38",
+    "website": "https://meridianlabs.io",
+    "linkedin": "https://linkedin.com/in/priyamehta"
+  },
+  {
+    "name": "Nadia Voss",
+    "role": "Sponsor Representative · Voss Foundation",
+    "bio": "Nadia manages philanthropic investment and community initiatives for the Voss Foundation, with a focus on education technology and open-source infrastructure.",
+    "picture": null,
+    "website": "https://vossfoundation.org",
+    "linkedin": "https://linkedin.com/in/nadiavoss"
+  },
+  {
+    "name": "Elias Fontaine",
+    "role": "Sponsor · Fontaine Ventures",
+    "bio": "Elias backs early-stage teams working on climate and future-of-work tools. He is a hands-on sponsor who shows up for more than just the logo placement.",
+    "picture": "https://i.pravatar.cc/150?img=65",
+    "website": "https://fontaineventures.com",
+    "linkedin": "https://linkedin.com/in/eliasfontaine"
+    }
+  ]
+}

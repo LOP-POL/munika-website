@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import RegularMeetings from '~/components/RegularMeetings.vue'
+
+
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -57,11 +60,21 @@ onMounted(() => {
   <br></br>
   </head-and-c>
 </section>
+<br>
+<head-and-c>
+  <template #title>
+    Whats Happening
+  </template>
+<RegularMeetings/>
+</head-and-c>
+<br>
 
   <section class="main-section">
     <ExpectSection />
-
+   
   </section>
+  
+
 
 </template>
 <style>

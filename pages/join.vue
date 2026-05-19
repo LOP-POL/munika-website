@@ -2,6 +2,22 @@
 <template>
     <head-and-c>
         <template #title>
+            Contact us
+        </template>
+        <p>
+            Join the newcomers <a href="https://chat.whatsapp.com/DosakRyMoIeDVOYueAcy21?mode=gi_t">WhatsApp Group</a>
+            to
+            directly chat and get acquainted with us.
+        </p>
+        
+        <p>
+            Send us an email on <a href="mailto:vorstand@munika.org">vorstand@munika.org</a>
+        </p>
+
+    </head-and-c>
+    
+    <head-and-c>
+        <template #title>
             Weekly Debates
         </template>
         <p>
@@ -13,6 +29,7 @@
             </NuxtLink>
         </p>
     </head-and-c>
+    
     <head-and-c>
         <template #title>
             Attending Conferences
@@ -21,7 +38,9 @@
             Attend prestigious MUN conferences in Germany and worldwide. Engage with changemakers, enjoy unforgettable
             experiences and flex your diplomacy.
         </p>
+
     </head-and-c>
+    
     <head-and-c>
         <template #title>
             Organizing <NuxtLink to="/kamun">KAMUN</NuxtLink>
@@ -35,12 +54,14 @@
 
 
     </head-and-c>
+    
     <head-and-c>
         <template #title>
             Download our <a :href="flyer" ref="flyerRef">flyer </a> for reference and share with your friends.
         </template>
-      
+
     </head-and-c>
+    
 </template>
 <script setup>
 import { ref } from 'vue';

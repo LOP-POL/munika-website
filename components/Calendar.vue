@@ -1,21 +1,43 @@
 <template>
   <div class="calendar-wrapper">
-    <div class="month-nav" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center;">
-      <el-button @click="previousMonth" size="small">← Previous</el-button>
-      <span style="min-width: 150px; text-align: center; font-weight: bold;">
+    <div class="month-nav" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center; ">
+    
+      <el-button-group>
+         <el-button @click="previousMonth" size="small">← Previous</el-button>
+         <el-button size="small">
         {{ currentMonthYear }}
-      </span>
+         </el-button>
       <el-button @click="nextMonth" size="small">Next →</el-button>
+      </el-button-group>
+
     </div>
-    <el-button class="toggle-toolbar-btn" @click="showToolbar = !showToolbar" size="small" style="margin-bottom:8px;">
-      {{ showToolbar ? 'Hide Calendar Views' : 'Show Calendar Views' }}
-    </el-button>
-    <full-calendar
-      :options="calendarOptionsWithToolbar"
-      style="max-height:80vh; min-height: 50vh;"
-      ref="calendarRef"
-    ></full-calendar>
-    <el-dialog v-model="dialogVisible" title="Event Details" width="500px" height="500px" :before-close="handleDialogClose">
+    <div class="month-nav">
+      <el-button class="toggle-toolbar-btn" @click="showToolbar = !showToolbar" size="small" style="margin-bottom:8px;">
+        {{ showToolbar ? 'Hide Calendar Views' : 'Show Calendar Views' }}
+      </el-button>
+    </div>
+
+
+    <full-calendar :options="calendarOptionsWithToolbar" style="max-height:80vh; min-height: 50vh; width:100%"
+      ref="calendarRef">
+
+
+      <template v-slot:eventContent="arg">
+        <div style="border-radius: 10px; padding:5px;" :style="{ backgroundColor: arg.event.color }">
+          <strong>{{ arg.event.title }}</strong>
+          <div v-if="arg.event.extendedProps?.location || arg.event.location">
+            {{ arg.event.extendedProps?.location || arg.event.location }}
+          </div>
+          <div>
+            {{ getTimeFromDate(arg.event.start) }} - {{ getTimeFromDate(arg.event.end) }}
+          </div>
+        </div>
+      </template>
+
+    </full-calendar>
+
+    <el-dialog v-if="dialogVisible" v-model="dialogVisible" title="Event Details" width="500px" height="500px"
+      :before-close="handleDialogClose">
       <template #title>
         <div>
           <strong>{{ selectedEvent?.title }}</strong><br>
@@ -26,10 +48,14 @@
         <p><strong>Description:</strong> </p>
         <p>{{ selectedEvent.extendedProps.description }}</p>
         <p><strong>Time:</strong> {{ formatEventTime(selectedEvent) }}</p>
-        <p><el-icon><Location /></el-icon> <strong>Location:</strong> <a :href="selectedEvent.extendedProps.locationLink??'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7'" target="_blank">{{selectedEvent.extendedProps.location??'Karlshochshule'}}</a></p>
+        <p><el-icon>
+            <Location />
+          </el-icon> <strong>Location:</strong> <a
+            :href="selectedEvent.extendedProps.locationLink ?? 'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7'"
+            target="_blank">{{ selectedEvent.extendedProps.location ?? 'Karlshochshule' }}</a></p>
       </div>
       <template #footer>
-        <el-button @click="dialogVisible = false">Close</el-button>
+        <el-button @click="()=>{dialogVisible = false}">Close</el-button>
       </template>
     </el-dialog>
   </div>
@@ -50,7 +76,7 @@ const selectedEvent = ref<any>(null)
 function handleEventClick(info: any) {
   selectedEvent.value = info.event
   dialogVisible.value = true
-  
+
 }
 
 function handleDialogClose() {
@@ -81,33 +107,40 @@ function previousMonth() {
 function nextMonth() {
   currentDate.value = new Date(currentDate.value.getFullYear(), currentDate.value.getMonth() + 1, 1)
 }
+const leon = 'leon'
+function getTimeFromDate(date: Date): string {
+  if (!date) return ''
+  const options: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit' }
+  return date.toLocaleTimeString(undefined, options)
+}
 
 // Helper to get all Tuesdays in the current month
 function getTuesdaysOfMonth(year: number, month: number) {
-    const dates = []
-    const date = new Date(year, month, 1)
-    while (date.getMonth() === month) {
-        if (date.getDay() === 2) { // 2 = Tuesday
-            dates.push(new Date(date))
-        }
-        date.setDate(date.getDate() + 1)
+  const dates = []
+  const date = new Date(year, month, 1)
+  while (date.getMonth() === month) {
+    if (date.getDay() === 2) { // 2 = Tuesday
+      dates.push(new Date(date))
     }
-    return dates
+    date.setDate(date.getDate() + 1)
+  }
+  return dates
 }
+
 
 // Generate events for every Tuesday 7pm-9pm in current month
 function generateRegularMeetings() {
-    const year = currentDate.value.getFullYear()
-    const month = currentDate.value.getMonth()
-    const tuesdays = getTuesdaysOfMonth(year, month)
-    return tuesdays.map(d => ({
-        title: 'Regular Meeting',
-        start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0),
-        end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 21, 0, 0),
-        extendedProps:{locationLink:'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7',description:"Usually a mock debate, with a group dinner after",location:'Karlshochschule'},
-        color:"#000",
-        allDay: false
-    }))
+  const year = currentDate.value.getFullYear()
+  const month = currentDate.value.getMonth()
+  const tuesdays = getTuesdaysOfMonth(year, month)
+  return tuesdays.map(d => ({
+    title: 'Regular Meeting',
+    start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0),
+    end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 21, 0, 0),
+    extendedProps: { locationLink: 'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7', description: "Usually a mock debate, with a group dinner after", location: 'Karlshochschule' },
+    color: "#bebfc5ff",
+    allDay: false
+  }))
 }
 
 const regularMeetings = computed(() => generateRegularMeetings())
@@ -318,23 +351,23 @@ const kamun2025Events = [
 
 
 const calendarOptions = ref({
-    plugins: [interactionPlugin, listPlugin, dayGridPlugin, iCalendarPlugin],
-    initialView: 'listMonth',
-    views: {
-      listDay: { buttonText: 'list day' },
-      listWeek: { buttonText: 'list week' },
-      listMonth: { buttonText: 'list month' },
-      dayGridMonth:{buttonText:'Grid View'}
-    },
-    headerToolbar: {
-      left: 'title',
-      center: '',
-      right: 'listDay,listWeek,listMonth,dayGridMonth'
-    },
-    events: regularMeetings.value.concat(kamun2025Events),
-    nowIndicator: true,
-    editable: true,
-    eventClick: handleEventClick,
+  plugins: [interactionPlugin, listPlugin, dayGridPlugin, iCalendarPlugin],
+  initialView: 'listMonth',
+  views: {
+    listDay: { buttonText: 'list day' },
+    listWeek: { buttonText: 'list week' },
+    listMonth: { buttonText: 'list month' },
+    dayGridMonth: { buttonText: 'Grid View' }
+  },
+  headerToolbar: {
+    left: 'title',
+    center: '',
+    right: 'listDay,listWeek,listMonth,dayGridMonth'
+  },
+  events: regularMeetings.value.concat(kamun2025Events),
+  nowIndicator: true,
+  editable: true,
+  eventClick: handleEventClick,
 })
 
 const showToolbar = ref(true)
@@ -345,14 +378,14 @@ const calendarOptionsWithToolbar = computed(() => {
   const opts = { ...calendarOptions.value }
   opts.headerToolbar = showToolbar.value
     ? {
-        left: 'title',
-        center: '',
-        right: 'listDay,listWeek,listMonth,dayGridMonth'
-      }
+      left: 'title',
+      center: '',
+      right: 'listDay,listWeek,listMonth,dayGridMonth'
+    }
     : {
       left: 'title',
-        center: '',
-        right: ''
+      center: '',
+      right: ''
     }
   return opts
 })
@@ -367,13 +400,13 @@ watch(currentDate, (newDate) => {
 
 // Ensure events are updated reactively when regularMeetings changes
 watch(regularMeetings, (newEvents) => {
-    calendarOptions.value.events = newEvents.concat(kamun2025Events)
+  calendarOptions.value.events = newEvents.concat(kamun2025Events)
 })
 
 // Merge Notion events with hardcoded events
 watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
-    const allEvents = newMeetings.concat(activeEventsList)
-    calendarOptions.value.events = allEvents
+  const allEvents = newMeetings.concat(activeEventsList)
+  calendarOptions.value.events = allEvents
 }, { deep: true })
 
 
@@ -389,53 +422,69 @@ watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
   max-height: 100vh;
   max-width: 100vw;
   overflow-x: auto;
- background:#87CEFA ;
+  /* background:#87CEFA ;
 background: #22C1C3;
-background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(--seasalt)100%);
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(--seasalt)100%); */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 20px;
-  border:2px dashed #0A100D;
-  padding:10px;
-
+  border: 2px dashed #0A100D;
+  padding: 10px;
 }
-a{
+
+@media screen and (max-width:1000px) {
+
+  .calendar-wrapper p,
+  .calendar-wrapper div,
+  .calendar-wrapper span {
+    font-size: 12px;
+  }
+}
+
+a {
   color: #bbb;
 }
+
 .month-nav {
   display: flex;
-  gap: 8px;
-  align-items:center;
+  align-items: center;
   justify-content: center;
-  margin: 20px;
+  padding: 10px
 }
+
 .toggle-toolbar-btn {
   display: none;
 }
+
 @media (max-width: 900px) {
   .calendar-wrapper {
     max-width: 100vw;
-    min-width: 0;
     padding: 0;
   }
+
   .toggle-toolbar-btn {
     display: inline-block;
   }
+
   :deep(.fc-header-toolbar) {
     flex-wrap: wrap;
     gap: 4px;
   }
+
   :deep(.fc-toolbar-chunk) {
     flex: 1 1 100%;
     min-width: 0;
   }
+
   :deep(.fc-button) {
     font-size: 12px !important;
     padding: 2px 6px !important;
   }
 }
+
 :deep(.fc-event) {
   cursor: pointer;
 }
+
 /* Make calendar buttons more compact on all screens */
 :deep(.fc-button) {
   font-size: 14px;

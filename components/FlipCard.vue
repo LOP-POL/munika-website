@@ -25,13 +25,7 @@ const chairsList = computed(()=>{
              <el-button style="rotate:y 180deg; position: absolute; z-index:5; bottom:10px; left:10px"type="warning" v-on:click="console.log('hello')">more</el-button>        
             <div class="back">
                 <ElText size="large" line-clamp="10" style="font-size: 4vmin;">
-                     leon Is Okello Lorem ipsum dolor sit amet 
-                     consectetur adipisicing elit. Distinctio quod,
-                      qui nisi eligendi nobis commodi necessitatibus 
-                      non corporis. Est quod quisquam provident nulla 
-                      autem officia nam quae repudiandae similique. 
-                      Blanditiis?
-                    Mollitia alias architecto
+                    Leo architects scalable backend systems and has a soft spot for developer tooling. Previously at two YC startups, he now obsesses over performance and clean APIs.
                 </ElText>
                               
             </div>
@@ -56,7 +50,6 @@ const chairsList = computed(()=>{
 	gap: 1rem;
 	perspective: 1200px;
     color:white;
-    background-color: antiquewhite;
 }
 @media (width < 1024px) {
         .flip-cards{
@@ -101,7 +94,7 @@ details[open] {
 summary,
 .back {
 	aspect-ratio: 3/4;
-	border: 5px solid #111;
+	border: 2px dashed #111;
 	border-radius: 1rem;
 	padding: 5%;
 	width: 100%;

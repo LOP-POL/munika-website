@@ -18,11 +18,20 @@
     --el-color-primary: var(--munika-blue);
     --theme-color: var(--munika-blue);
 
+    --forest-green: #1e3a2f;
+    --light-forest-green: #2f4f3e;
+    --mist-white: #f7f5ef;
+
     --special-green: #28afb0;
     --special-yellow: #f4d35e;
     --special-red: #EE964B;
     --translucent-munika-blue: #4acff783;
     --translucent-school-bus-yellow: rgba(255, 217, 0, 0.5);
+
+    /* Border Colors */
+    --border-primary: #d4d4d4;
+    --border-accent: #a3a3a3;
+
 }
 
 @font-face {
@@ -59,11 +68,10 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
     color: #2d3748;
@@ -271,6 +279,15 @@ hero-gradient p {
     max-width: 100%;
 }
 
+@media screen and (max-width:1000px){
+    .main-content{
+        margin-left:0;
+        margin-right:0;
+    }
+    body p{
+        font-size: 12px;
+    }
+}
 .main-page-header {
     width: 100%;
     background-color: transparent;
@@ -282,13 +299,13 @@ hero-gradient p {
 
 .main-page-footer {
     width: 100%;
-    max-height:100px;
+    max-height: 100px;
     min-height: 50px;
     background-color: var(--theme-color);
     color: white;
 
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: center;
     font-size: 20px;
 
@@ -310,9 +327,10 @@ hero-gradient p {
     align-items: center;
     width: 100%;
 }
-.footer-content div:nth-child(1) ul{
+
+.footer-content div:nth-child(1) ul {
     color: #2d3748;
-    list-style-type:none;
+    list-style-type: none;
     display: flex;
     flex-direction: row;
     align-items: space-between;
@@ -321,34 +339,39 @@ hero-gradient p {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 20px;
 }
-.footer-content div:nth-child(1) ul li{
+
+.footer-content div:nth-child(1) ul li {
     padding: 10px;
 }
+
 .social-media-list {
     display: flex;
-    
+
     gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    color:white;
+    color: white;
 
 }
-.social-media-list a{
+
+.social-media-list a {
     color: white;
 }
 
 @media (max-width: 1000px) {
     .social-media-list {
-       flex-direction: column;
+        flex-direction: column;
         gap: 0.5rem;
         padding: 5px;
     }
-    .main-page-footer{
-    max-height:none;
-    min-height: 50px;
+
+    .main-page-footer {
+        max-height: none;
+        min-height: 50px;
     }
-    .footer-content div:nth-child(1) ul{
+
+    .footer-content div:nth-child(1) ul {
         flex-direction: column;
     }
 }

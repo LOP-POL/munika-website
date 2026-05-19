@@ -56,4 +56,4 @@ Our very own Member **Akshat** got an honorable mention.
 
 ## Conclusion
 
-The participation of MUNIKA at MDS 2026 marked another successful representation of Karlsruhe in international Model United Nations conferences. The delegation not only strengthened its diplomatic and negotiation skills but also reinforced its presence within the European MUN community.
+The participation of MUNIKA at MDS 2026 marked another successful representation of Karlsruhe in international Model United Nations conferences. The delegation not only strengthened its diplomatic and negotiation skills but also reinforced its presence within the European MUN community. Thankyou

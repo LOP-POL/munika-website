@@ -100,13 +100,15 @@ main {
 }
 
 .selected-story .article-card {
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+    border-left: solid 5px var(--border-primary);
+    border-bottom: solid 5px var(--border-accent);
     max-width: 90%;
     font-size: 5vmin;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .selected-story .article-card h4 {
@@ -130,7 +132,8 @@ main {
         overflow-x: auto;
     }
 
-    #SelectedContent {
+    #SelectedContent,
+    #extras {
         overflow-x: auto;
         max-width: 90%;
         overflow-x: hidden;
@@ -201,7 +204,7 @@ main {
         </section>
 
         <section class="selected-story">
-              <div class="selected-img">
+            <div class="selected-img">
 
                 <div class="instagram-media" :key="instaKey">
                     <!--     border:0; 
@@ -329,7 +332,7 @@ main {
                 </div>
                 <Script src="https://www.instagram.com/embed.js" async></Script>
             </div>
-<!-- for munika insta -->
+            <!-- for munika insta -->
             <div class="selected-img">
 
                 <div class="instagram-media" :key="instaKey">
@@ -458,7 +461,7 @@ main {
                 </div>
                 <Script src="https://www.instagram.com/embed.js" async></Script>
             </div>
-          
+
 
             <el-skeleton :loading="loading" animated>
                 <template #template>
@@ -581,7 +584,7 @@ watch(() => props.stories, (newVal, oldVal) => {
     stories.value = props.stories
     if (props.stories.length) {
         stories.value = props.stories.filter((s) => s.id != '')
-   
+
         selectedStory.value = stories.value[0]
         loading.value = false
     }

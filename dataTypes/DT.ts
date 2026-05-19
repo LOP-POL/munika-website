@@ -56,3 +56,12 @@ export interface newsArticle {
     postUrl: string,
     type: string,
 }
+export interface TeamMember {
+    name:string,
+    role:string,
+    bio:string
+    picture:string,
+    team:string,
+    website:string,
+    linkedin:string,
+}

@@ -29,10 +29,15 @@ const routes = [
         page:'Team',
         path:'/KAMUN/team'
     },
-    {
-        page:'Committees',
-        path:'/KAMUN/committees'
-    },
+    // {
+    //     page:'Collaborations',
+    //     path:'/KAMUN/collaborations'
+    // },
+    // {
+    //     page:'Committees',
+    //     path:'/KAMUN/committees'
+    // },
+   
     {
         page:'Schedule',
         path:'/KAMUN/schedule'
@@ -77,7 +82,11 @@ function switchToButton(change:boolean){
         menuSwitch.value = change
 
 }
+const metaStore = useMetaStore()
+
+const kamunYear =  metaStore.getConferenceMeta[0].year ?? new Date().getFullYear()
 onMounted(() => {
+    metaStore.fetchEventsAndMeta()
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
 
@@ -90,8 +99,7 @@ onMounted(() => {
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
    
-    console.log(navMen.value)
-   
+      
 
 })
 
@@ -100,7 +108,8 @@ onUnmounted(() => {
 })
 
 import { ElIcon } from 'element-plus'
-import { House, UserFilled, Collection, Notification, Star,Calendar } from '@element-plus/icons-vue'
+import { House, UserFilled, Collection, Notification, Star,Calendar, Document } from '@element-plus/icons-vue'
+import { useMetaStore } from '~/piniaStores/metaStore';
 
 function handleMenuClick() {
     menuVisible.value = false
@@ -108,14 +117,14 @@ function handleMenuClick() {
 </script>
 
 <template>
-    <el-container>
+    <el-container >
         <el-header class="main-page-header">
 
             <div class="title-holder">
                 <div class="title-logo-and-text">
                     <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
                             alt="munikaLogo" height="10%" width="10%"></span>
-                    <span class="title-text">KAMUN 2025</span>
+                    <span class="title-text">KAMUN {{kamunYear}}</span>
                 </div>
 
                 <span class="nav-menu" ref="navMen">
@@ -209,12 +218,12 @@ function handleMenuClick() {
                 </el-icon>
                 Team
             </el-menu-item>
-            <el-menu-item index="/KAMUN/committees">
+            <!-- <el-menu-item index="/KAMUN/committees">
                 <el-icon>
                     <Collection />
                 </el-icon>
                 Committees
-            </el-menu-item>
+            </el-menu-item> -->
 
             <el-menu-item index="/news">
                 <el-icon>
@@ -228,6 +237,15 @@ function handleMenuClick() {
                 </el-icon>
                 Schedule
             </el-menu-item>
+
+             <!-- <el-menu-item index="/KAMUN/collaborations">
+                <el-icon>
+                    <Document/>
+                </el-icon>
+                Collaborations
+            </el-menu-item> -->
+
+
 
             <el-menu-item class="special-menu-item" index="/">
                 <el-icon>

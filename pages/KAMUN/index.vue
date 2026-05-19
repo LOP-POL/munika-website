@@ -256,7 +256,15 @@ onMounted(() => {
 
 
     </section>
-
+    <br>
+    <head-and-c :divider="true">
+        <template #title>
+            Our Committees 2025
+        </template>
+        <CommitteesSection/>
+    </head-and-c>
+    <br>
+    
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
@@ -296,7 +304,9 @@ onMounted(() => {
     }
 }
 .notice{
-    box-shadow: 5px 5px 10px black;
+     
+    border-radius: 10px;
+    padding:5px;
 }
 .notice  strong{
     color:var(--special-red)

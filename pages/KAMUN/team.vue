@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, watch, onUnmounted } from 'vue'
+import ContactCard from '~/components/ContactCard.vue'
 import headAndC from '~/components/headAndC.vue'
 import TiltCard from '~/components/TiltCard.vue'
 definePageMeta({ layout: 'kamun-bar' })
@@ -14,6 +15,8 @@ interface TeamMember {
 const teamsState = useState<Record<string, TeamMember[]> | null>('teamsCache', () => null)
 const teams = ref<Record<string, TeamMember[]>>()
 const loading = ref<boolean>(true)
+
+
 
 onMounted(async () => {
   if (teamsState.value) {
@@ -63,7 +66,6 @@ const teamTabs = [
   <head-and-c picture pictureUrl="/styleImgs/teamPictureBW.jpg">
     <template #title>
       <span class="animated-title">
-        <svg class="pulse-dot" width="16" height="16"><circle cx="8" cy="8" r="7" fill="var(--theme-color)" /></svg>
         Meet the KAMUN 2025 Teams
       </span>
     </template>
@@ -116,6 +118,7 @@ const teamTabs = [
       </el-tab-pane>
     </el-tabs>
     </head-and-c>
+
     
   </template>
 </template>
@@ -235,19 +238,12 @@ const teamTabs = [
 
 .animated-title {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5em;
   font-weight: bold;
   font-size: 2em;
 }
-.pulse-dot {
-  animation: pulse 1.2s infinite;
-}
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
+
 .skeleton-loader {
   display: flex;
   gap: 2rem;

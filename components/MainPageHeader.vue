@@ -82,7 +82,7 @@
 
                 <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="800">
                     <div class="mb-8">
-                        <img src="/img-logos/MunikaLogo.jpg" height="50px" width="50px" style="border-radius: 50%;" />
+                        <img src="/img-logos/MunikaLogo.jpg" height="100px" width="100px" style="border-radius: 50%;" />
                     </div>
                     <h1>Model United Nations Initiative Karlsruhe</h1>
                     <p>Shaping future diplomats through debate, diplomacy, and global awareness.</p>
