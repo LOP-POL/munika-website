@@ -10,7 +10,7 @@ postUrl: /news/post1
 type: news
 ---
 
-# MUNIKA at MDS 2026: Karlsruhe Delegation Takes Munich
+#  MUNIKA at MDS 2026: Karlsruhe Delegation Takes Munich
 
 From April 9th to 12th, 2026, the city of Munich became a hub of diplomacy, debate, and international collaboration as it hosted the **Munich Diplomacy Summit (MDS)**. Among the many delegations in attendance was a dynamic group of ten students from Karlsruhe, representing **MUNIKA (Model United Nations Initiative Karlsruhe)**.
 
