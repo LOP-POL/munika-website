@@ -23,7 +23,7 @@
 
 
       <template v-slot:eventContent="arg">
-        <div style="border-radius: 10px; padding:5px;" :style="{ backgroundColor: arg.event.color }">
+        <div :style="{ backgroundColor: arg.event.color }" style="border-radius: 10px; padding:5px;" >
           <strong>{{ arg.event.title }}</strong>
           <div v-if="arg.event.extendedProps?.location || arg.event.location">
             {{ arg.event.extendedProps?.location || arg.event.location }}
@@ -127,20 +127,45 @@ function getTuesdaysOfMonth(year: number, month: number) {
   return dates
 }
 
+function formatDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
 
+function getUpdateDate(update: any): Date | null {
+  if (!update) return null
+  const dateField = update.date ?? update.start ?? update.dateTime ?? update.eventDate
+  if (!dateField) return null
+  const parsed = new Date(dateField)
+  return Number.isNaN(parsed.getTime()) ? null : parsed
+}
+
+const {data:regularMeetingUpdate} = useAsyncData('reglurMeeting',()=>queryCollection('meetings').path('/meetings/regular').first())
 // Generate events for every Tuesday 7pm-9pm in current month
 function generateRegularMeetings() {
   const year = currentDate.value.getFullYear()
   const month = currentDate.value.getMonth()
   const tuesdays = getTuesdaysOfMonth(year, month)
-  return tuesdays.map(d => ({
-    title: 'Regular Meeting',
-    start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0),
-    end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 21, 0, 0),
-    extendedProps: { locationLink: 'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7', description: "Usually a mock debate, with a group dinner after", location: 'Karlshochschule' },
-    color: "#bebfc5ff",
-    allDay: false
-  }))
+  const update = Array.isArray(regularMeetingUpdate.value) ? regularMeetingUpdate.value[0] : regularMeetingUpdate.value
+  const updateDate = getUpdateDate(update)
+
+  return tuesdays.map(d => {
+    const defaultDescription = 'Usually a mock debate, with a group dinner after'
+    const isSameDate = updateDate && formatDateKey(updateDate) === formatDateKey(d)
+    const description = isSameDate ? (update.description ?? update.desc ?? defaultDescription) : defaultDescription
+
+    return {
+      title: 'Regular Meeting',
+      start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0),
+      end: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 21, 0, 0),
+      extendedProps: {
+        locationLink: 'https://maps.app.goo.gl/BAUtNgZAamQyJjLB7',
+        description,
+        location: 'Karlshochschule'
+      },
+      color: '#bebfc5ff',
+      allDay: false
+    }
+  })
 }
 
 const regularMeetings = computed(() => generateRegularMeetings())
@@ -150,6 +175,10 @@ const { data: apiData } = await useFetch<{ events: any[] }>('/api/meta/meta', {
   cache: 'force-cache',
   server: true
 })
+
+
+
+
 
 const notionEvents = computed(() => {
   if (!apiData.value?.events) return []
