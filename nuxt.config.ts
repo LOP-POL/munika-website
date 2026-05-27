@@ -36,6 +36,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'Model United Nations Initiative Karlsruhe , MUN, Debate, Diplomacy, United Nations, KAMUN' }
       ]
-    }
+    },
+    pageTransition:false
   }
 })

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 useHead({
     link: [
         {
@@ -124,7 +125,7 @@ function handleMenuClick() {
 
 
         <el-main class="main-content" ref="mainCon">
-            <slot />
+                <slot />
         </el-main>
 
 

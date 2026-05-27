@@ -51,7 +51,7 @@ ul .special-nav-link a:hover{
 
         <ul type="none" class="custom-nav-menu">
             <li v-for="route in props.routes" :class="(route.page=='MUNIKA' || route.page=='KAMUN')?'special-nav-link':'normal-nav-link'">
-                <NuxtLink :to="route.path">{{ route.page }}</NuxtLink>
+                <NuxtLink :to="route.path ?? '/'">{{ route.page }}</NuxtLink>
             </li>
         </ul>
    
@@ -62,5 +62,7 @@ import { useRoute } from 'vue-router';
 const props = defineProps([
     'routes'
 ])
+console.log(props.routes)
 const router = useRoute()
+console.log(router.fullPath)
 </script>

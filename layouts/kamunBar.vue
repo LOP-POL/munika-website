@@ -20,7 +20,7 @@ const menuSwitch = ref<boolean>(false)
 
 const pageWidth = ref(0)
 
-const routes = [
+const routes = ref([
     {
         page:'Home',
         path:'/KAMUN'
@@ -52,7 +52,7 @@ const routes = [
         path:'/'
     },
    
-]
+])
 
 const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth

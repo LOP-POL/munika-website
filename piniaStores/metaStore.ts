@@ -51,21 +51,17 @@ export const useMetaStore = defineStore("meta", {
     actions: {
         async fetchEventsAndMeta() {
             try {
-                const {data:metaData}= await useFetch<{meta:ConferenceMetaData[], events: ConferenceEvents[] }>('/api/meta/meta',
-                    {
-                        key:'meta-and-events-data',
-
-                    }
+                const metaData = await $fetch<{meta:ConferenceMetaData[], events: ConferenceEvents[] }>('/api/meta/meta'
                 )
      
                 if(metaData){
-                if(metaData.value?.events){
+                if(metaData.events){
                  
-                    this.$state.events = metaData.value?.events as ConferenceEvents[]
+                    this.$state.events = metaData.events as ConferenceEvents[]
                 }
-                if(metaData.value?.meta){
+                if(metaData.meta){
                    
-                    this.$state.meta = metaData.value?.meta as ConferenceMetaData[]
+                    this.$state.meta = metaData.meta as ConferenceMetaData[]
                 }
             }
                 

@@ -47,6 +47,10 @@
     transition: 0.5s ease;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 html.dark {
     --el-bg-color: var(--black);
 }
@@ -58,6 +62,54 @@ a {
 .calendar-wrapper a {
     color: #2d3748
 }
+
+/* smooth transition for changes on route*/
+
+.rotate-enter-active,
+.rotate-leave-active {
+  transition: all 0.4s;
+}
+.rotate-enter-from,
+.rotate-leave-to {
+  opacity: 0;
+  transform: rotate3d(1, 1, 1, 15deg);
+}
+
+.smooth-enter-active,
+.smooth-leave-active,
+.slide-enter-active
+{
+  transition: all 0.4s ease;
+}
+
+.smooth-enter-from {
+  transform: translateY(20px);
+}
+
+.smooth-leave-to {
+  transform: translateY(-20px);
+}
+
+/* Slide transitions for other pages */
+.slide-enter-from {
+  transform: translateX(100%);
+   transition: all 0.4s ease;
+}
+.slide-leave-to {
+  transform: translateX(-100%);
+   transition: all 0.4s ease;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 
 /* Styles for the default Nav and footer pages */
 body {
@@ -83,6 +135,10 @@ p {
     font-size: 1.25rem;
     line-height: 1.6;
     color: #4a5568;
+}
+.pageTransitionWrapper{
+    display: contents; 
+    /* Trick that stops the div drom interferring with flex grid and what not */
 }
 
 /* hero section */

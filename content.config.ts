@@ -60,7 +60,8 @@ export default defineContentConfig({
                 date: z.string(),
                 startTime:z.string(),
                 endTime:z.string(),
-                location:z.string()
+                location:z.string(),
+                extra:z.boolean(),
             }),
         }),
         News: defineCollection({

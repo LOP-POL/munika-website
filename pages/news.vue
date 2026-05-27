@@ -85,13 +85,13 @@ body {
 </style>
 
 <template>
-
-    <head-and-c>
-        <template #title>
-            What's new !
-        </template>
-        <NewsAnnounceV2 :stories="stories.slice().reverse()" :instaKey="instaKey" />
-        <!-- id: z.string(),
+           <div class="pageTransitionwrapper">
+        <head-and-c>
+            <template #title>
+                What's new !
+            </template>
+            <NewsAnnounceV2 :stories="stories.slice().reverse()" :instaKey="instaKey" />
+            <!-- id: z.string(),
                 title: z.string(),
                 content: z.string(),
                 date: z.string(),
@@ -99,29 +99,32 @@ body {
                 type: z.string(),
                 postUrl: z.string(),
             }), -->
-        <!-- <NuxtLink to="/Blogs/">Blog Post</NuxtLink>
+            <!-- <NuxtLink to="/Blogs/">Blog Post</NuxtLink>
         <NuxtLink v-for="doc in posts" :key="doc.id" :to="doc.path">
             <h2>{{ doc.title }}</h2>
             <p>{{ doc.content }}</p>
         </NuxtLink> -->
 
 
-      
 
-    </head-and-c>
-    <br>
 
-    <section id="calendar">
-        <head-and-c :divider="true">
-            <template #title>
-                Calendar
-            </template>
-            <div>
-                <RegularMeetings/>
-                <Calendar />
-            </div>
         </head-and-c>
-    </section>
+        <br>
+
+        <section id="calendar">
+            <head-and-c :divider="true">
+                <template #title>
+                    Calendar
+                </template>
+                <div>
+                    <RegularMeetings />
+                    <Calendar />
+                </div>
+            </head-and-c>
+        </section>
+    </div>
+       
+
 </template>
 
 <!-- <script async src="https://www.instagram.com/embed.js"></script> -->
@@ -139,7 +142,6 @@ import RegularMeetings from '~/components/RegularMeetings.vue'
 // import NewsAnnounce from '~/components/NewsAnnounce.vue'
 
 // const { data: home } = await useAsyncData(() => queryCollection('content').path('/').first())
-
 useHead({
     script: [{
         src: 'https://www.instagram.com/embed.js',
@@ -261,10 +263,10 @@ onMounted(async () => {
         if (posts.value) {
             stories.value = stories.value.concat(posts.value.map(extractNewsFromCollection))
         }
-        else{
-             const res2 = await queryCollection("News").limit(10).all()
+        else {
+            const res2 = await queryCollection("News").limit(10).all()
             stories.value = stories.value.concat(res2.map(extractNewsFromCollection))
-           
+
         }
         loaded.value = true
     } else {
@@ -282,7 +284,7 @@ onMounted(async () => {
             if (posts.value) {
                 stories.value = stories.value.concat(posts.value.map(extractNewsFromCollection))
             }
-            else{
+            else {
                 const res2 = await queryCollection("News").limit(10).all()
                 stories.value = stories.value.concat(res2.map(extractNewsFromCollection))
             }

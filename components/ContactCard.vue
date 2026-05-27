@@ -23,7 +23,7 @@
         <div class="links">
           <a v-if="website" :href="website" target="_blank" rel="noopener noreferrer" class="link"
             aria-label="Visit website">
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="var(--theme-color)" stroke-width="1.5">
               <circle cx="12" cy="12" r="10" />
               <path
                 d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -33,7 +33,7 @@
 
           <a v-if="linkedin" :href="linkedin" target="_blank" rel="noopener noreferrer" class="link"
             aria-label="View LinkedIn profile">
-            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="var(--theme-color)" stroke-width="1.5">
               <rect x="2" y="2" width="20" height="20" rx="3" />
               <path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7" />
             </svg>
@@ -96,8 +96,8 @@ export default {
   --radius-card: 10px;
 
   position: relative;
-  background: var(--seasalt);
-  border: 1px solid var(--french-gray);
+  background: rgba(0, 0, 0, 0.806);
+  border: 1px solid black;
   border-radius: var(--radius-card);
   overflow: hidden;
   max-width: 560px;
@@ -105,6 +105,7 @@ export default {
   margin: 5px;
   /* font-family: 'Georgia', 'Times New Roman', serif; */
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+  color:white;
 }
 
 .contact-card:hover {
@@ -160,9 +161,9 @@ export default {
 }
 
 .avatar-fallback {
-  font-size: 22px;
+  /* font-size: 22px; */
   font-weight: 400;
-  color: var(--black);
+  color: var(--seasalt);
   letter-spacing: 0.04em;
   /* font-family: 'Georgia', serif; */
 }
@@ -178,9 +179,9 @@ export default {
 }
 
 .name {
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 400;
-  color: var(--black);
+  color: var(--seasalt);
   margin: 0 0 3px;
   letter-spacing: -0.01em;
   /* font-family: 'Georgia', serif; */
@@ -188,7 +189,7 @@ export default {
 }
 
 .role {
-  font-size: 11px;
+  /* font-size: 11px; */
   /* font-family: 'Courier New', 'Courier', monospace; */
   color: var(--french-gray);
   text-transform: uppercase;
@@ -197,7 +198,7 @@ export default {
 
 .bio {
   font-size: 13px;
-  color: var(--black);
+  color: var(--seasalt);
   line-height: 1.7;
   margin: 0;
   opacity: 0.72;
@@ -228,11 +229,11 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  /* font-size: 11px; */
   /* font-family: 'Courier New', 'Courier', monospace; */
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--black);
+  color: var(--seasalt);
   text-decoration: none;
   padding-bottom: 1px;
   border-bottom: 1px solid transparent;
@@ -241,14 +242,14 @@ export default {
 
 .link:hover {
   border-bottom-color: var(--yellow);
-  color: var(--black);
+  color: var(--theme-color);
 }
 
 .link-icon {
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  stroke: currentColor;
+  stroke: var(--theme-color);
 }
 
 /* ── Responsive ─────────────────────────────────────────── */

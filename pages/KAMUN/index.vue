@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { constrainPoint } from '@fullcalendar/core/internal'
+
 import { ref, onMounted, computed } from 'vue'
-import type { ConferenceMetaData } from '~/dataTypes/DT'
 import { useMetaStore } from '~/piniaStores/metaStore'
 import { convertDateWord } from '#imports'
 
@@ -24,6 +23,7 @@ const themeSegments = computed(() => {
 
 const startDate = new Date(metaStore.getConferenceMeta[0].startDate)
 const endDate = new Date(metaStore.getConferenceMeta[0].endDate)
+
 
 useHead({
     title: "KAMUN",
@@ -187,15 +187,14 @@ onMounted(() => {
         }, { threshold: 0.2 })
         tooltipObserver.observe(tooltipRef.value)
     }
-
-
-
 })
 
 
 </script>
 <template>
-    <kamun-page-header></kamun-page-header>
+ 
+    <div class="pageTransitionWrapper">
+        <kamun-page-header></kamun-page-header>
     <br></br>
     <section class="main-section">
         <head-and-c class="kamun-theme">
@@ -207,11 +206,15 @@ onMounted(() => {
 
             </h1>
             <p className="notice">
-                <strong>Notice: </strong> <br> Please Pay attention to the dates. Some of the information here is still not up to date, and is only relevant to last years KAMUN
-            as preparations are still ongoing for this year's KAMUN {{ new Date().getFullYear() }}. <br/>
-            Not until this Notice disappears can you be sure that all the data here is relevant for this year's KAMUN {{ new Date().getFullYear() }}
+                <strong>Notice: </strong> <br> Please Pay attention to the dates. Some of the information here is still
+                not up to
+                date, and is only relevant to last years KAMUN
+                as preparations are still ongoing for this year's KAMUN {{ new Date().getFullYear() }}. <br />
+                Not until this Notice disappears can you be sure that all the data here is relevant for this year's
+                KAMUN {{ new
+                    Date().getFullYear() }}
             </p>
-            
+
         </head-and-c>
     </section>
 
@@ -228,7 +231,7 @@ onMounted(() => {
                     KAMUN is a winter conference
                     and this year it is no different,
                     it takes place from <em style="font-size: larger; font-weight: 600;">
-                        {{ convertDateWord(startDate) ?? '5th December'}} to {{ convertDateWord(endDate) ?? '7th December 2025' }}
+                        {{ convertDateWord(startDate) ?? '5th December' }} to {{ convertDateWord(endDate) ?? '7th December 2025' }}
                     </em>
                 </p>
                 <TimerCard />
@@ -261,14 +264,16 @@ onMounted(() => {
         <template #title>
             Our Committees 2025
         </template>
-        <CommitteesSection/>
+        <CommitteesSection />
     </head-and-c>
     <br>
-    
+
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
     </section>
+    </div>
+    
 </template>
 <style>
 #where-to {
@@ -303,12 +308,14 @@ onMounted(() => {
         transform: translateY(-100px);
     }
 }
-.notice{
-     
+
+.notice {
+
     border-radius: 10px;
-    padding:5px;
+    padding: 5px;
 }
-.notice  strong{
-    color:var(--special-red)
-}   
+
+.notice strong {
+    color: var(--special-red)
+}
 </style>

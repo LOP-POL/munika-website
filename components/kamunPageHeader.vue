@@ -17,7 +17,7 @@
                     <p>Shaping future diplomats through debate, diplomacy, and global awareness.</p>
                     <div class="flex">
                         <NuxtLink to="/" class="btn-kamun" style="background-color: black; border: solid 1px black;">Come to MUNIKA</NuxtLink>
-                        <NuxtLink to="/KAMUN/committees" class="btn-join">Sign Up</NuxtLink>
+                        <NuxtLink to="https://mymun.com/conferences" class="btn-join">Sign Up</NuxtLink>
                         <NuxtLink to="/news" class="btn-news" style="background-color: var(--french-gray); color:white;">Latest News</NuxtLink>
                     </div>
 
@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ArrowLeftBold } from '@element-plus/icons-vue'
+import { ArrowDownBold } from '@element-plus/icons-vue'
 
 // Define refs for DOM elements
 

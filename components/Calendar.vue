@@ -1,13 +1,13 @@
 <template>
   <div class="calendar-wrapper">
     <div class="month-nav" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center; ">
-    
+
       <el-button-group>
-         <el-button @click="previousMonth" size="small">← Previous</el-button>
-         <el-button size="small">
-        {{ currentMonthYear }}
-         </el-button>
-      <el-button @click="nextMonth" size="small">Next →</el-button>
+        <el-button @click="previousMonth" size="small">← Previous</el-button>
+        <el-button size="small">
+          {{ currentMonthYear }}
+        </el-button>
+        <el-button @click="nextMonth" size="small">Next →</el-button>
       </el-button-group>
 
     </div>
@@ -23,7 +23,7 @@
 
 
       <template v-slot:eventContent="arg">
-        <div :style="{ backgroundColor: arg.event.color }" style="border-radius: 10px; padding:5px;" >
+        <div :style="{ backgroundColor: arg.event.color }" style="border-radius: 10px; padding:5px;">
           <strong>{{ arg.event.title }}</strong>
           <div v-if="arg.event.extendedProps?.location || arg.event.location">
             {{ arg.event.extendedProps?.location || arg.event.location }}
@@ -55,7 +55,7 @@
             target="_blank">{{ selectedEvent.extendedProps.location ?? 'Karlshochshule' }}</a></p>
       </div>
       <template #footer>
-        <el-button @click="()=>{dialogVisible = false}">Close</el-button>
+        <el-button @click="() => { dialogVisible = false }">Close</el-button>
       </template>
     </el-dialog>
   </div>
@@ -139,7 +139,84 @@ function getUpdateDate(update: any): Date | null {
   return Number.isNaN(parsed.getTime()) ? null : parsed
 }
 
-const {data:regularMeetingUpdate} = useAsyncData('reglurMeeting',()=>queryCollection('meetings').path('/meetings/regular').first())
+// ---Integration of regular meeting md into the calendar---
+
+
+// Format date to YYYY-MM-DD for comparison
+// function formatDateForComparison(date: Date): string {
+//   const year = date.getFullYear()
+//   const month = String(date.getMonth() + 1).padStart(2, '0')
+//   const day = String(date.getDate()).padStart(2, '0')
+//   return `${year}-${month}-${day}`
+// }
+
+// // Helper to convert time string (HH:MM) to time format
+// function formatTimeString(timeStr: string): string {
+//   if (!timeStr) return ''
+//   return timeStr
+// }
+
+// // Helper to parse date and create a Date object
+// function parseDate(dateStr: string): string | null {
+//   if (!dateStr) return null
+//   try {
+//     return formatDate(dateStr)
+//   } catch {
+//     return null
+//   }
+// }
+
+// // Fetch the regular meeting content
+// const { data: regularMeeting } = await useAsyncData('regularMeeting', () => queryCollection('meetings').first());
+
+// // Determine if queried data matches today's date
+// const shouldUseQueried = computed(() => {
+//   if (!regularMeeting.value) {
+//     return false
+//   }
+//   const meeting = regularMeeting.value
+//   if (!meeting.date) return false
+
+//   return true
+// })
+
+// // Computed values for the regular meeting display
+// const meetingData = computed(() => {
+//   if (shouldUseQueried.value) {
+//     return regularMeeting.value
+//   }
+//   return null
+// })
+
+// function createRegMeeting() {
+//   if (meetingData != null) {
+//     const meetingTitle = meetingData.value?.title || 'Regular Meeting'
+//     const meetingDate =  parseDate(meetingData.value?.date instanceof Date ? meetingData.value.date.toISOString().split('T')[0] : meetingData.value?.date ?? '2026-05-19')
+//     const meetingStartTime =  formatTimeString(meetingData.value?.startTime ?? '19:00')
+//     const meetingEndTime =  formatTimeString(meetingData.value?.endTime ?? '20:30')
+//     const meetingDescription =  meetingData.value?.description || 'We are having a debate today'
+//     const meetingLocation =  meetingData.value?.location || 'Karlshochschule'
+
+//     return {
+//       meetingTitle,
+//       meetingDate,
+//       meetingStartTime,
+//       meetingEndTime,
+//       meetingDescription,
+//       meetingLocation,
+//     }
+//   }
+//   return {
+//   }
+// }
+
+
+// ---Integration of regular meeting md into the calendar---
+
+
+
+
+const { data: regularMeetingUpdate } = await useAsyncData('regularMeeting', () => queryCollection('meetings').first())
 // Generate events for every Tuesday 7pm-9pm in current month
 function generateRegularMeetings() {
   const year = currentDate.value.getFullYear()
@@ -152,6 +229,9 @@ function generateRegularMeetings() {
     const defaultDescription = 'Usually a mock debate, with a group dinner after'
     const isSameDate = updateDate && formatDateKey(updateDate) === formatDateKey(d)
     const description = isSameDate ? (update.description ?? update.desc ?? defaultDescription) : defaultDescription
+
+
+
 
     return {
       title: 'Regular Meeting',
@@ -175,9 +255,6 @@ const { data: apiData } = await useFetch<{ events: any[] }>('/api/meta/meta', {
   cache: 'force-cache',
   server: true
 })
-
-
-
 
 
 const notionEvents = computed(() => {
@@ -458,6 +535,7 @@ background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(-
   border-radius: 20px;
   border: 2px dashed #0A100D;
   padding: 10px;
+  background-color: var(--seasalt);
 }
 
 @media screen and (max-width:1000px) {

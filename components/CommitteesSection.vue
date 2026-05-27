@@ -97,7 +97,8 @@
  
 </style>
 <template>
-  <div class="difficulty-scale"  :style="{backgroundColor:colors[`${difficulty}`]}">
+  <div class="pageTransitionWrapper">
+    <div class="difficulty-scale"  :style="{backgroundColor:colors[`${difficulty}`]}">
 
     <span class="difficulty-indicator" >
       Difficulty: <span >{{ difficulty }}</span>
@@ -155,13 +156,15 @@
   </div>
 
  
+  </div>
+  
 </template>
 <script setup lang="ts">
 
 import CommitteeCard from '~/components/CommitteeCard.vue'
 import headAndC from '~/components/headAndC.vue'
 import { ArrowDown } from '@element-plus/icons-vue'
-definePageMeta({ layout: 'kamun-bar' })
+
 
 enum Difficulty {
   BEGINNER = 'Beginner',

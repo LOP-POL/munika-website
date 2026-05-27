@@ -4,7 +4,7 @@
     perspective: 100px;
     margin-top: 10px;
     position: relative;
-    max-height: 500px;
+    max-height: fit-content;
     overflow-y: auto;
 
 }
@@ -97,7 +97,7 @@
     background-color: white;
     width: 90%;
     border-radius: inherit;
-    max-height: 500px;
+    max-height: fit-content;
     border-radius: 10px;
     border-left: solid 5px var(--border-primary);
     border-bottom: solid 5px var(--border-accent);
@@ -153,10 +153,18 @@
                     </el-icon>
                     <a :href="'#calendar'" target="_blank">{{ meetingLocation }}</a>
                 </p>
+
+                <el-button v-if="extraTrue" size="small" @click="handleReadMore">
+                    {{ readMoreText }}
+                </el-button>
+                <p>
+                    <ContentRenderer v-if="regularMeeting && readMore" :value="regularMeeting" />
+                </p>
             </div>
         </div>
         <div v-else class="events-section">
             <p>Loading regular meeting information...</p>
+
         </div>
 
     </section>
@@ -166,6 +174,15 @@
 import { ref, computed } from 'vue'
 import { Location, Timer } from '@element-plus/icons-vue'
 
+
+const readMore = ref<boolean>(false);
+const readMoreText = ref<string>('read more')
+
+
+function handleReadMore() {
+    readMoreText.value = readMoreText.value === 'read more' ? 'close' : 'read more'
+    readMore.value = !readMore.value
+}
 // Get Tuesday of the current week
 function getTuesdayOfWeek(date: Date = new Date()): Date {
     const d = new Date(date)
@@ -213,7 +230,30 @@ const defaultData = {
     startTime: '19:00',
     endTime: '20:30',
     location: 'Karlshochschule',
-    description: 'We are having a debate'
+    description: 'We are having a debate',
+    extra:false
+}
+
+function isDateInCurrentWeek(dateToCheck:string) {
+  const now = new Date();
+
+  // Get current day of week (0 = Sunday, 6 = Saturday)
+  const currentDay = now.getDay();
+
+  // Calculate Monday of current week
+  const monday = new Date(now);
+  const diffToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+  monday.setDate(now.getDate() + diffToMonday);
+  monday.setHours(0, 0, 0, 0);
+
+  // Calculate Sunday of current week
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+
+  const checkDate = new Date(dateToCheck);
+
+  return checkDate >= monday && checkDate <= sunday;
 }
 
 // Determine if queried data matches today's date
@@ -223,8 +263,7 @@ const shouldUseQueried = computed(() => {
     }
     const meeting = regularMeeting.value
     if (!meeting.date) return false
-    const meetingDate = formatDateForComparison(new Date(meeting.date))
-    return meetingDate === currentDate
+    return isDateInCurrentWeek(meeting.date)
 })
 
 // Computed values for the regular meeting display
@@ -233,6 +272,14 @@ const meetingData = computed(() => {
         return regularMeeting.value
     }
     return defaultData
+})
+
+const extraTrue  = computed<boolean>(()=>{
+    if (shouldUseQueried.value) {
+        if(regularMeeting.value?.extra)
+        return regularMeeting.value?.extra
+    }
+    return false
 })
 
 const meetingTitle = computed(() => meetingData.value?.title || 'Regular Meeting')
