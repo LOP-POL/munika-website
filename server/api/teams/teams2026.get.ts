@@ -13,20 +13,11 @@ export default defineEventHandler(async (event) => {
         auth: notionApiKey,
     })
 
-    // Helper to extract member info from Notion page
-    function extractMember(page: any) {
-        const props = page.properties
-        return {
-            name: props.Name?.title?.[0]?.plain_text ?? "",
-            nickname: props.Nickname?.rich_text?.[0]?.plain_text ?? "",
-            picture: props.Picture?.files?.[0]?.file?.url ?? "",
-        }
-    }
-
     function extractMemberRoles(page: any) {
         const props = page.properties
         return {
-            fullName: props.FullName?.title?.[0]?.plain_text ?? "",
+             name: props.Name?.title?.[0]?.plain_text ?? "",
+            fullName: props.FullName?.rich_text?.[0]?.plain_text ?? "",
             picture: props.Picture?.files?.[0]?.file?.url ?? "",
             role: props.Role?.rich_text?.[0]?.plain_text ?? "",
             info:
@@ -34,7 +25,7 @@ export default defineEventHandler(async (event) => {
                     {
                         type: "link", value: {
                             platform: props.platform?.multi_select?.[0]?.name ?? null,
-                            link: props.Bio?.rich_text?.[0]?.plain_text ?? null,
+                            link: props.link?.url?? null,
                         }
                     },
                     { type: "studywhere", value: props.StudyWhere?.rich_text?.[0]?.plain_text ?? null, },
@@ -44,29 +35,6 @@ export default defineEventHandler(async (event) => {
         }
     }
 
-    // Helper to query team members
-    async function getTeam(teamName: string) {
-        const response = await notion.databases.query({
-            database_id: notionTeamsPage,
-            filter: {
-                and: [
-                    {
-                        property: 'Team',
-                        multi_select: {
-                            contains: teamName
-                        }
-                    },
-                    {
-                        property: 'IfActiveMember',
-                        select: {
-                            equals: 'Active'
-                        }
-                    }
-                ]
-            },
-        })
-        return response.results.map(extractMember)
-    }
 
     // Helper to query team members with extra info and roles
     async function getTeamRole(teamName: string) {
@@ -92,18 +60,12 @@ export default defineEventHandler(async (event) => {
         return response.results.map(extractMemberRoles)
     }
 
-    // Query all teams
-    const teams: Record<string, any> = {}
+    const team2026: Record<string, any> = {}
     for (const team of ['vorstand', 'socialmediapr', 'delegates', 'academics', 'foodsocials']) {
-        teams[team] = await getTeam(team)
-    }
-
-    const teamRoles: Record<string, any> = {}
-    for (const team of ['vorstand', 'socialmediapr', 'delegates', 'academics', 'foodsocials']) {
-        teams[team] = await getTeamRole(team)
+        team2026[team] = await getTeamRole(team)
     }
 
 
 
-    return {teams,teamRoles}
+    return team2026
 })

@@ -109,6 +109,8 @@ import type { TeamMember } from '~/dataTypes/DT'
 
 const { data: members } = useAsyncData("members", () => queryCollection('members').all())
 
+const {data: teamsMembers} =  useAsyncData("teamMembers",'/api/teams')
+
 const membersList = computed(() => members.value?.[0]?.data || [])
 
 
