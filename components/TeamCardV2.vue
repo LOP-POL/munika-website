@@ -110,6 +110,7 @@ info.value.find(i => i.type === 'link')?.value ?? null
     border-right: solid 5px var(--border-primary);
     border-bottom: solid 5px var(--border-accent);
     min-height:400px;
+    background-color: whitesmoke;
 }
 
 .member-card:hover .portrait {
@@ -221,7 +222,7 @@ info.value.find(i => i.type === 'link')?.value ?? null
 }
 
 .expand-label {
-    font-size: 9px;
+    font-size: 12px;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -278,7 +279,7 @@ info.value.find(i => i.type === 'link')?.value ?? null
 }
 
 .drawer-eyebrow {
-    font-size: 12px;
+    font-size: 20px;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 0.14em;

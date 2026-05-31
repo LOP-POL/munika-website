@@ -38,7 +38,7 @@
                 <el-tab-pane label="All" name="all">
                     <div class="teamCon">
 
-                        <div v-for="member in allMembers" :key="member.name" class="teamCon">
+                        <div v-for="member in allMembers" :key="member.name" >
                             <TeamCardV2 :member="member" />
                         </div>
 
@@ -129,6 +129,10 @@ const activeTab = ref("all")
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
    place-items: center;
    justify-content: center;
+   background: radial-gradient(var(--french-gray) 8%, transparent 8%);
+   
+   background-size: 5vmin 5vmin;
+   background-repeat: repeat;
 }
 
 .skeleton-loader {
