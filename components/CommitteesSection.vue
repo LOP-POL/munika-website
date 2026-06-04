@@ -124,7 +124,7 @@
                 command="Intermediate">Intermediate</el-dropdown-item>
               <el-dropdown-item class="drop-men-item" style="background-color:var(--special-red);" divided
                 command="Expert">Expert</el-dropdown-item>
-              <el-dropdown-item class="drop-men-item" style="background-color:var(--french-grey);" divided
+              <el-dropdown-item class="drop-men-item" style="background-color:white" divided
                 command="University">University</el-dropdown-item>
 
             </el-dropdown-menu>
@@ -194,7 +194,9 @@ const difficulty = ref<string | Difficulty>(Difficulty.BEGINNER)
 const colors: Record<string, string> = {
   Beginner: '#28afb0',
   Intermediate: '#f4d35e',
-  Expert: '#EE964B'
+  Expert: '#EE964B',
+  Highschooler:'#743debff',
+  Univeristy:'#fff'
 }
 const committeesState = useState<Committee[] | null>('committeesCache', () => null)
 const committees = ref<Committee[]>([
@@ -235,8 +237,10 @@ const currentCommittee = ref(committees.value[0])
 
 const committeeLevelToList = computed(() => {
   if (difficulty.value) {
+    console.log(difficulty.value)
     return committees.value.filter((committee) => committee.type === difficulty.value || committee.types?.includes(difficulty.value));
   }
+  
   return [];
 });
 
@@ -255,11 +259,12 @@ function handleCommand(command: string) {
       break;
     case Difficulty.EXPERT:
       difficulty.value = Difficulty.EXPERT;
+      break;
     case Difficulty.UNI:
       difficulty.value = Difficulty.UNI;
+      break;
     case Difficulty.HS:
       difficulty.value = Difficulty.HS;
-
       break;
   }
 

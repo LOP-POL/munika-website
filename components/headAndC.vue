@@ -1,9 +1,9 @@
 <template>
   <section class="head-and-c-section"  :class="{ inner: inner }">
     <div ref="hNCWrapper">
-    <h2 :class="['head-and-c-title',{'picture':picture}]" :style="{backgroundImage:`url(${pictureUrl})`}">
+    <h1 :class="['head-and-c-title',{'picture':picture}]" :style="{backgroundImage:`url(${pictureUrl})`}">
         <slot name="title"></slot>
-    </h2>
+    </h1>
     <img v-if="picture" :src="pictureUrl" alt="team picture" class="paraPic"></img>
     </div> 
     <el-divider v-if="divider"></el-divider>
@@ -82,10 +82,12 @@ onMounted(()=>{
   color: var(--french-gray);
   margin-bottom: 0.5em;
   text-align:left;
+  font-size: 2.5rem;
 }
 .head-and-c-content {
   width: 100%;
-  text-align:left;
+  text-align:left;  
+  max-width: 100%;
 }
 .row-form {
   display: flex;
