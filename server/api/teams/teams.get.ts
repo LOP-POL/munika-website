@@ -19,22 +19,23 @@ export default defineEventHandler(async (event) => {
         return {
             name: props.Name?.title?.[0]?.plain_text ?? "",
             nickname: props.Nickname?.rich_text?.[0]?.plain_text ?? "",
-            picture: props.Picture?.files?.[0]?.file?.url ?? "",
+            picture: props.Picture?.files?.[0]?.file?.url ?? props.Picture?.files?.[0]?.external.url ??"",
         }
     }
 
     function extractMemberRoles(page: any) {
         const props = page.properties
+        console.log(props)
         return {
             fullName: props.FullName?.title?.[0]?.plain_text ?? "",
-            picture: props.Picture?.files?.[0]?.file?.url ?? "",
+            picture: props.Picture?.files?.[0]?.file?.url ?? props.Picture?.files?.[0]?.external.url??"",
             role: props.Role?.rich_text?.[0]?.plain_text ?? "",
             info:
                 [
                     {
                         type: "link", value: {
                             platform: props.platform?.multi_select?.[0]?.name ?? null,
-                            link: props.Bio?.rich_text?.[0]?.plain_text ?? null,
+                            link: props.link?.url ?? null,
                         }
                     },
                     { type: "studywhere", value: props.StudyWhere?.rich_text?.[0]?.plain_text ?? null, },

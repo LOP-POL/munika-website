@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio'],
+  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt'],
   nitro: {
     preset: 'netlify',
     externals: {

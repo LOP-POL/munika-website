@@ -62,7 +62,7 @@ import { useRoute } from 'vue-router';
 const props = defineProps([
     'routes'
 ])
-console.log(props.routes)
+
 const router = useRoute()
-console.log(router.fullPath)
+
 </script>

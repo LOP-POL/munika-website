@@ -117,7 +117,7 @@ function handleMenuClick() {
 </script>
 
 <template>
-    <el-container >
+    <el-container class="super-container">
         <el-header class="main-page-header">
 
             <div class="title-holder">

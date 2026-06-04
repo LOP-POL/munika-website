@@ -13,7 +13,6 @@ const props = defineProps({
 
 const expanded = ref(false)
 
-console.log(props.member)
 const initials = computed(() =>
 props.member.fullName
 .split(' ')
@@ -159,7 +158,7 @@ info.value.find(i => i.type === 'link')?.value ?? null
 }
 
 .team-label {
-    font-size: 9px;
+    font-size: 12px;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 0.16em;

@@ -47,7 +47,7 @@
     transition: 0.5s ease;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -67,48 +67,50 @@ a {
 
 .rotate-enter-active,
 .rotate-leave-active {
-  transition: all 0.4s;
+    transition: all 0.4s;
 }
+
 .rotate-enter-from,
 .rotate-leave-to {
-  opacity: 0;
-  transform: rotate3d(1, 1, 1, 15deg);
+    opacity: 0;
+    transform: rotate3d(1, 1, 1, 15deg);
 }
 
 .smooth-enter-active,
 .smooth-leave-active,
-.slide-enter-active
-{
-  transition: all 0.4s ease;
+.slide-enter-active {
+    transition: all 0.4s ease;
 }
 
 .smooth-enter-from {
-  transform: translateY(20px);
+    transform: translateY(20px);
 }
 
 .smooth-leave-to {
-  transform: translateY(-20px);
+    transform: translateY(-20px);
 }
 
 /* Slide transitions for other pages */
 .slide-enter-from {
-  transform: translateX(100%);
-   transition: all 0.4s ease;
+    transform: translateX(100%);
+    transition: all 0.4s ease;
 }
+
 .slide-leave-to {
-  transform: translateX(-100%);
-   transition: all 0.4s ease;
+    transform: translateX(-100%);
+    transition: all 0.4s ease;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
+
 
 
 /* Styles for the default Nav and footer pages */
@@ -136,8 +138,9 @@ p {
     line-height: 1.6;
     color: #4a5568;
 }
-.pageTransitionWrapper{
-    display: contents; 
+
+.pageTransitionWrapper {
+    display: contents;
     /* Trick that stops the div drom interferring with flex grid and what not */
 }
 
@@ -153,6 +156,7 @@ p {
 .min-h-screen {
     min-height: 100vh;
     width: 100%;
+
 }
 
 .center-flex {
@@ -172,8 +176,11 @@ p {
 
 .mb-8 {
     margin-bottom: 2rem;
+     
 }
-
+.mb-8 :hover{
+     scale: 1.55;
+}
 .icon-globe {
     width: 4rem;
     height: 4rem;
@@ -245,6 +252,7 @@ p {
 .hero-gradient {
     background: linear-gradient(120deg, #ffffff 0%, #ffffff 20%, var(--theme-color) 100%);
     background-color: white;
+
 }
 
 .btn-primary {
@@ -335,15 +343,17 @@ hero-gradient p {
     max-width: 100%;
 }
 
-@media screen and (max-width:1000px){
-    .main-content{
-        margin-left:0;
-        margin-right:0;
+@media screen and (max-width:1000px) {
+    .main-content {
+        margin-left: 0;
+        margin-right: 0;
     }
-    body p{
+
+    body p {
         font-size: 12px;
     }
 }
+
 .main-page-header {
     width: 100%;
     background-color: transparent;
@@ -399,6 +409,40 @@ hero-gradient p {
 .footer-content div:nth-child(1) ul li {
     padding: 10px;
 }
+
+.svg-container {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height:50%;
+    z-index: 2;
+    display: flex;
+}
+
+#svg-trees {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+.rectangle1{
+    fill:var(--theme-color);
+    opacity:0.2;
+}
+.polygon3{
+    fill:var(--theme-color);
+    opacity:0.2;
+}
+.polygon2{
+    fill:var(--theme-color);
+    opacity:0.2;
+}
+.polygon1{
+    fill:var(--theme-color);
+    opacity:0.2;
+}
+
 
 .social-media-list {
     display: flex;
@@ -638,10 +682,10 @@ body .light-theme {
 }
 
 .left-side {
-    background: radial-gradient(var(--black) 8%, transparent 8%);
+    /* background: radial-gradient(var(--black) 8%, transparent 8%);
     background-position: 0% 0%;
     background-size: 5vmin 5vmin;
-    background-repeat: repeat;
+    background-repeat: repeat; */
     z-index: 3;
     color: black;
     left: 0;
@@ -681,4 +725,211 @@ body .light-theme {
     height: 100%;
     width: 100%;
 
+}
+
+/* Transitions , Animations and such */
+/* -------------------------
+   Initial hidden state
+-------------------------- */
+#svg-trees .tree-part {
+    opacity: 0;
+    transform: translateY(5px) scale(0.98);
+    transform-origin: center bottom;
+}
+
+/* -------------------------
+   Trigger class (Vue adds this)
+-------------------------- */
+#svg-trees.is-animated #Rectangle\ 1,
+#svg-trees.is-animated #Polygon\ 1,
+#svg-trees.is-animated #Polygon\ 2,
+#svg-trees.is-animated #Polygon\ 3,
+
+#svg-trees.is-animated .rectangle1,
+#svg-trees.is-animated .polygon1,
+#svg-trees.is-animated .polygon2,
+#svg-trees.is-animated .polygon3 {
+    animation-name: tree-reveal;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+/* for the continuous sway after build */
+#svg-trees.is-animated #Polygon\ 1,
+#svg-trees.is-animated #Polygon\ 2,
+#svg-trees.is-animated #Polygon\ 3,
+
+#svg-trees.is-animated .polygon1,
+#svg-trees.is-animated .polygon2,
+#svg-trees.is-animated .polygon3 {
+    animation:
+        tree-reveal 0.5s ease-out forwards,
+        leaf-sway-loop 4s ease-in-out infinite;
+}
+
+/* -------------------------
+   Staggered reveal order
+-------------------------- */
+#svg-trees.is-animated #Rectangle\ 1 {
+    animation-delay: 0s;
+}
+
+#svg-trees.is-animated .rectangle1 {
+    animation-delay: 0s;
+}
+
+/* #svg-trees:hover #Polygon\ 1,
+#svg-trees:hover #Polygon\ 2,
+#svg-trees:hover #Polygon\ 3 {
+  animation: leaf-gust 0.9s ease-out;
+} */
+
+
+
+/* Sway starts AFTER reveal */
+#svg-trees.is-animated #Polygon\ 1 {
+    animation-delay: 0.15s, 0.7s;
+}
+
+#svg-trees.is-animated #Polygon\ 2 {
+    animation-delay: 0.3s, 0.85s;
+}
+
+#svg-trees.is-animated #Polygon\ 3 {
+    animation-delay: 0.45s, 1s;
+}
+
+/* with classes */
+#svg-trees.is-animated .polygon1 {
+    animation-delay: 0.15s, 0.7s;
+}
+
+#svg-trees.is-animated .polygon2 {
+    animation-delay: 0.3s, 0.85s;
+}
+
+#svg-trees.is-animated .polygon3 {
+    animation-delay: 0.45s, 1s;
+}
+
+#svg-trees.is-gusting #Polygon\ 1,
+#svg-trees.is-gusting #Polygon\ 2,
+
+
+#svg-trees.is-gusting .polygon1,
+#svg-trees.is-gusting .polygon2,
+
+#svg-trees.is-gusting .rectangle1 {
+    animation: leaf-gust 0.9s ease-out;
+}
+
+/* with classes */
+#svg-trees.is-gusting .polygon1 {
+    animation-delay: 0.15s;
+}
+
+#svg-trees.is-gusting .polygon2 {
+    animation-delay: 0.3s;
+}
+
+#svg-trees.is-gusting .polygon3 {
+    animation-delay: 0.45s;
+}
+
+
+
+
+/* -------------------------
+   Keyframes
+-------------------------- */
+@keyframes tree-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(5px) scale(0.98);
+    }
+
+    to {
+        opacity: 0.5;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* @keyframes leaf-sway {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  30% {
+    transform: translateY(0) scale(1) rotate(1.5deg);
+  }
+  60% {
+    transform: translateY(0) scale(1) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+} */
+
+
+/* Gentle, natural wind sway */
+@keyframes leaf-sway-loop {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(1.2deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+
+    75% {
+        transform: rotate(-1.2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width: 768px) {
+    #svg-trees .tree-part {
+        animation: none !important;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* gust animation stronger and faster */
+@keyframes leaf-gust {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(4deg);
+    }
+
+    25% {
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: rotate(-3deg);
+    }
+
+    60% {
+        transform: rotate(2deg);
+    }
+
+    80% {
+        transform: rotate(-1deg);
+    }
+
+    100% {
+        ransform: rotate(0deg);
+    }
 }
