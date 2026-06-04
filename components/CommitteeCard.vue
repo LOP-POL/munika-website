@@ -48,7 +48,7 @@
                     -10px -10px #f4d35e;
        
          transform: rotateX(2deg) rotateY(-30deg);
-         background-color:antiquewhite;
+         background-color:white;
         
        
     }
@@ -84,8 +84,9 @@
         </div>
           <el-divider></el-divider>
         <div class="topic">
+          
             <p>
-                {{ topic }}
+               <b> <em>Topic</em></b>: {{ topic }}
             </p>
         </div>
          <el-divider></el-divider>
@@ -109,6 +110,7 @@ const props = defineProps<{
     SignUpLink: string
     metaImage: string
     type:string
+    types:string[]
 }>()
 
 const emit = defineEmits<{
@@ -154,7 +156,16 @@ function specialColors():void{
         primaryColor.value = '#28afb0'
         secondaryColor.value = '#f4d35e'
         tertiaryColor.value = '#EE964B'
-    } else if (props.type === 'Intermediate') {
+    }else if (props.type === 'Univeristy') {
+        primaryColor.value = '#28afb0'
+        secondaryColor.value = '#f4d35e'
+        tertiaryColor.value = '#EE964B'
+    }else if (props.type === 'Highschooler') {
+        primaryColor.value = '#28afb0'
+        secondaryColor.value = '#f4d35e'
+        tertiaryColor.value = '#EE964B'
+    }
+     else if (props.type === 'Intermediate') {
         primaryColor.value = '#f4d35e'
         secondaryColor.value = '#28afb0'
         tertiaryColor.value = '#EE964B'

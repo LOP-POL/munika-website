@@ -1,144 +1,149 @@
 <style scoped>
-  .difficulty-scale{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align:center;
-    background: radial-gradient(var(--black) 8%,transparent 8%);
-    background-position: 0% 0%;
-    background-size: 2.5vmin 2.5vmin;
-    background-repeat: repeat;
-    border:2px dashed black;
-    border-radius: 20px;
-    padding:5px;
-    color: white;
-    min-width:50%;
-    max-width: 100%;
-    align-self: center;
-    justify-self: center;
-    font-size:3vmin;
+.difficulty-scale {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(var(--black) 8%, transparent 8%);
+  background-position: 0% 0%;
+  background-size: 2.5vmin 2.5vmin;
+  background-repeat: repeat;
+  border: 2px dashed black;
+  border-radius: 20px;
+  padding: 5px;
+  color: white;
+  min-width: 50%;
+  max-width: 100%;
+  align-self: center;
+  justify-self: center;
+  font-size: 3vmin;
 
-  }
+}
 
-  @media screen and (max-width:900px){
-    .difficulty-scale{
-      width:98%;
-    }
+@media screen and (max-width:900px) {
+  .difficulty-scale {
+    width: 98%;
   }
+}
 
-  .difficulty-scale > *{
-    color:black;
-    border-radius:inherit;
-    box-shadow: 0px 0px 7px rgba(0,0,0.7);
-    background-color: white;
-    padding:5px;
-    transition: ease 0.5s;
-  
-  }
-  .difficulty-indicator:hover{
-   
-    transform: translateX(20px) scale(1.25);
-  }
-  
-  .dropdown-text{
-    color:black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:2px;
-    font-size: 3vmin;
-  } 
-  .drop-men-item:hover{
-    color:black;
-    transform: scale(0.25);
-    
-  }
-  .card-holder{
-    display:flex;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap:10px 50px;
-    /* flex-direction: row;
+.difficulty-scale>* {
+  color: black;
+  border-radius: inherit;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0.7);
+  background-color: white;
+  padding: 5px;
+  transition: ease 0.5s;
+
+}
+
+.difficulty-indicator:hover {
+
+  transform: translateX(20px) scale(1.25);
+}
+
+.dropdown-text {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  font-size: 3vmin;
+}
+
+.drop-men-item:hover {
+  color: black;
+  transform: scale(0.25);
+
+}
+
+.card-holder {
+  display: flex;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 10px 50px;
+  /* flex-direction: row;
     justify-content: space-around; */
-    max-width:90vw;
-    overflow-y: auto;
-    min-height:50vh;
-    max-height:500px;
-    margin:20px;
-    background-image:radial-gradient(var(--french-gray) 8%,transparent 8%);
-    background-size: 5vmin 5vmin;
-    background-repeat: repeat;
-    background-position: center;
-    border-radius: 20px;  
-    padding:20px;
-  
-  }
+  max-width: 90vw;
+  overflow-y: auto;
+  min-height: 50vh;
+  max-height: 500px;
+  margin: 20px;
+  background-image: radial-gradient(var(--french-gray) 8%, transparent 8%);
+  background-size: 5vmin 5vmin;
+  background-repeat: repeat;
+  background-position: center;
+  border-radius: 20px;
+  padding: 20px;
 
-  /* Hide the scrollbar track/guide but show the scrollbar thumb/bar for .card-holder */
-  .card-holder {
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #888 transparent;
-  }
+}
 
-  /* For Chrome, Edge, Safari */
-  .card-holder::-webkit-scrollbar {
-    height: 8px;
-    background: transparent;
-  }
-  .card-holder::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-  .card-holder::-webkit-scrollbar-track {
-    background: transparent;
-  }
- 
+/* Hide the scrollbar track/guide but show the scrollbar thumb/bar for .card-holder */
+.card-holder {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+/* For Chrome, Edge, Safari */
+.card-holder::-webkit-scrollbar {
+  height: 8px;
+  background: transparent;
+}
+
+.card-holder::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.card-holder::-webkit-scrollbar-track {
+  background: transparent;
+}
 </style>
 <template>
-  <div class="difficulty-scale"  :style="{backgroundColor:colors[`${difficulty}`]}">
+  <div class="difficulty-scale" :style="{ backgroundColor: colors[`${difficulty}`] }">
 
-    <span class="difficulty-indicator" >
-      Difficulty: <span >{{ difficulty }}</span>
+    <span class="difficulty-indicator">
+      Difficulty: <span>{{ difficulty }}</span>
     </span>
 
     <span>
 
-      <el-dropdown   @command="handleCommand" placement="bottom">
-      <span class="dropdown-text">Change Difficulty <el-icon><ArrowDown/></el-icon></span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item class="drop-men-item"style="background-color:var(--special-green);" divided command="Beginner" >Beginner</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:var(--special-yellow);" divided command="Intermediate" >Intermediate</el-dropdown-item>
-          <el-dropdown-item class="drop-men-item" style="background-color:var(--special-red);" divided command="Expert" >Expert</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
+      <el-dropdown @command="handleCommand" placement="bottom">
+        <span class="dropdown-text">Change Difficulty <el-icon>
+            <ArrowDown />
+          </el-icon></span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item class="drop-men-item" style="background-color:var(--blue-violet);" divided
+              command="Expert">Highschooler</el-dropdown-item>
+            <el-dropdown-item class="drop-men-item" style="background-color:var(--special-green);" divided
+              command="Beginner">Beginner</el-dropdown-item>
+            <el-dropdown-item class="drop-men-item" style="background-color:var(--special-yellow);" divided
+              command="Intermediate">Intermediate</el-dropdown-item>
+            <el-dropdown-item class="drop-men-item" style="background-color:var(--special-red);" divided
+              command="Expert">Expert</el-dropdown-item>
+            <el-dropdown-item class="drop-men-item" style="background-color:var(--french-grey);" divided
+              command="Expert">University</el-dropdown-item>
 
-    </el-dropdown>
+          </el-dropdown-menu>
+        </template>
+
+      </el-dropdown>
     </span>
   </div>
   <el-scrollbar>
     <div class="card-holder">
-    
-      <CommitteeCard
-      @click="handleClick"
-      v-for="(committee, idx) in committeeLevelToList"
-      :key="committee.mainName + idx"
-      :mainName="committee.mainName"
-      :fullName="committee.fullName"
-      :topic="committee.topic"
-      :logo="committee.logo"
-      :SignUpLink="committee.SignUpLink"
-      :metaImage="committee.metaImage"
-      :type="committee.type"
-      @set-committee="setCommittee"
-    />
-   
-    
-  </div>
+
+      <CommitteeCard @click="handleClick" v-for="(committee, idx) in committeeLevelToList"
+        :key="committee.mainName + idx" :mainName="committee.mainName" :fullName="committee.fullName"
+        :topic="committee.topic" :logo="committee.logo" :SignUpLink="committee.SignUpLink"
+        :metaImage="committee.metaImage" :type="committee.type" @set-committee="setCommittee" />
+
+
+    </div>
   </el-scrollbar>
-  
-    <el-divider></el-divider> 
+
+  <el-divider></el-divider>
 
   <div class="card-content" id="content">
     <headAndC v-if="currentCommittee" :divider="true">
@@ -153,7 +158,7 @@
     </headAndC>
   </div>
 
- 
+
 </template>
 <script setup lang="ts">
 
@@ -165,53 +170,57 @@ definePageMeta({ layout: 'kamun-bar' })
 enum Difficulty {
   BEGINNER = 'Beginner',
   INTERMEDIATE = 'Intermediate',
-  EXPERT =  'Expert'
+  EXPERT = 'Expert'
 }
 interface Committee {
   mainName: string
   fullName: string
-  logo:string
+  logo: string
   topic: string
   description?: string
   SignUpLink: string
   metaImage: string
   type: string
+  types: string[]
 }
 const difficulty = ref<string | Difficulty>(Difficulty.BEGINNER)
 
-const colors: Record<string,string> = {
-  Beginner:'#28afb0',
-  Intermediate:'#f4d35e',
-  Expert:'#EE964B'
+const colors: Record<string, string> = {
+  Beginner: '#28afb0',
+  Intermediate: '#f4d35e',
+  Expert: '#EE964B'
 }
 const committeesState = useState<Committee[] | null>('committeesCache', () => null)
-const committees = ref<Committee[]>( [
+const committees = ref<Committee[]>([
   {
     mainName: "UNESCO",
     fullName: "United Nations Educational, Scientific and Cultural Organization",
-    logo:"/img-logos/UNESCO_logo.webp",
+    logo: "/img-logos/UNESCO_logo.webp",
     topic: "Preserving World Heritage in Conflict Zones",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-    type: difficulty.value
+    type: difficulty.value,
+    types: [difficulty.value]
   },
   {
     mainName: "WHO",
     fullName: "World Health Organization",
-     logo:"/img-logos/UNESCO_logo.webp",
+    logo: "/img-logos/UNESCO_logo.webp",
     topic: "Global Response to Future Pandemics",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-    type: difficulty.value
+    type: difficulty.value,
+    types: [difficulty.value]
   },
   {
     mainName: "COPOUS",
     fullName: "Committee on the Peaceful Uses of Outer Space",
-     logo:"/img-logos/UNESCO_logo.webp",
+    logo: "/img-logos/UNESCO_logo.webp",
     topic: "International Cooperation in Space Exploration",
     SignUpLink: "#",
     metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-    type: difficulty.value
+    type: difficulty.value,
+    types: [difficulty.value]
   }
 ])
 
@@ -225,12 +234,12 @@ const committeeLevelToList = computed(() => {
   return [];
 });
 
-function setCommittee(committeeMainName:string = committees.value[0].mainName){
+function setCommittee(committeeMainName: string = committees.value[0].mainName) {
   const foundCommittee = committees.value.find(c => c.mainName === committeeMainName)
   currentCommittee.value = foundCommittee ? foundCommittee : committees.value[0]
 }
 
-function handleCommand(command:string){
+function handleCommand(command: string) {
   switch (command) {
     case Difficulty.BEGINNER:
       difficulty.value = Difficulty.BEGINNER;
@@ -244,11 +253,11 @@ function handleCommand(command:string){
   }
 
 }
-function handleClick(){
-   const el = document.getElementById('content')
-    if (el) {
-        el.scrollIntoView({ behavior: 'smooth' })
-    }
+function handleClick() {
+  const el = document.getElementById('content')
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 onMounted(async () => {
   if (committeesState.value) {
@@ -257,7 +266,7 @@ onMounted(async () => {
     try {
       const res = await $fetch('/api/committees/committees')
       // support both shape: { fromQuery: { results: [...] } } and { results: [...] }
-      const results = res?.fromQuery?.results ?? res?.results ?? []
+      const results = res?.fromQuery?.results ?? []
       const mapped = results.map((result: any) => ({
         mainName: result.properties["main-name"]?.rich_text?.[0]?.plain_text || '',
         fullName: result.properties["full-name"]?.rich_text?.[0]?.plain_text || '',
@@ -266,7 +275,12 @@ onMounted(async () => {
         description: result.properties["description"]?.rich_text?.[0]?.plain_text || '',
         SignUpLink: "https://mymun.com/conferences/kamun-2025",
         metaImage: "/img/United_Nations_General_Assembly_Hall_(3).webp",
-        type: result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value
+        type: result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value,
+        types: result.properties["committee-type"]?.multi_select?.map((t: any) => {
+          return t.name
+        })
+
+
       })) as Committee[]
 
       if (mapped.length) {

@@ -205,7 +205,7 @@ onMounted(() => {
             <h1 class="kamun-theme-text" ref="kamunThemeTextRef">
 
             </h1>
-            <p className="notice">
+            <!-- <p className="notice">
                 <strong>Notice: </strong> <br> Please Pay attention to the dates. Some of the information here is still
                 not up to
                 date, and is only relevant to last years KAMUN
@@ -213,7 +213,7 @@ onMounted(() => {
                 Not until this Notice disappears can you be sure that all the data here is relevant for this year's
                 KAMUN {{ new
                     Date().getFullYear() }}
-            </p>
+            </p> -->
 
         </head-and-c>
     </section>
@@ -262,7 +262,7 @@ onMounted(() => {
     <br>
     <head-and-c :divider="true">
         <template #title>
-            Our Committees 2025
+            Our Committees 2026
         </template>
         <CommitteesSection />
     </head-and-c>

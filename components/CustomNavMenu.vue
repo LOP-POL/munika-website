@@ -13,7 +13,7 @@
     height: 100%;
     width: 100%;
     margin-right:10px;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
     padding-left:5px;
     padding-right: 5px;
@@ -27,6 +27,8 @@ a{
     color: black;
    text-decoration: none;
    margin:5px;
+   font-size: 20px;
+
    
 }
 

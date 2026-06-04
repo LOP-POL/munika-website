@@ -129,7 +129,7 @@ function handleMenuClick() {
 
                 <span class="nav-menu" ref="navMen">
                     <el-button class="menu-toggle"
-                        style="justify-self: right; background-color:var(--theme-color); border: none;  height:100%; border-radius:20px"
+                        
                         @click="menuVisible = true" v-if="pageWidth < 1200 || menuSwitch"  plain>
                         <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
                     </el-button>
