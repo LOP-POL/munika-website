@@ -281,6 +281,23 @@ p {
 
 }
 
+.waves-svg-con {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: unset;
+    right: 0;
+    z-index: 2;
+    transform: rotateX(180deg);
+}
+
+.waves-svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--theme-color);
+}
+
 hero-gradient p {
     max-width: 42rem;
     margin: 0 auto 2.5rem;
@@ -341,7 +358,7 @@ hero-gradient p {
 
 .main-content {
     max-width: 100%;
-    gap:10rem;
+    gap: 10rem;
 }
 
 @media screen and (max-width:1000px) {
@@ -525,7 +542,7 @@ hero-gradient p {
     border: none;
     height: 100%;
     border-radius: 10px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .title-holder span,
@@ -647,7 +664,7 @@ body .light-theme {
     max-width: 100vw;
     min-width: 80vw;
     opacity: 0;
-    gap:10rem;
+    gap: 10rem;
 }
 
 @media (max-width: 768px) {

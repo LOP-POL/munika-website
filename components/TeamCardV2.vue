@@ -37,12 +37,18 @@ const platformLink = computed(() =>
 info.value.find(i => i.type === 'link')?.value ?? null
 )
 
+const memberPic = ref('')
+
+watch(()=>props,()=>{
+    memberPic.value = props.member.picture
+})
+
 </script>
 <template>
     <div class="member-card">
         <div class="layer">
             <div class="portrait-wrap">
-                <img v-if="member.picture" :src="member.picture" :alt="member.fullName" class="portrait" />
+                <img v-if="member.picture || memberPic" :src="member.picture || memberPic" :alt="member.fullName" class="portrait" />
                 <div v-else class="portrait-fallback">
                     <span>{{ initials }}</span>
                 </div>
@@ -98,7 +104,9 @@ info.value.find(i => i.type === 'link')?.value ?? null
 .member-card {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    min-width: 250px;
+    max-width: 300px;
+    
     /* box-shadow: 0px 0px 10px black; */
     border-radius: 20px;
     padding: 10px;
@@ -121,13 +129,19 @@ info.value.find(i => i.type === 'link')?.value ?? null
     /* box-shadow: inset 0px 0px 5px black; */
     border-radius: inherit;
     /* background-color: var(--theme-color); */
+     align-items: center;
+    justify-content: center;
+      display:flex;
 
 }
 
 .portrait-wrap {
-    width: 100%;
+    width: 80%;
     border-radius: 20px;
-    margin: 0
+    margin: 0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .portrait {

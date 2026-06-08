@@ -1,20 +1,21 @@
 <style>
 .collab-con {
   
-    min-width:200px;
+    min-width:100px;
     width: 250px;
     height:fit-content;
     min-height: 200px;
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.15fr;
+    grid-template-rows: 1fr 0.25fr;
     grid-template-areas:
         'pic'
         'name'
     ;
     gap: 1.5rem;
     border-radius: 20px;
+    place-items: center;
     
     padding: 1.5rem;
     
@@ -28,9 +29,11 @@
 .collab-img {
     grid-area: pic;
     height: 100%;
-    width: 100%;
+    width: 50%;
     border-radius: inherit;
     background-color: inherit;
+    display: flex;
+    align-items: center;
 }
 
 .collab-img img {

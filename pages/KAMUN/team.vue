@@ -126,7 +126,7 @@ const activeTab = ref("all")
 .teamCon {
     border-radius: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
    place-items: center;
    justify-content: center;
    background: radial-gradient(var(--french-gray) 8%, transparent 8%);

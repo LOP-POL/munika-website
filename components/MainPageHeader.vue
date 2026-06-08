@@ -104,6 +104,22 @@
 .container-home {
     border-radius: 10px;
 }
+.waves-svg-con {
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: unset;
+    right: 0;
+    z-index: 2;
+    transform: rotateX(180deg);
+}
+
+.waves-svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--theme-color);
+}
 
 </style>
 <template>
@@ -151,9 +167,8 @@
             <!-- <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
                 <p>{{ quote }}</p>
             </div> -->
-            <div v-if="isMobile || teamPictureBg" class="svg-container"  style="background-color: transparent; position: absolute; bottom:0; left: 0; height: unset; right:0; z-index:2; transform:rotatex(180deg);">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    style="width: 100%; height: 100%; fill:var(--theme-color);">
+            <div v-if="isMobile || teamPictureBg" ref="wavesSvgConRef" class="svg-container waves-svg-con">
+                <svg ref="wavesSvgRef" class="waves-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path
                         d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
                         opacity=".25"></path>
@@ -195,7 +210,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import { ArrowDownBold } from '@element-plus/icons-vue'
 import { useMediaQuery } from '@vueuse/core'
 
@@ -215,7 +230,8 @@ const leftRef = ref<HTMLElement | null>(null)
 const headerRef = ref<HTMLElement | null>(null)
 const underlayRef = ref<HTMLElement | null>(null)
 const rightSideRef = ref<HTMLElement | null>(null)
-
+const wavesSvgConRef = ref<HTMLElement | null>(null)
+const wavesSvgRef = ref<SVGElement | null>(null)
 
 const animate = ref<boolean>(false)
 const gusting = ref<boolean>(false)
@@ -223,6 +239,22 @@ const isMobile = useMediaQuery('(max-width: 1024px)')
 
 const teamPictureBg = ref(false)
 const turnBW = ref(false)
+
+const wavesSvgConStyles = ref({
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    bottom: '0',
+    left: '0',
+    height: 'unset',
+    right: '0',
+    zIndex: '2',
+    transform: 'rotateX(180deg)'
+})
+const wavesSvgStyles = ref({
+    width: '100%',
+    height: '100%',
+    fill: 'var(--theme-color)'
+})
 
 
 const pictureToShow = computed(() => {
@@ -332,8 +364,20 @@ const openPicture = (e: Event) => {
 
 //     }
 // });
-onMounted(() => {
+onMounted(async () => {
     animate.value = true
+    
+    // Wait for Vue to finish rendering, then apply styles to wave elements
+    await nextTick()
+    
+    if (wavesSvgConRef.value) {
+        Object.assign(wavesSvgConRef.value.style, wavesSvgConStyles.value)
+    }
+    
+    if (wavesSvgRef.value) {
+        Object.assign(wavesSvgRef.value.style, wavesSvgStyles.value)
+    }
+
     if (headerRef.value) {
         headerRef.value.addEventListener('mousemove', onMouseMove)
         headerRef.value.addEventListener('touchmove', onTouchMove)
