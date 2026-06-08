@@ -27,6 +27,43 @@
 
 }
 
+.lighten-back{
+      background-color: rgba(251, 250, 250, 0.483);
+    
+     
+      background-color: hsla(51, 100%, 50%, 0.1);
+      background-color: rgba(0, 0, 0, 0.472);
+      background-color: #2f4f3e88
+}
+.right-side {
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem;
+    font-size: 20px;
+    font-family: cursive;
+    color: white;
+}
+
+.teamPictureBg {
+    background-image: url('/styleImgs/teamPictureBW.jpg');
+    background-image: cross-fade(url('/styleImgs/teamPictureBW.jpg') 0%,url('/styleImgs/schloss.jpg') 100%);
+}
+
+.schlossPictureBg {
+    background-image: url('/styleImgs/schloss.jpg');
+   
+}
+
+.color-white {
+    color: white;
+}
+
 /* .right-side>* {
     width: 100%;
     height: 100%;
@@ -76,7 +113,7 @@
                 <ArrowLeftBold />
             </el-icon>
         </el-button> -->
-        <div class="left-side layered-content" ref="leftRef">
+        <div class="left-side layered-content  " :class="teamPictureBg?'lighten-back':'darken-back'" ref="leftRef">
 
             <!-- Hero Section -->
             <section class=" min-h-screen center-flex" ref="leftRef">
@@ -85,8 +122,8 @@
                     <div class="mb-8">
                         <img src="/img-logos/MunikaLogo.jpg" height="100px" width="100px" style="border-radius: 50%;" @click="triggerGust"/>
                     </div>
-                    <h1>Model United Nations Initiative Karlsruhe</h1>
-                    <p>Shaping future diplomats through debate, diplomacy, and global awareness.</p>
+                    <h1 :class="teamPictureBg ? 'color-white' : ''">Model United Nations Initiative Karlsruhe</h1>
+                    <p :class="teamPictureBg ? 'color-white' : ''">Shaping future diplomats through debate, diplomacy, and global awareness.</p>
                     <div class="flex">
                         <NuxtLink to="/KAMUN" class="btn-kamun">Go to KAMUN</NuxtLink>
                         <NuxtLink to="/join" class="btn-join">Join Us</NuxtLink>
@@ -110,11 +147,11 @@
         </div>
         <!-- <div class="layered-content underlay-munika" ref="underlayRef">
         </div> -->
-          <div class="right-side layered-content hero-gradient" ref="rightSideRef">
+          <div class="right-side layered-content " :class="teamPictureBg ? pictureToShow : ''" ref="rightSideRef">
             <!-- <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
                 <p>{{ quote }}</p>
             </div> -->
-            <div v-if="isMobile" class="svg-container"  style="background-color: transparent; position: absolute; bottom:0; left: 0; height: unset; right:0; z-index:2; transform:rotatex(180deg);">
+            <div v-if="isMobile || teamPictureBg" class="svg-container"  style="background-color: transparent; position: absolute; bottom:0; left: 0; height: unset; right:0; z-index:2; transform:rotatex(180deg);">
                 <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
                     style="width: 100%; height: 100%; fill:var(--theme-color);">
                     <path
@@ -133,7 +170,7 @@
                 <svg id="svg-trees" viewBox="0 0 375 578" xmlns="http://www.w3.org/2000/svg"
                     :class="{ 'is-animated': animate, 'is-gusting': gusting }">
 
-                    <g class="tree-svg" v-for="x in ['50vw', '35vw', '0', '20vw','-20vw', '-30vw','-40vw','-60vw','80vw','-80vw']" :key="x"
+                    <g class="tree-svg" v-for="x in ['50vw', '35vw', '0', '20vw','-20vw', '-30vw','-40vw','-60vw','70vw','-70vw']" :key="x"
                         :style="{ transform: `translate(${x},0)` }">
                         <path id="Polygon 3" class="tree-part polygon3"
                             d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z"
@@ -184,9 +221,25 @@ const animate = ref<boolean>(false)
 const gusting = ref<boolean>(false)
 const isMobile = useMediaQuery('(max-width: 1024px)')
 
+const teamPictureBg = ref(false)
+const turnBW = ref(false)
+
+
+const pictureToShow = computed(() => {
+    if (turnBW.value) {
+        turnBW.value = !turnBW.value
+        return 'teamPictureBg'
+    }
+    else {
+        turnBW.value = !turnBW.value
+        return 'schlossPictureBg'
+    }
+})
+
 
 const triggerGust = () => {
     gusting.value = false
+     teamPictureBg.value = !teamPictureBg.value
     requestAnimationFrame(() => {
         gusting.value = true
         setTimeout(() => {

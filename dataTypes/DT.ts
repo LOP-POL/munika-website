@@ -76,6 +76,13 @@ export interface TeamMemberRole {
         | { type: 'studywhat', value: string }
         | { type: 'link', value: { platform: string, link: string } }
     >
+}
 
-
+export interface Collab{
+    name: string,
+    fullName:string,
+    website:string,
+    picture:string,
+    affiliation:string,
+    type:string,
 }

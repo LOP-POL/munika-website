@@ -5,7 +5,7 @@
                 <ArrowLeftBold />
             </el-icon>
         </el-button> -->
-        <div class="left-side layered-content" ref="leftRef">
+        <div class="left-side layered-content" :class="teamPictureBg?'lighten-back':'darken-back'" ref="leftRef">
             <!-- Hero Section -->
             <section class=" min-h-screen center-flex" ref="leftRef">
 
@@ -14,8 +14,8 @@
                         <img src="/img-logos/Kamun2025Logo.png" height="100px" width="100px" style="border-radius: 50%;"
                             @click="triggerGust" />
                     </div>
-                    <h1>Karlsruhe Model United Nations</h1>
-                    <p>The Black Forest Summit</p>
+                    <h1 :class="teamPictureBg ? 'color-white' : ''">Karlsruhe Model United Nations</h1>
+                    <p :class="teamPictureBg ? 'color-white' : ''">The Black Forest Summit</p>
                     <div class="flex">
                         <NuxtLink to="/" class="btn-kamun" style="background-color: black; border: solid 1px black;">
                             Come to MUNIKA</NuxtLink>
@@ -47,11 +47,12 @@
             </div>
         </div> -->
 
-        <div class="right-side layered-content hero-gradient" ref="rightSideRef">
+        <div class="right-side layered-content " :class="teamPictureBg ? pictureToShow : ''" ref="rightSideRef">
             <!-- <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
                 <p>{{ quote }}</p>
             </div> -->
-            <div v-if="isMobile" class="svg-container"  style="background-color: transparent; position: absolute; bottom:0; left: 0; height: unset; right:0; z-index:2; transform:rotatex(180deg);">
+            <div v-if="isMobile || teamPictureBg" class="svg-container"
+                style="background-color: transparent; position: absolute; bottom:0; left: 0; height: unset; right:0; z-index:2; transform:rotatex(180deg);">
                 <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
                     style="width: 100%; height: 100%; fill:var(--theme-color);">
                     <path
@@ -70,19 +71,17 @@
                 <svg id="svg-trees" viewBox="0 0 375 578" xmlns="http://www.w3.org/2000/svg"
                     :class="{ 'is-animated': animate, 'is-gusting': gusting }">
 
-                    <g class="tree-svg" v-for="x in ['50vw', '35vw', '0', '20vw','-20vw', '-30vw','-40vw','-60vw','80vw','-80vw']" :key="x"
-                        :style="{ transform: `translate(${x},0)` }">
+                    <g class="tree-svg"
+                        v-for="x in ['50vw', '35vw', '0', '20vw', '-20vw', '-30vw', '-40vw', '-60vw', '70vw', '-70vw']"
+                        :key="x" :style="{ transform: `translate(${x},0)` }">
                         <path id="Polygon 3" class="tree-part polygon3"
-                            d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z"
-                         />
+                            d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z" />
                         <path id="Polygon 2" class="tree-part polygon2"
-                            d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z"
-                            />
+                            d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z" />
                         <path id="Polygon 1" class="tree-part polygon1"
-                            d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z"
-                             />
-                        <rect id="Rectangle 1" class="rectangle1" x="152.293" y="400.621" width="71" height="177" rx="9"
-                           />
+                            d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z" />
+                        <rect id="Rectangle 1" class="rectangle1" x="152.293" y="400.621" width="71" height="177"
+                            rx="9" />
                     </g>
 
 
@@ -120,12 +119,25 @@ const rightSideRef = ref<HTMLElement | null>(null)
 const animate = ref<boolean>(false)
 const gusting = ref<boolean>(false)
 const isMobile = useMediaQuery('(max-width: 1024px)')
+const teamPictureBg = ref(false)
+const turnBW = ref(false)
 
 
-
+const pictureToShow = computed(() => {
+    if (turnBW.value) {
+        turnBW.value = !turnBW.value
+        return 'teamPictureBg'
+    }
+    else {
+        turnBW.value = !turnBW.value
+        return 'schlossPictureBg'
+    }
+})
 
 const triggerGust = () => {
     gusting.value = false
+    teamPictureBg.value = !teamPictureBg.value
+
     requestAnimationFrame(() => {
         gusting.value = true
         setTimeout(() => {
@@ -266,6 +278,17 @@ onUnmounted(() => {
     border-radius: 10px;
 }
 
+.darken-back{
+
+}
+.lighten-back{
+      background-color: rgba(251, 250, 250, 0.483);
+    
+     
+      background-color: hsla(51, 100%, 50%, 0.1);
+      background-color: rgba(0, 0, 0, 0.472);
+      background-color: #2f4f3e88
+}
 .right-side {
 
     background-position: center;
@@ -281,7 +304,19 @@ onUnmounted(() => {
     color: white;
 }
 
+.teamPictureBg {
+    background-image: url('/styleImgs/teamPictureBW.jpg');
+    background-image: cross-fade(url('/styleImgs/teamPictureBW.jpg') 0%,url('/styleImgs/schloss.jpg') 100%);
+}
 
+.schlossPictureBg {
+    background-image: url('/styleImgs/schloss.jpg');
+   
+}
+
+.color-white {
+    color: white;
+}
 
 /* .right-side>* {
     width: 100%;
@@ -445,6 +480,4 @@ hero-gradient p {
     padding: 0 1em;
     letter-spacing: 0.02em;
 }
-
-
 </style>

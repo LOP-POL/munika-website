@@ -54,14 +54,25 @@
 
       <p>Incase you prefer a more personal approach come to our meetings at 7 pm especially if you intend to join</p>
       <br />
+      <div v-if="collabs" class="not-show" style="display: contents;">
+          <MarqueeSec :collabs-data="collabs"/>
+      </div>
+    
+
+    </head-and-c>
+
+    <head-and-c>
       <Calendar />
     </head-and-c>
+
   </head-and-c>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import Calendar from './Calendar.vue'
+
+import type { Collab } from '~/dataTypes/DT.js'
 
 const tooltipVisible = ref(false)
 const tooltipRef = ref<HTMLElement | null>(null)
@@ -72,11 +83,17 @@ const vidSummary3 = ref<HTMLElement | null>(null)
 const vidCont = ref<HTMLElement | null>(null)
 const videoPart = ref<HTMLElement | null>(null)
 
+
 const backGroundImages = ref<Record<string, string>>({
   food: '/img/pictureOfFood.JPG',
   bau: '/img/pictureMatheBau.JPG',
   schloss: '/img/pictureInSchloss.JPG',
 })
+
+
+const collabs = ref<Collab[]>([])
+
+const { data: collabsData } = await useFetch('/api/collaborations/collabs')
 
 function handleVideoClicks(img: string, time: number, e: Event) {
   if (vidCont.value) {
@@ -88,15 +105,21 @@ function handleVideoClicks(img: string, time: number, e: Event) {
   // }
 }
 
+
 onMounted(() => {
   //To set the video to play
-   if (vidCont.value) {
+  if (vidCont.value) {
     vidCont.value.style.backgroundImage = `url(${backGroundImages.value.schloss})`
   }
   if (videoRef.value) {
     videoRef.value.currentTime = 3
-
   }
+
+  // Populate collabs from fetched data
+    if (collabsData.value) {
+        collabs.value = collabsData.value as Collab[]
+    }
+
   // Tooltip intersection observer
   if (tooltipRef.value) {
     const tooltipObserver = new window.IntersectionObserver((entries) => {
@@ -106,6 +129,10 @@ onMounted(() => {
     }, { threshold: 0.2 })
     tooltipObserver.observe(tooltipRef.value)
   }
+
+  // Cleanup listeners on component unmount
+ 
+   
 })
 
 if (videoRef.value) {
@@ -173,8 +200,8 @@ if (videoRef.value) {
     align-items: center;
   }
 
-  .vidSummary{
-    font-size:12px;
+  .vidSummary {
+    font-size: 12px;
   }
 }
 
@@ -222,7 +249,7 @@ if (videoRef.value) {
   margin: 5px;
   width: 100%;
   height: 100%;
-
-
 }
+
+
 </style>

@@ -145,7 +145,7 @@
       </div>
     </el-scrollbar>
 
-    <el-divider></el-divider>
+  
 
     <div class="card-content" id="content">
       <headAndC v-if="currentCommittee" :divider="true">

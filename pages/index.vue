@@ -24,7 +24,7 @@ onMounted(() => {
     <main-page-header />
     <br></br>
     <section class="main-section">
-      <head-and-c>
+      <head-and-c :col-form="true">
         <head-and-c divider :inner="true">
           <template #title>Who are we</template>
           <p>
@@ -40,7 +40,7 @@ onMounted(() => {
         </head-and-c>
 
 
-        <section class="main-section " id="where-to">
+      
           <head-and-c divider :row-form="true">
             <template #title>Where to find us</template>
             <p>
@@ -57,7 +57,7 @@ onMounted(() => {
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </head-and-c>
 
-        </section>
+        
         <br></br>
       </head-and-c>
     </section>
@@ -81,11 +81,5 @@ onMounted(() => {
 
 </template>
 <style>
-#where-to {
-  background-image: url("/styleImgs/forest-silouette-white.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 </style>
