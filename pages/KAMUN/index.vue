@@ -49,7 +49,7 @@ onMounted(() => {
             }
 
         })
-    }, { threshold: 0.2 })
+    }, { threshold: 0.15})
 
     document.querySelectorAll('.main-section').forEach(node => {
 
@@ -184,7 +184,7 @@ onMounted(() => {
             entries.forEach(entry => {
                 tooltipVisible.value = entry.isIntersecting
             })
-        }, { threshold: 0.2 })
+        }, { threshold: 0.10 })
         tooltipObserver.observe(tooltipRef.value)
     }
 })
