@@ -116,7 +116,9 @@ function openWebsite() {
     window.open(`${data.website}`, "_blank");
 }
 
-function showFullName(){
+function showFullName(e:MouseEvent){
+  e.stopImmediatePropagation()
+  e.stopPropagation()
      requestAnimationFrame(() => {
         showName.value = true
         setTimeout(() => {

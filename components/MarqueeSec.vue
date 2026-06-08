@@ -46,9 +46,7 @@
             Featured Sponsors and Partners
         </template>
         <div class="marquee">
-            <div ref="marqueeTrack" class="collabWrapper marquee-track" @mousedown="handleMouseDown"
-                @mouseleave="handleMouseLeave" @touchstart="handleTouchStart" @touchend="handleTouchEnd"
-                @mouseover="(e)=>(handleMouseOver(e))" @mouseout="handleMouseUp">
+            <div ref="marqueeTrack" class="collabWrapper marquee-track">
                 <template v-for="(collab, index) in collabs" :key="index">
                     <CollabCard :data="collab" />
                     <span class="handle">
@@ -79,10 +77,9 @@
     </head-and-c>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import CollabCard from './collabCard.vue'
 import type { Collab } from '~/dataTypes/DT.js'
-
 
 const isDragging = ref(false)
 const marqueeTrack = ref<HTMLElement | null>(null)
@@ -92,9 +89,16 @@ const currentTranslate = ref(0)
 
 const collabs = ref<Collab[]>([])
 
-const { collabsData } = defineProps<{
+const props = defineProps<{
     collabsData: Collab[]
 }>()
+
+// Watch for prop changes
+watch(() => props.collabsData, (newData) => {
+    if (newData) {
+        collabs.value = newData
+    }
+}, { immediate: true })
 function handleMouseDown(e: MouseEvent) {
     isDragging.value = true
     startX.value = e.clientX
@@ -102,6 +106,7 @@ function handleMouseDown(e: MouseEvent) {
 
     if (marqueeTrack.value) {
         marqueeTrack.value.getAnimations().forEach(animation => animation.cancel())
+
         marqueeTrack.value.style.cursor = 'grabbing'
     }
 
@@ -121,16 +126,25 @@ function startMarqueeAnimation() {
     if (!marqueeTrack.value) return
 
     // Cancel any existing animations
-    marqueeTrack.value.getAnimations().forEach(animation => animation.pause())
+    marqueeTrack.value.getAnimations().forEach(animation => animation.cancel())
 
-    // Create scroll animation
+    // Reset transform for smooth animation
+    marqueeTrack.value.style.transform = `translateX(${currentTranslate.value}px)`
+
+    console.log(marqueeTrack.value.getBoundingClientRect().width)
+    console.log(currentTranslate.value)
+    if (Math.abs(currentTranslate.value) >= marqueeTrack.value.getBoundingClientRect().width / 2.5) currentTranslate.value = 0
+    startTranslate.value = currentTranslate.value
+
+
+    // Create continuous scroll animation
     marqueeTrack.value.animate(
         [
             { transform: `translateX(${currentTranslate.value}px)` },
             { transform: 'translateX(-50%)' }
         ],
         {
-            duration: 40000,
+            duration: 60000,
             easing: 'linear',
             iterations: Infinity,
             fill: 'forwards'
@@ -144,31 +158,26 @@ function handleMouseUp() {
     isDragging.value = false
 
     if (marqueeTrack.value) {
-
+         marqueeTrack.value.getAnimations().forEach(animation => animation.play())
         startMarqueeAnimation()
     }
 }
 
-function handleMouseOver(e: MouseEvent) {
-    startX.value = e.clientX
-    startTranslate.value = currentTranslate.value
-
-   if (marqueeTrack.value) {
-        marqueeTrack.value.getAnimations().forEach(animation => animation.cancel())
-        marqueeTrack.value.style.cursor = 'grabbing'
-    }
-
-    e.preventDefault()
-}
 function handleMouseLeave() {
     if (isDragging.value) {
-        if (marqueeTrack.value) marqueeTrack.value.getAnimations().forEach(animation => animation.play())
-        handleMouseUp()
         isDragging.value = false
-    }// else {
-    //   startMarqueeAnimation()
+    }
 
-    // }
+
+}
+function handleMouseOver(e: MouseEvent) {
+    e.stopImmediatePropagation()
+   
+}
+function handleMouseOut(e:MouseEvent) {
+    
+
+   
 }
 
 function handleTouchEnd() {
@@ -201,16 +210,14 @@ function handleTouchMove(e: TouchEvent) {
 }
 
 onMounted(() => {
-    // Populate collabs from fetched data
-    if (collabsData) {
-        collabs.value = collabsData as Collab[]
-    }
-
     // Set up marquee track event listeners
     if (marqueeTrack.value) {
-       
         marqueeTrack.value.addEventListener('mousedown', handleMouseDown)
+        marqueeTrack.value.addEventListener('mouseleave', handleMouseLeave)
         marqueeTrack.value.addEventListener('touchstart', handleTouchStart)
+        marqueeTrack.value.addEventListener('touchend', handleTouchEnd)
+        marqueeTrack.value.addEventListener('mouseover', handleMouseOver)
+        marqueeTrack.value.addEventListener('mouseout', handleMouseOut)
         marqueeTrack.value.style.cursor = 'grab'
 
         // Start the scrolling animation
@@ -219,28 +226,29 @@ onMounted(() => {
 
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseup', handleMouseUp)
-
     window.addEventListener('touchmove', handleTouchMove, { passive: false })
     window.addEventListener('touchend', handleTouchEnd)
+    window.addEventListener('mouseover', handleMouseOver)
+    window.addEventListener('mouseout', handleMouseOut)
 
-})
-watch(()=>collabsData,()=>{
-    if (collabsData) {
-        collabs.value = collabsData as Collab[]
-    }
 })
 onUnmounted(() => {
     window.removeEventListener('mousemove', handleMouseMove)
     window.removeEventListener('mouseup', handleMouseUp)
-
     window.removeEventListener('touchmove', handleTouchMove)
     window.removeEventListener('touchend', handleTouchEnd)
+    window.removeEventListener('mouseover', handleMouseOver)
+    window.removeEventListener('mouseout', handleMouseOut)
+
     if (marqueeTrack.value) {
         marqueeTrack.value.removeEventListener('mousedown', handleMouseDown)
+        marqueeTrack.value.removeEventListener('mouseleave', handleMouseLeave)
         marqueeTrack.value.removeEventListener('touchstart', handleTouchStart)
+        marqueeTrack.value.removeEventListener('touchend', handleTouchEnd)
+        marqueeTrack.value.removeEventListener('mouseover', handleMouseOver)
+        marqueeTrack.value.removeEventListener('mouseout', handleMouseOut)
         marqueeTrack.value.getAnimations().forEach(animation => animation.cancel())
     }
-
 })
 
 </script>
