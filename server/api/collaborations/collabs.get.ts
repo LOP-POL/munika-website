@@ -34,7 +34,6 @@ export default defineEventHandler(async (event) => {
 
     const collabsData = responseData.results.map(extractCollab)
 
-    console.log(collabsData)
 
     return collabsData
 

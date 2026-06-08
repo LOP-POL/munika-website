@@ -6,7 +6,6 @@
     max-height: 600px;
     min-height: 400px;
     gap: 2.5rem;
-
     border-radius: 20px;
     align-items: center;
 }
@@ -15,72 +14,41 @@
     overflow: hidden;
     width: 100%;
     background-color: whitesmoke;
+    cursor: grab;
+}
+
+.marquee:active {
+    cursor: grabbing;
 }
 
 .marquee-track {
     width: max-content;
     border-radius: 20px;
     user-select: none;
-    transition: transform 0.1s ease-out;
-}
-
-.marquee-track.animate-marquee {
-    animation: marqueeScroll 60s linear infinite;
-}
-
-@keyframes marqueeScroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.marquee:hover .marquee-track.animate-marquee {
-    animation-play-state: paused;
-    cursor: grab;
+    will-change: transform;
 }
 
 .handle svg {
     height: 20px;
     width: 20px;
 }
-.toggle-drag-btn-con{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.toggle-drag-btn {
-    padding: 8px 16px;
-    background-color: var(--french-gray);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    transition: opacity 0.2s;
-}
-
-.toggle-drag-btn:hover {
-    opacity: 0.8;
-}
 </style>
+
 <template>
     <head-and-c>
         <template #title>
             Featured Sponsors and Partners
         </template>
         <div class="flex flex-col gap-4">
-
-
-
-            <div class="marquee">
-              
-                <div ref="marqueeTrack"
-                    :class="['collabWrapper', 'marquee-track', { 'animate-marquee': !draggingEnabled }]">
+            <div
+                ref="marqueeEl"
+                class="marquee"
+                @mouseenter="handleMouseEnter"
+                @mouseleave="handleMouseLeave"
+                @mousedown="handleMouseDown"
+                @touchstart.prevent="handleTouchStart"
+            >
+                <div ref="marqueeTrack" class="collabWrapper marquee-track">
                     <template v-for="(collab, index) in collabs" :key="index">
                         <CollabCard :data="collab" />
                         <span class="handle">
@@ -91,7 +59,6 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </span>
-
                     </template>
                     <template v-for="(collab, index) in collabs" :key="index + 'dup'">
                         <CollabCard :data="collab" />
@@ -104,153 +71,187 @@
                             </svg>
                         </span>
                     </template>
-                    
                 </div>
-                  <div class=" toggle-btn-con flex flex-row align-center">
-                    <button @click="toggleDragging" class="toggle-drag-btn w-fit">
-                        {{ draggingEnabled ? '🖱️ Dragging Mode - Click to Enable Animation' : '✨ Animation Mode - Click   to      Enable Dragging' }}
-                    </button>
-                  
-                </div>
-
             </div>
         </div>
-
-
     </head-and-c>
 </template>
+
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import CollabCard from './collabCard.vue'
 import type { Collab } from '~/dataTypes/DT.js'
 
-const isDragging = ref(false)
-const draggingEnabled = ref(false)
+// ─── Refs ──────────────────────────────────────────────────────────────────────
+const marqueeEl    = ref<HTMLElement | null>(null)
 const marqueeTrack = ref<HTMLElement | null>(null)
-const startX = ref(0)
-const startTranslate = ref(0)
-const currentTranslate = ref(0)
 
-const collabs = ref<Collab[]>([])
+const isDragging       = ref(false)
+const startX           = ref(0)
+const dragStartPx      = ref(0)   // translateX in px when drag began
+const currentOffsetPx  = ref(0)   // live offset while dragging
 
-const props = defineProps<{
-    collabsData: Collab[]
-}>()
+// Web Animations API instance — kept so we can pause / cancel / replace it
+let anim: Animation | null = null
 
-// Watch for prop changes
+const DURATION_MS  = 120_000   // 60s for a full -50% scroll (matches your original)
+const collabs      = ref<Collab[]>([])
+
+const props = defineProps<{ collabsData: Collab[] }>()
+
 watch(() => props.collabsData, (newData) => {
-    if (newData) {
-        collabs.value = newData
-    }
+    if (newData) collabs.value = newData
 }, { immediate: true })
 
-function toggleDragging() {
-    draggingEnabled.value = !draggingEnabled.value
-    if (!draggingEnabled.value) {
-        currentTranslate.value = 0
-        if (marqueeTrack.value) {
-            marqueeTrack.value.style.transform = 'translateX(0)'
+// ─── Helpers ───────────────────────────────────────────────────────────────────
+
+/** Total scrollable width = half the track (because content is duplicated) */
+function halfWidth(): number {
+    return (marqueeTrack.value?.scrollWidth ?? 0) / 2
+}
+
+/**
+ * Start (or resume) the scroll animation from a given px offset.
+ * The animation goes from `fromPx` → `-halfWidth()` then re-chains from 0.
+ * This is how the loop works: no rAF, no polling — just the `finish` event.
+ */
+function startAnimation(fromPx: number = 0): void {
+    if (!marqueeTrack.value) return
+
+    const hw       = halfWidth()
+    const distance = Math.abs(fromPx) < hw ? hw - Math.abs(fromPx) : hw
+    // Keep duration proportional to remaining distance so speed stays constant
+    const duration = DURATION_MS * (distance / hw)
+
+    anim = marqueeTrack.value.animate(
+        [
+            { transform: `translateX(${fromPx}px)` },
+            { transform: `translateX(${-hw}px)` },
+        ],
+        {
+            duration,
+            easing: 'linear',
+            fill: 'forwards',   // hold the end position
         }
-    }
+    )
+
+    // When this leg finishes, snap back to 0 and start a fresh full-width loop
+    anim.addEventListener('finish', () => {
+        currentOffsetPx.value = 0
+        startAnimation(0)
+    }, { once: true })
 }
 
-function handleMouseDown(e: MouseEvent) {
-    if (!draggingEnabled.value) return
+/** Pause animation and return the current translateX in px via boundingClientRect */
+function pauseAndCapture(): number {
+    if (!marqueeTrack.value || !anim) return 0
 
-    isDragging.value = true
-    startX.value = e.clientX
-    startTranslate.value = currentTranslate.value
+    anim.pause()
 
-    if (marqueeTrack.value) {
-        marqueeTrack.value.style.cursor = 'grabbing'
-    }
+    const trackRect  = marqueeTrack.value.getBoundingClientRect()
+    const parentRect = marqueeEl.value!.getBoundingClientRect()
+    const capturedPx = trackRect.left - parentRect.left
 
+    // ✓ Write position to inline style BEFORE cancel removes the animation effect
+    marqueeTrack.value.style.transform = `translateX(${capturedPx}px)`
+
+    return capturedPx
+}
+// ─── Hover — pause / resume ────────────────────────────────────────────────────
+
+
+function handleMouseEnter(): void {
+    if (isDragging.value) return
+    anim?.pause()
+}
+
+function handleMouseLeave(): void {
+    if (isDragging.value) return
+
+    // Resume from wherever the CSS left us — capture position then restart
+    const currentPx = pauseAndCapture()  // already paused, just get position
+    anim?.cancel()
+    startAnimation(currentPx)
+}
+
+// ─── Drag ──────────────────────────────────────────────────────────────────────
+
+function handleMouseDown(e: MouseEvent): void {
+    isDragging.value  = true
+    startX.value      = e.clientX
+    dragStartPx.value = pauseAndCapture()   // freeze animation, grab position
+    anim?.cancel()                          // fully detach the animation
+
+    if (marqueeEl.value) marqueeEl.value.style.cursor = 'grabbing'
     e.preventDefault()
 }
 
-function handleMouseMove(e: MouseEvent) {
-    if (!isDragging.value || !draggingEnabled.value || !marqueeTrack.value) return
-
-    const deltaX = e.clientX - startX.value
-    currentTranslate.value = startTranslate.value + deltaX
-
-    marqueeTrack.value.style.transform = `translateX(${currentTranslate.value}px)`
-
-    if (Math.abs(currentTranslate.value) >= marqueeTrack.value.getBoundingClientRect().width / 2.5) currentTranslate.value = 0
+function handleTouchStart(e: TouchEvent): void {
+    isDragging.value  = true
+    startX.value      = e.touches[0].clientX
+    dragStartPx.value = pauseAndCapture()
+    anim?.cancel()
 }
 
-function handleMouseUp() {
+function handleMouseMove(e: MouseEvent): void {
+    if (!isDragging.value || !marqueeTrack.value) return
+
+    const delta          = e.clientX - startX.value
+    currentOffsetPx.value = dragStartPx.value + delta
+
+    // Wrap: if dragged past -halfWidth snap the reference so it feels infinite
+    const hw = halfWidth()
+    if (currentOffsetPx.value < -hw)      currentOffsetPx.value += hw
+    if (currentOffsetPx.value > 0)         currentOffsetPx.value -= hw
+
+    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`
+}
+
+function handleTouchMove(e: TouchEvent): void {
+    if (!isDragging.value || !marqueeTrack.value) return
+
+    const delta           = e.touches[0].clientX - startX.value
+    currentOffsetPx.value = dragStartPx.value + delta
+
+    const hw = halfWidth()
+    if (currentOffsetPx.value < -hw) currentOffsetPx.value += hw
+    if (currentOffsetPx.value > 0)   currentOffsetPx.value -= hw
+
+    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`
+}
+
+function handleMouseUp(): void {
+    if (!isDragging.value) return
     isDragging.value = false
 
-    if (marqueeTrack.value) {
-        marqueeTrack.value.style.cursor = draggingEnabled.value ? 'grab' : 'default'
-    }
+    if (marqueeEl.value) marqueeEl.value.style.cursor = 'grab'
+
+    // Start a new animation leg from wherever the user dropped
+    startAnimation(currentOffsetPx.value)
 }
 
-function handleMouseLeave() {
-    if (isDragging.value) {
-        isDragging.value = false
-    }
-}
-
-function handleTouchEnd() {
+function handleTouchEnd(): void {
+    if (!isDragging.value) return
     isDragging.value = false
-
-    if (marqueeTrack.value) {
-        marqueeTrack.value.style.cursor = draggingEnabled.value ? 'grab' : 'default'
-    }
+    startAnimation(currentOffsetPx.value)
 }
 
-function handleTouchStart(e: TouchEvent) {
-    if (!draggingEnabled.value) return
-
-    isDragging.value = true
-    startX.value = e.touches[0].clientX
-    startTranslate.value = currentTranslate.value
-
-    e.preventDefault()
-}
-
-function handleTouchMove(e: TouchEvent) {
-    if (!isDragging.value || !draggingEnabled.value || !marqueeTrack.value) return
-
-    const deltaX = e.touches[0].clientX - startX.value
-    currentTranslate.value = startTranslate.value + deltaX
-
-    marqueeTrack.value.style.transform = `translateX(${currentTranslate.value}px)`
-
-    if (Math.abs(currentTranslate.value) >= marqueeTrack.value.getBoundingClientRect().width / 2.5) currentTranslate.value = 0
-}
+// ─── Lifecycle ─────────────────────────────────────────────────────────────────
 
 onMounted(() => {
-    // Set up marquee track event listeners
-    if (marqueeTrack.value) {
-        marqueeTrack.value.addEventListener('mousedown', handleMouseDown)
-        marqueeTrack.value.addEventListener('mouseleave', handleMouseLeave)
-        marqueeTrack.value.addEventListener('touchstart', handleTouchStart)
-        marqueeTrack.value.addEventListener('touchend', handleTouchEnd)
-
-        marqueeTrack.value.style.cursor = 'default'
-    }
+    startAnimation(0)
 
     window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseup', handleMouseUp)
+    window.addEventListener('mouseup',   handleMouseUp)
     window.addEventListener('touchmove', handleTouchMove, { passive: false })
-    window.addEventListener('touchend', handleTouchEnd)
+    window.addEventListener('touchend',  handleTouchEnd)
 })
 
 onUnmounted(() => {
+    anim?.cancel()
     window.removeEventListener('mousemove', handleMouseMove)
-    window.removeEventListener('mouseup', handleMouseUp)
+    window.removeEventListener('mouseup',   handleMouseUp)
     window.removeEventListener('touchmove', handleTouchMove)
-    window.removeEventListener('touchend', handleTouchEnd)
-
-    if (marqueeTrack.value) {
-        marqueeTrack.value.removeEventListener('mousedown', handleMouseDown)
-        marqueeTrack.value.removeEventListener('mouseleave', handleMouseLeave)
-        marqueeTrack.value.removeEventListener('touchstart', handleTouchStart)
-        marqueeTrack.value.removeEventListener('touchend', handleTouchEnd)
-    }
+    window.removeEventListener('touchend',  handleTouchEnd)
 })
-
 </script>

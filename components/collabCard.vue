@@ -72,23 +72,29 @@
     text-overflow: ellipsis;
     text-align: center;
 }
-.show{
-    white-space: wrap;
-    overflow: visible;
-    text-overflow: unset;
-}
+
 </style>
 <template>
 
-    <div class="collab-con" @click="openWebsite" @mouseover="showFullName">
+    <div class="collab-con">
         <div class="collab-img">
             <img v-if="hasPicture" :src="data.picture" :alt="data.fullName">
             <div v-else class="img-fallback">
                 <span>{{ initials }}</span>
             </div>
         </div>
-
-        <p class="fullName" :class="showName?'show':''">{{ data.fullName }}</p>
+         <el-tooltip
+        class="box-item"
+        effect="dark"
+        :content="data.fullName"
+        placement="top-start"
+      >
+           <p class="fullName">{{ data.fullName }}</p>
+      </el-tooltip>
+      <el-button @click="openWebsite">
+        Visit 
+      </el-button>
+     
 
     </div>
 
@@ -101,8 +107,6 @@ import type { Collab } from '~/dataTypes/DT';
 const { data } = defineProps<{
     data: Collab
 }>()
-
-const showName = ref(false)
 
 const initials = computed(() =>
     data.fullName
@@ -119,15 +123,6 @@ function openWebsite() {
     window.open(`${data.website}`, "_blank");
 }
 
-function showFullName(e:MouseEvent){
-  e.stopImmediatePropagation()
-  e.stopPropagation()
-     requestAnimationFrame(() => {
-        showName.value = true
-        setTimeout(() => {
-            showName.value = false
-        }, 2000)
-    })
-}
+
 
 </script>
