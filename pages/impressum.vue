@@ -6,8 +6,8 @@
       </template>
       <p>
         Model United Nations Initiative Karlsruhe e. V.<br>
-        c/o Lena Wanner<br>
-        Zähringerstraße 49<br>
+        c/o Venkata Mani Madhava Sai Kondapavuluri<br>
+        Kaiseralle 13b<br>
         76133 Karlsruhe
       </p>
     </headAndC>
