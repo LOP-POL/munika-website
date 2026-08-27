@@ -105,7 +105,7 @@
 
 /* .event-card:hover {
     transform: translateX(20px);
-   
+
 } */
 
 .event-title {
@@ -225,12 +225,12 @@ function parseDate(dateStr: string): string | null {
 const currentColor = ref<string>('var(--special-green)')
 
 const defaultData = {
-    title: 'Regular Meeting this week',
+    title: 'No Meeting this week',
     date: tuesdayOfWeek,
     startTime: '19:00',
     endTime: '20:30',
     location: 'Karlshochschule',
-    description: 'We are having a debate',
+    description: 'No Debate this week',
     extra:false
 }
 
