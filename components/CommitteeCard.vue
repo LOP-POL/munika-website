@@ -94,6 +94,9 @@
             <p>
                 <b> <em>Topic</em></b>: {{ topic }}
             </p>
+            <p>
+                <b><em>size</em></b>: {{ spots?spots:0 }}
+            </p>
         </div>
         <el-divider></el-divider>
         <div class="more">
@@ -116,7 +119,8 @@ const props = defineProps<{
     SignUpLink: string
     metaImage: string
     type: string
-    types: string[]
+  types: string[]
+    spots?:number
 }>()
 
 const emit = defineEmits<{
@@ -157,13 +161,13 @@ function signUp() {
 }
 
 function specialColors(): void {
-    
-   
+
+
     if (props.type==='Beginner') {
         primaryColor.value = '28afb0'
         secondaryColor.value = '#f4d35e'
         tertiaryColor.value = '#EE964B'
-    } 
+    }
     else if (props.type === 'Intermediate') {
         primaryColor.value = '#f4d35e'
         secondaryColor.value = '#28afb0'
@@ -174,7 +178,7 @@ function specialColors(): void {
         secondaryColor.value = '#f4d35e'
         tertiaryColor.value = '#28afb0'
     }
-  
+
     else {
         primaryColor.value = '#28afb0'
         secondaryColor.value = '#f4d35e'
@@ -184,7 +188,7 @@ function specialColors(): void {
         primaryColor.value = '#743debff'
         secondaryColor.value = '#f4d35e'
         tertiaryColor.value = '#EE964B'
-    } 
+    }
 
     specialBoxShadow.value = {
         boxShadow: `-10px -10px  ${secondaryColor.value},-20px -20px ${tertiaryColor.value}`,

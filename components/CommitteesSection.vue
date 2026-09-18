@@ -99,6 +99,13 @@
 .card-holder::-webkit-scrollbar-track {
   background: transparent;
 }
+.desc{
+      overflow-y:hidden;
+      text-overflow: ellipsis;
+      white-space: no-wrap;
+      height:60%;
+  }
+
 </style>
 <template>
   <div class="pageTransitionWrapper">
@@ -138,6 +145,7 @@
 
         <CommitteeCard @click="handleClick" v-for="(committee, idx) in committeeLevelToList"
           :key="committee.mainName + idx" :mainName="committee.mainName" :fullName="committee.fullName"
+          :spots="committee.spots"
           :topic="committee.topic" :logo="committee.logo" :SignUpLink="committee.SignUpLink"
           :metaImage="committee.metaImage" :type="committee.type" :types="committee.types" @set-committee="setCommittee" />
 
@@ -145,7 +153,7 @@
       </div>
     </el-scrollbar>
 
-  
+
 
     <div class="card-content" id="content">
       <headAndC v-if="currentCommittee" :divider="true">
@@ -155,7 +163,11 @@
         <div>
           <strong>{{ currentCommittee.fullName }}</strong><br>
           <p> <b><em>Topic: </em></b> {{ currentCommittee.topic }}</p>
-          <p><b><em>Description: </em></b>{{ currentCommittee.description }}</p>
+          <p>
+              <b><em>size</em></b>: {{ currentCommittee.spots?currentCommittee.spots:0 }}
+          </p>
+          <p class="desc"><b><em>Description: </em></b>{{ currentCommittee.description }}</p>
+
         </div>
       </headAndC>
     </div>
@@ -188,6 +200,7 @@ interface Committee {
   metaImage: string
   type: string
   types: string[]
+  spots?:number
 }
 const difficulty = ref<string | Difficulty>(Difficulty.BEGINNER)
 
@@ -237,10 +250,9 @@ const currentCommittee = ref(committees.value[0])
 
 const committeeLevelToList = computed(() => {
   if (difficulty.value) {
-    console.log(difficulty.value)
     return committees.value.filter((committee) => committee.type === difficulty.value || committee.types?.includes(difficulty.value));
   }
-  
+
   return [];
 });
 
@@ -294,12 +306,15 @@ onMounted(async () => {
         type: result.properties["committee-type"]?.multi_select?.[0]?.name || difficulty.value,
          types: result.properties["committee-type"]?.multi_select?.map((t: any) => {
           return t.name
-        })
+         }),
+         spots: result.properties["size"]?.number || 0
       })) as Committee[]
+
+      console.log(res)
+      console.log(results)
 
       if (mapped.length) {
         committees.value = mapped
-        console.log(mapped)
         committeesState.value = mapped
       }
     } catch (err) {

@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt'],
   nitro: {
+    prerender: {
+      routes:['/KAMUN/','/news']
+    },
     preset: 'netlify',
     externals: {
       external: [],
@@ -28,7 +31,7 @@ export default defineNuxtConfig({
     notionQuotesPage: process.env.NUXT_NOTION_QUOTES_PAGE_ID,
     notionTeamsPage: process.env.NUXT_NOTION_TEAMS_PAGE_ID,
     notionNewsPage: process.env.NUXT_NOTION_NEWS_DATABASE_ID,
-    
+
   },
   app: {
     head: {
