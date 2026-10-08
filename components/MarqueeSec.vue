@@ -103,22 +103,23 @@
                     :style="{ display: drawer ? 'block' : 'none' }"
                 >
                     <div class="modal-header" @click="() => { drawer = !drawer }"  @touch="() => { drawer = !drawer }">
-                        <span style="
+                        <p style="
                         border-radius:50%;
                         aspect-ratio:1/1;
                         height:50px;
                         width:50px;
-                        border:dashed 2px white;
+
                         display:flex;
                         align-items:center;
                         justify-content:center;
                         color:white;
                         cursor:pointer
                         "
-
+                        @click="() => { drawer = !drawer }"
+                        @touch="() => { drawer = !drawer }"
                         >
-                            <el-icon size="30"><Close/></el-icon>
-                        </span>
+                            <el-icon size="30" @click="() => { drawer = !drawer }"  @touch="() => { drawer = !drawer }"><Close/></el-icon>
+                        </p>
                     </div>
                     <div class="modal-inner">
                         <el-carousel
