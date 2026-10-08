@@ -22,7 +22,7 @@ onMounted(() => {
 <template>
   <div class="pageTransitionWrapper">
     <main-page-header />
-    <br></br>
+
     <section class="main-section">
       <head-and-c :col-form="true">
         <head-and-c divider :inner="true">
@@ -40,7 +40,7 @@ onMounted(() => {
         </head-and-c>
 
 
-      
+
           <head-and-c divider :row-form="true">
             <template #title>Where to find us</template>
             <p>
@@ -57,18 +57,17 @@ onMounted(() => {
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </head-and-c>
 
-        
-        <br></br>
+
+
       </head-and-c>
     </section>
-    <br>
+
     <head-and-c>
       <template #title>
-        Whats Happening
+        What's Happening
       </template>
       <RegularMeetings />
     </head-and-c>
-    <br>
 
     <section class="main-section">
       <ExpectSection />

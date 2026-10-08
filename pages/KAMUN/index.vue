@@ -51,7 +51,8 @@ onMounted(() => {
         })
     }, { threshold: 0.15})
 
-    document.querySelectorAll('.main-section').forEach(node => {
+  document.querySelectorAll('.main-section').forEach(node => {
+
 
         observer.observe(node)
     })
@@ -87,7 +88,7 @@ onMounted(() => {
 
     // if(kamunThemeTextRef.value){
     //      themeObserver.observe(kamunThemeTextRef.value)
-    // }   
+    // }
 
     if (themeSegments.value) {
         themeSegments.value.forEach((segment) => {
@@ -192,10 +193,10 @@ onMounted(() => {
 
 </script>
 <template>
- 
+
     <div class="pageTransitionWrapper">
         <kamun-page-header></kamun-page-header>
-    <br></br>
+    <br>
     <section class="main-section">
         <head-and-c class="kamun-theme">
             <template #title>
@@ -206,7 +207,7 @@ onMounted(() => {
 
             </h1>
             <!-- <p className="notice">
-                <strong>Notice: </strong> <br> Please Pay attention to the dates. Some of the information here is still
+                <strong>Notice: </strong>  Please Pay attention to the dates. Some of the information here is still
                 not up to
                 date, and is only relevant to last years KAMUN
                 as preparations are still ongoing for this year's KAMUN {{ new Date().getFullYear() }}. <br />
@@ -218,7 +219,7 @@ onMounted(() => {
         </head-and-c>
     </section>
 
-    <br></br>
+    <br>
 
     <section class="main-section">
         <head-and-c :row-form="true">
@@ -259,21 +260,21 @@ onMounted(() => {
 
 
     </section>
-    <br>
+
     <head-and-c :divider="true">
         <template #title>
             Our Committees 2026
         </template>
         <CommitteesSection />
     </head-and-c>
-    <br>
+
 
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
     </section>
     </div>
-    
+
 </template>
 <style>
 #where-to {

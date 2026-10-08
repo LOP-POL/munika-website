@@ -10,6 +10,43 @@
     align-items: center;
 }
 
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(315deg, var(--theme-color), white);
+    opacity: 1;
+    inset: 0;
+    z-index: 1000;
+}
+.modal-inner {
+    width: 90%;
+    height: fit-content;
+    animation: fadeIn 0.3s ease;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.modal-header {
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+    padding: 5px;
+    width: 90%;
+    color: black;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .marquee {
     overflow: hidden;
     width: 100%;
@@ -32,12 +69,25 @@
     height: 20px;
     width: 20px;
 }
+
+.card-wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    place-items: center;
+}
 </style>
 
 <template>
     <head-and-c>
         <template #title>
             Featured Sponsors and Partners
+            <el-button @click="() => (drawer = !drawer)" round
+                >Expand</el-button
+            >
         </template>
         <div class="flex flex-col gap-4">
             <div
@@ -48,26 +98,91 @@
                 @mousedown="handleMouseDown"
                 @touchstart.prevent="handleTouchStart"
             >
+                <div
+                    class="modal"
+                    :style="{ display: drawer ? 'block' : 'none' }"
+                >
+                    <div class="modal-header" @click="() => { drawer = !drawer }"  @touch="() => { drawer = !drawer }">
+                        <span style="
+                        border-radius:50%;
+                        aspect-ratio:1/1;
+                        height:50px;
+                        width:50px;
+                        border:dashed 2px white;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:white;
+                        cursor:pointer
+                        "
+
+                        >
+                            <el-icon size="30"><Close/></el-icon>
+                        </span>
+                    </div>
+                    <div class="modal-inner">
+                        <el-carousel
+                            trigger="click"
+                            height="400px"
+                            :autoplay="false"
+                        >
+                            <el-carousel-item
+                                v-for="(group, index) in collabGroups"
+                                :key="index"
+                            >
+                                <section class="card-wrapper">
+                                    <CollabCard
+                                        v-for="(item, itemIndex) in group"
+                                        :key="itemIndex"
+                                        :data="item"
+                                    />
+                                </section>
+                            </el-carousel-item>
+                        </el-carousel>
+                    </div>
+                </div>
+
                 <div ref="marqueeTrack" class="collabWrapper marquee-track">
                     <template v-for="(collab, index) in collabs" :key="index">
                         <CollabCard :data="collab" />
                         <span class="handle">
-                            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 5V19M5 14L3 12L5 10M19 14L21 12L19 10M10 5L10 19"
-                                    stroke="var(--french-gray)" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                            <svg
+                                width="800px"
+                                height="800px"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M14 5V19M5 14L3 12L5 10M19 14L21 12L19 10M10 5L10 19"
+                                    stroke="var(--french-gray)"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
                             </svg>
                         </span>
                     </template>
-                    <template v-for="(collab, index) in collabs" :key="index + 'dup'">
+                    <template
+                        v-for="(collab, index) in collabs"
+                        :key="index + 'dup'"
+                    >
                         <CollabCard :data="collab" />
                         <span class="handle">
-                            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 5V19M5 14L3 12L5 10M19 14L21 12L19 10M10 5L10 19"
-                                    stroke="var(--french-gray)" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
+                            <svg
+                                width="800px"
+                                height="800px"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M14 5V19M5 14L3 12L5 10M19 14L21 12L19 10M10 5L10 19"
+                                    stroke="var(--french-gray)"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
                             </svg>
                         </span>
                     </template>
@@ -78,36 +193,52 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import CollabCard from './collabCard.vue'
-import type { Collab } from '~/dataTypes/DT.js'
+import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import CollabCard from "./collabCard.vue";
+import type { Collab } from "~/dataTypes/DT.js";
+import { Close } from "@element-plus/icons-vue";
 
 // ─── Refs ──────────────────────────────────────────────────────────────────────
-const marqueeEl    = ref<HTMLElement | null>(null)
-const marqueeTrack = ref<HTMLElement | null>(null)
+const marqueeEl = ref<HTMLElement | null>(null);
+const marqueeTrack = ref<HTMLElement | null>(null);
+const drawer = ref(false);
 
-const isDragging       = ref(false)
-const startX           = ref(0)
-const dragStartPx      = ref(0)   // translateX in px when drag began
-const currentOffsetPx  = ref(0)   // live offset while dragging
+const isDragging = ref(false);
+const startX = ref(0);
+const dragStartPx = ref(0); // translateX in px when drag began
+const currentOffsetPx = ref(0); // live offset while dragging
 
 // Web Animations API instance — kept so we can pause / cancel / replace it
-let anim: Animation | null = null
+let anim: Animation | null = null;
 
-const DURATION_MS  = 120_000   // 60s for a full -50% scroll (matches your original)
-const collabs      = ref<Collab[]>([])
+const DURATION_MS = 120_000; // 60s for a full -50% scroll (matches your original)
+const collabs = ref<Collab[]>([]);
+const collabGroups = computed(() => {
+    const groups: Collab[][] = [];
+    for (let index = 0; index < collabs.value.length; index += 2) {
+        groups.push(collabs.value.slice(index, index + 2));
+    }
+    return groups;
+});
 
-const props = defineProps<{ collabsData: Collab[] }>()
+const props = defineProps<{ collabsData: Collab[] }>();
 
-watch(() => props.collabsData, (newData) => {
-    if (newData) collabs.value = newData
-}, { immediate: true })
+watch(
+    () => props.collabsData,
+    (newData) => {
+        if (newData) collabs.value = newData;
+    },
+    { immediate: true },
+);
 
+function handleModalToggle(e: MouseEvent) {
+    drawer.value = !drawer.value;
+}
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Total scrollable width = half the track (because content is duplicated) */
 function halfWidth(): number {
-    return (marqueeTrack.value?.scrollWidth ?? 0) / 2
+    return (marqueeTrack.value?.scrollWidth ?? 0) / 2;
 }
 
 /**
@@ -116,12 +247,12 @@ function halfWidth(): number {
  * This is how the loop works: no rAF, no polling — just the `finish` event.
  */
 function startAnimation(fromPx: number = 0): void {
-    if (!marqueeTrack.value) return
+    if (!marqueeTrack.value) return;
 
-    const hw       = halfWidth()
-    const distance = Math.abs(fromPx) < hw ? hw - Math.abs(fromPx) : hw
+    const hw = halfWidth();
+    const distance = Math.abs(fromPx) < hw ? hw - Math.abs(fromPx) : hw;
     // Keep duration proportional to remaining distance so speed stays constant
-    const duration = DURATION_MS * (distance / hw)
+    const duration = DURATION_MS * (distance / hw);
 
     anim = marqueeTrack.value.animate(
         [
@@ -130,128 +261,135 @@ function startAnimation(fromPx: number = 0): void {
         ],
         {
             duration,
-            easing: 'linear',
-            fill: 'forwards',   // hold the end position
-        }
-    )
+            easing: "linear",
+            fill: "forwards", // hold the end position
+        },
+    );
 
     // When this leg finishes, snap back to 0 and start a fresh full-width loop
-    anim.addEventListener('finish', () => {
-        currentOffsetPx.value = 0
-        startAnimation(0)
-    }, { once: true })
+    anim.addEventListener(
+        "finish",
+        () => {
+            currentOffsetPx.value = 0;
+            startAnimation(0);
+        },
+        { once: true },
+    );
 }
 
 /** Pause animation and return the current translateX in px via boundingClientRect */
 function pauseAndCapture(): number {
-    if (!marqueeTrack.value || !anim) return 0
+    if (!marqueeTrack.value || !anim) return 0;
 
-    anim.pause()
+    anim.pause();
 
-    const trackRect  = marqueeTrack.value.getBoundingClientRect()
-    const parentRect = marqueeEl.value!.getBoundingClientRect()
-    const capturedPx = trackRect.left - parentRect.left
+    const trackRect = marqueeTrack.value.getBoundingClientRect();
+    const parentRect = marqueeEl.value!.getBoundingClientRect();
+    const capturedPx = trackRect.left - parentRect.left;
 
     // ✓ Write position to inline style BEFORE cancel removes the animation effect
-    marqueeTrack.value.style.transform = `translateX(${capturedPx}px)`
+    marqueeTrack.value.style.transform = `translateX(${capturedPx}px)`;
 
-    return capturedPx
+    return capturedPx;
 }
 // ─── Hover — pause / resume ────────────────────────────────────────────────────
 
-
 function handleMouseEnter(): void {
-    if (isDragging.value) return
-    anim?.pause()
+    if (isDragging.value) return;
+    anim?.pause();
 }
 
 function handleMouseLeave(): void {
-    if (isDragging.value) return
+    if (isDragging.value) return;
 
     // Resume from wherever the CSS left us — capture position then restart
-    const currentPx = pauseAndCapture()  // already paused, just get position
-    anim?.cancel()
-    startAnimation(currentPx)
+    const currentPx = pauseAndCapture(); // already paused, just get position
+    anim?.cancel();
+    startAnimation(currentPx);
 }
 
 // ─── Drag ──────────────────────────────────────────────────────────────────────
 
 function handleMouseDown(e: MouseEvent): void {
-    isDragging.value  = true
-    startX.value      = e.clientX
-    dragStartPx.value = pauseAndCapture()   // freeze animation, grab position
-    anim?.cancel()                          // fully detach the animation
+    isDragging.value = true;
+    startX.value = e.clientX;
+    dragStartPx.value = pauseAndCapture(); // freeze animation, grab position
+    anim?.cancel(); // fully detach the animation
 
-    if (marqueeEl.value) marqueeEl.value.style.cursor = 'grabbing'
-    e.preventDefault()
+    if (marqueeEl.value) marqueeEl.value.style.cursor = "grabbing";
+    e.preventDefault();
 }
 
 function handleTouchStart(e: TouchEvent): void {
-    isDragging.value  = true
-    startX.value      = e.touches[0].clientX
-    dragStartPx.value = pauseAndCapture()
-    anim?.cancel()
+    isDragging.value = true;
+    startX.value = e.touches[0].clientX;
+    dragStartPx.value = pauseAndCapture();
+    anim?.cancel();
+
+    drawer.value = true;
 }
 
 function handleMouseMove(e: MouseEvent): void {
-    if (!isDragging.value || !marqueeTrack.value) return
+    if (!isDragging.value || !marqueeTrack.value) return;
 
-    const delta          = e.clientX - startX.value
-    currentOffsetPx.value = dragStartPx.value + delta
+    const delta = e.clientX - startX.value;
+    currentOffsetPx.value = dragStartPx.value + delta;
 
     // Wrap: if dragged past -halfWidth snap the reference so it feels infinite
-    const hw = halfWidth()
-    if (currentOffsetPx.value < -hw)      currentOffsetPx.value += hw
-    if (currentOffsetPx.value > 0)         currentOffsetPx.value -= hw
+    const hw = halfWidth();
+    if (currentOffsetPx.value < -hw) currentOffsetPx.value += hw;
+    if (currentOffsetPx.value > 0) currentOffsetPx.value -= hw;
 
-    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`
+    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`;
 }
 
 function handleTouchMove(e: TouchEvent): void {
-    if (!isDragging.value || !marqueeTrack.value) return
+    if (!isDragging.value || !marqueeTrack.value) return;
 
-    const delta           = e.touches[0].clientX - startX.value
-    currentOffsetPx.value = dragStartPx.value + delta
+    const delta = e.touches[0].clientX - startX.value;
+    currentOffsetPx.value = dragStartPx.value + delta;
 
-    const hw = halfWidth()
-    if (currentOffsetPx.value < -hw) currentOffsetPx.value += hw
-    if (currentOffsetPx.value > 0)   currentOffsetPx.value -= hw
+    const hw = halfWidth();
+    if (currentOffsetPx.value < -hw) currentOffsetPx.value += hw;
+    if (currentOffsetPx.value > 0) currentOffsetPx.value -= hw;
 
-    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`
+    marqueeTrack.value.style.transform = `translateX(${currentOffsetPx.value}px)`;
 }
 
 function handleMouseUp(): void {
-    if (!isDragging.value) return
-    isDragging.value = false
+    if (!isDragging.value) return;
+    isDragging.value = false;
 
-    if (marqueeEl.value) marqueeEl.value.style.cursor = 'grab'
+    if (marqueeEl.value) marqueeEl.value.style.cursor = "grab";
 
     // Start a new animation leg from wherever the user dropped
-    startAnimation(currentOffsetPx.value)
+    startAnimation(currentOffsetPx.value);
 }
 
 function handleTouchEnd(): void {
-    if (!isDragging.value) return
-    isDragging.value = false
-    startAnimation(currentOffsetPx.value)
+    if (!isDragging.value) return;
+    isDragging.value = false;
+    startAnimation(currentOffsetPx.value);
 }
 
 // ─── Lifecycle ─────────────────────────────────────────────────────────────────
 
 onMounted(() => {
-    startAnimation(0)
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('mouseup',   handleMouseUp)
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
-    window.addEventListener('touchend',  handleTouchEnd)
-})
+    startAnimation(1);
+    const currentPx = pauseAndCapture(); // already paused, just get position
+    anim?.cancel();
+    startAnimation(currentPx);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd);
+});
 
 onUnmounted(() => {
-    anim?.cancel()
-    window.removeEventListener('mousemove', handleMouseMove)
-    window.removeEventListener('mouseup',   handleMouseUp)
-    window.removeEventListener('touchmove', handleTouchMove)
-    window.removeEventListener('touchend',  handleTouchEnd)
-})
+    anim?.cancel();
+    window.removeEventListener("mousemove", handleMouseMove);
+    window.removeEventListener("mouseup", handleMouseUp);
+    window.removeEventListener("touchmove", handleTouchMove);
+    window.removeEventListener("touchend", handleTouchEnd);
+});
 </script>

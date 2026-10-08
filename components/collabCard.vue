@@ -1,8 +1,8 @@
 <style>
 .collab-con {
-  
+
     min-width:100px;
-    width: 250px;
+    width: 20vmin;
     height:fit-content;
     min-height: 200px;
     background-color: white;
@@ -16,14 +16,20 @@
     gap: 1.5rem;
     border-radius: 20px;
     place-items: center;
-    
+
     padding: 1.5rem;
-    
+
 
 
 }
 .collab-con:hover{
     scale:1.025;
+}
+
+@media (min-width: 768px) {
+    .collab-con {
+        width: 40vmin;
+    }
 }
 
 .collab-img {
@@ -92,9 +98,9 @@
            <p class="fullName">{{ data.fullName }}</p>
       </el-tooltip>
       <el-button @click="openWebsite">
-        Visit 
+        Visit
       </el-button>
-     
+
 
     </div>
 
