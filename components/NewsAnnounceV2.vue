@@ -207,26 +207,26 @@ main {
             <div class="selected-img">
 
                 <div class="instagram-media" :key="instaKey">
-                    <!--     border:0; 
-                border-radius:3px; 
+                    <!--     border:0;
+                border-radius:3px;
                 box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-                 margin: 1px; 
-                 max-width:90vw; 
-                 min-width:40vw; 
-                 padding:0; 
-                 width:99.375%; 
+                 margin: 1px;
+                 max-width:90vw;
+                 min-width:40vw;
+                 padding:0;
+                 width:99.375%;
                  width:undefinedpx;
                  height:undefinedpx;
                  max-height:100%;  -->
                     <blockquote class="instagram-media"
                         data-instgrm-permalink="https://www.instagram.com/kamun_org?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                        data-instgrm-version="12" style=" background:#FFF; 
-         border:0; border-radius:3px; 
+                        data-instgrm-version="12" style=" background:#FFF;
+         border:0; border-radius:3px;
          box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-          margin: 1px; 
-          max-width:100%; 
-          min-width:326px; 
-          padding:2em; 
+          margin: 1px;
+          max-width:100%;
+          min-width:326px;
+          padding:2em;
           width:99.375%;
           border-radius:20px;
            width:undefinedpx;
@@ -235,7 +235,7 @@ main {
           display: flex;
           justify-content: center;
           align-items: center;
-         
+
            width:undefinedpx;">
 
                         <div style="padding:16px;"> <a id="main_link"
@@ -336,26 +336,26 @@ main {
             <div class="selected-img">
 
                 <div class="instagram-media" :key="instaKey">
-                    <!--     border:0; 
-                border-radius:3px; 
+                    <!--     border:0;
+                border-radius:3px;
                 box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-                 margin: 1px; 
-                 max-width:90vw; 
-                 min-width:40vw; 
-                 padding:0; 
-                 width:99.375%; 
+                 margin: 1px;
+                 max-width:90vw;
+                 min-width:40vw;
+                 padding:0;
+                 width:99.375%;
                  width:undefinedpx;
                  height:undefinedpx;
                  max-height:100%;  -->
                     <blockquote class="instagram-media"
-                        data-instgrm-permalink="https://www.instagram.com/munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                        data-instgrm-version="12" style=" background:#FFF; 
-         border:0; border-radius:3px; 
+                        data-instgrm-permalink="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        data-instgrm-version="12" style=" background:#FFF;
+         border:0; border-radius:3px;
          box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-          margin: 1px; 
-          max-width:100%; 
-          min-width:326px; 
-          padding:2em; 
+          margin: 1px;
+          max-width:100%;
+          min-width:326px;
+          padding:2em;
           width:99.375%;
           border-radius:20px;
            width:undefinedpx;
@@ -364,11 +364,12 @@ main {
           display: flex;
           justify-content: center;
           align-items: center;
-         
+
            width:undefinedpx;">
+           <!-- https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw== -->
 
                         <div style="padding:16px;"> <a id="main_link"
-                                href="munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                href="munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                                 style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;"
                                 target="_blank">
                                 <div style=" display: flex; flex-direction: row; align-items: center;">
@@ -450,7 +451,7 @@ main {
                             </a>
                             <p
                                 style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-                                <a href="munika_ev_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                <a href="munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                                     style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;"
                                     target="_blank">Shared post</a> on <time
                                     style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;">Time</time>

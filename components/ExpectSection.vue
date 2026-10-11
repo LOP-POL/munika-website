@@ -48,7 +48,7 @@
         Send us an email at <a href="mailto:vorstand@munika.org">vorstand@munika.org</a>
       </p>
       <p>Follow us on <a
-          href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">instagram</a>
+          href="https://www.instagram.com/munika_ev?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw==">instagram</a>
         for all the newest updates regarding the conference.<br />
       </p>
 
@@ -57,7 +57,7 @@
       <div v-if="collabs" class="not-show" style="display: contents;">
           <MarqueeSec :collabs-data="collabs"/>
       </div>
-    
+
 
     </head-and-c>
 
@@ -131,8 +131,8 @@ onMounted(() => {
   }
 
   // Cleanup listeners on component unmount
- 
-   
+
+
 })
 
 if (videoRef.value) {
