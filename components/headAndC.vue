@@ -36,7 +36,7 @@ onMounted(() => {
 
 <style scoped>
 .head-and-c-section {
-  
+
   background-color: var(--seasalt);
   padding: 10px;
   border-radius: 5px;
@@ -86,9 +86,14 @@ onMounted(() => {
   color: var(--french-gray);
   margin-bottom: 0.5em;
   text-align: left;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
+@media screen and (max-width:1000px) {
+    .head-and-c-title{
+        font-size:20px;
+    }
+}
 .head-and-c-content {
   width: 100%;
   text-align: left;

@@ -1,0 +1,323 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//KAMUN//KAMUN 2026 schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:KAMUN 2026
+X-WR-CALNAME:KAMUN 2026
+DESCRIPTION:The Black Forest Summit\, Karlsruhe\, 13-15 November 2026. Upda
+ tes itself when the schedule changes.
+X-WR-CALDESC:The Black Forest Summit\, Karlsruhe\, 13-15 November 2026. Upd
+ ates itself when the schedule changes.
+X-WR-TIMEZONE:Europe/Berlin
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:kamun26-fri-registration@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T093000Z
+DTEND:20261113T103000Z
+SUMMARY:Registration
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Entrance Hall\n\nMap: https://maps.app.goo.gl/24UWU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-opening@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T103000Z
+DTEND:20261113T113000Z
+SUMMARY:Opening Ceremony
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Play Space\n\nMap: https://maps.app.goo.gl/24UWU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-workshop-how-to-mun@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T113000Z
+DTEND:20261113T123000Z
+SUMMARY:How to MUN Workshop (ILO\, COPUOS\, DISEC & EP)
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Play Space\n\nMap: https://maps.app.goo.gl/24UWU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-workshop-committee@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T114500Z
+DTEND:20261113T121500Z
+SUMMARY:Committee Workshop (WHO\, IPC\, UNSC & US CC)
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nWHO: Room 203\nUNSC: Room 
+ 213\nUS CC: Room 201\n\nMap: https://maps.app.goo.gl/24UWU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-session-1-a@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T124500Z
+DTEND:20261113T150000Z
+SUMMARY:Committee Session I (ILO\, COPUOS\, DISEC & EP)
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Play Space\nCOPUOS: R
+ oom 215\nDISEC: Room 202\nEP: Room 206\n\nMap: https://maps.app.goo.gl/24U
+ WU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-session-1-b@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T123000Z
+DTEND:20261113T150000Z
+SUMMARY:Committee Session I (IPC\, WHO\, PIF\, US CC\, UNSC & IAEA)
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nWHO: Room 203\nPIF: Room 2
+ 04\nUS CC: Room 201\nUNSC: Room 213\nIAEA: Room 212\n\nMap: https://maps.a
+ pp.goo.gl/24UWU2So4gFixooWA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-dinner@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T150000Z
+DTEND:20261113T153000Z
+SUMMARY:Take Out Dinner
+LOCATION:Karlshochschule International University\, Karlstraße 36-38\, 761
+ 33 Karlsruhe
+DESCRIPTION:Committee rooms\n\nMap: https://maps.app.goo.gl/24UWU2So4gFixoo
+ WA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-social-1-group-1@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T170000Z
+DTEND:20261113T210000Z
+SUMMARY:Social 1: Après Diplomatie (Group 1)
+LOCATION:Europabad Karlsruhe\, Hermann-Veit-Straße 5\, 76135 Karlsruhe
+DESCRIPTION:Group assignments are sent shortly before the conference.\nBrin
+ g swimwear\, a towel\, shower things and dry clothes. Lockers open with th
+ e wristband you get there.\nTram 4 (towards Oberreut) from Karlstor/Bundes
+ gerichtshof to Europahalle/Europabad.\nWear your wristband and carry your 
+ badge.\n\nMap: https://maps.app.goo.gl/s6eRYqmDv1cF4X119
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-social-1-group-2@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T173000Z
+DTEND:20261113T213000Z
+SUMMARY:Social 1: Après Diplomatie (Group 2)
+LOCATION:Europabad Karlsruhe\, Hermann-Veit-Straße 5\, 76135 Karlsruhe
+DESCRIPTION:Group assignments are sent shortly before the conference.\nBrin
+ g swimwear\, a towel\, shower things and dry clothes. Lockers open with th
+ e wristband you get there.\nTram 4 (towards Oberreut) from Karlstor/Bundes
+ gerichtshof to Europahalle/Europabad.\nWear your wristband and carry your 
+ badge.\n\nMap: https://maps.app.goo.gl/s6eRYqmDv1cF4X119
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-fri-after-social@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261113T213000Z
+DTEND:20261114T003000Z
+SUMMARY:After-Social: Nuit Diplomatique (University students only)
+LOCATION:intro Café\, Kronenplatz\, 76133 Karlsruhe
+DESCRIPTION:Map: https://maps.app.goo.gl/kSphJ2CXzgAPLJDPA
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-breakfast@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T073000Z
+DTEND:20261114T080000Z
+SUMMARY:Breakfast
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-session-2@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T080000Z
+DTEND:20261114T093000Z
+SUMMARY:Committee Session II
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-break-morning@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T093000Z
+DTEND:20261114T100000Z
+SUMMARY:Break
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-session-3@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T100000Z
+DTEND:20261114T114500Z
+SUMMARY:Committee Session III
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-lunch@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T114500Z
+DTEND:20261114T130000Z
+SUMMARY:Lunch
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-session-4@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T130000Z
+DTEND:20261114T143000Z
+SUMMARY:Committee Session IV
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-break-afternoon@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T143000Z
+DTEND:20261114T150000Z
+SUMMARY:Break
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-session-5@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T150000Z
+DTEND:20261114T170000Z
+SUMMARY:Committee Session V
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-dinner@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T170000Z
+DTEND:20261114T173000Z
+SUMMARY:Take Out Dinner
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sat-social-2@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261114T190000Z
+DTEND:20261115T013000Z
+SUMMARY:Social 2: Masquerade Ball
+LOCATION:Begegnungsstätte Grötzingen\, Niddastraße 9\, 76229 Karlsruhe-G
+ rötzingen
+DESCRIPTION:Bring a mask. Dress code: gowns\, cocktail dresses\, suits or t
+ uxedos.\nOpen bar included.\nS-Bahn S4 or S5 to Grötzingen\, then a 7-min
+ ute walk.\nWear your wristband and carry your badge.\n\nMap: https://maps.
+ app.goo.gl/Dcz9Fknucymy77CH9
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sun-breakfast@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261115T083000Z
+DTEND:20261115T090000Z
+SUMMARY:Breakfast
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sun-session-6@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261115T090000Z
+DTEND:20261115T110000Z
+SUMMARY:Committee Session VI
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sun-lunch@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261115T110000Z
+DTEND:20261115T121500Z
+SUMMARY:Lunch
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Foyer\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sun-session-7@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261115T121500Z
+DTEND:20261115T143000Z
+SUMMARY:Committee Session VII
+LOCATION:KIT Department of Mathematics (Mathebau\, building 20.30)\, Engler
+ straße 2\, 76131 Karlsruhe
+DESCRIPTION:Committee rooms\n\nCommittee rooms:\nILO: Room 1.067\nCOPUOS: R
+ oom 2.067\nEP: Room 2.058\nDISEC: Room 4.045\nIAEA: Room 3.068\nPIF: Room 
+ 2.066\nWHO: Room 3.061\nUS CC: Room 4.048\nUNSC: Room 0.016\nIPC: Room -1.
+ 009\n\nMap: https://maps.app.goo.gl/tc37UFfR9K5BWt156
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:kamun26-sun-closing@calendar.kamun.org
+DTSTAMP:20261102T185332Z
+DTSTART:20261115T144500Z
+DTEND:20261115T160000Z
+SUMMARY:Closing Ceremony
+LOCATION:KIT Kollegiengebäude am Ehrenhof (building 11.40)\, Englerstraße
+  11\, 76131 Karlsruhe
+DESCRIPTION:Johann-Gottfried-Tulla-Hörsaal\n\nMap: https://maps.app.goo.gl
+ /jSJm8Eb97eykt1GY6
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

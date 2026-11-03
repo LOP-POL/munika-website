@@ -470,7 +470,7 @@ const calendarOptions = ref({
     center: '',
     right: 'listDay,listWeek,listMonth,dayGridMonth'
   },
-  events: regularMeetings.value.concat(kamun2025Events),
+  events: regularMeetings.value.concat(activeEvents.value),
   nowIndicator: true,
   editable: true,
   eventClick: handleEventClick,
@@ -504,16 +504,11 @@ watch(currentDate, (newDate) => {
   }
 })
 
-// Ensure events are updated reactively when regularMeetings changes
-watch(regularMeetings, (newEvents) => {
-  calendarOptions.value.events = newEvents.concat(kamun2025Events)
-})
-
 // Merge Notion events with hardcoded events
 watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
   const allEvents = newMeetings.concat(activeEventsList)
   calendarOptions.value.events = allEvents
-}, { deep: true })
+}, { deep: true, immediate: true })
 
 
 

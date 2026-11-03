@@ -20,7 +20,7 @@
     transition: 0.5s ease;
 }
 .main-page-header{
-    
+
     width:100%;
     height: 100%;
     background-color: var(--school-bus-yellow);
@@ -28,15 +28,14 @@
 .main-page-footer{
     width: 100%;
     height:100%;
-    background-color: var(--school-bus-yellow);
+    background-color: var(--theme-color);
 }
 
 .title-logo-and-text{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--school-bus-yellow);
+    background-color: var(--theme-color);
     border-radius: inherit;
-    
-}
 
+}

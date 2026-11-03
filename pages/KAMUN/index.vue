@@ -294,12 +294,16 @@ onMounted(() => {
 .kamun-theme-text {
     font-family: 'Georgia', 'Times New Roman', Times, serif;
     font-style: italic;
-    font-size: 2.2em;
+    font-size:2rem;
     /* text-shadow: 0 50px; */
 
     cursor: pointer;
 }
-
+@media  screen and (max-width:1000px) {
+    .kamun-theme-text{
+        font-size:16px;
+    }
+}
 /* .kamun-theme:hover {
          animation:up 1s forwards;
     } */
