@@ -194,7 +194,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from "vue";
 import CollabCard from "./collabCard.vue";
 import type { Collab } from "~/dataTypes/DT.js";
 import { Close } from "@element-plus/icons-vue";
@@ -226,8 +226,16 @@ const props = defineProps<{ collabsData: Collab[] }>();
 
 watch(
     () => props.collabsData,
-    (newData) => {
-        if (newData) collabs.value = newData;
+    async (newData) => {
+        if (newData) {
+            collabs.value = newData;
+            if (marqueeTrack.value) {
+                await nextTick();
+                anim?.cancel();
+                marqueeTrack.value.style.transform = "";
+                startAnimation(0);
+            }
+        }
     },
     { immediate: true },
 );
@@ -251,6 +259,7 @@ function startAnimation(fromPx: number = 0): void {
     if (!marqueeTrack.value) return;
 
     const hw = halfWidth();
+    if (hw <= 0) return;
     const distance = Math.abs(fromPx) < hw ? hw - Math.abs(fromPx) : hw;
     // Keep duration proportional to remaining distance so speed stays constant
     const duration = DURATION_MS * (distance / hw);

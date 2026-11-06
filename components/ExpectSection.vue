@@ -54,7 +54,7 @@
 
       <p>Incase you prefer a more personal approach come to our meetings at 7 pm especially if you intend to join</p>
       <br />
-      <div v-if="collabs" class="not-show" style="display: contents;">
+      <div v-if="collabs.length > 0" class="not-show" style="display: contents;">
           <MarqueeSec :collabs-data="collabs"/>
       </div>
 
@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import Calendar from './Calendar.vue'
 
 import type { Collab } from '~/dataTypes/DT.js'
@@ -93,7 +93,13 @@ const backGroundImages = ref<Record<string, string>>({
 
 const collabs = ref<Collab[]>([])
 
-const { data: collabsData } = await useFetch('/api/collaborations/collabs')
+const { data: collabsData, error: collabsError, refresh: refreshCollabs } = await useFetch<Collab[]>('/api/collaborations/collabs')
+
+watch(collabsData, (data) => {
+  if (data) {
+    collabs.value = data
+  }
+}, { immediate: true })
 
 function handleVideoClicks(img: string, time: number, e: Event) {
   if (vidCont.value) {
@@ -115,10 +121,12 @@ onMounted(() => {
     videoRef.value.currentTime = 3
   }
 
-  // Populate collabs from fetched data
-    if (collabsData.value) {
-        collabs.value = collabsData.value as Collab[]
+  // Notion-hosted image URLs expire, so refresh them whenever this route is entered.
+  void refreshCollabs().then(() => {
+    if (collabsError.value) {
+      console.error('Failed to refresh collaborations', collabsError.value)
     }
+  })
 
   // Tooltip intersection observer
   if (tooltipRef.value) {
