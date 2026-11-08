@@ -5,97 +5,121 @@
 
 .time-card-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 5px 5px;
-    grid-auto-flow:column;
-    grid-template-areas:
-        "timeline countdown"
-    ;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas: "timeline countdown";
+    gap: 10px;
 
-    padding: 5px;
-    width: 80%;
+    width: min(100%, 500px);
+    aspect-ratio: 2 / 1;
+    place-items: center;
+
+    padding: 10px;
+    margin: 20px auto;
+
     border-radius: 20px;
     border: dashed 2px var(--french-grey);
-    transition: 0.5s ease-in-out;
-    
-    padding: 10px;
-    margin: 20px;
-     
+    box-sizing: border-box;
 
+    transition: 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
     .time-card-container {
-        /* grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas:
-            "countdown"
-            "timeline"; */
-        width: 80%;
-        height: 50%;
-        max-height: 200px;
-        justify-self: center;
+        width: min(95%, 400px);
+        gap: 5px;
+        padding: 5px;
     }
 
+    .start-part,
+    .end-part {
+        width: 60%;
+    }
 }
 
-.time-card-container :hover {
+.time-card-container > *:hover {
     transform: translateY(5px);
 
 }
 
 .countdown {
     grid-area: countdown;
-    background-image: url("/styleImgs/landscape-autum.jpg"), radial-gradient(var(--school-bus-yellow) 8%, transparent 8%);
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+
+    background-image:
+        url("/styleImgs/landscape-autum.jpg"),
+        radial-gradient(var(--school-bus-yellow) 8%, transparent 8%);
+
     background-position: center;
     background-size: cover;
+
     border-radius: 10px;
-    transition: 0.5s ease;
+
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    gap: 10px;
+
+    box-sizing: border-box;
 }
 
 .countdown p {
-    font-size:2rem;
+    font-size: clamp(1rem, 3vw, 2rem);
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #fff;
-    background-color:rgba(33, 33, 33, .7);
+    background-color: rgba(33, 33, 33, .7);
     border-radius: inherit;
-    padding:5%;
+    padding: 5%;
+    margin: 0;
 }
 
 .timeline-container {
     grid-area: timeline;
-    background: radial-gradient(var(--school-bus-yellow) 8%, transparent 8%);
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+
+    background: radial-gradient(
+        var(--school-bus-yellow) 8%,
+        transparent 8%
+    );
+
     background-position: 0% 0%;
     background-size: 5vmin 5vmin;
     background-repeat: repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    box-sizing: border-box;
 }
 
-.start {
+.start-part,
+.end-part {
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+
+    box-sizing: border-box;
+
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+}
+
+.start-part {
     background-color: #ffc;
-    width:80%;
-    height: 50%;
-    font-size: 50%;
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
-    ;
     transform: rotate(-5deg);
-    transition: transform .15s linear;
 }
 
- .end {
+.end-part {
     background-color: pink;
-   width:80%;
-    height: 50%;
-    font-size: 50%;
     transform: rotate(3deg);
-    box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
-    ;
-
 }
 .timeline{
     max-width: 200px;
@@ -132,8 +156,8 @@
     }
 }
 
-.timeline-container .end:hover,
-.timeline-container .start:hover {
+.timeline-container .end-part:hover,
+.timeline-container .start-part:hover {
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
     transform: scale(1.25);
     position: relative;
@@ -141,30 +165,28 @@
 }
 </style>
 <template>
-    <div class="time-card-container">
+    <div class="time-card-container min-h-4/5">
 
         <div class="countdown">
             <p>Days</p>
 
             <p>{{ daysRemaining }}</p>
 
-
-             
         </div>
 
         <div class="timeline-container">
-           <el-card class="start" ref="start">
+           <el-card class="start-part" ref="start">
                 <span style="float:right">
                     📍
                 </span>
-                <h2 style="color:black"> {{convertDate(startDate) ?? '6th December 2025'}} </h2>
+                <h2 style="color:black; font-weight: bold;"> {{convertDate(startDate) ?? '6th December 2025'}} </h2>
             </el-card>
             <br>
-            <el-card class="end" ref="end">
+            <el-card class="end-part" ref="end">
                 <span style="float:left">
                     📍
                 </span>
-                <h2 style="color:black">{{ convertDate(endDate)?? '7th December 2025'}}  </h2>
+                <h2 style="color:black; font-weight: bold;">{{ convertDate(endDate)?? '7th December 2025'}}  </h2>
             </el-card>
         </div>
     </div>
@@ -178,11 +200,6 @@ const metaStore =  useMetaStore()
 const startDate = ref(new Date(metaStore.meta[0].startDate))
 const endDate = ref(new Date(metaStore.meta[0].endDate))
 
-const currentDate =  new Date()
-const currentDateString = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDay()}`
-
-const targetDate = new Date(currentDateString)
-
 const start = ref<HTMLElement | null | Element>(null)
 const end = ref<HTMLElement | null | Element>(null)
 
@@ -191,7 +208,7 @@ function convertDate(date:Date){
     const monthNames = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
     const month = monthNames[date.getMonth()]
     const year = date.getFullYear()
-    
+
     const ordinalSuffix = (n: number) => {
         const lastDigit = n % 10
         const lastTwoDigits = n % 100
@@ -201,7 +218,7 @@ function convertDate(date:Date){
         if (lastDigit === 3) return 'rd'
         return 'th'
     }
-    
+
     return `${day}${ordinalSuffix(day)} ${month} ${year}`
 }
 
@@ -216,7 +233,7 @@ const timelineStyles = ref({
 })
 function getDaysRemaining(date: Date) {
     const now = new Date()
-    
+
     const diff = date.getTime() - now.getTime()
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
@@ -226,8 +243,8 @@ const daysRemaining = computed(() => getDaysRemaining(startDate.value))
 onMounted(() => {
 
     metaStore.fetchEventsAndMeta()
-    const startObserve = document.querySelector('.start')
-    const endObserve = document.querySelector('.end')
+    const startObserve = document.querySelector('.start-part')
+    const endObserve = document.querySelector('.end-part')
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

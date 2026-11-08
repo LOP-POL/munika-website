@@ -10,43 +10,6 @@
     align-items: center;
 }
 
-.modal {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    background: linear-gradient(315deg, var(--theme-color), white);
-    opacity: 1;
-    inset: 0;
-    z-index: 1000;
-}
-.modal-inner {
-    width: 90%;
-    height: fit-content;
-    animation: fadeIn 0.3s ease;
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-.modal-header {
-    display: flex;
-    align-items: right;
-    justify-content: flex-end;
-    padding: 5px;
-    width: 90%;
-    color: black;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .marquee {
     overflow: hidden;
     width: 100%;
@@ -79,15 +42,32 @@
 
     place-items: center;
 }
+
+.sponsor-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+/* Let each card fill the list width instead of using its vmin sizing */
+.sponsor-list .collab-con {
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0; /* stops cards from being squashed when the list overflows */
+}
 </style>
 
 <template>
     <head-and-c>
         <template #title>
             Featured Sponsors and Partners
-            <el-button @click="() => (drawer = !drawer)" round
-                >Expand</el-button
-            >
+            <el-button @click="() => { dialogVisible = true;}" round>Expand</el-button>
         </template>
         <div class="flex flex-col gap-4">
             <div
@@ -98,51 +78,6 @@
                 @mousedown="handleMouseDown"
                 @touchstart.prevent="handleTouchStart"
             >
-                <div
-                    class="modal"
-                    :style="{ display: drawer ? 'block' : 'none' }"
-                >
-                    <div class="modal-header" @click="() => { drawer = !drawer }"  @touch="() => { drawer = !drawer }">
-                        <p style="
-                        border-radius:50%;
-                        aspect-ratio:1/1;
-                        height:50px;
-                        width:50px;
-
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        color:white;
-                        cursor:pointer
-                        "
-                        @click="() => { drawer = !drawer }"
-                        @touch="() => { drawer = !drawer }"
-                        >
-                            <el-icon size="30" @click="() => { drawer = !drawer }"  @touch="() => { drawer = !drawer }"><Close/></el-icon>
-                        </p>
-                    </div>
-                    <div class="modal-inner">
-                        <el-carousel
-                            trigger="click"
-                            height="400px"
-                            :autoplay="false"
-                            direction="vertical"
-
-                        >
-                            <el-carousel-item
-                                v-for="(group, index) in collabs"
-                                :key="index"
-                            >
-                                <section class="card-wrapper">
-                                    <CollabCard
-                                        :data="group"
-                                    />
-                                </section>
-                            </el-carousel-item>
-                        </el-carousel>
-                    </div>
-                </div>
-
                 <div ref="marqueeTrack" class="collabWrapper marquee-track">
                     <template v-for="(collab, index) in collabs" :key="index">
                         <CollabCard :data="collab" />
@@ -190,19 +125,33 @@
                 </div>
             </div>
         </div>
+        <el-dialog
+            v-if="dialogVisible"
+            v-model="dialogVisible"
+            title="Featured Sponsors and Partners"
+            width="min(90vw, 700px)"
+            :before-close="handleDialogClose"
+        >
+            <div class="sponsor-list">
+                <CollabCard
+                    v-for="(collab, index) in collabs"
+                    :key="index"
+                    :data="collab"
+                />
+            </div>
+        </el-dialog>
     </head-and-c>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from "vue";
+import { ref, shallowRef, onMounted, onUnmounted, watch, nextTick } from "vue";
 import CollabCard from "./collabCard.vue";
 import type { Collab } from "~/dataTypes/DT.js";
-import { Close } from "@element-plus/icons-vue";
 
 // ─── Refs ──────────────────────────────────────────────────────────────────────
 const marqueeEl = ref<HTMLElement | null>(null);
 const marqueeTrack = ref<HTMLElement | null>(null);
-const drawer = ref(false);
+const dialogVisible = ref(false);
 
 const isDragging = ref(false);
 const startX = ref(0);
@@ -214,13 +163,6 @@ let anim: Animation | null = null;
 
 const DURATION_MS = 120_000; // 60s for a full -50% scroll (matches your original)
 const collabs = ref<Collab[]>([]);
-const collabGroups = computed(() => {
-    const groups: Collab[][] = [];
-    for (let index = 0; index < collabs.value.length; index += 2) {
-        groups.push(collabs.value.slice(index, index + 2));
-    }
-    return groups;
-});
 
 const props = defineProps<{ collabsData: Collab[] }>();
 
@@ -240,8 +182,8 @@ watch(
     { immediate: true },
 );
 
-function handleModalToggle(e: MouseEvent) {
-    drawer.value = !drawer.value;
+function handleDialogClose() {
+    dialogVisible.value = false;
 }
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -336,7 +278,7 @@ function handleTouchStart(e: TouchEvent): void {
     dragStartPx.value = pauseAndCapture();
     anim?.cancel();
 
-    drawer.value = true;
+    dialogVisible.value = true;
 }
 
 function handleMouseMove(e: MouseEvent): void {

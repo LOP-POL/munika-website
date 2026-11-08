@@ -18,8 +18,9 @@
     </div>
 
 
-    <full-calendar :options="calendarOptionsWithToolbar" style="max-height:80vh; min-height: 50vh; width:100%"
-      ref="calendarRef">
+    <div class="calendar-scroll">
+      <full-calendar :options="calendarOptionsWithToolbar" style="max-height:80vh; min-height: 50vh;"
+        ref="calendarRef">
 
 
       <template v-slot:eventContent="arg">
@@ -34,7 +35,8 @@
         </div>
       </template>
 
-    </full-calendar>
+      </full-calendar>
+    </div>
 
     <el-dialog v-if="dialogVisible" v-model="dialogVisible" title="Event Details" width="500px" height="500px"
       :before-close="handleDialogClose">
@@ -518,11 +520,12 @@ watch([regularMeetings, activeEvents], ([newMeetings, activeEventsList]) => {
 
 <style scoped>
 .calendar-wrapper {
-  min-width: 50%;
+  width: 100%;
+  min-width: 0;
   min-height: 50%;
   max-height: 100vh;
-  max-width: 100vw;
-  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
   /* background:#87CEFA ;
 background: #22C1C3;
 background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(--seasalt)100%); */
@@ -531,6 +534,14 @@ background: linear-gradient(0deg, var(--theme-color) 0%, var(--seasalt)75%,var(-
   border: 2px dashed #0A100D;
   padding: 10px;
   background-color: var(--seasalt);
+}
+
+.calendar-scroll {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media screen and (max-width:1000px) {
@@ -559,8 +570,11 @@ a {
 
 @media (max-width: 900px) {
   .calendar-wrapper {
-    max-width: 100vw;
     padding: 0;
+  }
+
+  .calendar-scroll :deep(.fc) {
+    min-width: 640px;
   }
 
   .toggle-toolbar-btn {

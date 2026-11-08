@@ -10,7 +10,7 @@
             <section class=" min-h-screen center-flex" ref="leftRef">
 
                 <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="800">
-                    <div class="mb-8">
+                    <div class="mb-8 flex justify-center">
                         <img src="/img-logos/Kamun2025Logo.png" height="100px" width="100px" style="border-radius: 50%;"
                             @click="triggerGust" />
                     </div>
@@ -265,14 +265,14 @@ const openPicture = (e: Event) => {
 // });
 onMounted(async () => {
     animate.value = true
-    
+
     // Wait for Vue to finish rendering, then apply styles to wave elements
     await nextTick()
-    
+
     if (wavesSvgConRef.value) {
         Object.assign(wavesSvgConRef.value.style, wavesSvgConStyles.value)
     }
-    
+
     if (wavesSvgRef.value) {
         Object.assign(wavesSvgRef.value.style, wavesSvgStyles.value)
     }
@@ -315,8 +315,8 @@ onUnmounted(() => {
 }
 .lighten-back{
       background-color: rgba(251, 250, 250, 0.483);
-    
-     
+
+
       background-color: hsla(51, 100%, 50%, 0.1);
       background-color: rgba(0, 0, 0, 0.472);
       background-color: #2f4f3e88
@@ -343,7 +343,7 @@ onUnmounted(() => {
 
 .schlossPictureBg {
     background-image: url('/styleImgs/schloss.jpg');
-   
+
 }
 
 .color-white {
@@ -510,7 +510,7 @@ hero-gradient p {
     text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
     margin: 0;
     padding: 0 1em;
-   
+
     letter-spacing: 0.02em;
 }
 .waves-svg-con {

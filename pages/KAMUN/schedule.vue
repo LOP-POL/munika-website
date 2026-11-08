@@ -133,7 +133,7 @@ const changeCurrentEvent = (value: string, color: string) => {
 </script>
 
 <template>
-    <main>
+    <main class="main-con">
         <!-- Intro using headAndC -->
         <head-and-c :inner="true">
             <template #title> Schedule & Calendar </template>
@@ -148,19 +148,20 @@ const changeCurrentEvent = (value: string, color: string) => {
         </head-and-c>
 
         <!-- Render one block per day -->
-        <section class="events-sticky">
+        <section class="events-sticky max-w-3xl mx-auto
+        ">
             <div
                 v-for="day in groupedEvents.filter(
                     (e) => getFullDayName(e.events[0].start) == currentEvent,
                 )"
                 :key="day.dateKey"
-                class="day-group"
+                class="day-group max-h-screen"
             >
                 <div class="dateShow">
-                    <span class="weekday">{{
+                    <p class="weekday">{{
                         getFullDayName(day.events[0].start)
-                    }}</span>
-                    <span class="fulldate">{{ day.label }}</span>
+                    }}</p>
+                    <p class="fulldate">{{ day.label }}</p>
 
                     <OptionsSelectore
                         :initialValue="currentEvent"
@@ -177,6 +178,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                         class="event-card"
                         @click="selectEvent(event)"
                     >
+
                         <!-- title -->
                         <p class="event-title" @click="selectEvent(event)">
                             {{ event.title ?? event.Name ?? event.name }}
@@ -205,13 +207,20 @@ const changeCurrentEvent = (value: string, color: string) => {
                                 >{{ event.extendedProps.location }}</a
                             >
                         </p>
+
                     </div>
+
+
                 </div>
             </div>
         </section>
+        <section class=" calendar-section mx-auto max-w-3xl">
+            <h1>Calendar</h1>
+            <Calendar/>
+        </section>
     </main>
 
-    <el-dialog v-if="dialogVisible" v-model="dialogVisible" :before-close="handleDialogClose" style="background-color:black; border-radius:20px; border:solid 2px white;">
+    <el-dialog v-if="dialogVisible" v-model="dialogVisible" :before-close="handleDialogClose" style="background-color:#1b1b1e; border-radius:20px; border:solid 2px white;">
 
         <div
             class="event-card-dia"
@@ -259,29 +268,29 @@ h1 {
     text-decoration: underline solid var(--french-gray) 5%;
     text-underline-offset: 10px;
 }
+
 .events-sticky {
     overflow-x: hidden;
     transform-style: preserve-3d;
     perspective: 100px;
     margin-top: 10px;
     position: relative;
+
 }
 
 .day-group {
     border-radius: 20px;
     margin-bottom: 16px;
     padding: 0;
-    background-color: black;
-
+    background-color: #1b1b1e;
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-
 }
 
 .day-group .dateShow {
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -289,34 +298,17 @@ h1 {
     justify-content: space-between;
     padding: 10px;
     margin: 0;
-    width: 95%;
+    width: 100%;
+    border-radius:inherit;
     border-top-left-radius: inherit;
     /* border-top-right-radius: inherit; */
-    height: 60px;
+    height: fit-content;
     position: absolute;
     z-index: 2;
     top: 0px;
-    box-shadow: inset -30px -50px 50px black, 0px 50px 50px 10px black;
+    box-shadow: inset -30px -50px 50px #1b1b1e, 0px 50px 50px 10px #1b1b1e;
 }
 
-@media (max-width: 768px) {
-    .day-group .dateShow {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        font-size: 10px;
-    }
-
-    .events-section {
-        transform: translateY(50px);
-    }
-
-    .weekday,
-    .fulldate {
-        margin: 10px;
-        display: none;
-    }
-}
 
 .day-group:nth-child(1) .dateShow {
     background-color: v-bind(currentColor);
@@ -325,12 +317,15 @@ h1 {
 .weekday,
 .fulldate {
     font-weight: bold;
-    color: black;
+    /*shadow-grey*/
+    /*carbon-black 1B1B1E*/
+    color: #1b1b1e;
     background-color: white;
     padding: 10px;
     border-radius: 20px;
-    border: solid 2px black;
-    box-shadow: 0px 0px 10px black;
+    border: solid 2px #1b1b1e;
+    box-shadow: 0px 0px 10px #1b1b1e;
+    font-size:1.5rem;
 }
 
 .fulldate {
@@ -338,21 +333,18 @@ h1 {
 }
 
 .events-section {
-    display: grid;
-    grid-auto-columns: 1fr;
-    grid-auto-rows: 1fr;
+    display:flex;
+    flex-direction:column;
     border-radius: inherit;
     justify-content: center;
     place-items: center;
-    margin-top: 10%;
+    margin-top:5%;
 }
 
 .event-card, .event-card-dia{
     padding:5px;
-
     margin:5px;
-
-    border-bottom: solid 2px white;
+    border-bottom:solid 4px white;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -362,7 +354,9 @@ h1 {
     max-height: fit-content;
 
 }
-
+.event-card:nth-child(1){
+    margin-top:60px
+}
 .event-card-dia{
     border:none;
 }
@@ -390,4 +384,30 @@ h1 {
 .event-location {
     color: var(--theme-color);
 }
+@media (max-width: 768px) {
+    .day-group .dateShow {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        font-size: 10px;
+    }
+
+    .events-section {
+        transform: translateY(50px);
+    }
+    .event-card{
+        min-height:fit-content;
+
+    }
+    .event-card:nth-child(1){
+        margin-top:25px
+    }
+
+    .weekday,
+    .fulldate {
+        margin: 10px;
+        display: none;
+    }
+}
+
 </style>

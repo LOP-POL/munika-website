@@ -1,8 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt'],
+  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt','shadcn-nuxt'],
   nitro: {
     prerender: {
       routes:['/KAMUN/','/news']
@@ -24,7 +25,7 @@ export default defineNuxtConfig({
     }
 
   },
-  css: ['~/assets/css/main.css', '~/assets/css/kamun.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/kamun.css','~/assets/css/tailwind.css'],
   runtimeConfig: {
     notionApiKey: process.env.NUXT_NOTION_API_KEY,
     notionCommitteesPage: process.env.NUXT_NOTION_COMMITTEES_PAGE_ID,
@@ -33,6 +34,25 @@ export default defineNuxtConfig({
     notionNewsPage: process.env.NUXT_NOTION_NEWS_DATABASE_ID,
 
   },
+  vite: {
+      plugins: [
+        tailwindcss(),
+      ],
+  },
+  shadcn: {
+      /**
+       * Prefix for all the imported component.
+       * @default "Ui"
+       */
+      prefix: '',
+      /**
+       * Directory that the component lives in.
+       * Will respect the Nuxt aliases.
+       * @link https://nuxt.com/docs/api/nuxt-config#alias
+       * @default "@/components/ui"
+       */
+      componentDir: './components/ui'
+    },
   app: {
     head: {
       title: "MUNIKA",
