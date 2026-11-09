@@ -325,6 +325,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                     class="event-card-dia"
                     v-for="(result, index) in queryResults"
                     :key="index"
+                    style="margin:20px; padding:10px;"
                 >
                     <!-- title -->
                     <p class="event-title">
@@ -528,10 +529,18 @@ h1 {
     max-height: 50vh;
     overflow-x: hidden;
     overflow-y: auto;
+    gap:2.5rem;
 }
 
 .search-results .event-card-dia {
     width: min(100%, 36rem);
+    box-sizing: border-box;
+    height: auto;
+    min-height: 200px;
+    max-height: none;
+    flex: 0 0 auto;
+    overflow-wrap: anywhere;
+    border-bottom:solid 5px white;
 }
 
 .search-empty {
