@@ -8,7 +8,7 @@
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.25fr;
+    grid-template-rows: 1fr 0.5fr 0.25fr;
     grid-template-areas:
         'pic'
         'name'
@@ -35,7 +35,7 @@
 .collab-img {
     grid-area: pic;
     height: 100%;
-    width: 50%;
+    width: 60%;
     border-radius: inherit;
     background-color: inherit;
     display: flex;
