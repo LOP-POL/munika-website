@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt','shadcn-nuxt'],
+  modules: ['@nuxt/content', '@element-plus/nuxt', '@pinia/nuxt', 'nuxt-studio', '@vueuse/nuxt', 'shadcn-nuxt', 'v-gsap-nuxt'],
   nitro: {
     prerender: {
       routes:['/KAMUN/','/news']
