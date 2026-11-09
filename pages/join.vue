@@ -28,7 +28,7 @@
                 Weekly Debates
             </template>
             <p>
-                Explore topics from global issues to ligt-hearted dilemmas in a relaxed, supportive setting. Sharpen your
+                Explore topics from global issues to light-hearted dilemmas in a relaxed, supportive setting. Sharpen your
                 public
                 speaking skills
                 while sharing ideas and enjoying engaging discussions. We hope to see you on <NuxtLink to="news">
@@ -56,7 +56,7 @@
                 Organizing <NuxtLink to="/kamun">KAMUN</NuxtLink>
             </template>
             <p>
-                Step into leadership, gain invalubale skills, form lasting friendships, and discover more about
+                Step into leadership, gain invaluable skills, form lasting friendships, and discover more about
                 yourself -
                 all
                 while having a great
