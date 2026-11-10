@@ -106,7 +106,7 @@ watch(()=>props,()=>{
     flex-direction: column;
     min-width: 250px;
     max-width: 300px;
-    
+
     /* box-shadow: 0px 0px 10px black; */
     border-radius: 20px;
     padding: 10px;
@@ -117,7 +117,8 @@ watch(()=>props,()=>{
     border-right: solid 5px var(--border-primary);
     border-bottom: solid 5px var(--border-accent);
     min-height:400px;
-    background-color: whitesmoke;
+    background-color:var(--light-forest-green);
+    color:white;
 }
 
 .member-card:hover .portrait {
@@ -208,8 +209,8 @@ watch(()=>props,()=>{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color:black
-   
+    color:white;
+
 }
 
 .expand-btn {
@@ -225,12 +226,13 @@ watch(()=>props,()=>{
     transition: border-color 0.2s, background 0.2s;
     white-space: nowrap;
 
-    background: rgba(255, 217, 0, 0.317);
+   background-color:var(--theme-color);
+   color:black;
 }
 
 .expand-btn:hover {
     border-color: var(--theme-color);
-    background: rgba(255, 216, 0, 0.06);
+    color:white;
 
 }
 
@@ -239,12 +241,11 @@ watch(()=>props,()=>{
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--gray);
     transition: color 0.2s;
 }
 
 .expand-btn:hover .expand-label {
-    color: var(--theme-color);
+    color: white;
 }
 
 .expand-icon {

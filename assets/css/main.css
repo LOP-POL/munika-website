@@ -8,19 +8,14 @@
     --munika-blue: #4acef7;
     --pacific-cyan: #22ADD6;
 
-    /* CSS HSL */
-    --seasalt: hsla(0, 0%, 98%, 1);
-    --black: hsla(0, 0%, 0%, 1);
-    --school-bus-yellow: hsla(51, 100%, 50%, 1);
-    --blue-violet: hsla(259, 81%, 58%, 1);
-    --french-gray: hsla(231, 6%, 76%, 1);
-
     --el-color-primary: var(--munika-blue);
     --theme-color: var(--munika-blue);
 
     --forest-green: #1e3a2f;
     --light-forest-green: #2f4f3e;
     --mist-white: #f7f5ef;
+
+    --carbon-black: #1b1b1e;
 
     --special-green: #28afb0;
     --special-yellow: #f4d35e;

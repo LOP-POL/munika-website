@@ -123,6 +123,7 @@ const activeTab = ref("all")
 </script>
 
 <style scoped>
+
 .teamCon {
     border-radius: 20px;
     display: grid;
@@ -130,7 +131,7 @@ const activeTab = ref("all")
    place-items: center;
    justify-content: center;
    background: radial-gradient(var(--french-gray) 8%, transparent 8%);
-   
+
    background-size: 5vmin 5vmin;
    background-repeat: repeat;
 }

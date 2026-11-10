@@ -54,6 +54,7 @@
 <template>
     <div
         class="difficulty-scale"
+        style="background-color:#f4d35e;"
         :style="{ backgroundColor: computedColors[difficulty] }"
     >
         <span class="difficulty-indicator" v-if="!props.search">
@@ -97,13 +98,14 @@ const props = defineProps<{
     options: string[];
     categories: string;
     initialValue: string;
-    search?: boolean;
+  search?: boolean;
+  colors?: string[];
 }>();
 const emits = defineEmits(["return-value", "openSearch"]);
 
 const difficulty = ref<string>(props.initialValue);
 
-const colors = ["#28afb0", "#f4d35e", "#EE964B"];
+const colors = !props.colors? ["#28afb0", "#f4d35e", "#EE964B"]: props.colors;
 
 const computedColors = computed(() => {
     var myColors: Record<string, string> = {};

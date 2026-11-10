@@ -160,7 +160,7 @@ const refreshSchedule = () => {
 };
 
 const currentEvent = ref<string>("Friday");
-const currentColor = ref<string>("#28afb0");
+const currentColor = ref<string>("var(--special-yellow)");
 const changeCurrentEvent = (value: string, color: string) => {
     currentEvent.value = value;
     currentColor.value = color;
@@ -204,6 +204,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                         @return-value="changeCurrentEvent"
                         @openSearch="() => (searchDialogVisible = true)"
                         :search="true"
+                        :colors="['#f4d35e','#f4d35e','#f4d35e']"
                         ref="dayChoice"
                     />
                 </div>
@@ -256,10 +257,12 @@ const changeCurrentEvent = (value: string, color: string) => {
         v-if="dialogVisible"
         v-model="dialogVisible"
         :before-close="handleDialogClose"
+        width="500"
         style="
-            background-color: #1b1b1e;
+            background-color: var(--forest-green);
             border-radius: 20px;
             border: solid 2px white;
+            max-width:90vw;
         "
     >
         <div class="event-card-dia" v-if="selectedEvent">
@@ -305,10 +308,12 @@ const changeCurrentEvent = (value: string, color: string) => {
         v-if="searchDialogVisible"
         v-model="searchDialogVisible"
         :before-close="handleSearchClose"
+        width="500"
         style="
-            background-color: #1b1b1e;
+            background-color: var(--forest-green);
             border-radius: 20px;
             border: solid 2px white;
+            max-width:90vw;
         "
 
     >
@@ -364,7 +369,7 @@ const changeCurrentEvent = (value: string, color: string) => {
                 </div>
             </div>
             <div v-else class="search-results search-empty">
-                <head-and-c :inner="true" style="background-color:#1b1b1e;" >
+                <head-and-c :inner="true" style="background-color:var(--forest-green);" >
                     <template #title> No results </template>
                 </head-and-c>
             </div>
@@ -373,6 +378,7 @@ const changeCurrentEvent = (value: string, color: string) => {
 </template>
 
 <style scoped>
+
 h1 {
     text-decoration: underline solid var(--french-gray) 5%;
     text-underline-offset: 10px;
@@ -391,7 +397,8 @@ h1 {
     border-radius: 20px;
     margin-bottom: 16px;
     padding: 0;
-    background-color: #1b1b1e;
+    /*background-color: var(--forest-green);*/
+    background-color: var(--forest-green);
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
@@ -415,9 +422,9 @@ h1 {
     position: absolute;
     z-index: 2;
     top: 0px;
-    box-shadow:
-        inset -30px -50px 50px #1b1b1e,
-        0px 50px 50px 10px #1b1b1e;
+    /*box-shadow:
+        inset -30px -50px 50px var(--forest-green),
+        0px 50px 50px 10px var(--forest-green);*/
 }
 
 .day-group:nth-child(1) .dateShow {
@@ -429,12 +436,12 @@ h1 {
     font-weight: bold;
     /*shadow-grey*/
     /*carbon-black 1B1B1E*/
-    color: #1b1b1e;
+    color: var(--forest-green);
     background-color: white;
     padding: 10px;
     border-radius: 20px;
-    border: solid 2px #1b1b1e;
-    box-shadow: 0px 0px 10px #1b1b1e;
+    border: solid 2px var(--forest-green);
+    box-shadow: 0px 0px 10px var(--forest-green);
     font-size: 1.5rem;
 }
 

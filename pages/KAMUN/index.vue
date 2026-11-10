@@ -268,7 +268,6 @@ onMounted(() => {
         <CommitteesSection />
     </head-and-c>
 
-
     <section class="main-section">
         <!-- Replace the entire What to expect head-and-c section with the ExpectSection component -->
         <ExpectSection />
