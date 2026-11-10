@@ -17,20 +17,27 @@ type: news
 
 [Whether you're looking for important conference information, keeping track of the schedule, or grabbing a coffee between committee sessions, our new web apps have you covered.]
 
-## Delegate Apps and Digital Tools
+## [Delegate Apps and Digital Tools]{style="color:var(--french-gray);font-size:1.5em; margin-top:2em;"}
 
-[Explore the new tools below and give them a try ahead of the conference:]
+Explore the new tools below and give them a try ahead of the conference:
 
-- **[KAMUN Delegate App](https://app.kamun.org)**
-  > [Your central hub for the conference. Access general information, navigate your delegate dashboard, and find essential tools and resources to help you throughout KAMUN.]
-- **[Covfefe](https://covfefe.kamun.org)**
-  > [Fancy something a little different? Use Covfefe to order specialty drinks and coffee from one of our esteemed conference partners.]
-- **[KAMUN Café](https://cafe.kamun.org)**
-  > [A simple and convenient interface for ordering coffee, helping you get your caffeine fix without missing a beat.]
-- **[KAMUN Calendar](https://calendar.kamun.org)**
-  > [Keep track of everything happening at the conference with our stylized, easy-to-use calendar. Find important dates and times, and stay up to date with real-time schedule changes and announcements.]
+**[KAMUN Delegate App](https://app.kamun.org)**
 
-## More to Come!
+[Your central hub for the conference. Access general information, navigate your delegate dashboard, and find essential tools and resources to help you throughout KAMUN.]
+
+**[Covfefe](https://covfefe.kamun.org)**
+
+[Fancy something a little different? Use Covfefe to order specialty drinks and coffee from one of our esteemed conference partners.]
+
+**[KAMUN Café](https://cafe.kamun.org)**
+
+[A simple and convenient interface for ordering coffee, helping you get your caffeine fix without missing a beat.]
+
+**[KAMUN Calendar](https://calendar.kamun.org)**
+
+[Keep track of everything happening at the conference with our stylized, easy-to-use calendar. Find important dates and times, and stay up to date with real-time schedule changes and announcements.]
+
+[More to Come!]{style="color:var(--french-gray);font-size:1.5em; margin-top:2em;"}
 
 [These applications are part of MUNIKA's continued effort to make KAMUN more accessible, organized, and enjoyable for everyone involved.]
 
