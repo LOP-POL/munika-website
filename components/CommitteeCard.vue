@@ -1,88 +1,107 @@
-<style>
+<style scoped>
 .comm-card-container {
     display: flex;
     flex-direction: column;
-    min-width: 50vw;
-    max-width: 100vw;
-    max-height: 80%;
-    min-height: 40vh;
-    border: 5px dashed #28afb0;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 5px;
-    box-shadow: -10px -10px #EE964B,
-        -20px -20px #f4d35e;
+    position: relative;
+    min-width: 0;
+    min-height: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    background-color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
 
-    background-color: whitesmoke;
-    backdrop-filter: blur(5px);
-    font-size: 2.5vmin;
+.comm-card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-dot {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background-color: var(--difficulty-color);
+    box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
 }
 
 .meta {
     width: 100%;
-    height: 100%;
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: 1fr;
-
-
+    grid-template-columns: 4rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
 }
 
 .meta-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    box-shadow: inset -10px -10px #EE964B,
-        inset -20px -20px #f4d35e;
-    border: 2px solid black;
-    background: none;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 12px;
+    background: #f8fafc;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .meta-image img {
-    width: 60%;
-    height: 60%;
-    object-fit: cover;
-    border-radius: 50%;
-    background-color: transparent;
-    box-shadow: -5px -5px #EE964B,
-        -10px -10px #f4d35e;
-
-    transform: rotateX(2deg) rotateY(-30deg);
-    background-color: white;
-
-
-}
-
-.meta-image img :hover {
-    transform: scale(1.25);
     width: 80%;
     height: 80%;
-
+    object-fit: contain;
 }
 
 .full-name {
-    color: var(--seasalt)
+    margin: 0.25rem 1.5rem 0 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.main-name {
+    margin: 0;
+    color: #172033;
+    font-size: 1.2rem;
+}
+
+.topic {
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.topic p {
+    margin: 0.5rem 0;
 }
 
 .more {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.more :deep(.el-button) {
+    margin-left: 0;
 }
 </style>
 <template>
-    <div class="comm-card-container" :style="{ ...specialBoxShadow, borderColor: `${primaryColor}` }">
+    <div class="comm-card-container" :style="{ '--difficulty-color': difficultyColor }">
+        <span class="difficulty-dot" role="img" :aria-label="`${difficultyType} difficulty`" :title="difficultyType"></span>
         <div class="meta">
-            <div class="meta-image" :style="specialBoxShadowInset">
-                <img :src="logo ? logo : metaImage" alt="committee">
+            <div class="meta-image">
+                <img :src="logo || metaImage" :alt="`${mainName} committee logo`">
             </div>
             <div class="meta-name">
                 <h2 class="main-name">
                     {{ mainName }}
                 </h2>
-                <h4 class="full-name" :style="props.type == 'Intermediate' ? { color: 'black' } : { color: 'gray' }">
+                <h4 class="full-name">
                     {{ fullName }}
                 </h4>
             </div>
@@ -109,8 +128,6 @@
 </template>
 <script setup lang="ts">
 
-import { ref, onMounted } from 'vue'
-
 const props = defineProps<{
     mainName: string
     fullName: string
@@ -119,34 +136,29 @@ const props = defineProps<{
     SignUpLink: string
     metaImage: string
     type: string
-  types: string[]
+    types?: string[]
     spots?:number
 }>()
+const difficultyType = computed(() => {
+    return (props.types ?? []).find(type => ['Beginner', 'Intermediate', 'Expert', 'Highschooler', 'University'].includes(type))
+        ?? props.type
+})
+
+const difficultyColors: Record<string, string> = {
+    Beginner: '#2b9a91',
+    Intermediate: '#c49a20',
+    Expert: '#d77b35',
+    Highschooler: '#7558bd',
+    University: '#64748b',
+}
+const difficultyColor = computed(() => difficultyColors[difficultyType.value] ?? '#64748b')
 
 const emit = defineEmits<{
     (e: 'set-committee', mainName: string): void
 }>()
 
 
-const primaryColor = ref('#28afb0')
-const secondaryColor = ref('#EE964B')
-const tertiaryColor = ref('#f4d35e')
-
-const specialBoxShadow = ref(
-    {
-        boxShadow: `-10px -10px  ${secondaryColor.value},-20px -20px ${tertiaryColor.value}`,
-    }
-)
-const specialBoxShadowInset = ref(
-    {
-        boxShadow: `inset -10px -10px  ${secondaryColor.value},inset -20px -20px ${tertiaryColor.value}`,
-    }
-)
-
-
-function setCommittee(e: Event) {
-    // Programmatically navigate to the element with id "content"
-
+function setCommittee() {
     const el = document.getElementById('content')
     if (el) {
         el.scrollIntoView({ behavior: 'smooth' })
@@ -156,57 +168,8 @@ function setCommittee(e: Event) {
 
 function signUp() {
     if (props.SignUpLink) {
-        window.open(props.SignUpLink, '_blank');
+        window.open(props.SignUpLink, '_blank', 'noopener,noreferrer');
     }
 }
-
-function specialColors(): void {
-
-
-    if (props.type==='Beginner') {
-        primaryColor.value = '28afb0'
-        secondaryColor.value = '#f4d35e'
-        tertiaryColor.value = '#EE964B'
-    }
-    else if (props.type === 'Intermediate') {
-        primaryColor.value = '#f4d35e'
-        secondaryColor.value = '#28afb0'
-        tertiaryColor.value = '#EE964B'
-
-    } else if (props.type === 'Expert') {
-        primaryColor.value = '#EE964B'
-        secondaryColor.value = '#f4d35e'
-        tertiaryColor.value = '#28afb0'
-    }
-
-    else {
-        primaryColor.value = '#28afb0'
-        secondaryColor.value = '#f4d35e'
-        tertiaryColor.value = '#EE964B'
-    }
-     if (props.types.includes('Highschooler')) {
-        primaryColor.value = '#743debff'
-        secondaryColor.value = '#f4d35e'
-        tertiaryColor.value = '#EE964B'
-    }
-
-    specialBoxShadow.value = {
-        boxShadow: `-10px -10px  ${secondaryColor.value},-20px -20px ${tertiaryColor.value}`,
-    }
-
-    specialBoxShadowInset.value = {
-        boxShadow: `inset -10px -10px  ${secondaryColor.value},inset -20px -20px ${tertiaryColor.value}`,
-    }
-
-}
-
-onMounted(() => {
-    specialColors()
-})
-import { watch } from 'vue'
-
-watch(() => props.type, () => {
-    specialColors()
-})
 
 </script>

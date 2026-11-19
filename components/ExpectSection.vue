@@ -1,40 +1,30 @@
 <template>
   <head-and-c :divider="true" :col-form="true">
     <template #title>What to expect</template>
-    <head-and-c :inner="true" :row-form="true" class="video-container">
+    <head-and-c :inner="true" class="video-container">
       <template #title></template>
-      <div class="videoPart" ref="videoPart">
-        <video controls :width="vidCont?.offsetWidth" muted loading="lazy" ref="videoRef">
-          <!-- <source src="/videos/KAMUN_2022_Promotion_Video (1).mp4" type="video/mp4">
-          Your browser does not support the video tag. -->
-          <source src="/videos/KAMUN_25_promo_video.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-
-      </div>
-      <br />
-      <div v-if="videoPart" class="vidSumCont" ref="vidCont" :style="{ height: videoPart?.clientHeight }">
-        <p class="vidSummary" ref="vidSummary1" @click="handleVideoClicks(backGroundImages.food, 29, $event)">
-          Enjoy delicious food served throughout the conference, with a variety of options to suit every taste and
-          dietary
-          need.
-        </p>
-        <p class="vidSummary" ref="vidSummary2" @click="handleVideoClicks(backGroundImages.bau, 24, $event)">
-          Experience our sessions in beautiful venues at the Karlsruhe Institute of Technology, offering a unique and
-          inspiring atmosphere.
-        </p>
-        <p class="vidSummary" ref="vidSummary3" @click="handleVideoClicks(backGroundImages.schloss, 34, $event)">
-          Take part in unforgettable socials, where you can connect, network, and have fun with fellow delegates from
-          around
-          the world.
-        </p>
-      </div>
-      <el-tooltip v-if="tooltipVisible" content="Click or hover" placement="bottom" effect="dark">
-        <div ref="tooltipRef"
-          style="width:fit-content; margin:0 auto; font-size:1.2em; color:var(--theme-color); font-weight:bold;">
-          Click or hover
+      <div class="expect-layout">
+        <div class="videoPart">
+          <video controls muted preload="metadata" ref="videoRef">
+            <source src="/videos/KAMUN_25_promo_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
-      </el-tooltip>
+        <div class="vidSumCont" ref="vidCont">
+          <p class="vidSummary" @click="handleVideoClicks(backGroundImages.food)">
+            Enjoy delicious food served throughout the conference, with a variety of options to suit every taste and
+            dietary need.
+          </p>
+          <p class="vidSummary" @click="handleVideoClicks(backGroundImages.bau)">
+            Experience our sessions in beautiful venues at the Karlsruhe Institute of Technology, offering a unique and
+            inspiring atmosphere.
+          </p>
+          <p class="vidSummary" @click="handleVideoClicks(backGroundImages.schloss)">
+            Take part in unforgettable socials, where you can connect, network, and have fun with fellow delegates from
+            around the world.
+          </p>
+        </div>
+      </div>
 
     </head-and-c>
 
@@ -74,14 +64,8 @@ import Calendar from './Calendar.vue'
 
 import type { Collab } from '~/dataTypes/DT.js'
 
-const tooltipVisible = ref(false)
-const tooltipRef = ref<HTMLElement | null>(null)
 const videoRef = ref<HTMLVideoElement | null>(null)
-const vidSummary1 = ref<HTMLElement | null>(null)
-const vidSummary2 = ref<HTMLElement | null>(null)
-const vidSummary3 = ref<HTMLElement | null>(null)
 const vidCont = ref<HTMLElement | null>(null)
-const videoPart = ref<HTMLElement | null>(null)
 
 
 const backGroundImages = ref<Record<string, string>>({
@@ -101,14 +85,10 @@ watch(collabsData, (data) => {
   }
 }, { immediate: true })
 
-function handleVideoClicks(img: string, time: number, e: Event) {
+function handleVideoClicks(img: string) {
   if (vidCont.value) {
     vidCont.value.style.backgroundImage = `url(${img})`
   }
-  // if (videoRef.value) {
-  //   videoRef.value.currentTime = time
-  //   videoRef.value.play()
-  // }
 }
 
 
@@ -119,6 +99,7 @@ onMounted(() => {
   }
   if (videoRef.value) {
     videoRef.value.currentTime = 3
+    videoRef.value.pause()
   }
 
   // Notion-hosted image URLs expire, so refresh them whenever this route is entered.
@@ -128,93 +109,63 @@ onMounted(() => {
     }
   })
 
-  // Tooltip intersection observer
-  if (tooltipRef.value) {
-    const tooltipObserver = new window.IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        tooltipVisible.value = entry.isIntersecting
-      })
-    }, { threshold: 0.2 })
-    tooltipObserver.observe(tooltipRef.value)
-  }
-
-  // Cleanup listeners on component unmount
-
-
 })
 
-if (videoRef.value) {
-  videoRef.value.pause() // Make sure the video does not play on mobile automatically
-}
 </script>
 
 <style scoped>
+.expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: stretch;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  width: 100%;
+}
+
 .videoPart,
 .vidSumCont {
   border-radius: 20px;
-  margin: 20px;
-  padding: 0;
-  width: 40vw;
-  margin: 0;
+  min-width: 0;
 }
 
 .videoPart video {
-  object-fit: contain;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #111;
   border-radius: 20px;
-  width: 40vw;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
 }
 
 .vidSumCont {
+  min-height: 100%;
   background-image: url("/img/pictureInSchloss.JPG");
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: space-between;
-
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .video-container {
-  background-color: white;
-  background: radial-gradient(var(--french-gray) 8%, transparent 8%);
-  background-position: 0% 0%;
-  background-size: 5vmin 5vmin;
-  background-repeat: repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: radial-gradient(var(--french-gray) 8%, transparent 8%) 0% 0% / 5vmin 5vmin repeat;
 }
 
 @media screen and (max-width:900px) {
-  .videoPart video {
-    width: 70vw;
-  }
-
-  .vidSumCont {
-    width: 70vw;
-  }
-
-  .video-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .expect-layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .vidSummary {
-    font-size: 12px;
+    font-size: 1rem;
   }
 }
 
 .vidSummary {
-  border-left: 10px solid var(--theme-color);
+  border-left: 5px solid var(--theme-color);
   box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
   padding: 10px;
   margin: 10px;
@@ -224,19 +175,19 @@ if (videoRef.value) {
 }
 
 .vidSummary:nth-child(1) {
-  border-left: 10px solid var(--special-green);
+  border-left-color: var(--special-green);
 }
 
 .vidSummary:nth-child(2) {
-  border-left: 10px solid var(--special-yellow);
+  border-left-color: var(--special-yellow);
 }
 
 .vidSummary:nth-child(3) {
-  border-left: 10px solid var(--special-red);
+  border-left-color: var(--special-red);
 }
 
 .vidSummary:hover {
-  transform: scale(1.25);
+  transform: translateX(4px);
 }
 
 .highlight-scale {
@@ -244,20 +195,5 @@ if (videoRef.value) {
   transition: transform 0.3s;
   z-index: 2;
 }
-
-.twin-videos {
-  display: grid;
-  align-items: center;
-  background-color: aquamarine;
-  height: 50vh;
-
-}
-
-.twin-videos div {
-  margin: 5px;
-  width: 100%;
-  height: 100%;
-}
-
 
 </style>

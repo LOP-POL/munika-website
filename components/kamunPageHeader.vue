@@ -9,14 +9,14 @@
             <!-- Hero Section -->
             <section class=" min-h-screen center-flex" ref="leftRef">
 
-                <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="800">
-                    <div class="mb-8 flex justify-center">
-                        <img src="/img-logos/Kamun2025Logo.png" height="100px" width="100px" style="border-radius: 50%;"
+                <div class="max-w-4xl hero-content" data-aos="fade-up" data-aos-duration="800">
+                    <div class="mb-8 flex justify-center hero-logo">
+                        <img src="/img-logos/Kamun2025Logo.png" alt="KAMUN"
                             @click="triggerGust" />
                     </div>
                     <h1 :class="teamPictureBg ? 'color-white' : ''">Karlsruhe Model United Nations</h1>
                     <p :class="teamPictureBg ? 'color-white' : ''">The Black Forest Summit</p>
-                    <div class="flex">
+                    <div class="flex hero-actions">
                         <NuxtLink to="/" class="btn-kamun" style="background-color: black; border: solid 1px black;">
                             Come to MUNIKA</NuxtLink>
                         <NuxtLink to="https://mymun.com/conferences" class="btn-join">Sign Up</NuxtLink>

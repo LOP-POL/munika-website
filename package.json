@@ -43,6 +43,7 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.1.1",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
-    "tailwindcss": "^4.3.5"
+    "tailwindcss": "^4.3.5",
+    "typescript": "^7.0.2"
   }
 }

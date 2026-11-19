@@ -1,57 +1,47 @@
 <style>
 .collab-con {
-
-    min-width:100px;
-    width: 20vmin;
-    height:fit-content;
-    min-height: 200px;
+    flex: 0 0 clamp(190px, 22vw, 260px);
+    width: clamp(190px, 22vw, 260px);
+    min-width: 0;
+    min-height: 230px;
     background-color: white;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.5fr 0.25fr;
-    grid-template-areas:
-        'pic'
-        'name'
-    ;
-    gap: 1.5rem;
-    border-radius: 20px;
-    place-items: center;
-
-    padding: 1.5rem;
-
-
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .collab-con:hover{
-    scale:1.025;
-}
-
-@media (min-width: 768px) {
-    .collab-con {
-        width: 40vmin;
-    }
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
 }
 
 .collab-img {
-    grid-area: pic;
-    height: 100%;
-    width: 60%;
-    border-radius: inherit;
-    background-color: inherit;
+    width: 100%;
+    height: 120px;
+    flex: 0 0 120px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 0.75rem;
 }
 
 .collab-img img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
-    border-radius: 10px;
-
+    height: 100%;
 }
 
 .img-fallback {
     width: 100%;
-    height: 100%;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +50,7 @@
 }
 
 .img-fallback span {
-    font-size: 3em;
+    font-size: 2.5rem;
     color: #999;
     font-family: 'Georgia', serif;
     letter-spacing: -0.02em;
@@ -69,20 +59,23 @@
 }
 
 .fullName {
-    grid-area: name;
-    height: 100%;
+    margin: 0;
     max-width: 100%;
     background-color: inherit;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 </style>
 <template>
 
-    <div class="collab-con">
+    <article class="collab-con">
         <div class="collab-img">
             <img v-if="hasPicture" :src="data.picture" :alt="data.fullName">
             <div v-else class="img-fallback">
@@ -97,12 +90,12 @@
       >
            <p class="fullName">{{ data.fullName }}</p>
       </el-tooltip>
-      <el-button @click="openWebsite">
-        Visit
+      <el-button v-if="data.website" tag="a" :href="data.website" target="_blank" rel="noopener noreferrer">
+        Visit website
       </el-button>
 
 
-    </div>
+    </article>
 
 
 </template>
@@ -124,11 +117,5 @@ const initials = computed(() =>
 )
 
 const hasPicture = computed(() => data.picture && data.picture.trim() !== '')
-
-function openWebsite() {
-    window.open(`${data.website}`, "_blank");
-}
-
-
 
 </script>

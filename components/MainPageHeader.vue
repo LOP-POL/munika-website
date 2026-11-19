@@ -134,13 +134,13 @@
             <!-- Hero Section -->
             <section class=" min-h-screen center-flex" ref="leftRef">
 
-                <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="800">
-                    <div class="mb-8 flex justify-center">
-                        <img src="/img-logos/MunikaLogo.jpg" height="100px" width="100px" style="border-radius: 50%;" @click="triggerGust"/>
+                <div class="max-w-4xl hero-content" data-aos="fade-up" data-aos-duration="800">
+                    <div class="mb-8 flex justify-center hero-logo">
+                        <img src="/img-logos/MunikaLogo.jpg" alt="MUNIKA" @click="triggerGust"/>
                     </div>
                     <h1 :class="teamPictureBg ? 'color-white' : ''">Model United Nations Initiative Karlsruhe</h1>
                     <p :class="teamPictureBg ? 'color-white' : ''">Shaping future diplomats through debate, diplomacy, and global awareness.</p>
-                    <div class="flex">
+                    <div class="flex hero-actions">
                         <NuxtLink to="/KAMUN" class="btn-kamun">Go to KAMUN</NuxtLink>
                         <NuxtLink to="/join" class="btn-join">Join Us</NuxtLink>
                         <NuxtLink to="/news" class="btn-news">Latest News</NuxtLink>

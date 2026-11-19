@@ -3,42 +3,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  background: radial-gradient(var(--black) 8%, transparent 8%);
-  background-position: 0% 0%;
-  background-size: 2.5vmin 2.5vmin;
-  background-repeat: repeat;
-  border: 2px dashed black;
-  border-radius: 20px;
-  padding: 5px;
-  color: white;
-  min-width: 50%;
+  gap: 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.5rem 0.75rem;
+  color: #172033;
+  min-width: min(50%, 320px);
   max-width: 100%;
   align-self: center;
   justify-self: center;
-  font-size: 3vmin;
-
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 @media screen and (max-width:900px) {
   .difficulty-scale {
-    width: 98%;
+    width: 100%;
+    min-width: 0;
   }
 }
 
 .difficulty-scale>* {
-  color: black;
-  border-radius: inherit;
-  box-shadow: 0px 0px 7px rgba(0, 0, 0.7);
-  background-color: white;
-  padding: 5px;
-  transition: ease 0.5s;
+  color: inherit;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
 
 }
 
-.difficulty-indicator:hover {
+.difficulty-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--difficulty-color);
+  vertical-align: 0.02rem;
+}
 
-  transform: translateX(20px) scale(1.25);
+.difficulty-indicator:hover {
+  transform: translateY(-1px);
 }
 
 .dropdown-text {
@@ -47,69 +51,35 @@
   align-items: center;
   justify-content: center;
   padding: 2px;
-  font-size: 3vmin;
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 .drop-men-item:hover {
   color: black;
-  transform: scale(0.25);
+  transform: translateY(-1px);
 
 }
 
 .card-holder {
-  display: flex;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: 10px 50px;
-  /* flex-direction: row;
-    justify-content: space-around; */
-  max-width: 90vw;
-  overflow-y: auto;
-  min-height: 50vh;
-  max-height: 500px;
-  margin: 20px;
-  background-image: radial-gradient(var(--french-gray) 8%, transparent 8%);
-  background-size: 5vmin 5vmin;
-  background-repeat: repeat;
-  background-position: center;
-  border-radius: 20px;
-  padding: 20px;
-  background-color: var(--seasalt);
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    width: 100%;
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 20px;
+    background: radial-gradient(var(--french-gray) 8%, transparent 8%) center / 28px 28px repeat, var(--seasalt);
 }
 
-/* Hide the scrollbar track/guide but show the scrollbar thumb/bar for .card-holder */
-.card-holder {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #888 transparent;
-}
-
-/* For Chrome, Edge, Safari */
-.card-holder::-webkit-scrollbar {
-  height: 8px;
-  background: transparent;
-}
-
-.card-holder::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-.card-holder::-webkit-scrollbar-track {
-  background: transparent;
-}
-.desc{
-      overflow-y:hidden;
-      text-overflow: ellipsis;
-      white-space: no-wrap;
-      height:60%;
+  .desc {
+    overflow-wrap: anywhere;
   }
 
 </style>
 <template>
   <div class="pageTransitionWrapper">
-    <div class="difficulty-scale" :style="{ backgroundColor: colors[`${difficulty}`] }">
+    <div class="difficulty-scale" :style="{ '--difficulty-color': colors[difficulty] ?? colors.Beginner }">
 
       <span class="difficulty-indicator">
         Difficulty: <span>{{ difficulty }}</span>
@@ -140,18 +110,13 @@
         </el-dropdown>
       </span>
     </div>
-    <el-scrollbar>
-      <div class="card-holder">
-
-        <CommitteeCard @click="handleClick" v-for="(committee, idx) in committeeLevelToList"
-          :key="committee.mainName + idx" :mainName="committee.mainName" :fullName="committee.fullName"
-          :spots="committee.spots"
-          :topic="committee.topic" :logo="committee.logo" :SignUpLink="committee.SignUpLink"
-          :metaImage="committee.metaImage" :type="committee.type" :types="committee.types" @set-committee="setCommittee" />
-
-
-      </div>
-    </el-scrollbar>
+    <div class="card-holder">
+      <CommitteeCard @click="handleClick" v-for="(committee, idx) in committeeLevelToList"
+        :key="committee.mainName + idx" :mainName="committee.mainName" :fullName="committee.fullName"
+        :spots="committee.spots"
+        :topic="committee.topic" :logo="committee.logo" :SignUpLink="committee.SignUpLink"
+        :metaImage="committee.metaImage" :type="committee.type" :types="committee.types" @set-committee="setCommittee" />
+    </div>
 
 
 
@@ -205,11 +170,11 @@ interface Committee {
 const difficulty = ref<string | Difficulty>(Difficulty.BEGINNER)
 
 const colors: Record<string, string> = {
-  Beginner: '#28afb0',
-  Intermediate: '#f4d35e',
-  Expert: '#EE964B',
-  Highschooler:'#743debff',
-  Univeristy:'#fff'
+  Beginner: '#2b9a91',
+  Intermediate: '#c49a20',
+  Expert: '#d77b35',
+  Highschooler: '#7558bd',
+  University: '#64748b'
 }
 const committeesState = useState<Committee[] | null>('committeesCache', () => null)
 const committees = ref<Committee[]>([

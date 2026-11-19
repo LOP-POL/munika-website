@@ -10,11 +10,7 @@ useHead({
 })
 
 const mainCon = ref<HTMLElement>()
-const router = useRouter();
-const onBack = () => {
-    router.push("/");
-}
-
+const router = useRouter()
 const menuVisible = ref(false)
 const menuSwitch = ref<boolean>(false)
 
@@ -122,8 +118,9 @@ function handleMenuClick() {
 
             <div class="title-holder">
                 <div class="title-logo-and-text">
-                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
-                            alt="munikaLogo" height="10%" width="10%"></span>
+                    <NuxtLink to="/KAMUN" class="logo-holder" aria-label="KAMUN home">
+                        <img class="main-logo" src="/img-logos/Kamun2025Logo.png" alt="KAMUN" width="40" height="40">
+                    </NuxtLink>
                     <span class="title-text">KAMUN {{kamunYear}}</span>
                 </div>
 
@@ -257,8 +254,9 @@ function handleMenuClick() {
         <template #footer>
             
                 <div class="title-logo-and-text">
-                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/Kamun2025Logo.png"
-                            alt="kamun Logo" height="10%" width="10%"></span>
+                    <NuxtLink to="/KAMUN" class="logo-holder" aria-label="KAMUN home">
+                        <img class="main-logo" src="/img-logos/Kamun2025Logo.png" alt="KAMUN" width="40" height="40">
+                    </NuxtLink>
                   
                 </div>
            

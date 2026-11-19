@@ -10,12 +10,8 @@ useHead({
     ],
 })
 
-const router = useRouter();
-const onBack = () => {
-    router.push("/");
-}
-
 const mainCon = ref<HTMLElement>()
+const router = useRouter()
 
 const menuVisible = ref(false)
 
@@ -91,8 +87,9 @@ function handleMenuClick() {
 
             <div class="title-holder">
                 <div class="title-logo-and-text">
-                    <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
-                            alt="munikaLogo" height="10%" width="10%"></span>
+                    <NuxtLink to="/" class="logo-holder" aria-label="MUNIKA home">
+                        <img class="main-logo" src="/img-logos/MunikaLogo.jpg" alt="MUNIKA" width="40" height="40">
+                    </NuxtLink>
                     <span class="title-text">MUNIKA e.V</span>
                 </div>
 
@@ -215,8 +212,9 @@ function handleMenuClick() {
         </el-menu>
         <template #footer>
             <div class="title-logo-and-text">
-                <span @click="onBack" class="logo-holder"><img class="main-logo" src="/img-logos/MunikaLogo.jpg"
-                        alt="munikaLogo" height="10%" width="10%"></span>
+                <NuxtLink to="/" class="logo-holder" aria-label="MUNIKA home">
+                    <img class="main-logo" src="/img-logos/MunikaLogo.jpg" alt="MUNIKA" width="40" height="40">
+                </NuxtLink>
 
             </div>
         </template>
