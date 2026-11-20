@@ -179,14 +179,14 @@
                 <span style="float:right">
                     📍
                 </span>
-                <h2 style="color:black; font-weight: bold;"> {{convertDate(startDate) ?? '6th December 2025'}} </h2>
+                <h4 style="color:black; font-weight: bold;"> {{convertDate(startDate) ?? '6th December 2025'}} </h4>
             </el-card>
             <br>
             <el-card class="end-part" ref="end">
                 <span style="float:left">
                     📍
                 </span>
-                <h2 style="color:black; font-weight: bold;">{{ convertDate(endDate)?? '7th December 2025'}}  </h2>
+                <h4 style="color:black; font-weight: bold;">{{ convertDate(endDate)?? '7th December 2025'}}  </h4>
             </el-card>
         </div>
     </div>

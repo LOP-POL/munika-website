@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import type { Component } from 'vue'
+import { gsap } from 'gsap'
+import { Calendar, House, Notification, Star, UserFilled } from '@element-plus/icons-vue'
+
 useHead({
     link: [
         {
@@ -11,73 +15,51 @@ useHead({
 
 const mainCon = ref<HTMLElement>()
 const router = useRouter()
+const route = useRoute()
 const menuVisible = ref(false)
-const menuSwitch = ref<boolean>(false)
-
 const pageWidth = ref(0)
 
-const routes = ref([
-    {
-        page:'Home',
-        path:'/KAMUN'
-    },
-    {
-        page:'Team',
-        path:'/KAMUN/team'
-    },
-    // {
-    //     page:'Collaborations',
-    //     path:'/KAMUN/collaborations'
-    // },
-    // {
-    //     page:'Committees',
-    //     path:'/KAMUN/committees'
-    // },
-   
-    {
-        page:'Schedule',
-        path:'/KAMUN/schedule'
-    },
+interface NavRoute {
+    page: string
+    path: string
+    icon: Component
+}
 
-    {
-        page:'News',
-        path:'/news'
-    },
-    {
-        page:'MUNIKA',
-        path:'/'
-    },
-   
-])
+const routes: NavRoute[] = [
+    { page: 'Home', path: '/KAMUN', icon: House },
+    { page: 'Team', path: '/KAMUN/team', icon: UserFilled },
+    { page: 'Schedule', path: '/KAMUN/schedule', icon: Calendar },
+    { page: 'News', path: '/news', icon: Notification },
+    { page: 'MUNIKA', path: '/', icon: Star },
+]
 
+const scrolled = ref(false)
 const updatePageWidth = () => {
     pageWidth.value = document.body.clientWidth
-    if(navMen.value){
-        switchToButton((check(navMen.value)))
-    }
 }
-const navMen = ref<HTMLElement | null>(null)
-
-    // function to help chekc if the nav has overflwing routes
- function check(el:HTMLElement) { 
-                let curOverf = el.style.overflow; 
-                
-                if ( !curOverf || curOverf === "visible" ) 
-                    el.style.overflow = "hidden"; 
-                
-                let isOverflowing = el.clientWidth < el.scrollWidth
-                    || el.clientHeight < el.scrollHeight; 
-                
-                el.style.overflow = curOverf; 
-                
-                return isOverflowing; 
-            } 
-    // function to switch to the button if the nav has overflowing routes
-function switchToButton(change:boolean){
-    
-        menuSwitch.value = change
-
+const onScroll = () => {
+    scrolled.value = window.scrollY > 8
 }
+
+const animateDrawer = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    nextTick(() => {
+        gsap.from('.mobile-nav-drawer .nav-item, .mobile-nav-drawer .drawer-foot', {
+            x: 28,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.06,
+            delay: 0.12,
+            ease: 'power3.out',
+            clearProps: 'all',
+        })
+    })
+}
+
+watch(() => route.path, () => {
+    menuVisible.value = false
+})
+
 const metaStore = useMetaStore()
 
 const kamunYear =  metaStore.getConferenceMeta[0].year ?? new Date().getFullYear()
@@ -85,6 +67,12 @@ onMounted(() => {
     metaStore.fetchEventsAndMeta()
     updatePageWidth()
     window.addEventListener('resize', updatePageWidth)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    document.querySelectorAll('.main-section').forEach(node => {
+        (node as HTMLElement).style.opacity = '0'
+    })
 
     if (router.currentRoute.value.meta.layout == 'kamun-bar') {
         document.documentElement.style.setProperty('--el-color-primary', 'var(--school-bus-yellow)')
@@ -94,17 +82,16 @@ onMounted(() => {
         document.documentElement.style.setProperty('--el-color-primary', 'var(--munika-blue)')
         document.documentElement.style.setProperty('--theme-color', 'var(--munika-blue)')
     }
-   
-      
+
+
 
 })
 
 onUnmounted(() => {
     window.removeEventListener('resize', updatePageWidth)
+    window.removeEventListener('scroll', onScroll)
 })
 
-import { ElIcon } from 'element-plus'
-import { House, UserFilled, Collection, Notification, Star,Calendar, Document } from '@element-plus/icons-vue'
 import { useMetaStore } from '~/piniaStores/metaStore';
 
 function handleMenuClick() {
@@ -116,34 +103,21 @@ function handleMenuClick() {
     <el-container class="super-container">
         <el-header class="main-page-header">
 
-            <div class="title-holder">
-                <div class="title-logo-and-text">
-                    <NuxtLink to="/KAMUN" class="logo-holder" aria-label="KAMUN home">
-                        <img class="main-logo" src="/img-logos/Kamun2025Logo.png" alt="KAMUN" width="40" height="40">
+            <header class="site-nav" :class="{ 'is-scrolled': scrolled }">
+                <div class="site-nav-inner">
+                    <NuxtLink to="/KAMUN" class="brand" aria-label="KAMUN home">
+                        <img class="brand-logo" src="/img-logos/Kamun2025Logo.png" alt="" width="40" height="40">
+                        <span class="brand-text">KAMUN <small>{{ kamunYear }}</small></span>
                     </NuxtLink>
-                    <span class="title-text">KAMUN {{kamunYear}}</span>
+
+                    <CustomNavMenu class="nav-desktop" :routes="routes" />
+
+                    <button class="burger" type="button" aria-label="Open menu" aria-haspopup="dialog"
+                        :aria-expanded="menuVisible" aria-controls="mobile-nav" @click="menuVisible = true">
+                        <span></span><span></span><span></span>
+                    </button>
                 </div>
-
-                <span class="nav-menu" ref="navMen">
-                    <el-button class="menu-toggle"
-                        
-                        @click="menuVisible = true" v-if="pageWidth < 1200 || menuSwitch"  plain>
-                        <img src="/img-styles/bars-solid.svg" alt="Menu" style="width: 24px; height: 24px;" />
-                    </el-button>
-                    <CustomNavMenu :routes="routes" :style="{ width: pageWidth < 1200 || menuSwitch? '100%' : 'auto', display: pageWidth < 1200 || menuSwitch ? 'none' : 'flex' }"></CustomNavMenu>
-                    <!-- <el-menu mode="horizontal" :router="true" :ellipsis="false"  class="main-nav main-nav-show" active-text-color="#ffd04b"
-                        :style="{ width: pageWidth < 900 ? '100%' : 'auto', display: pageWidth < 900 ? 'none' : 'flex' }">
-                        <el-menu-item index="/KAMUN">Home</el-menu-item>
-                        <el-menu-item index="/KAMUN/Team">Team</el-menu-item>
-                        <el-menu-item index="/KAMUN/committees">Commitees</el-menu-item>
-                        <el-menu-item index="/news">News</el-menu-item>
-                        <el-menu-item class="special-menu-item" index="/">MUNIKA</el-menu-item>
-
-                      
-                    </el-menu> -->
-
-                </span>
-            </div>
+            </header>
 
         </el-header>
 
@@ -199,71 +173,234 @@ function handleMenuClick() {
             </div>
         </el-footer>
     </el-container>
-    <el-drawer v-model="menuVisible" direction="ltr" size="80%" :with-header="false" class="mobile-nav-drawer">
-        <!-- Drawer content goes here -->
-        <el-menu mode="vertical" :router="true" class="main-nav" active-text-color="#ffd04b" :ellipsis="false"
-            @select="handleMenuClick">
-            <el-menu-item index="/KAMUN">
-                <el-icon>
-                    <House />
-                </el-icon>
-                Home
-            </el-menu-item>
-            <el-menu-item index="/KAMUN/Team">
-                <el-icon>
-                    <UserFilled />
-                </el-icon>
-                Team
-            </el-menu-item>
-            <!-- <el-menu-item index="/KAMUN/committees">
-                <el-icon>
-                    <Collection />
-                </el-icon>
-                Committees
-            </el-menu-item> -->
+    <el-drawer v-model="menuVisible" direction="rtl" size="85%" :with-header="false" class="mobile-nav-drawer"
+        modal-class="mobile-nav-overlay" @open="animateDrawer">
+        <div id="mobile-nav" class="drawer-inner">
+            <div class="drawer-head">
+                <NuxtLink to="/KAMUN" class="brand" aria-label="KAMUN home">
+                    <img class="brand-logo" src="/img-logos/Kamun2025Logo.png" alt="" width="40" height="40">
+                    <span class="brand-text">KAMUN <small>{{ kamunYear }}</small></span>
+                </NuxtLink>
+                <button class="drawer-close" type="button" aria-label="Close menu" @click="menuVisible = false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
+            </div>
 
-            <el-menu-item index="/news">
-                <el-icon>
-                    <Notification />
-                </el-icon>
-                News
-            </el-menu-item>
-             <el-menu-item index="/KAMUN/schedule">
-                <el-icon>
-                    <Calendar />
-                </el-icon>
-                Schedule
-            </el-menu-item>
+            <CustomNavMenu :routes="routes" vertical @navigate="handleMenuClick" />
 
-             <!-- <el-menu-item index="/KAMUN/collaborations">
-                <el-icon>
-                    <Document/>
-                </el-icon>
-                Collaborations
-            </el-menu-item> -->
-
-
-
-            <el-menu-item class="special-menu-item" index="/">
-                <el-icon>
-                    <Star />
-                </el-icon>
-                MUNIKA
-            </el-menu-item>
-        </el-menu>
-        <template #footer>
-            
-                <div class="title-logo-and-text">
-                    <NuxtLink to="/KAMUN" class="logo-holder" aria-label="KAMUN home">
-                        <img class="main-logo" src="/img-logos/Kamun2025Logo.png" alt="KAMUN" width="40" height="40">
-                    </NuxtLink>
-                  
-                </div>
-           
-        </template>
+            <div class="drawer-foot">
+                <NuxtLink to="/KAMUN" class="brand" aria-label="KAMUN home">
+                    <img class="brand-logo" src="/img-logos/Kamun2025Logo.png" alt="" width="40" height="40">
+                    <span class="brand-text">The Black Forest Summit</span>
+                </NuxtLink>
+            </div>
+        </div>
     </el-drawer>
 </template>
 <style>
 @import url("~/assets/css/kamun.css");
 @import url('~/assets/css/main.css');
+</style>
+
+<style>
+.el-drawer.mobile-nav-drawer {
+    --el-drawer-bg-color: transparent;
+    max-width: 340px;
+    background: rgba(255, 255, 255, 0.74) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    backdrop-filter: blur(20px) saturate(1.4);
+    box-shadow: -20px 0 50px -20px rgba(15, 23, 42, 0.4);
+}
+
+.mobile-nav-drawer .el-drawer__body {
+    padding: 0;
+}
+
+.mobile-nav-overlay {
+    background-color: rgba(15, 23, 42, 0.38) !important;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+</style>
+
+<style scoped>
+.super-container {
+    --nav-h: 64px;
+}
+
+.super-container .main-page-header {
+    height: var(--nav-h);
+    padding: 0;
+}
+
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 8px 24px -14px rgba(15, 23, 42, 0.35);
+}
+
+.site-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(0.75rem, 3vw, 2rem);
+    box-sizing: border-box;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #111827;
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px #fff, 0 3px 10px rgba(15, 23, 42, 0.25);
+}
+
+.brand-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #111827;
+}
+
+.brand-text small {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.06);
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.burger:hover {
+    background: rgba(15, 23, 42, 0.12);
+}
+
+.burger:focus-visible,
+.drawer-close:focus-visible {
+    outline: 2px solid #111827;
+    outline-offset: 2px;
+}
+
+.burger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: #111827;
+}
+
+.burger span:nth-child(2) {
+    width: 14px;
+}
+
+@media (max-width: 999.98px) {
+    .site-nav .nav-desktop {
+        display: none;
+    }
+
+    .burger {
+        display: inline-flex;
+    }
+}
+
+.drawer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 100%;
+    padding: 1rem 1.1rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.06);
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.drawer-close:hover {
+    background: rgba(15, 23, 42, 0.12);
+}
+
+.drawer-close svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #111827;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.drawer-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    font-size: 0.9rem;
+    transition: none;
+}
+
+.drawer-foot .brand-text {
+    color: #4b5563;
+    font-size: 0.9rem;
+}
 </style>

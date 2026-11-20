@@ -28,6 +28,22 @@
     --border-accent: #a3a3a3;
     --border-iin:var(--blue-violet);
 
+    /* Fluid type and spacing scale */
+    --font-size-sm: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+    --font-size-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+    --font-size-h3: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+    --font-size-h2: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+    --font-size-h1: clamp(2rem, 1.45rem + 2.7vw, 3.75rem);
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --page-gutter: clamp(1rem, 4vw, 2rem);
+    --section-space: clamp(3rem, 8vw, 6rem);
+
 }
 
 @font-face {
@@ -114,25 +130,40 @@ body {
     margin: 0;
     overflow-x: hidden;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-    font-size: 1.25rem;
+    font-size: var(--font-size-h1);
     font-weight: 700;
     line-height: 1.2;
     color: #2d3748;
-    margin-bottom: 1.5rem;
+    margin: 0 0 var(--space-6);
+}
 
+h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.25;
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.3;
 }
 
 p {
-    font-size: 1.25rem;
+    font-size: var(--font-size-base);
     line-height: 1.6;
     color: #4a5568;
+    margin: 0 0 var(--space-4);
 }
 
+.nav-link{
+    color: #1f2937;
+}
 .pageTransitionWrapper {
     display: contents;
     /* Trick that stops the div drom interferring with flex grid and what not */
@@ -157,7 +188,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 var(--page-gutter);
 }
 
 .max-w-4xl {
@@ -189,9 +220,9 @@ p {
     color: white;
     border: 1px solid #3182ce;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: var(--space-2) var(--space-4);
     border-radius: 20px;
-    margin: 10px;
+    margin: var(--space-2);
 }
 
 .btn-join {
@@ -199,9 +230,9 @@ p {
     color: #2d3748;
     border: 1px solid #e2e8f0;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: var(--space-2) var(--space-4);
     border-radius: 20px;
-    margin: 10px;
+    margin: var(--space-2);
 }
 
 .btn-news {
@@ -209,9 +240,9 @@ p {
     color: #4a5568;
     border: 1px solid #e2e8f0;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: var(--space-2) var(--space-4);
     border-radius: 20px;
-    margin: 10px;
+    margin: var(--space-2);
 }
 
 .scroll-indicator {
@@ -242,7 +273,7 @@ p {
 }
 
 .section-padding {
-    padding: 5rem 0;
+    padding: var(--section-space) var(--page-gutter);
 }
 
 .hero-gradient {
@@ -253,13 +284,13 @@ p {
 
 .btn-primary {
     display: inline-block;
-    padding: 12px 32px;
+    padding: var(--space-3) var(--space-8);
     border-radius: 8px;
     font-weight: 600;
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
-    font-size: 3vmin;
+    font-size: var(--font-size-sm);
 }
 
 .btn-primary:hover {
@@ -268,13 +299,11 @@ p {
 }
 
 .hero-gradient h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-h1);
     font-weight: 700;
     line-height: 1.2;
     color: #2d3748;
-    margin-bottom: 1.5rem;
-
-
+    margin-bottom: var(--space-6);
 }
 
 .waves-svg-con {
@@ -302,7 +331,7 @@ hero-gradient p {
 .flex {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-4);
     justify-content: center;
     align-items: center;
 }
@@ -310,16 +339,6 @@ hero-gradient p {
 @media (min-width: 640px) {
     .flex {
         flex-direction: row;
-    }
-
-    h1 {
-        font-size: 3rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    h1 {
-        font-size: 3.75rem;
     }
 }
 
@@ -354,7 +373,7 @@ hero-gradient p {
 
 .main-content {
     max-width: 100%;
-    gap: 10rem;
+    gap: clamp(2rem, 8vw, 10rem);
 }
 
 @media screen and (max-width:1000px) {
@@ -364,7 +383,7 @@ hero-gradient p {
     }
 
     body p {
-        font-size: 12px;
+        font-size: var(--font-size-base);
     }
 }
 
@@ -387,7 +406,7 @@ hero-gradient p {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    font-size: 20px;
+    font-size: var(--font-size-sm);
 
     margin: 5px;
     margin-bottom: 0px;
@@ -415,13 +434,13 @@ hero-gradient p {
     flex-direction: row;
     align-items: space-between;
     justify-content: space-around;
-    padding: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
+    padding: var(--space-4);
+    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
+    font-size: var(--font-size-sm);
 }
 
 .footer-content div:nth-child(1) ul li {
-    padding: 10px;
+    padding: var(--space-2);
 }
 
 .svg-container {
@@ -480,7 +499,7 @@ hero-gradient p {
     .social-media-list {
         flex-direction: column;
         gap: 0.5rem;
-        padding: 5px;
+        padding: var(--space-2);
     }
 
     .main-page-footer {
@@ -510,10 +529,10 @@ hero-gradient p {
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     /* background-color:hsla(0, 0%, 100%, 0.708); */
-    padding: 5px;
+    padding: var(--space-2) var(--page-gutter);
     box-shadow: 0px 0px 5px black;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
 }
 
 .title-logo-and-text {
@@ -523,11 +542,10 @@ hero-gradient p {
     background-color: var(--theme-color);
     border-radius: 10px;
     color: white;
-    font-size: 4vmin;
+    font-size: var(--font-size-sm);
     font-weight: 600;
-    padding: 2px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: var(--space-1);
+    margin: 0 var(--space-2);
 
 
 }
@@ -538,15 +556,15 @@ hero-gradient p {
     border: none;
     height: 100%;
     border-radius: 10px;
-    margin-right: 10px;
+    margin-right: var(--space-2);
 }
 
 .title-holder span,
 .show-text {
     text-align: center;
     font-weight: 600;
-    font-size: 3vmin;
-    padding: 2px;
+    font-size: var(--font-size-sm);
+    padding: var(--space-1);
     color: white;
 
 }
@@ -655,7 +673,7 @@ body .light-theme {
     flex-direction: row;
     background-color: var(--seasalt);
     align-items: flex-start;
-    padding: 10px;
+    padding: var(--space-4);
     max-width: 100vw;
     min-width: 80vw;
     opacity: 0;
@@ -689,19 +707,19 @@ body .light-theme {
 
 .hero-content {
     width: min(100%, 56rem);
-    padding: 1.5rem;
+    padding: var(--space-6);
 }
 
 .hero-content h1 {
-    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-size: clamp(2rem, 1.25rem + 4vw, 4.5rem);
     line-height: 1.1;
     overflow-wrap: anywhere;
 }
 
 .hero-content p {
     max-width: 42rem;
-    margin: 1rem auto 2rem;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin: var(--space-4) auto var(--space-8);
+    font-size: var(--font-size-base);
 }
 
 .hero-logo img {
@@ -716,7 +734,7 @@ body .light-theme {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: var(--space-2);
 }
 
 @media screen and (max-width:900px) {
@@ -734,20 +752,20 @@ body .light-theme {
     }
 
     .hero-content {
-        padding: 5rem 1rem 3.5rem;
+        padding: clamp(4rem, 10vw, 5rem) var(--page-gutter) clamp(2.5rem, 7vw, 3.5rem);
     }
 
     .hero-content h1 {
-        font-size: clamp(2rem, 9vw, 3.5rem);
+        font-size: clamp(2rem, 1.5rem + 5vw, 3.5rem);
     }
 
     .hero-content p {
-        font-size: clamp(1rem, 4vw, 1.2rem);
+        font-size: var(--font-size-base);
     }
 
     .hero-actions > a {
-        margin: 0.25rem;
-        padding: 8px 12px;
+        margin: var(--space-1);
+        padding: var(--space-2) var(--space-3);
     }
 }
 
@@ -782,9 +800,9 @@ body .light-theme {
 }
 
 .left-side h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-size: 8vmin;
+    /*font-family: Georgia, 'Times New Roman', Times, serif;*/
+    /*font-style: italic;*/
+    font-size: clamp(2rem, 1.25rem + 5vw, 4.5rem);
 }
 
 .underlay-munika {

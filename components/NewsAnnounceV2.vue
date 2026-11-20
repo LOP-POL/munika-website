@@ -196,7 +196,7 @@ main {
                             <span class="article-type">{{ story.type }}</span>
                         </div>
 
-                        <h3 style="font-family:Georgia; font-style: italic;">{{ story.title }}</h3>
+                        <h4>{{ story.title }}</h4>
                         <el-text tag="p" truncated>{{ story.content }}</el-text>
                     </div>
                 </template>

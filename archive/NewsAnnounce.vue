@@ -85,7 +85,7 @@
                     <el-skeleton-item variant="text" style="width: 70%;" />
                 </template>
                 <template #default>
-                  
+
                         <!-- Data will be rendered by the v-for below -->
                         <div class="story-card" v-for="story in stories" :key="story.id"
                             @click="viewStory(story.id, $event)">
@@ -94,11 +94,11 @@
                                 <span class="story-type">{{ story.type }}</span>
                             </div>
 
-                            <h3>{{ story.title }}</h3>
+                            <h1>{{ story.title }}</h1>
                             <el-text tag="p" truncated>{{ story.content }}</el-text>
                         </div>
 
-                    
+
                 </template>
             </el-skeleton>
 

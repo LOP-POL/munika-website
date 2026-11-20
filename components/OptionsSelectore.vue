@@ -44,6 +44,8 @@
     justify-content: center;
     font-size: 3vmin;
     text-align:center;
+    padding: 0;
+    margin:0;
 }
 .drop-men-item:hover {
     color: black;
@@ -65,7 +67,7 @@
             <Search />
         </Button>
 
-        <span>
+
             <el-dropdown @command="handleCommand" placement="bottom">
                 <p class="dropdown-text"
                     >Choose {{ props.categories
@@ -87,7 +89,7 @@
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
-        </span>
+
     </div>
 </template>
 <script setup lang="ts">
