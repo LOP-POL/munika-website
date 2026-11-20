@@ -140,11 +140,11 @@ onMounted(() => {
             defaults: { ease: 'power3.out' },
             scrollTrigger: { trigger: row, start: 'top 80%', toggleActions: 'play none none reverse' },
           })
-          .from(q('.expect-card'), { x: 70 * dir, opacity: 0, duration: 0.9 })
+          .from(q('.expect-card'), { x: 70 * dir, opacity: 0, duration: 0.5 })
           .from(q('.expect-index'), { y: 20, opacity: 0, duration: 0.6 }, '-=0.5')
           .from(q('.expect-title, .expect-card p'), { y: 18, opacity: 0, duration: 0.6, stagger: 0.1 }, '<0.1')
           .from(q('.expect-frame'), { clipPath: 'inset(0 0 100% 0)', duration: 1, ease: 'power3.inOut' }, '-=0.9')
-          .from(q('.expect-img'), { scale: 1.3, duration: 1.2 }, '<')
+          .from(q('.expect-img'), { scale: 1.3, duration: 0.9 }, '<')
           .from(q('.expect-accent'), { scale: 0, rotate: -40, opacity: 0, duration: 0.8, ease: 'back.out(1.8)' }, '-=0.7')
 
         // gentle parallax on the picture while scrolling

@@ -168,8 +168,9 @@ onMounted(() => {
                     trigger: zoneRef.value,
                     start: 'top 65%',
                     end: 'bottom 70%',
-                    scrub: 0.8, // smooth catch-up
-                },
+                    scrub: 0.5, // smooth catch-up
+              },
+                duration:0.6,
             });
         }, zoneRef.value);
     }

@@ -1,821 +1,517 @@
 <template>
-    <section
-        class="container-home container-home-main"
-        ref="headerRef"
-        style="margin: 0; width: 100%"
-    >
-        <div
-            class="left-side layered-content"
-            :class="{ 'lighten-back': teamPictureBg }"
-        >
-            <!-- Hero Section -->
-            <section class="hero-section">
-                <!-- MUN-flavoured "placards" that float around the content (mobile / tablet only) -->
-                <div class="hero-chips" aria-hidden="true">
-                    <div
-                        v-for="chip in chips"
-                        :key="chip.text"
-                        class="hero-chip"
-                        :style="chip.pos"
-                    >
-                        <span
-                            class="hero-chip-inner"
-                            :data-speed="chip.speed"
-                            :style="{ transform: `rotate(${chip.tilt})` }"
-                        >
-                            {{ chip.text }}
-                        </span>
-                    </div>
-                </div>
+    <section ref="rootRef" class="hero">
 
-                <div class="max-w-4xl hero-content">
-                    <div class="hero-logo">
-                        <!-- inner box is exactly as big as the logo, so the globe is centred on the logo itself -->
-                        <div class="hero-logo-inner">
-                            <!-- Rotating wireframe globe + pulse ring behind the logo -->
-                            <svg
-                                class="hero-globe"
-                                viewBox="0 0 200 200"
-                                aria-hidden="true"
-                                fill="none"
-                            >
-                                <circle
-                                    class="globe-pulse"
-                                    cx="100"
-                                    cy="100"
-                                    r="92"
-                                />
-                                <circle
-                                    class="globe-outline"
-                                    cx="100"
-                                    cy="100"
-                                    r="90"
-                                />
-                                <ellipse
-                                    v-for="n in 4"
-                                    :key="n"
-                                    class="globe-meridian"
-                                    :data-offset="(n - 1) * 45"
-                                    cx="100"
-                                    cy="100"
-                                    rx="90"
-                                    ry="90"
-                                />
-                                <ellipse
-                                    class="globe-lat"
-                                    cx="100"
-                                    cy="100"
-                                    rx="90"
-                                    ry="28"
-                                />
-                                <line
-                                    class="globe-lat"
-                                    x1="10"
-                                    y1="100"
-                                    x2="190"
-                                    y2="100"
-                                />
-                            </svg>
-                            <img
-                                src="/img-logos/MunikaLogo.jpg"
-                                alt="MUNIKA"
-                                @click="triggerGust"
-                            />
-                        </div>
-                    </div>
-
-                    <h1
-                        :class="teamPictureBg ? 'color-white' : ''"
-                        aria-label="Model United Nations Initiative Karlsruhe"
-                    >
-                        <span
-                            v-for="w in titleWords"
-                            :key="w"
-                            class="hero-word-mask"
-                            aria-hidden="true"
-                        >
-                            <span class="hero-word">{{ w }}</span>
-                        </span>
-                    </h1>
-                    <span class="hero-rule" aria-hidden="true"></span>
-
-                    <div class="flex hero-actions">
-                        <NuxtLink to="/KAMUN" class="btn-kamun"
-                            >Go to KAMUN</NuxtLink
-                        >
-                        <NuxtLink to="/join" class="btn-join">Join Us</NuxtLink>
-                        <NuxtLink to="/news" class="btn-news"
-                            >Latest News</NuxtLink
-                        >
-                    </div>
-
-                    <!-- Quick facts -->
-                    <div class="hero-info">
-                        <NuxtLink to="/join">
-                            <div class="hero-info-card">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path
-                                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                                    />
-                                </svg>
-                                <strong>Weekly Debates</strong>
-                                <small>Tuesdays, 7 pm</small>
-                            </div>
-                        </NuxtLink>
-                        <NuxtLink to="/join">
-                            <div class="hero-info-card">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M2 12h20" />
-                                    <path
-                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                                    />
-                                </svg>
-                                <strong>Conferences</strong>
-                                <small>Germany &amp; worldwide</small>
-                            </div>
-                        </NuxtLink>
-                        <NuxtLink to="/KAMUN">
-                            <div class="hero-info-card">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M3 22h18" />
-                                    <path d="M6 18v-7" />
-                                    <path d="M10 18v-7" />
-                                    <path d="M14 18v-7" />
-                                    <path d="M18 18v-7" />
-                                    <path d="m12 2 9 5H3z" />
-                                </svg>
-                                <strong>KAMUN</strong>
-                                <small>Run by our team</small>
-                            </div>
-                        </NuxtLink>
-                    </div>
-                </div>
-
-                <!-- Scroll indicator -->
-                <div class="scroll-indicator">
-                    <a href="#content" class="bounce">
-                        <el-icon>
-                            <ArrowDownBold />
-                        </el-icon>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <div
-            class="right-side layered-content"
-            :class="teamPictureBg ? pictureToShow : ''"
-        >
-            <div
-                v-if="isMobile || teamPictureBg"
-                class="svg-container waves-svg-con"
-            >
-                <svg
-                    class="waves-svg"
-                    viewBox="0 0 1200 120"
-                    preserveAspectRatio="none"
-                >
-                    <path
-                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                        opacity=".25"
-                    ></path>
-                    <path
-                        d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-                        opacity=".5"
-                    ></path>
-                    <path
-                        d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                    ></path>
-                </svg>
-            </div>
-            <div v-else class="svg-container">
-                <svg
-                    id="svg-trees"
-                    viewBox="0 0 375 578"
-                    xmlns="http://www.w3.org/2000/svg"
-                    :class="{ 'is-animated': animate, 'is-gusting': gusting }"
-                >
-                    <g
-                        class="tree-svg"
-                        v-for="x in [
-                            '50vw',
-                            '35vw',
-                            '0',
-                            '20vw',
-                            '-20vw',
-                            '-30vw',
-                            '-40vw',
-                            '-60vw',
-                            '70vw',
-                            '-70vw',
-                        ]"
-                        :key="x"
-                        :style="{ transform: `translate(${x},0)` }"
-                    >
-                        <path
-                            id="Polygon 3"
-                            class="tree-part polygon3"
-                            d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z"
-                        />
-                        <path
-                            id="Polygon 2"
-                            class="tree-part polygon2"
-                            d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z"
-                        />
-                        <path
-                            id="Polygon 1"
-                            class="tree-part polygon1"
-                            d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z"
-                        />
-                        <rect
-                            id="Rectangle 1"
-                            class="rectangle1"
-                            x="152.293"
-                            y="400.621"
-                            width="71"
-                            height="177"
-                            rx="9"
-                        />
+        <!-- Swaying trees: same artwork and sway as before, now on every screen size -->
+        <svg class="hero-trees" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"
+            focusable="false">
+            <g v-for="(layer, li) in layers" :key="layer.name" :class="['trees-layer', layer.name]">
+                <g v-for="(t, i) in layer.trees" :key="li + '-' + i" :transform="treeTransform(t)" :opacity="t.o">
+                    <g class="tree-fx">
+                        <rect class="trunk" x="152.293" y="400.621" width="71" height="177" rx="9" />
+                        <g class="foliage" :style="{ '--d': t.d + 's', '--t': t.t + 's' }">
+                            <path
+                                d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z" />
+                            <path
+                                d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z" />
+                            <path
+                                d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z" />
+                        </g>
                     </g>
-                </svg>
+                </g>
+            </g>
+        </svg>
+
+        <div class="hero-inner">
+
+            <!-- Logo: click it to send a gust of wind through the trees -->
+            <button class="hero-logo" type="button" aria-label="MUNIKA logo - click to make the trees sway"
+                @click="gust">
+                <span class="hero-halo" aria-hidden="true"></span>
+                <img class="hero-logo-img" src="/img-logos/MunikaLogo.jpg" alt="MUNIKA" width="112" height="112">
+            </button>
+
+
+            <h1 class="hero-title" aria-label="Model United Nations Initiative Karlsruhe">
+                <span v-for="(line, li) in titleLines" :key="li" class="hero-line" aria-hidden="true">
+                    <span v-for="w in line" :key="w" class="hero-word-mask">
+                        <span class="hero-word" :class="{ 'is-accent': w === 'Karlsruhe' }">{{ w }}</span>
+                    </span>
+                </span>
+            </h1>
+
+            <p class="hero-sub">
+                Shaping future diplomats through debate, diplomacy, and global awareness.
+            </p>
+
+            <div class="hero-cta">
+                <NuxtLink to="/join" class="hero-btn hero-btn--join">
+                    Join Us
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
+                <NuxtLink to="/KAMUN" class="hero-btn hero-btn--kamun">
+                    Go to KAMUN
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
+                <NuxtLink to="/news" class="hero-btn hero-btn--news">
+                    Latest News
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
             </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from "vue";
-import { ArrowDownBold } from "@element-plus/icons-vue";
-import { useMediaQuery } from "@vueuse/core";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const headerRef = ref<HTMLElement | null>(null);
+const rootRef = ref<HTMLElement | null>(null)
 
-const animate = ref(false);
-const gusting = ref(false);
-const isMobile = useMediaQuery("(max-width: 1024px)");
+const titleLines = [
+    ['Model', 'United', 'Nations', 'Initiative', 'Karlsruhe'],
+]
 
-const teamPictureBg = ref(false);
-const showTeamPicture = ref(true); // flips every time the picture is switched on, so it alternates
+/* ---------- Trees ----------
+   Each tree is drawn in its own 375 x 578 box and then positioned/scaled inside a 1440 x 400 scene.
+   Two layers (back = fainter, front = stronger) give depth. Values are fixed, so SSR and client match. */
+interface Tree {
+    x: number
+    s: number
+    o: number
+    d: number // animation delay (negative, so trees are out of sync from the first frame)
+    t: number // sway duration
+}
 
-const titleWords = ["Model", "United", "Nations", "Initiative", "Karlsruhe"];
+const TREE_W = 375
+const TREE_H = 578
+const BASE = 400
 
-// Classic Model UN lingo, floated around the hero on small screens
-const chips = [
+const makeTrees = (xs: number[], ss: number[], opacity: number, seed: number): Tree[] =>
+    xs.map((x, i) => {
+        const s = ss[i % ss.length]
+        return {
+            x: x - (TREE_W * s) / 2,
+            s,
+            o: opacity,
+            d: -((i * seed) % 7) * 0.7,
+            t: 4.2 + ((i * seed) % 5) * 0.5,
+        }
+    })
+
+const layers = [
     {
-        text: "Point of Information",
-        pos: { top: "1.1rem", left: "4%" },
-        speed: 0.6,
-        tilt: "-4deg",
+        name: 'layer-back',
+        trees: makeTrees([40, 260, 480, 700, 920, 1140, 1360], [0.5, 0.42, 0.55, 0.46, 0.52, 0.44, 0.5], 0.16, 3),
     },
     {
-        text: "Delegate",
-        pos: { top: "2.9rem", right: "5%" },
-        speed: 1,
-        tilt: "5deg",
+        name: 'layer-front',
+        trees: makeTrees([-10, 170, 380, 610, 830, 1050, 1250, 1430], [0.6, 0.44, 0.56, 0.4, 0.62, 0.46, 0.58, 0.5], 0.3, 5),
     },
-    {
-        text: "Motion to Caucus",
-        pos: { top: "4.7rem", left: "12%" },
-        speed: 0.8,
-        tilt: "3deg",
-    },
-    {
-        text: "Draft Resolution",
-        pos: { bottom: "4.6rem", right: "6%" },
-        speed: 0.7,
-        tilt: "-5deg",
-    },
-    {
-        text: "Yield the Floor",
-        pos: { bottom: "6.4rem", left: "5%" },
-        speed: 1,
-        tilt: "4deg",
-    },
-    {
-        text: "Diplomacy",
-        pos: { bottom: "1.6rem", left: "34%" },
-        speed: 0.5,
-        tilt: "-3deg",
-    },
-];
+]
 
-const pictureToShow = computed(() =>
-    showTeamPicture.value ? "teamPictureBg" : "schlossPictureBg",
-);
+const treeTransform = (t: Tree) => `translate(${t.x} ${BASE - TREE_H * t.s}) scale(${t.s})`
 
 const prefersReducedMotion = () =>
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-const triggerGust = () => {
-    gusting.value = false;
-    teamPictureBg.value = !teamPictureBg.value;
-    if (teamPictureBg.value) showTeamPicture.value = !showTeamPicture.value;
+/* A gust: every tree rocks one way, then the other, rippling across the scene */
+const gust = () => {
+    if (prefersReducedMotion() || !rootRef.value) return
+    gsap.to(rootRef.value.querySelectorAll('.tree-fx'), {
+        keyframes: { rotation: [0, 4, -3, 2, -1, 0], easeEach: 'sine.inOut' },
+        transformOrigin: '50% 100%',
+        duration: 1.3,
+        stagger: { each: 0.05, from: 'start' },
+        overwrite: 'auto',
+    })
+    gsap.fromTo(
+        rootRef.value.querySelector('.hero-logo-img'),
+        { rotate: 0 },
+        { rotate: 360, duration: 0.8, ease: 'back.out(1.4)', clearProps: 'transform' }
+    )
+}
 
-    // little spin on the logo (skipped for reduced motion)
-    if (!prefersReducedMotion() && headerRef.value) {
-        const img = headerRef.value.querySelector(".hero-logo img");
-        if (img)
-            gsap.fromTo(
-                img,
-                { rotate: 0 },
-                {
-                    rotate: 360,
-                    duration: 0.8,
-                    ease: "back.out(1.4)",
-                    clearProps: "transform",
-                },
-            );
-    }
-
-    requestAnimationFrame(() => {
-        gusting.value = true;
-        setTimeout(() => {
-            gusting.value = false;
-        }, 900);
-    });
-};
-
-let mm: gsap.MatchMedia | null = null;
+let mm: gsap.MatchMedia | null = null
 
 onMounted(() => {
-    animate.value = true;
-    gsap.registerPlugin(ScrollTrigger);
-    if (!headerRef.value) return;
+    if (!rootRef.value) return
+    gsap.registerPlugin(ScrollTrigger)
 
-    // Everything below only runs when the visitor has NOT asked for reduced motion.
-    // matchMedia also cleans up / reverts automatically if the preference changes.
-    mm = gsap.matchMedia(headerRef.value);
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // ---------- Entrance sequence ----------
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-        tl.from(".hero-globe", {
-            scale: 0.5,
-            opacity: 0,
-            duration: 1.2,
-            ease: "back.out(1.4)",
-        })
-            .from(
-                ".hero-logo img",
-                {
-                    scale: 0.4,
-                    rotate: -15,
-                    opacity: 0,
-                    duration: 0.9,
-                    ease: "back.out(1.8)",
-                },
-                "<0.1",
-            )
-            .from(
-                ".hero-word",
-                { yPercent: 115, opacity: 0, duration: 0.7, stagger: 0.08 },
-                "-=0.5",
-            )
-            .from(
-                ".hero-rule",
-                { scaleX: 0, duration: 0.6, transformOrigin: "center" },
-                "-=0.3",
-            )
-            .from(".hero-sub", { y: 20, opacity: 0, duration: 0.7 }, "-=0.3")
-            .from(
-                ".hero-actions > a",
-                { y: 26, opacity: 0, duration: 0.6, stagger: 0.1 },
-                "-=0.4",
-            )
-            .from(
-                ".hero-info-card",
-                { y: 34, opacity: 0, duration: 0.7, stagger: 0.12 },
-                "-=0.3",
-            )
-            .from(
-                ".hero-chip-inner",
-                {
-                    scale: 0,
-                    opacity: 0,
-                    duration: 0.7,
-                    stagger: 0.12,
-                    ease: "back.out(2.2)",
-                },
-                "-=1",
-            )
-            .from(
-                ".scroll-indicator",
-                { opacity: 0, y: -10, duration: 0.6 },
-                "-=0.3",
-            );
+    // Everything here only runs when the visitor has NOT asked for reduced motion
+    mm = gsap.matchMedia(rootRef.value)
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-        // ---------- Globe: real rotation by squeezing meridians + a soft pulse ----------
-        const meridians =
-            gsap.utils.toArray<SVGEllipseElement>(".globe-meridian");
-        const spin = { angle: 0 };
-        gsap.to(spin, {
-            angle: 180,
-            duration: 14,
-            ease: "none",
-            repeat: -1,
-            onUpdate: () => {
-                meridians.forEach((m) => {
-                    const offset = Number(m.dataset.offset || 0);
-                    const rx =
-                        Math.abs(
-                            Math.cos(((spin.angle + offset) * Math.PI) / 180),
-                        ) * 90;
-                    m.setAttribute("rx", String(rx));
-                });
-            },
-        });
-        gsap.fromTo(
-            ".globe-pulse",
-            { scale: 0.92, opacity: 0.5, transformOrigin: "50% 50%" },
-            {
-                scale: 1.12,
-                opacity: 0,
-                duration: 2.6,
-                repeat: -1,
-                ease: "sine.out",
-            },
-        );
+        // trees grow up from the ground, from the middle outwards
+        tl.from('.tree-fx', { y: 120, opacity: 0, duration: 1, stagger: { each: 0.04, from: 'center' } }, 0)
+            .from('.hero-logo-img', { scale: 0.5, opacity: 0, rotate: -12, duration: 0.9, ease: 'back.out(1.7)' }, 0.1)
+            .from('.hero-eyebrow', { y: 14, opacity: 0, duration: 0.5 }, '-=0.5')
+            .from('.hero-word', { yPercent: 115, opacity: 0, duration: 0.7, stagger: 0.07 }, '-=0.3')
+            .fromTo(
+                '.hero-word.is-accent',
+                { backgroundSize: '0% 100%' },
+                { backgroundSize: '100% 100%', duration: 0.8, ease: 'power2.out' },
+                '-=0.2'
+            )
+            .from('.hero-sub', { y: 16, opacity: 0, duration: 0.6 }, '-=0.5')
+            .from('.hero-cta > a', { y: 22, opacity: 0, duration: 0.55, stagger: 0.09 }, '-=0.4')
 
-        // ---------- Floating placards ----------
-        gsap.utils.toArray<HTMLElement>(".hero-chip").forEach((el, i) => {
-            gsap.to(el, {
-                y: gsap.utils.random(-14, 14),
-                x: gsap.utils.random(-8, 8),
-                duration: gsap.utils.random(2.4, 4.2),
-                ease: "sine.inOut",
-                yoyo: true,
-                repeat: -1,
-                delay: i * 0.2,
-            });
-        });
+        // soft pulse ring around the logo
+        // gsap.fromTo(
+        //     '.hero-halo',
+        //     { scale: 1, opacity: 0.55 },
+        //     { scale: 1.7, opacity: 0, duration: 2.4, repeat: -1, ease: 'sine.out' }
+        // )
 
-        // ---------- Scroll-linked depth ----------
-        const st = {
-            trigger: headerRef.value,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-        };
-        gsap.to(".hero-content", {
-            yPercent: -6,
-            opacity: 0.55,
-            ease: "none",
-            scrollTrigger: st,
-        });
-        gsap.utils.toArray<HTMLElement>(".hero-chip-inner").forEach((el) => {
-            gsap.to(el, {
-                y: -80 * Number(el.dataset.speed || 1),
-                ease: "none",
-                scrollTrigger: st,
-            });
-        });
-    });
-});
+        // depth: the two tree layers drift down at different speeds while scrolling away
+        const st = { trigger: rootRef.value, start: 'top top', end: 'bottom top', scrub: true }
+        gsap.to('.layer-back', { y: 30, ease: 'none', scrollTrigger: st })
+        gsap.to('.layer-front', { y: 60, ease: 'none', scrollTrigger: st })
+    })
+})
 
 onUnmounted(() => {
-    mm?.revert();
-});
+    mm?.revert()
+})
 </script>
 
 <style scoped>
 /*
-  Notes on main.css (global) that this component works with:
-  - `* { transition: 0.5s ease }` would make every GSAP tween lag by half a second,
-    so animated elements below get `transition: none` (see "GSAP vs global transition").
-  - .container-home / .container-home-main / .layered-content force 82svh-100vh boxes;
-    on small screens we let the content decide the height instead.
-  - .left-side already has z-index:3 (sits above .right-side), so nothing extra is needed there.
-  - .hero-logo img is already a circle (50%, aspect-ratio 1) - we keep that.
-  - .waves-svg-con, .waves-svg, .svg-container, .btn-*, .flex, .hero-content, .hero-actions,
-    .scroll-indicator are all styled globally and are not repeated here.
+  Notes on main.css (global):
+  - `* { transition: 0.5s ease }` would make GSAP tweens lag, so animated elements set `transition: none`
+    and buttons only transition colours/shadow (never transform/opacity).
+  - `.btn-primary`, `.hero-content`, `.hero-actions`, `.flex`, `#svg-trees` etc. are NOT used here on purpose:
+    this hero has its own class names so global rules (and the old `#svg-trees` mobile override) can't interfere.
+  - `body p { font-size: 12px }` (<=1000px) is overridden for the hero text below.
 */
 
-.lighten-back {
-    background-color: #2f4f3e88;
+.hero {
+    --ink: #111827;
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: max(520px, calc(80vh - var(--nav-h, 64px) - 40px));
+    max-height: 100vh;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: clamp(2.5rem, 6vw, 4rem) 1rem clamp(7.5rem, 17vw, 11rem);
+    box-sizing: border-box;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.6) 45%, rgba(74, 206, 247, 0.28) 100%);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.6) 45%, color-mix(in srgb, var(--theme-color) 30%, white) 100%);
+    box-shadow: 0 20px 50px -30px rgba(15, 23, 42, 0.35);
 }
 
-.teamPictureBg {
-    background-image: url("/styleImgs/teamPictureBW.jpg");
+/* fine dot grid, faded towards the edges */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(rgba(15, 23, 42, 0.1) 1px, transparent 1.5px) 0 0 / 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
 }
 
-.schlossPictureBg {
-    background-image: url("/styleImgs/schloss.jpg");
+/* soft glow behind the logo and title */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(circle at 50% 28%, rgba(74, 206, 247, 0.35), transparent 60%);
+    background: radial-gradient(circle at 50% 28%, color-mix(in srgb, var(--theme-color) 38%, transparent), transparent 60%);
 }
 
-.color-white {
-    color: white;
+/* ---------- Trees ---------- */
+.hero-trees {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: clamp(150px, 30vw, 360px);
+    pointer-events: none;
 }
 
-/* ---------- GSAP vs global `* { transition: .5s }` ---------- */
-.hero-content,
-.hero-globe,
-.hero-globe *,
-.hero-word,
-.hero-rule,
-.hero-sub,
-.hero-info-card,
-.hero-chip,
-.hero-chip-inner,
-.scroll-indicator {
+.hero-trees * {
+    fill: var(--theme-color);
     transition: none;
 }
 
-/* buttons: only transition colours/shadow, never transform/opacity (GSAP owns those) */
-.hero-actions > a {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        box-shadow 0.3s ease;
+/* the foliage rocks around its base; every tree has its own delay/duration (set inline) */
+.foliage {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: tree-sway var(--t, 4.6s) ease-in-out var(--d, 0s) infinite;
 }
 
-.hero-actions > a:hover {
-    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.35);
+@keyframes tree-sway {
+
+    0%,
+    100% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 1.8deg;
+    }
+
+    75% {
+        rotate: -1.8deg;
+    }
 }
 
-/* ---------- Hero layout ---------- */
-.hero-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh; /* same as the global .min-h-screen it replaces */
+/* ---------- Content ---------- */
+.hero-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    width: min(100%, 90rem);
+    text-align: center;
+}
+
+.hero-inner>* {
+    transition: none;
 }
 
 .hero-logo {
     position: relative;
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 2rem;
-}
-
-.hero-logo img {
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    border: 0;
+    border-radius: 50%;
+    background: none;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transition: scale 0.3s ease; /* only `scale`, so it never fights GSAP's transform */
+    transition: scale 0.3s ease; /* only `scale`: GSAP never touches this element */
 }
 
-/* replaces the old global `.mb-8 :hover { scale: 1.55 }` (which also hit the globe) */
 @media (hover: hover) {
-    .hero-logo img:hover {
-        scale: 1.15;
+    .hero-logo:hover {
+        scale: 1.06;
     }
 }
 
-.hero-logo-inner {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    isolation: isolate;
-    line-height: 0;
+.hero-logo:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
 }
 
-/* Centred with calc() instead of translate(-50%,-50%): GSAP owns `transform` on this element,
-   and fixed width/height avoids relying on `height:auto` for SVGs (inconsistent on iOS). */
-.hero-globe {
-    --globe: clamp(170px, 42vw, 230px);
-    position: absolute;
-    width: var(--globe);
-    height: var(--globe);
-    left: calc(50% - var(--globe) / 2);
-    top: calc(50% - var(--globe) / 2);
+.hero-logo-img {
     display: block;
-    z-index: -1;
+    width: clamp(5rem, 20vw, 7rem);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #fff, 0 14px 34px -8px rgba(15, 23, 42, 0.35);
+    transition: none;
+}
+
+/* ring that pulses around the logo; centred by `inset: 0` (no transforms needed) */
+.hero-halo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--theme-color);
+    opacity: 0; /* only shown while GSAP pulses it */
     pointer-events: none;
-    overflow: visible;
+    transition: none;
 }
 
-.hero-globe * {
-    stroke: var(--theme-color);
-    stroke-width: 1.2;
-    opacity: 0.4;
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    color: #374151;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-.hero-globe .globe-outline {
-    opacity: 0.6;
-    stroke-width: 1.6;
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: dot-pulse 2s ease-in-out infinite;
 }
 
-.hero-globe .globe-lat {
-    opacity: 0.25;
+@keyframes dot-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
 }
 
-/* title words are masked so they can slide up into place (the title is italic, so leave room for overhang) */
-.hero-content h1 {
-    margin-bottom: 0;
+/* Title: two lines, words slide up out of a mask (italic serif is the club's look) */
+.hero-title {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 700;
+    width: 100%;
+    font-size: clamp(1.9rem, 6vw, 5rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #1f2937;
+    text-wrap: balance;
+}
+
+.hero-line {
+    display: block;
 }
 
 .hero-word-mask {
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
-    padding: 0 0.08em 0.14em;
-    margin: 0 0.14em -0.14em;
+    padding: 0 0.08em 0.14em; /* room for italic overhang and descenders */
+    margin: 0 0.12em -0.14em;
 }
 
 .hero-word {
     display: inline-block;
+    transition: none;
 }
 
-.hero-rule {
-    display: block;
-    width: 64px;
-    height: 4px;
-    margin: 1.1rem auto 0.4rem;
-    border-radius: 999px;
-    background: var(--theme-color);
+/* marker-style highlight under "Karlsruhe" (legible on light backgrounds, follows the theme colour) */
+.hero-word.is-accent {
+    background: linear-gradient(transparent 62%, var(--theme-color) 62%, var(--theme-color) 92%, transparent 92%) no-repeat left / 100% 100%;
 }
 
-/* ---------- Quick-fact tiles ---------- */
-.hero-info {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.6rem;
-    width: 100%;
-    max-width: 640px;
-    margin: 0.5rem auto 0;
+.hero-inner .hero-sub {
+    max-width: 36rem;
+    margin: 1.1rem auto 1.75rem;
+    color: #4b5563;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.6;
 }
 
-.hero-info-card {
+/* ---------- Calls to action ---------- */
+.hero-cta {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    padding: 0.75rem 0.4rem;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.92);
-    color: #1f2937;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
 }
 
-.hero-info-card svg {
-    width: 22px;
-    height: 22px;
-    margin-bottom: 0.2rem;
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.40rem 1.25rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-btn svg {
+    width: 18px;
+    height: 18px;
     fill: none;
-    stroke: var(--theme-color);
+    stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+    transition: translate 0.25s ease;
 }
 
-.hero-info-card strong {
-    font-size: 0.8rem;
-    font-weight: 600;
-    line-height: 1.2;
+.hero-btn:hover svg {
+    translate: 4px 0;
 }
 
-.hero-info-card small {
-    font-size: 0.7rem;
-    color: #4b5563;
-    line-height: 1.2;
+.hero-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
 }
 
-/* ---------- Floating placards (small screens only) ---------- */
-.hero-chips {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    display: none;
+/* primary: Join Us */
+.hero-btn--join {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 10px 22px -12px rgba(17, 24, 39, 0.7);
 }
 
-.hero-chip {
-    position: absolute;
+.hero-btn--join:hover {
+    background: #1f2937;
+    box-shadow: 0 14px 26px -12px rgba(17, 24, 39, 0.8);
 }
 
-.hero-chip-inner {
-    display: inline-block;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
+/* KAMUN: brand colour, dark text keeps contrast on blue and on yellow */
+.hero-btn--kamun {
+    background: var(--theme-color);
+    color: #10222b;
+    box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.45);
+}
+
+.hero-btn--kamun:hover {
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.55);
+    filter: brightness(1.04);
+}
+
+/* secondary: News */
+.hero-btn--news {
+    border-color: rgba(17, 24, 39, 0.25);
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--ink);
+}
+
+.hero-btn--news:hover {
+    border-color: var(--ink);
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    color: #1e6f8c;
-    font-family: "Georgia", "Times New Roman", Times, serif;
-    font-style: italic;
-    font-size: 0.78rem;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* ---------- Drifting waves (CSS so reduced-motion can switch them off) ---------- */
-.waves-svg path {
-    transform-box: view-box;
-    transform-origin: 50% 50%;
-    transform: scaleX(1.06);
-    animation: wave-drift 9s ease-in-out infinite alternate;
-}
-
-.waves-svg path:nth-child(2) {
-    animation-duration: 12s;
-    animation-direction: alternate-reverse;
-}
-
-.waves-svg path:nth-child(3) {
-    animation-duration: 15s;
-}
-
-@keyframes wave-drift {
-    from {
-        transform: scaleX(1.06) translateX(-2%);
-    }
-
-    to {
-        transform: scaleX(1.06) translateX(2%);
-    }
-}
-
-/* ---------- Mobile & tablet ---------- */
-/* Selectors are one class more specific than main.css's mobile rules, so no !important is needed. */
-@media (max-width: 1024px) {
-    .container-home.container-home-main {
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+    .hero {
         min-height: 0;
+        border-radius: 16px;
     }
 
-    /* the left layer becomes a normal block, so its content defines the hero height */
-    .container-home-main .left-side.layered-content {
-        position: relative;
-        height: auto;
-        min-height: 0;
-    }
-
-    /* the picture/waves layer stays a full-size backdrop behind it */
-    .container-home-main .right-side.layered-content {
-        position: absolute;
-        inset: 0;
-        min-height: 0;
-        pointer-events: none;
-        background-attachment: scroll; /* "fixed" backgrounds break on iOS */
-    }
-
-    .hero-section {
-        min-height: 0;
-        padding: 6.8rem 0 8rem; /* top/bottom bands hold the floating placards */
-    }
-
-    .hero-chips {
-        display: block;
-    }
-
-    .hero-logo {
-        margin-bottom: 2.25rem;
-    }
-
-    .hero-logo img {
-        width: clamp(5rem, 22vw, 6.5rem);
-    }
-
-    .hero-content {
-        padding: 0 1rem;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(1.7rem, 7.4vw, 2.5rem);
-        line-height: 1.15;
-    }
-
-    .hero-content .hero-sub {
-        max-width: 32ch;
-        margin: 0.25rem auto 0;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    .hero-content .hero-actions {
+    .hero-cta {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        max-width: 22rem;
         gap: 0.6rem;
-        width: 100%;
-        max-width: 420px;
-        margin: 1.4rem auto 1.4rem;
     }
 
-    .hero-actions > a {
-        display: block;
-        margin: 0;
-        padding: 11px 12px;
-        text-align: center;
+    .hero-btn {
+        padding: 0.45rem 0.35rem;
     }
 
-    /* "Join Us" is the main call to action: first and full width */
-    .hero-actions .btn-join {
+    /* Join Us is the main action: full width on top */
+    .hero-btn--join {
         grid-column: 1 / -1;
-        order: -1;
-    }
-
-    .scroll-indicator {
-        display: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .waves-svg path {
+
+    .foliage,
+    .hero-dot {
         animation: none;
     }
 }

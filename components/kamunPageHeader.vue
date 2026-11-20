@@ -1,532 +1,433 @@
 <template>
-    <section class="container-home container-home-main" ref="headerRef">
-        <!-- <el-button class="kamun-fab" circle @click.stop="openPicture">
-            <el-icon>
-                <ArrowLeftBold />
-            </el-icon>
-        </el-button> -->
-        <div class="left-side layered-content" :class="teamPictureBg?'lighten-back':'darken-back'" ref="leftRef">
-            <!-- Hero Section -->
-            <section class=" min-h-screen center-flex" ref="leftRef">
-
-                <div class="max-w-4xl hero-content" data-aos="fade-up" data-aos-duration="800">
-                    <div class="mb-8 flex justify-center hero-logo">
-                        <img src="/img-logos/Kamun2025Logo.png" alt="KAMUN"
-                            @click="triggerGust" />
-                    </div>
-                    <h1 :class="teamPictureBg ? 'color-white' : ''">Karlsruhe Model United Nations</h1>
-                    <p :class="teamPictureBg ? 'color-white' : ''">The Black Forest Summit</p>
-                    <div class="flex hero-actions">
-                        <NuxtLink to="/" class="btn-kamun" style="background-color: black; border: solid 1px black;">
-                            Come to MUNIKA</NuxtLink>
-                        <NuxtLink to="https://mymun.com/conferences" class="btn-join">Sign Up</NuxtLink>
-                        <NuxtLink to="/news" class="btn-news"
-                            style="background-color: var(--french-gray); color:white;">Latest News</NuxtLink>
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- Scroll indicator -->
-                <div class="scroll-indicator">
-                    <a href="#content" class="bounce">
-                        <el-icon>
-                            <ArrowDownBold />
-                        </el-icon>
-                    </a>
-                </div>
-
-            </section>
-        </div>
-        <!-- <div class="layered-content underlay-kamun" ref="underlayRef">
-
-            <div class="overlay-content">
-                <h2>The Black Forest Summit</h2>
-            </div>
-        </div> -->
-
-        <div class="right-side layered-content " :class="teamPictureBg ? pictureToShow : ''" ref="rightSideRef">
-            <!-- <div v-for="(quote, idx) in quotes" :key="idx" class="quote-text">
-                <p>{{ quote }}</p>
-            </div> -->
-            <div v-if="isMobile || teamPictureBg" ref="wavesSvgConRef" class="svg-container waves-svg-con"
-                >
-                <svg ref="wavesSvgRef" viewBox="0 0 1200 120" preserveAspectRatio="none"
-                    class="waves-svg">
-                    <path
-                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                        opacity=".25" fill="var('--theme-color')"></path>
-                    <path
-                        d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-                        opacity=".5" fill="var('--theme-color')"></path>
-                    <path
-                        d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                        fill="var('--theme-color')"
-                        >
-                    </path>
-                </svg>
-            </div>
-            <div v-else class="svg-container">
-
-                <svg id="svg-trees" viewBox="0 0 375 578" xmlns="http://www.w3.org/2000/svg"
-                    :class="{ 'is-animated': animate, 'is-gusting': gusting }">
-
-                    <g class="tree-svg"
-                        v-for="x in ['50vw', '35vw', '0', '20vw', '-20vw', '-30vw', '-40vw', '-60vw', '70vw', '-70vw']"
-                        :key="x" :style="{ transform: `translate(${x},0)` }">
-                        <path id="Polygon 3" class="tree-part polygon3"
-                            d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z" />
-                        <path id="Polygon 2" class="tree-part polygon2"
-                            d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z" />
-                        <path id="Polygon 1" class="tree-part polygon1"
-                            d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z" />
-                        <rect id="Rectangle 1" class="rectangle1" x="152.293" y="400.621" width="71" height="177"
-                            rx="9" />
+    <section ref="rootRef" class="hero">
+        <svg class="hero-trees" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true"
+            focusable="false">
+            <g v-for="(layer, li) in layers" :key="layer.name" :class="['trees-layer', layer.name]">
+                <g v-for="(tree, i) in layer.trees" :key="`${li}-${i}`" :transform="treeTransform(tree)"
+                    :opacity="tree.o">
+                    <g class="tree-fx">
+                        <rect class="trunk" x="152.293" y="400.621" width="71" height="177" rx="9" />
+                        <g class="foliage" :style="{ '--d': `${tree.d}s`, '--t': `${tree.t}s` }">
+                            <path
+                                d="M180.165 150.513C183.517 145.354 191.069 145.354 194.421 150.513L372.699 424.991C376.372 430.646 372.314 438.121 365.571 438.121H9.01474C2.27189 438.121 -1.78607 430.646 1.88681 424.991L180.165 150.513Z" />
+                            <path
+                                d="M180.243 83.9821C183.612 78.9803 190.974 78.9803 194.343 83.9821L328.983 283.872C332.786 289.518 328.741 297.121 321.934 297.121H52.6524C45.8452 297.121 41.7997 289.518 45.6026 283.872L180.243 83.9821Z" />
+                            <path
+                                d="M180.4 4.02606C183.793 -0.674941 190.793 -0.674939 194.186 4.02606L284.845 129.646C288.902 135.268 284.885 143.121 277.952 143.121H96.6339C89.7013 143.121 85.6843 135.268 89.7413 129.646L180.4 4.02606Z" />
+                        </g>
                     </g>
+                </g>
+            </g>
+        </svg>
 
+        <div class="hero-inner">
+            <button class="hero-logo" type="button" aria-label="KAMUN logo - click to make the trees sway"
+                @click="gust">
+                <span class="hero-halo" aria-hidden="true"></span>
+                <img class="hero-logo-img" src="/img-logos/Kamun2025Logo.png" alt="KAMUN" width="112" height="112">
+            </button>
 
+            <h1 class="hero-title" aria-label="Karlsruhe Model United Nations">
+                <span v-for="(line, li) in titleLines" :key="li" class="hero-line" aria-hidden="true">
+                    <span v-for="word in line" :key="word" class="hero-word-mask">
+                        <span class="hero-word" :class="{ 'is-accent': word === 'Karlsruhe' }">{{ word }}</span>
+                    </span>
+                </span>
+            </h1>
 
-                </svg>
+            <p class="hero-sub">The Black Forest Summit</p>
 
+            <div class="hero-cta">
+                <NuxtLink to="https://mymun.com/conferences" class="hero-btn hero-btn--signup">
+                    Sign Up
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
+                <NuxtLink to="/" class="hero-btn hero-btn--munika">
+                    Come to MUNIKA
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
+                <NuxtLink to="/news" class="hero-btn hero-btn--news">
+                    Latest News
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </NuxtLink>
             </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
-import { ArrowDownBold } from '@element-plus/icons-vue'
-import { useMediaQuery } from '@vueuse/core'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// Define refs for DOM elements
+const rootRef = ref<HTMLElement | null>(null)
 
-// const quotes = ref([
-//     "leon is aweseome",
-//     "the north face",
-//     "finshs him",
-//     "but daddy I love him",
-//     "on please it is not that serious",
-//     "some more quotes"
-// ])
+const titleLines = [
+    ['Karlsruhe', 'Model', 'United', 'Nations'],
+]
 
-// const { data } = useFetch(`/api/quotes/quotes`)
+interface Tree {
+    x: number
+    s: number
+    o: number
+    d: number
+    t: number
+}
 
-const leftRef = ref<HTMLElement | null>(null)
-const headerRef = ref<HTMLElement | null>(null)
-const underlayRef = ref<HTMLElement | null>(null)
-const rightSideRef = ref<HTMLElement | null>(null)
-const wavesSvgConRef = ref<HTMLElement | null>(null)
-const wavesSvgRef = ref<SVGElement | null>(null)
+const TREE_W = 375
+const TREE_H = 578
+const BASE = 400
 
-const animate = ref<boolean>(false)
-const gusting = ref<boolean>(false)
-const isMobile = useMediaQuery('(max-width: 1024px)')
-const teamPictureBg = ref(false)
-const turnBW = ref(false)
-
-const wavesSvgConStyles = ref({
-    backgroundColor: 'transparent',
-    position: 'absolute',
-    bottom: '0',
-    left: '0',
-    height: 'unset',
-    right: '0',
-    zIndex: '2',
-    transform: 'rotateX(180deg)'
-})
-const wavesSvgStyles = ref({
-    width: '100%',
-    height: '100%',
-    fill: 'var(--theme-color)'
-})
-
-
-
-const pictureToShow = computed(() => {
-    if (turnBW.value) {
-        turnBW.value = !turnBW.value
-        return 'teamPictureBg'
-    }
-    else {
-        turnBW.value = !turnBW.value
-        return 'schlossPictureBg'
-    }
-})
-
-const triggerGust = () => {
-    gusting.value = false
-    teamPictureBg.value = !teamPictureBg.value
-
-    requestAnimationFrame(() => {
-        gusting.value = true
-        setTimeout(() => {
-            gusting.value = false
-        }, 900)
+const makeTrees = (xs: number[], scales: number[], opacity: number, seed: number): Tree[] =>
+    xs.map((x, i) => {
+        const s = scales[i % scales.length]
+        return {
+            x: x - (TREE_W * s) / 2,
+            s,
+            o: opacity,
+            d: -((i * seed) % 7) * 0.7,
+            t: 4.2 + ((i * seed) % 5) * 0.5,
+        }
     })
+
+const layers = [
+    {
+        name: 'layer-back',
+        trees: makeTrees([40, 260, 480, 700, 920, 1140, 1360], [0.5, 0.42, 0.55, 0.46, 0.52, 0.44, 0.5], 0.16, 3),
+    },
+    {
+        name: 'layer-front',
+        trees: makeTrees([-10, 170, 380, 610, 830, 1050, 1250, 1430], [0.6, 0.44, 0.56, 0.4, 0.62, 0.46, 0.58, 0.5], 0.3, 5),
+    },
+]
+
+const treeTransform = (tree: Tree) => `translate(${tree.x} ${BASE - TREE_H * tree.s}) scale(${tree.s})`
+
+const prefersReducedMotion = () =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const gust = () => {
+    if (prefersReducedMotion() || !rootRef.value) return
+    gsap.to(rootRef.value.querySelectorAll('.tree-fx'), {
+        keyframes: { rotation: [0, 4, -3, 2, -1, 0], easeEach: 'sine.inOut' },
+        transformOrigin: '50% 100%',
+        duration: 1.3,
+        stagger: { each: 0.05, from: 'start' },
+        overwrite: 'auto',
+    })
+    gsap.fromTo(
+        rootRef.value.querySelector('.hero-logo-img'),
+        { rotate: 0 },
+        { rotate: 360, duration: 0.8, ease: 'back.out(1.4)', clearProps: 'transform' }
+    )
 }
 
+let mm: gsap.MatchMedia | null = null
 
-const handleMove = (e: MouseEvent | Touch) => {
-    if (!leftRef.value || !underlayRef.value || !toggle) return
+onMounted(() => {
+    if (!rootRef.value) return
+    gsap.registerPlugin(ScrollTrigger)
 
-    const clientX = 'clientX' in e ? e.clientX : 0
-    const p = clientX / window.innerWidth * 100
+    mm = gsap.matchMedia(rootRef.value)
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-    // leftRef.value.style.width = `${p}%`
-    underlayRef.value.style.width = `${p}%`
-}
+        timeline.from('.tree-fx', { y: 120, opacity: 0, duration: 1, stagger: { each: 0.04, from: 'center' } }, 0)
+            .from('.hero-logo-img', { scale: 0.5, opacity: 0, rotate: -12, duration: 0.9, ease: 'back.out(1.7)' }, 0.1)
+            .from('.hero-word', { yPercent: 115, opacity: 0, duration: 0.7, stagger: 0.07 }, '-=0.3')
+            .fromTo(
+                '.hero-word.is-accent',
+                { backgroundSize: '0% 100%' },
+                { backgroundSize: '100% 100%', duration: 0.8, ease: 'power2.out' },
+                '-=0.2'
+            )
+            .from('.hero-sub', { y: 16, opacity: 0, duration: 0.6 }, '-=0.5')
+            .from('.hero-cta > a', { y: 22, opacity: 0, duration: 0.55, stagger: 0.09 }, '-=0.4')
 
-const onScroll = (e: Event) => {
-    if (!leftRef.value || !underlayRef.value || !headerRef.value) return
-
-    const headerWidth = headerRef.value?.offsetWidth || 0
-
-    //const maxWidth = headerRef.value?.getBoundingClientRect().width
-
-    const scrollPx = window.scrollY
-    const size = headerWidth - scrollPx
-    if (scrollPx != headerWidth) {
-        // leftRef.value.style.width = `${(size) / headerWidth * 100}%`
-        underlayRef.value.style.width = `${(size) / headerWidth * 100}%`
-        underlayRef.value.style.opacity = `${(size) / headerWidth * 100}%`
-
-    }
-
-}
-
-
-
-// function showQuotes(clear: boolean = true) {
-//     if (!leftRef.value || !underlayRef.value || !headerRef.value) return
-//     let index = 0;
-//     const children = rightSideRef.value?.children;
-
-//     if (children && children.length > 0) {
-//         Array.from(children).forEach(child => (child as HTMLElement).style.opacity = "0");
-//         index = Math.floor(Math.random() * children.length);
-//         (children[index] as HTMLElement).style.opacity = "1";
-
-//         setTimeout(() => {
-//             (children[index] as HTMLElement).style.opacity = "0";
-//             // showQuotes(false)
-//         }, 4000)
-
-//     }
-// }
-const onMouseMove = (e: MouseEvent) => handleMove(e)
-const onTouchMove = (e: TouchEvent) => {
-    if (e.touches.length > 0) handleMove(e.touches[0])
-}
-
-let toggle = true
-const openPicture = (e: Event) => {
-    toggle = !toggle
-    if (!headerRef.value || !leftRef.value || !underlayRef.value) return
-    if (toggle) {
-        headerRef.value.addEventListener('mousemove', onMouseMove)
-        headerRef.value.addEventListener('touchmove', onTouchMove)
-        window.removeEventListener('scroll', onScroll)
-        leftRef.value.style.width = `50%`
-        underlayRef.value.style.width = `50%`
-        underlayRef.value.style.opacity = `50%`
-
-    }
-    else {
-
-        window.addEventListener('scroll', onScroll, { passive: false })
-    }
-
-}
-// watchEffect(() => {
-
-//     if (data.value?.response.results) {
-//         // if (process.client) {
-//         //   const jsonData = JSON.stringify(data.value?data.value:"", null, 2);
-//         //   const blob = new Blob([jsonData], { type: 'application/json' });
-//         //   const fileUrl = URL.createObjectURL(blob);
-
-//         //   // Create a temporary link to trigger download
-//         //   const link = document.createElement('a');
-//         //   link.href = fileUrl;
-//         //   link.download = 'quotes.json';
-//         //   document.body.appendChild(link);
-//         //   link.click();
-//         //   document.body.removeChild(link);
-//         //   URL.revokeObjectURL(fileUrl);
-//         // }
-
-
-//         quotes.value = data.value?.response.results.map((result: any) => (result.properties["quote_text"]?.rich_text?.[0]?.plain_text || ''
-//         ));
-
-//     }
-// });
-onMounted(async () => {
-    animate.value = true
-
-    // Wait for Vue to finish rendering, then apply styles to wave elements
-    await nextTick()
-
-    if (wavesSvgConRef.value) {
-        Object.assign(wavesSvgConRef.value.style, wavesSvgConStyles.value)
-    }
-
-    if (wavesSvgRef.value) {
-        Object.assign(wavesSvgRef.value.style, wavesSvgStyles.value)
-    }
-
-    if (headerRef.value) {
-        headerRef.value.addEventListener('mousemove', onMouseMove)
-        headerRef.value.addEventListener('touchmove', onTouchMove)
-        // window.addEventListener('scroll', onScroll, { passive: false })
-        // showQuotes(false)
-    }
+        const scrollTrigger = { trigger: rootRef.value, start: 'top top', end: 'bottom top', scrub: true }
+        gsap.to('.layer-back', { y: 30, ease: 'none', scrollTrigger })
+        gsap.to('.layer-front', { y: 60, ease: 'none', scrollTrigger })
+    })
 })
 
 onUnmounted(() => {
-    if (headerRef.value) {
-        headerRef.value.removeEventListener('mousemove', onMouseMove)
-        headerRef.value.removeEventListener('touchmove', onTouchMove)
-        // window.removeEventListener('scroll', onScroll)
-
-    }
-
+    mm?.revert()
 })
 </script>
 
-
-
 <style scoped>
-
-.layered-content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.hero {
+    --ink: #111827;
+    position: relative;
+    isolation: isolate;
     display: grid;
     place-items: center;
-    border-radius: 10px;
-}
-
-.darken-back{
-
-}
-.lighten-back{
-      background-color: rgba(251, 250, 250, 0.483);
-
-
-      background-color: hsla(51, 100%, 50%, 0.1);
-      background-color: rgba(0, 0, 0, 0.472);
-      background-color: #2f4f3e88
-}
-.right-side {
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: minmax(100px, auto);
-    gap: 1rem;
-    font-size: 20px;
-    font-family: cursive;
-    color: white;
-}
-
-.teamPictureBg {
-    background-image: url('/styleImgs/teamPictureBW.jpg');
-    background-image: cross-fade(url('/styleImgs/teamPictureBW.jpg') 0%,url('/styleImgs/schloss.jpg') 100%);
-}
-
-.schlossPictureBg {
-    background-image: url('/styleImgs/schloss.jpg');
-
-}
-
-.color-white {
-    color: white;
-}
-
-/* .right-side>* {
     width: 100%;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.10) 40%, rgba(255, 255, 255, 0.00) 100%);
-    backdrop-filter: blur(2px);
-
-} */
-
-.btn-kamun {
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    text-decoration: none;
-    padding: 5px 15px;
+    min-height: max(520px, calc(80vh - var(--nav-h, 64px) - 40px));
+    max-height: 100vh;
+    overflow: hidden;
     border-radius: 20px;
-    margin: 20px;
+    padding: clamp(2.5rem, 6vw, 4rem) 1rem clamp(7.5rem, 17vw, 11rem);
+    box-sizing: border-box;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.6) 45%, color-mix(in srgb, var(--theme-color) 30%, white) 100%);
+    box-shadow: 0 20px 50px -30px rgba(15, 23, 42, 0.35);
 }
 
-.btn-join {
-    background-color: white;
-    color: #2d3748;
-    border: 1px solid #e2e8f0;
-    text-decoration: none;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin: 20px;
-}
-
-.btn-news {
-    background-color: transparent;
-    color: #4a5568;
-    border: 1px solid #e2e8f0;
-    text-decoration: none;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin: 20px;
-}
-
-.scroll-indicator {
+.hero::before,
+.hero::after {
+    content: '';
     position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    inset: 0;
+    z-index: -2;
 }
 
-.bounce {
-    display: inline-block;
-    animation: bounce 2s infinite;
+.hero::before {
+    background: radial-gradient(rgba(15, 23, 42, 0.1) 1px, transparent 1.5px) 0 0 / 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%);
 }
 
-
-.btn-primary {
-    display: inline-block;
-    padding: 12px 32px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.3s ease;
-    font-size: 3vmin;
+.hero::after {
+    background: radial-gradient(circle at 50% 28%, color-mix(in srgb, var(--theme-color) 38%, transparent), transparent 60%);
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
-}
-
-hero-gradient p {
-    max-width: 42rem;
-    margin: 0 auto 2.5rem;
-}
-
-
-
-.underlay-kamun {
-    z-index: 2;
-    /* background-color: var(--theme-color); */
-
-    background-image: url("/styleImgs/forest-silouette-yellow.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: linear-gradient(120deg, rgba(255, 255, 255) 0%, rgba(255, 255, 255, 0.4) 40%, rgba(255, 255, 255, 0.00) 100%);
-    backdrop-filter: blur(20px);
-
-}
-
-.container-home {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
+.hero-trees {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
     width: 100%;
-    border-radius: 10px;
+    height: clamp(150px, 30vw, 360px);
+    pointer-events: none;
 }
 
-.kamun-title {
+.hero-trees * {
+    fill: var(--theme-color);
+    transition: none;
+}
+
+.foliage {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: tree-sway var(--t, 4.6s) ease-in-out var(--d, 0s) infinite;
+}
+
+@keyframes tree-sway {
+    0%,
+    100% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 1.8deg;
+    }
+
+    75% {
+        rotate: -1.8deg;
+    }
+}
+
+.hero-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    width: min(100%, 90rem);
+    text-align: center;
 }
 
-.kamun-title-text {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: white;
-    margin: 0;
+.hero-inner > * {
+    transition: none;
 }
 
-.title-sub-text {
-    font-size: 1.2em;
-    color: white;
-    margin: 0;
-}
-
-.overlay-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
-    height: 100%;
-}
-
-.kamun-fab {
-    position: absolute;
-    top: 50%;
-    right: 2rem;
-    transform: translateY(-50%);
-    background: var(--seasalt);
-    color: black;
-    font-weight: 500;
-    font-size: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    display: flex;
+.hero-logo {
+    position: relative;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    z-index: 10;
+    padding: 0;
+    margin-bottom: 1.25rem;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transition: scale 0.3s ease;
 }
 
-.kamun-fab:hover {
-    transform: translateY(-50%) scale(1.5);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+@media (hover: hover) {
+    .hero-logo:hover {
+        scale: 1.06;
+    }
 }
 
-.quote-text p {
-    font-family: 'Georgia', 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-size: 1.5em;
-    color: #fff;
-    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
-    margin: 0;
-    padding: 0 1em;
-
-    letter-spacing: 0.02em;
+.hero-logo:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
 }
-.waves-svg-con {
-    background-color: transparent;
+
+.hero-logo-img {
+    display: block;
+    width: clamp(5rem, 20vw, 7rem);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #fff, 0 14px 34px -8px rgba(15, 23, 42, 0.35);
+    transition: none;
+}
+
+.hero-halo {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    height: unset;
-    right: 0;
-    z-index: 2;
-    transform: rotateX(180deg);
+    inset: 0;
+    border: 2px solid var(--theme-color);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
 }
 
-.waves-svg {
+.hero-title {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 700;
     width: 100%;
-    height: 100%;
-    fill: var(--theme-color);
+    font-size: clamp(1.9rem, 6vw, 5rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #1f2937;
+    text-wrap: balance;
+}
+
+.hero-line {
+    display: block;
+}
+
+.hero-word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding: 0 0.08em 0.14em;
+    margin: 0 0.12em -0.14em;
+}
+
+.hero-word {
+    display: inline-block;
+    transition: none;
+}
+
+.hero-word.is-accent {
+    background: linear-gradient(transparent 62%, var(--theme-color) 62%, var(--theme-color) 92%, transparent 92%) no-repeat left / 100% 100%;
+}
+
+.hero-sub {
+    max-width: 36rem;
+    margin: 1.1rem auto 1.75rem;
+    color: #4b5563;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.6;
+}
+
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.25rem;
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: translate 0.25s ease;
+}
+
+.hero-btn:hover svg {
+    translate: 4px 0;
+}
+
+.hero-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+.hero-btn--munika {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 10px 22px -12px rgba(17, 24, 39, 0.7);
+}
+
+.hero-btn--munika:hover {
+    background: #1f2937;
+    box-shadow: 0 14px 26px -12px rgba(17, 24, 39, 0.8);
+}
+
+.hero-btn--signup {
+    background: var(--theme-color);
+    color: #1f2937;
+    box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.45);
+}
+
+.hero-btn--signup:hover {
+    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.55);
+    filter: brightness(1.04);
+}
+
+.hero-btn--news {
+    border-color: rgba(17, 24, 39, 0.25);
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--ink);
+}
+
+.hero-btn--news:hover {
+    border-color: var(--ink);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 640px) {
+    .hero {
+        min-height: 0;
+        border-radius: 16px;
+    }
+
+    .hero-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 22rem;
+        gap: 0.6rem;
+    }
+
+    .hero-btn {
+        padding: 0.45rem 0.35rem;
+    }
+
+    .hero-btn--signup {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .foliage {
+        animation: none;
+    }
 }
 </style>

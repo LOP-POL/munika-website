@@ -10,7 +10,7 @@ onMounted(() => {
       }
 
     })
-  }, { threshold: 0.10 })
+  }, { threshold: 0.05 })
 
   document.querySelectorAll('.main-section').forEach(node => {
 
