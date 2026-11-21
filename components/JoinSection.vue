@@ -177,6 +177,12 @@ onBeforeUnmount(() => {
   will-change: transform;
   pointer-events: none;
 }
+.js-card,
+.js-img,
+.js-graphic {
+    transition: none;
+}
+
 
 @media (max-width: 900px) {
   .join-section,
